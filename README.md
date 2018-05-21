@@ -9,7 +9,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    ```
    npm install --save @ckeditor/ckeditor5-angular
    ```
-2. [Install](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/installation.html) an editor build
+2. [Install](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/installation.html) one of available editor builds:
    * [build-classic](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic)
    * [build-inline](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-inline)
    * [build-balloon](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-balloon)
@@ -23,7 +23,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    **Note:** You may need to allow external JS in your project's `tsconfig.json` for the builds to work properly:
    ```
    "compilerOptions": {
-     "allowJs": true
+   	"allowJs": true
    }
    ```
 3. Import the build in your Angular component and assign it to a `public` property so it becomes accessible in the template:
@@ -31,18 +31,18 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic'
 
    @Component( {
-     ...
+   	...
    } )
    export class MyComponent {
-     public ClassicEditorBuild = ClassicEditorBuild;
-     ...
+   	public ClassicEditorBuild = ClassicEditorBuild;
+   	...
    }
    ```
-   You can import as many editor builds as you want.
+	 You can import as many editor builds as you want.
 4. Use the `<ckeditor>` tag in the template to run the editor
-```html
-<ckeditor [build]="ClassicEditorBuild" data="<p>Hello world!</p>"></ckeditor>
-```
+   ```html
+   <ckeditor [build]="ClassicEditorBuild" data="<p>Hello world!</p>"></ckeditor>
+   ```
 
 ## Integration with the `ngModel`
 
@@ -51,13 +51,13 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
 1. Create some model in you component to share with the editor:
    ```ts
    @Component( {
-     ...
+   	...
    } )
    export class MyComponent {
-     public model = {
-       editorData: '<p>Hello world!</p>'
-     };
-     ...
+   	public model = {
+   		editorData: '<p>Hello world!</p>'
+   	};
+   	...
    }
    ```
 2. Use the model in the template to enable a 2–way data binding:
@@ -85,7 +85,7 @@ The [configuration](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_e
 
 ### `data`
 
-The initial data of the editor. It can be a static value
+The initial data of the editor. It can be a static value:
 
 ```html
 <ckeditor data="<p>Hello world!</p>" ...></ckeditor>
@@ -95,11 +95,11 @@ or a shared parent component's property
 
 ```ts
 @Component( {
-  ...
+	...
 } )
 export class MyComponent {
-  public editorData = '<p>Hello world!</p>';
-  ...
+	public editorData = '<p>Hello world!</p>';
+	...
 }
 ```
 
@@ -109,7 +109,7 @@ export class MyComponent {
 
 ### `id`
 
-The DOM `id` attribute of the element the editor injects in DOM when created.
+The DOM `id` attribute of the element the editor injects into DOM when created.
 
 ### `disabled`
 
@@ -117,14 +117,14 @@ Controls the editor's [read–only](https://docs.ckeditor.com/ckeditor5/latest/a
 
 ```ts
 @Component( {
-  ...
+	...
 } )
 export class MyComponent {
-  public isDisabled = false;
-  ...
-  toggleDisabled() {
-    this.isDisabled = !this.isDisabled
-  }
+	public isDisabled = false;
+	...
+	toggleDisabled() {
+		this.isDisabled = !this.isDisabled
+	}
 }
 ```
 
@@ -132,7 +132,7 @@ export class MyComponent {
 <ckeditor [disabled]="isDisabled" ...></ckeditor>
 
 <button (click)="toggleDisabled()">
-  {{ isDisabled ? 'Enable editor' : 'Disable editor' }}
+	{{ isDisabled ? 'Enable editor' : 'Disable editor' }}
 </button>
 ```
 
@@ -179,13 +179,11 @@ You may also need the following config in `.angular-cli.json` to include the sym
 
 ```json
 {
-  ...
-  "defaults": {
-    ...
-    "build": {
-      "preserveSymlinks": true
-    }
-  }
+	"defaults": {
+		"build": {
+			"preserveSymlinks": true
+		}
+	}
 }
 ```
 
