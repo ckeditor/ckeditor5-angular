@@ -26,7 +26,20 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    	"allowJs": true
    }
    ```
-3. Import the build in your Angular component and assign it to a `public` property so it becomes accessible in the template:
+3. Include the CKEditor module:
+   ```ts
+   import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
+   @NgModule( {
+   	imports: [
+   		...
+   		CKEditorModule,
+   		...
+   	],
+   	...
+   } )
+   ```
+4. Import the editor build in your Angular component and assign it to a `public` property so it becomes accessible in the template:
    ```ts
    import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic'
 
