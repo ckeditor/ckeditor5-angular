@@ -52,7 +52,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    }
    ```
 	 You can import as many editor builds as you want.
-4. Use the `<ckeditor>` tag in the template to run the editor
+5. Use the `<ckeditor>` tag in the template to run the editor
    ```html
    <ckeditor [build]="ClassicEditorBuild" data="<p>Hello world!</p>"></ckeditor>
    ```
