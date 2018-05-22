@@ -3,7 +3,8 @@
   "description": "CKEditor 5 component for Angular 2+.",
   "version": "0.0.1",
   "scripts": {
-    "build": "ng-packagr -p package.json",
+    "build": "ng build --prod",
+    "build-package": "ng-packagr -p package.json",
     "publish": "npm publish dist",
     "test": "ng test",
     "lint": "ng lint",
@@ -51,7 +52,7 @@
   },
   "ngPackage": {
     "lib": {
-      "entryFile": "./src/ckeditor.module.ts"
+      "entryFile": "./lib/ckeditor.module.ts"
     },
     "whitelistedNonPeerDependencies": [
       "."

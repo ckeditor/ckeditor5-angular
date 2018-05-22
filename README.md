@@ -48,7 +48,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 
 The component implements the [`ControlValueAccessor`](https://angular.io/api/forms/ControlValueAccessor) interface and works with the `ngModel`.
 
-1. Create some model in you component to share with the editor:
+1. Create some model in your component to share with the editor:
    ```ts
    @Component( {
    	...
@@ -157,19 +157,51 @@ Fires when the editing view of the editor is focused. It corresponds with the [`
 
 ## 🚧 Development 🚧
 
+### The structure of the repository
+
+This repository contains the following code:
+* `./lib` contains the CKEditor component,
+* `./src` a demo application using the component.
+
+**Note:** The [npm package](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) contains a [#packaging-the-component](packaged component) only.
+
+### Testing the component (demo)
+
+To open a demo application using the component, run:
+
+```
+ng serve --open
+```
+
+To test it in the production, use:
+
+```
+ng serve --prod --open
+```
+
+Play with the application and make sure the component works properly.
+
 ### Packaging the component
 
 This project uses the [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create a package meeting the Angular Package Format specification. Calling
 
 ```
-npm run build
+npm run build-package
 ```
 
-creates a package in the `./dist` directory.
+creates a package in the `./dist` directory, which can be then published in npm.
 
-### Testing the integration
+#### Publishing the package
 
-Create a symlink to the `ckeditor5-angular/dist` package directory when developing and testing the component from another Angular project:
+To publish the new package in the npm registry, run:
+
+```
+npm run publish
+```
+
+### Testing a package before releasing
+
+Having generated a package, create a symlink to the `ckeditor5-angular/dist` package directory to test it in another (3rd–party) Angular project:
 
 ```
 ln -s /path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
@@ -185,14 +217,6 @@ You may also need the following config in `.angular-cli.json` to include the sym
 		}
 	}
 }
-```
-
-### Publishing the package
-
-To publish the new package in the npm registry, run:
-
-```
-npm run publish
 ```
 
 ## License

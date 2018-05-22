@@ -1,0 +1,19 @@
+:host {
+	display: block;
+	font-family: sans-serif;
+	font-size: 14px;
+	padding: 1em;
+	max-width: 800px;
+	min-width: 500px;
+	margin: 0 auto;
+}
+
+nav a.active {
+	font-weight: bold;
+}
+
+:host ::ng-deep h2,
+:host ::ng-deep h3,
+:host ::ng-deep h4 {
+	border-bottom: 1px solid #ddd;
+}

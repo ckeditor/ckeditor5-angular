@@ -1,0 +1,4 @@
+:host ::ng-deep .ck.ck-editor__editable:not([contenteditable]) {
+	background: #fafafa;
+	color: #888;
+}
