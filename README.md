@@ -157,6 +157,12 @@ Fires when the editing view of the editor is focused. It corresponds with the [`
 
 ## 🚧 Development 🚧
 
+Having cloned the repository, to install necessary dependencies, run:
+
+```
+npm install
+```
+
 ### The structure of the repository
 
 This repository contains the following code:
