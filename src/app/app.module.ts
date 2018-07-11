@@ -26,9 +26,8 @@ const appRoutes: Routes = [
 		DemoFormComponent,
 		SimpleUsageComponent
 	],
-	providers: [
-	],
+	providers: [],
 	bootstrap: [ AppComponent ]
 } )
 
-export class AppModule { }
+export class AppModule {}
