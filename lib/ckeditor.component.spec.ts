@@ -5,7 +5,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
-import * as ClassicEditorBuild from '../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js'
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic/build/ckeditor.js'
 
 describe('CKEditorComponent', () => {
 	let component: CKEditorComponent;
