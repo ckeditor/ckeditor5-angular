@@ -20,14 +20,14 @@ const appRoutes: Routes = [
 		FormsModule,
 		CKEditorModule,
 		RouterModule.forRoot( appRoutes )
-  	],
+	],
 	declarations: [
 		AppComponent,
 		DemoFormComponent,
 		SimpleUsageComponent
 	],
 	providers: [
-  	],
+	],
 	bootstrap: [ AppComponent ]
 } )
 

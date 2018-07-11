@@ -7,7 +7,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic/build/ckeditor.js'
 
-describe('CKEditorComponent', () => {
+describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
 	let fixture: ComponentFixture<CKEditorComponent>;
 
@@ -15,11 +15,11 @@ describe('CKEditorComponent', () => {
 		TestBed.configureTestingModule( {
 			declarations: [ CKEditorComponent ]
 		} )
-		.compileComponents();
+			.compileComponents();
 		console.log( 'bef1' );
 	} ) );
 
-	beforeEach(() => {
+	beforeEach( () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
 		component.build = ClassicEditorBuild;
