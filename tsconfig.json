@@ -1,8 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-	"allowJs": true,
-	"strict": true,
+    "allowJs": true,
+    "strict": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
