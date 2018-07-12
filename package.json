@@ -3,13 +3,12 @@
   "description": "CKEditor 5 component for Angular 2+.",
   "version": "0.0.1",
   "scripts": {
-    "start": "ng serve",
+    "start": "ng serve --open",
     "build": "ng build --prod",
     "build-package": "ng-packagr -p package.json",
     "publish": "npm publish dist",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "^6.0.7",

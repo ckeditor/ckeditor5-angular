@@ -1,3 +1,5 @@
+// Simple typings for editors used in the sample app.
+
 declare module "@ckeditor/ckeditor5-build-classic" {
 	var ClassicEditorBuild: any;
 
