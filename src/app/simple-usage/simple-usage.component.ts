@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic'
-import * as InlineEditorBuild from '@ckeditor/ckeditor5-build-inline'
-import * as BalloonEditorBuild from '@ckeditor/ckeditor5-build-balloon'
+import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -11,11 +9,12 @@ import * as BalloonEditorBuild from '@ckeditor/ckeditor5-build-balloon'
 } )
 export class SimpleUsageComponent implements OnInit {
 	public ClassicEditorBuild = ClassicEditorBuild;
-	public InlineEditorBuild = InlineEditorBuild;
-	public BalloonEditorBuild = BalloonEditorBuild;
 
 	public isDisabled = false;
-	public editorData = '<p>Getting used to an entirely different culture can be challenging. While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person. You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>';
+	public editorData =
+		`<p>Getting used to an entirely different culture can be challenging.
+While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person.
+You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>`;
 
 	constructor() { }
 
@@ -23,7 +22,7 @@ export class SimpleUsageComponent implements OnInit {
 	}
 
 	toggleDisableEditors() {
-		this.isDisabled = !this.isDisabled
+		this.isDisabled = !this.isDisabled;
 	}
 
 	onFocus( evt: any ): void {

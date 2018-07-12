@@ -1,20 +1,19 @@
 import {
 	Component,
-	OnInit,
 	ViewChild,
-	ElementRef
+	AfterViewInit
 } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
-import { Form } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component( {
 	selector: 'app-demo-form',
 	templateUrl: './demo-form.component.html',
 	styleUrls: [ './demo-form.component.css' ]
 } )
-export class DemoFormComponent implements OnInit {
-	@ViewChild( 'demoForm' ) demoForm?: Form;
+export class DemoFormComponent implements AfterViewInit {
+	@ViewChild( 'demoForm' ) demoForm?: NgForm;
 
 	public ClassicEditorBuild = ClassicEditorBuild;
 	public model = {
@@ -25,13 +24,11 @@ export class DemoFormComponent implements OnInit {
 
 	public formDataPreview?: string;
 
-	constructor() { }
-
-	ngOnInit() { }
+	constructor() {}
 
 	ngAfterViewInit() {
 		this.demoForm!.control.valueChanges
-			.subscribe( values => this.formDataPreview = JSON.stringify( values ) );
+			.subscribe( ( values: any ) => this.formDataPreview = JSON.stringify( values ) );
 	}
 
 	onSubmit() {
