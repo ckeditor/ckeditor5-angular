@@ -28,7 +28,7 @@ export class DemoFormComponent implements AfterViewInit {
 
 	ngAfterViewInit() {
 		this.demoForm!.control.valueChanges
-			.subscribe( ( values: any ) => this.formDataPreview = JSON.stringify( values ) );
+			.subscribe( values => this.formDataPreview = JSON.stringify( values ) );
 	}
 
 	onSubmit() {

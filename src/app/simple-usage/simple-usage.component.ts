@@ -7,7 +7,7 @@ import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 	templateUrl: './simple-usage.component.html',
 	styleUrls: [ './simple-usage.component.css' ]
 } )
-export class SimpleUsageComponent implements OnInit {
+export class SimpleUsageComponent {
 	public ClassicEditorBuild = ClassicEditorBuild;
 
 	public isDisabled = false;
@@ -16,10 +16,7 @@ export class SimpleUsageComponent implements OnInit {
 While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person.
 You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>`;
 
-	constructor() { }
-
-	ngOnInit() {
-	}
+	constructor() {}
 
 	toggleDisableEditors() {
 		this.isDisabled = !this.isDisabled;
