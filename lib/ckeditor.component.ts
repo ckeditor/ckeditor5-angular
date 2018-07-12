@@ -13,12 +13,12 @@ import {
 	ViewChild,
 	AfterViewInit, OnDestroy,
 	ElementRef
-} from '@angular/core'
+} from '@angular/core';
 
 import {
 	ControlValueAccessor,
 	NG_VALUE_ACCESSOR
-} from '@angular/forms'
+} from '@angular/forms';
 
 @Component( {
 	selector: 'ckeditor',
@@ -37,7 +37,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The reference to the DOM element created by the component.
 	 */
-	@ViewChild( 'element' ) element: ElementRef;
+	@ViewChild( 'element' ) element!: ElementRef;
 
 	/**
 	 * The constructor of the editor build to be used for the instance of
@@ -56,12 +56,12 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * The initial data of the editor. Useful when not using the ngModel.
 	 * See https://angular.io/api/forms/NgModel to learn more.
 	 */
-	@Input() data: string = '';
+	@Input() data = '';
 
 	/**
 	 * The id of the <ckeditor> tag created by this component.
 	 */
-	@Input() id: string = 'editor';
+	@Input() id = 'editor';
 
 	/**
 	 * When set `true`, the editor becomes read-only.
@@ -115,18 +115,18 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * If the component is read–only before the editor instance is created, it remembers that state,
 	 * so the editor can become read–only once it is ready.
 	 */
-	private initialIsDisabled: boolean = false;
+	private initialIsDisabled = false;
 
 	/**
 	 * An instance of https://angular.io/api/core/NgZone to allow the interaction with the editor
 	 * withing the Angular event loop.
 	 */
-	private ngZone: NgZone = null;
+	private ngZone?: NgZone;
 
 	/**
 	 * A helper variable for `disabled` `@Input`
 	 */
-	private isDisabled: boolean = false;
+	private isDisabled = false;
 
 	/**
 	 * A callback executed when the content of the editor changes. Part of the
@@ -134,7 +134,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 *
 	 * Note: Unset unless the component uses the `ngModel`.
 	 */
-	private cvaOnChange = null;
+	private cvaOnChange?: ( data: string ) => void;
 
 	/**
 	 * A callback executed when the editor has been blurred. Part of the
@@ -142,7 +142,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 *
 	 * Note: Unset unless the component uses the `ngModel`.
 	 */
-	private cvaOnTouched = null;
+	private cvaOnTouched?: () => void;
 
 	constructor( ngZone: NgZone ) {
 		this.ngZone = ngZone;
@@ -174,12 +174,12 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	registerOnChange( callback: any ): void {
+	registerOnChange( callback: ( data: string ) => void ): void {
 		this.cvaOnChange = callback;
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	registerOnTouched( callback: any ): void {
+	registerOnTouched( callback: () => void ): void {
 		this.cvaOnTouched = callback;
 	}
 
@@ -201,7 +201,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private createEditor(): Promise<any> {
 		return this.build.create( this.element.nativeElement, this.config )
-			.then( editor => {
+			.then( ( editor: any ) => {
 				this.editor = editor;
 
 				editor.setData( this.data );
@@ -213,7 +213,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				this.ready.emit( editor );
 				this.setUpEditorEvents( editor );
 			} )
-			.catch( err => {
+			.catch( ( err: Error ) => {
 				console.error( err.stack );
 			} );
 	}
@@ -225,26 +225,26 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on( 'change', evt => {
+		modelDocument.on( 'change', ( evt: any ) => {
 			const data = editor.getData();
 
 			// See https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change.
 			if ( modelDocument.differ.getChanges().length > 0 ) {
-				if ( this.cvaOnChange ) {
-					this.ngZone.run( () => this.cvaOnChange( data ) );
+				if ( this.ngZone && this.cvaOnChange ) {
+					this.ngZone.run( () => this.cvaOnChange!( data ) );
 				}
 
 				this.change.emit( { evt, editor, data } );
 			}
 		} );
 
-		viewDocument.on( 'focus', ( evt, data ) => {
+		viewDocument.on( 'focus', ( evt: any, data: any ) => {
 			this.focus.emit( { evt, editor } );
 		} );
 
-		viewDocument.on( 'blur', evt => {
-			if ( this.cvaOnTouched ) {
-				this.ngZone.run( () => this.cvaOnTouched() );
+		viewDocument.on( 'blur', ( evt: any ) => {
+			if ( this.ngZone && this.cvaOnTouched ) {
+				this.ngZone.run( () => this.cvaOnTouched!() );
 			}
 
 			this.blur.emit( { evt, editor } );
