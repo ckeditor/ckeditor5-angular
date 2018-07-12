@@ -43,7 +43,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * The constructor of the editor build to be used for the instance of
 	 * the component.
 	 */
-	@Input() build: any = null;
+	@Input() build?: CKEditorBuild;
 
 	/**
 	 * The configuration of the editor.
@@ -83,28 +83,28 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() ready = new EventEmitter();
+	@Output() ready = new EventEmitter<any>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change = new EventEmitter();
+	@Output() change = new EventEmitter<{ evt: any, editor: any, data: string}>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur = new EventEmitter();
+	@Output() blur = new EventEmitter<{ evt: any, editor: any}>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus = new EventEmitter();
+	@Output() focus = new EventEmitter<{ evt: any, editor: any}>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -200,8 +200,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * then integrates the editor with the Angular component.
 	 */
 	private createEditor(): Promise<any> {
-		return this.build.create( this.element.nativeElement, this.config )
-			.then( ( editor: any ) => {
+		return this.build!.create( this.element.nativeElement, this.config )
+			.then( editor => {
 				this.editor = editor;
 
 				editor.setData( this.data );
@@ -250,4 +250,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			this.blur.emit( { evt, editor } );
 		} );
 	}
+}
+
+interface CKEditorBuild {
+	create( el: HTMLElement, config?: {} ): Promise<any>;
 }
