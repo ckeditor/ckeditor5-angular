@@ -13,6 +13,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    * [build-classic](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic)
    * [build-inline](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-inline)
    * [build-balloon](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-balloon)
+   * [build-decoupled-document](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-decoupled-document)
 
    or [create a custom one](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html), for example
 
@@ -41,7 +42,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    ```
 4. Import the editor build in your Angular component and assign it to a `public` property so it becomes accessible in the template:
    ```ts
-   import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic'
+   import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
    @Component( {
    	...
@@ -226,13 +227,17 @@ Having generated a package, create a symlink to the `ckeditor5-angular/dist` pac
 ln -s /path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
 ```
 
-You may also need the following config in `.angular-cli.json` to include the symlinked component package without errors:
+You may also need the following config in `angular.json` to include the symlinked component package without errors:
 
 ```json
 {
-	"defaults": {
-		"build": {
-			"preserveSymlinks": true
+	"project-name": {
+		"architect": {
+			"build": {
+				"options": {
+					"preserveSymlinks": true
+				}
+			}
 		}
 	}
 }
