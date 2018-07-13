@@ -109,7 +109,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public editor?: any;
+	private editor?: any;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -121,7 +121,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * An instance of https://angular.io/api/core/NgZone to allow the interaction with the editor
 	 * withing the Angular event loop.
 	 */
-	private ngZone?: NgZone;
+	private ngZone: NgZone;
 
 	/**
 	 * A helper variable for `disabled` `@Input`
@@ -150,7 +150,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the AfterViewInit interface.
 	ngAfterViewInit() {
-		this.createEditor();
+		this.ngZone.runOutsideAngular( () => {
+			this.createEditor();
+		} );
 	}
 
 	// Implementing the OnDestroy interface.
@@ -228,7 +230,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		modelDocument.on( 'change:data', ( evt: any ) => {
 			const data = editor.getData();
 
-			if ( this.ngZone && this.cvaOnChange ) {
+			if ( this.cvaOnChange ) {
 				this.ngZone.run( () => this.cvaOnChange!( data ) );
 			}
 
@@ -240,7 +242,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		} );
 
 		viewDocument.on( 'blur', ( evt: any ) => {
-			if ( this.ngZone && this.cvaOnTouched ) {
+			if ( this.cvaOnTouched ) {
 				this.ngZone.run( () => this.cvaOnTouched!() );
 			}
 
