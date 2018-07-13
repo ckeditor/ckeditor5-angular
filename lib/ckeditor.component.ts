@@ -109,7 +109,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public editor: any = null;
+	public editor?: any;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -252,6 +252,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 }
 
-interface CKEditorBuild {
-	create( el: HTMLElement, config?: {} ): Promise<any>;
+export interface CKEditorBuild {
+	create( sourceElementOrData: HTMLElement | string, config?: {} ): Promise<any>;
 }
