@@ -8,7 +8,8 @@
     "build-package": "ng-packagr -p package.json",
     "publish": "npm publish dist",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "dependencies": {
     "@angular/animations": "^6.0.7",

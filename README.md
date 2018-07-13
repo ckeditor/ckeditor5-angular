@@ -186,13 +186,25 @@ This repository contains the following code:
 To open a demo application using the component, run:
 
 ```
-ng serve --open
+npm run start
 ```
 
 To test it in the production, use:
 
 ```
-ng serve --prod --open
+npm run start -- --prod
+```
+
+To run unit tests, use:
+
+```
+npm run test
+```
+
+To run e2e tests run:
+
+```
+npm run e2e
 ```
 
 Play with the application and make sure the component works properly.
