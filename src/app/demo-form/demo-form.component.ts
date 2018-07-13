@@ -15,7 +15,7 @@ import { NgForm } from '@angular/forms';
 export class DemoFormComponent implements AfterViewInit {
 	@ViewChild( 'demoForm' ) demoForm?: NgForm;
 
-	public ClassicEditorBuild = ClassicEditorBuild;
+	public EditorBuild = ClassicEditorBuild;
 	public model = {
 		name: 'John',
 		surname: 'Doe',

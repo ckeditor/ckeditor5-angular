@@ -18,8 +18,8 @@ declare module "@ckeditor/ckeditor5-build-balloon" {
 	export = BalloonEditorBuild;
 }
 
-declare module "@ckeditor/ckeditor5-build-document" {
-	var DocumentEditorBuild: any;
+declare module "@ckeditor/ckeditor5-build-decoupled-document" {
+	var DecoupledDocumentEditorBuild: any;
 
-	export = DocumentEditorBuild;
+	export = DecoupledDocumentEditorBuild;
 }

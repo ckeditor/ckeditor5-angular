@@ -48,14 +48,14 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    	...
    } )
    export class MyComponent {
-   	public ClassicEditorBuild = ClassicEditorBuild;
+   	public EditorBuild = ClassicEditorBuild;
    	...
    }
    ```
 	 You can import as many editor builds as you want.
 5. Use the `<ckeditor>` tag in the template to run the editor
    ```html
-   <ckeditor [build]="ClassicEditorBuild" data="<p>Hello world!</p>"></ckeditor>
+   <ckeditor [build]="EditorBuild" data="<p>Hello world!</p>"></ckeditor>
    ```
 
 ## Integration with the `ngModel`
@@ -76,7 +76,7 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
    ```
 2. Use the model in the template to enable a 2–way data binding:
    ```html
-   <ckeditor [(ngModel)]="model.editorData" [build]="ClassicEditorBuild"></ckeditor>
+   <ckeditor [(ngModel)]="model.editorData" [build]="EditorBuild"></ckeditor>
    ```
 
 ## Supported `@Inputs`
@@ -86,7 +86,7 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
 The [editor build](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/basic-api.html) which provides the static [`create()`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#static-function-create) method to create an instance of the editor:
 
 ```html
-<ckeditor [build]="ClassicEditorBuild"></ckeditor>
+<ckeditor [build]="EditorBuild"></ckeditor>
 ```
 
 ### `config`

@@ -8,7 +8,7 @@ import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 	styleUrls: [ './simple-usage.component.css' ]
 } )
 export class SimpleUsageComponent {
-	public ClassicEditorBuild = ClassicEditorBuild;
+	public EditorBuild = ClassicEditorBuild;
 
 	public isDisabled = false;
 	public editorData =
