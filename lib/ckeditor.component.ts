@@ -90,21 +90,21 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change = new EventEmitter<{ evt: any, editor: any, data: string}>();
+	@Output() change = new EventEmitter<{ evt: any, editor: any, data: string }>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur = new EventEmitter<{ evt: any, editor: any}>();
+	@Output() blur = new EventEmitter<{ evt: any, editor: any }>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus = new EventEmitter<{ evt: any, editor: any}>();
+	@Output() focus = new EventEmitter<{ evt: any, editor: any }>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -225,20 +225,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on( 'change', ( evt: any ) => {
+		modelDocument.on( 'change:data', ( evt: any ) => {
 			const data = editor.getData();
 
-			// See https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change.
-			if ( modelDocument.differ.getChanges().length > 0 ) {
-				if ( this.ngZone && this.cvaOnChange ) {
-					this.ngZone.run( () => this.cvaOnChange!( data ) );
-				}
-
-				this.change.emit( { evt, editor, data } );
+			if ( this.ngZone && this.cvaOnChange ) {
+				this.ngZone.run( () => this.cvaOnChange!( data ) );
 			}
+
+			this.change.emit( { evt, editor, data } );
 		} );
 
-		viewDocument.on( 'focus', ( evt: any, data: any ) => {
+		viewDocument.on( 'focus', ( evt: any ) => {
 			this.focus.emit( { evt, editor } );
 		} );
 
