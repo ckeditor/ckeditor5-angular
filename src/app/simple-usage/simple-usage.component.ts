@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 

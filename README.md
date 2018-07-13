@@ -121,10 +121,6 @@ export class MyComponent {
 <ckeditor [data]="editorData" ...></ckeditor>
 ```
 
-### `id`
-
-The DOM `id` attribute of the element the editor injects into DOM when created.
-
 ### `disabled`
 
 Controls the editor's [read–only](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#member-isReadOnly) state:

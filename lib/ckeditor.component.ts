@@ -22,7 +22,7 @@ import {
 
 @Component( {
 	selector: 'ckeditor',
-	template: '<div [id]="id" #element></div>',
+	template: '<div #element></div>',
 
 	// Integration with @angular/forms.
 	providers: [
@@ -57,11 +57,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * See https://angular.io/api/forms/NgModel to learn more.
 	 */
 	@Input() data = '';
-
-	/**
-	 * The id of the <ckeditor> tag created by this component.
-	 */
-	@Input() id = 'editor';
 
 	/**
 	 * When set `true`, the editor becomes read-only.
