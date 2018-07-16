@@ -1,0 +1,34 @@
+<h2>Integration with forms (<code>ngModel</code>)</h2>
+
+<form (ngSubmit)="onSubmit()" #demoForm="ngForm">
+	<h3>User profile form</h3>
+
+	<div>
+		<label for="name">Name</label>
+		<input [(ngModel)]="model.name" type="text" name="name" id="name">
+	</div>
+
+	<div>
+		<label for="surname">Surname</label>
+		<input [(ngModel)]="model.surname" type="text" name="surname" id="surname">
+	</div>
+
+	<label for="description">Description</label>
+	<ckeditor
+		[(ngModel)]="model.description"
+		[build]="EditorBuild"
+		id="description"
+		name="description">
+	</ckeditor>
+
+	<p *ngIf="description && description.dirty" class="alert">Description is "dirty".</p>
+	<p *ngIf="description && description.touched" class="alert">Description has been "touched".</p>
+
+	<p><button type="submit">Submit this form</button> <em>(Open the console first)</em></p>
+</form>
+
+<h3>Editor data preview (readable and writable)</h3>
+<textarea [(ngModel)]="model.description" style="width: 100%; height: 40px"></textarea>
+
+<h3>Form data preview</h3>
+<pre>{{ formDataPreview }}</pre>

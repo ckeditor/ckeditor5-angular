@@ -1,0 +1,21 @@
+<h2>Simple usage</h2>
+
+<p><strong>Note:</strong> Open the console for additional logs.</p>
+
+<p>
+	<button (click)="toggleDisableEditors()">{{ isDisabled ? 'Enable editors' : 'Disable editors' }}</button>
+</p>
+
+<h3>Classic build</h3>
+<ckeditor
+	[data]="editorData"
+	[build]="EditorBuild"
+	[disabled]="isDisabled"
+	id="classic-editor"
+	name="classic-editor"
+
+	(ready)="ready($event)"
+	(change)="change($event)"
+	(focus)="onFocus($event)"
+	(blur)="onBlur($event)">
+</ckeditor>
