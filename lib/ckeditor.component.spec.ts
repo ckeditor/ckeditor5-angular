@@ -16,7 +16,6 @@ describe( 'CKEditorComponent', () => {
 			declarations: [ CKEditorComponent ]
 		} )
 			.compileComponents();
-		console.log( 'bef1' );
 	} ) );
 
 	beforeEach( () => {
@@ -24,11 +23,9 @@ describe( 'CKEditorComponent', () => {
 		component = fixture.componentInstance;
 		component.build = ClassicEditorBuild;
 		fixture.detectChanges();
-		console.log( 'bef2' );
 	} );
 
 	it( 'should create', () => {
-		console.log( 'test' );
 		expect( component ).toBeTruthy();
 	} );
 } );
