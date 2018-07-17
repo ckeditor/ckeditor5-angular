@@ -64,8 +64,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * to learn more.
 	 */
 	@Input() set disabled( isDisabled: boolean ) {
-		this.isDisabled = isDisabled;
-
 		this.setDisabledState( isDisabled );
 	}
 
@@ -104,7 +102,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	private editor?: any;
+	public editor?: any;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -145,8 +143,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the AfterViewInit interface.
 	ngAfterViewInit() {
-		this.ngZone.runOutsideAngular( () => {
-			this.createEditor();
+		return this.ngZone.runOutsideAngular( () => {
+			return this.createEditor();
 		} );
 	}
 
@@ -159,7 +157,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	writeValue( value: any ): void {
+	writeValue( value: string ): void {
 		// If already initialized
 		if ( this.editor ) {
 			this.editor.setData( value );
@@ -190,6 +188,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		else {
 			this.initialIsDisabled = isDisabled;
 		}
+
+		this.isDisabled = isDisabled;
 	}
 
 	/**
