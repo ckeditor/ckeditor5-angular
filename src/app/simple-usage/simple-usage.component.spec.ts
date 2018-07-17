@@ -24,4 +24,18 @@ describe( 'SimpleUsageComponent', () => {
 	it( 'should create', () => {
 		expect( component ).toBeTruthy();
 	} );
+
+	describe( 'isDisabled', () => {
+		it( 'should equal to true when editor is disabled', () => {
+			expect( component.isDisabled ).toBeFalsy();
+
+			component.toggleDisableEditors();
+
+			expect( component.isDisabled ).toBeTruthy();
+
+			component.toggleDisableEditors();
+
+			expect( component.isDisabled ).toBeFalsy();
+		} );
+	} );
 } );

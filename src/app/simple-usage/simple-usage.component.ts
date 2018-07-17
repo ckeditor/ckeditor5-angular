@@ -23,18 +23,18 @@ You learn to appreciate each and every single one of the differences while you b
 	}
 
 	onFocus( evt: any ): void {
-		console.log( 'Focused the editing view', evt );
+		// console.log( 'Focused the editing view', evt );
 	}
 
 	onBlur( evt: any ): void {
-		console.log( 'Blurred the editing view', evt );
+		// console.log( 'Blurred the editing view', evt );
 	}
 
 	change( evt: any ): void {
-		console.log( 'Editor model changed', evt );
+		// console.log( 'Editor model changed', evt );
 	}
 
 	ready( evt: any ): void {
-		console.log( 'The editor is ready', evt );
+		// console.log( 'The editor is ready', evt );
 	}
 }
