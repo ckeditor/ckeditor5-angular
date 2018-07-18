@@ -26,6 +26,10 @@ describe( 'CKEditorComponent', () => {
 		fixture.detectChanges();
 	} );
 
+	afterEach( () => {
+		fixture.destroy();
+	} );
+
 	it( 'should create', () => {
 		expect( component ).toBeTruthy();
 	} );
@@ -59,14 +63,14 @@ describe( 'CKEditorComponent', () => {
 	} );
 
 	describe( 'component data', () => {
-		it( 'data set by ControlValueAccessor', () => {
+		it( 'initial data should be empty', () => {
 			return wait().then( () => {
 				expect( component.data ).toEqual( '' );
 				expect( component.editor.getData() ).toEqual( '<p>&nbsp;</p>' );
 			} );
 		} );
 
-		it( 'should be writeable', () => {
+		it( 'should be configurable at the start of the component', () => {
 			component.data = 'foo';
 
 			return wait().then( () => {
@@ -116,7 +120,7 @@ describe( 'CKEditorComponent', () => {
 			component.focus.subscribe( spy );
 
 			return wait().then( () => {
-				component.editor.editing.view.focus();
+				component.editor.editing.view.document.fire( 'focus' );
 
 				sinon.assert.calledOnce( spy );
 				sinon.assert.calledWith( spy, { editor: component.editor, evt: sinon.match.object } );
