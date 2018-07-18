@@ -23,7 +23,7 @@ describe( 'SimpleUsageComponent', () => {
 	beforeEach( () => {
 		fixture = TestBed.createComponent( SimpleUsageComponent );
 		component = fixture.componentInstance;
-		debugElement = fixture.debugElement.query( By.css( '#classic-editor' ) );
+		debugElement = fixture.debugElement.query( By.directive( CKEditorComponent ) );
 		ckeditorComponent = debugElement.componentInstance;
 
 		fixture.detectChanges();
