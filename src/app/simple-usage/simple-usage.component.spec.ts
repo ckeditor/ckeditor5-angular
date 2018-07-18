@@ -73,7 +73,7 @@ describe( 'SimpleUsageComponent', () => {
 	} );
 
 	describe( 'listeners', () => {
-		it ( 'ready should be called on ckeditorComponent.ready()', () => {
+		it( 'ready should be called on ckeditorComponent.ready()', () => {
 			const spy = spyOn( component, 'onReady' );
 
 			ckeditorComponent.ready.emit();
@@ -81,7 +81,7 @@ describe( 'SimpleUsageComponent', () => {
 			expect( spy ).toHaveBeenCalledTimes( 1 );
 		} );
 
-		it ( 'change should be called on ckeditorComponent.change()', () => {
+		it( 'change should be called on ckeditorComponent.change()', () => {
 			const spy = spyOn( component, 'onChange' );
 
 			ckeditorComponent.change.emit();
@@ -89,7 +89,7 @@ describe( 'SimpleUsageComponent', () => {
 			expect( spy ).toHaveBeenCalledTimes( 1 );
 		} );
 
-		it ( 'focus should be called on ckeditorComponent.focus()', () => {
+		it( 'focus should be called on ckeditorComponent.focus()', () => {
 			const spy = spyOn( component, 'onFocus' );
 
 			ckeditorComponent.focus.emit();
@@ -97,7 +97,7 @@ describe( 'SimpleUsageComponent', () => {
 			expect( spy ).toHaveBeenCalledTimes( 1 );
 		} );
 
-		it ( 'blur should be called on ckeditorComponent.blur()', () => {
+		it( 'blur should be called on ckeditorComponent.blur()', () => {
 			const spy = spyOn( component, 'onBlur' );
 
 			ckeditorComponent.blur.emit();
