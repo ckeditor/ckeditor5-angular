@@ -6,7 +6,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
-import * as sinon from 'sinon';
 
 describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
@@ -24,6 +23,8 @@ describe( 'CKEditorComponent', () => {
 		component = fixture.componentInstance;
 		component.build = ClassicEditorBuild;
 		fixture.detectChanges();
+
+		return fixture.whenStable();
 	} );
 
 	afterEach( () => {
@@ -94,41 +95,42 @@ describe( 'CKEditorComponent', () => {
 
 	describe( 'emitters', () => {
 		it( 'ready', () => {
-			const spy = sinon.spy();
+			const spy = jasmine.createSpy();
 			component.ready.subscribe( spy );
 
 			return wait().then( () => {
-				sinon.assert.calledOnce( spy );
-				sinon.assert.calledWithExactly( spy, component.editor );
+				expect( spy ).toHaveBeenCalledTimes( 1 );
+				expect( spy ).toHaveBeenCalledWith( component.editor );
 			} );
 		} );
 
 		it( 'change', () => {
-			const spy = sinon.spy();
+			const spy = jasmine.createSpy();
 			component.change.subscribe( spy );
 
 			return wait().then( () => {
 				component.editor.execute( 'input', { text: 'foo' } );
 
-				sinon.assert.calledOnce( spy );
-				sinon.assert.calledWith( spy, { editor: component.editor, data: '<p>foo</p>', evt: sinon.match.object } );
+				expect( spy ).toHaveBeenCalledTimes( 1 );
+				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
+				expect( spy.calls.first().args[ 0 ].data ).toEqual( '<p>foo</p>' );
 			} );
 		} );
 
 		it( 'focus', () => {
-			const spy = sinon.spy();
+			const spy = jasmine.createSpy();
 			component.focus.subscribe( spy );
 
 			return wait().then( () => {
 				component.editor.editing.view.document.fire( 'focus' );
 
-				sinon.assert.calledOnce( spy );
-				sinon.assert.calledWith( spy, { editor: component.editor, evt: sinon.match.object } );
+				expect( spy ).toHaveBeenCalledTimes( 1 );
+				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
 			} );
 		} );
 
 		it( 'blur', () => {
-			const spy = sinon.spy();
+			const spy = jasmine.createSpy();
 			component.blur.subscribe( spy );
 
 			return wait().then( () => {
@@ -136,8 +138,8 @@ describe( 'CKEditorComponent', () => {
 
 				component.editor.editing.view.document.fire( 'blur', { target: null } );
 
-				sinon.assert.calledOnce( spy );
-				sinon.assert.calledWith( spy, { editor: component.editor, evt: sinon.match.object } );
+				expect( spy ).toHaveBeenCalledTimes( 1 );
+				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
 			} );
 		} );
 	} );
