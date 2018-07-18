@@ -74,7 +74,7 @@ describe( 'SimpleUsageComponent', () => {
 
 	describe( 'listeners', () => {
 		it ( 'ready should be called on ckeditorComponent.ready()', () => {
-			const spy = spyOn( component, 'ready' );
+			const spy = spyOn( component, 'onReady' );
 
 			ckeditorComponent.ready.emit();
 
@@ -82,7 +82,7 @@ describe( 'SimpleUsageComponent', () => {
 		} );
 
 		it ( 'change should be called on ckeditorComponent.change()', () => {
-			const spy = spyOn( component, 'change' );
+			const spy = spyOn( component, 'onChange' );
 
 			ckeditorComponent.change.emit();
 

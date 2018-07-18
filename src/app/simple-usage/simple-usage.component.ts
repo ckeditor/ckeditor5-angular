@@ -30,11 +30,11 @@ You learn to appreciate each and every single one of the differences while you b
 		// console.log( 'Blurred the editing view', evt );
 	}
 
-	change( evt: any ): void {
+	onChange( evt: any ): void {
 		// console.log( 'Editor model changed', evt );
 	}
 
-	ready( evt: any ): void {
+	onReady( evt: any ): void {
 		// console.log( 'The editor is ready', evt );
 	}
 }
