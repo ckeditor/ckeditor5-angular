@@ -143,8 +143,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the AfterViewInit interface.
 	ngAfterViewInit() {
-		return this.ngZone.runOutsideAngular( () => {
-			return this.createEditor();
+		this.ngZone.runOutsideAngular( () => {
+			this.createEditor();
 		} );
 	}
 

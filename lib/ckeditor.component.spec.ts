@@ -23,8 +23,6 @@ describe( 'CKEditorComponent', () => {
 		component = fixture.componentInstance;
 		component.build = ClassicEditorBuild;
 		fixture.detectChanges();
-
-		return fixture.whenStable();
 	} );
 
 	afterEach( () => {
