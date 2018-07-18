@@ -68,7 +68,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	get disabled() {
-		return this.isDisabled;
+		if ( this.editor ) {
+			return this.editor.isReadOnly;
+		}
+
+		return this.initialIsDisabled;
 	}
 
 	/**
@@ -115,11 +119,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * withing the Angular event loop.
 	 */
 	private ngZone: NgZone;
-
-	/**
-	 * A helper variable for `disabled` `@Input`
-	 */
-	private isDisabled = false;
 
 	/**
 	 * A callback executed when the content of the editor changes. Part of the
@@ -188,8 +187,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		else {
 			this.initialIsDisabled = isDisabled;
 		}
-
-		this.isDisabled = isDisabled;
 	}
 
 	/**
