@@ -22,7 +22,7 @@ describe( 'CKEditorComponent', () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
 		component.build = ClassicEditorBuild;
-		// fixture.detectChanges();
+		fixture.detectChanges();
 	} );
 
 	it( 'should be created', () => {
