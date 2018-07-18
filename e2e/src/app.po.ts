@@ -14,26 +14,43 @@ export class AppPage {
 	}
 
 	getNameInputValue() {
-		return element( by.css( 'input#name' ) ).getAttribute( 'value' );
+		return element( by.css( 'app-root  input#name' ) ).getAttribute( 'value' );
 	}
 
-	setNameInputValue( value: string ) {
-		const el = element( by.css( 'input#name' ) );
+	async setNameInputValue( value: string ) {
+		const el = element( by.css( 'app-root  input#name' ) );
 
-		return el.clear().then( () => el.sendKeys( value ) );
+		await el.clear();
+		await el.sendKeys( value );
 	}
 
 	getSurnameInputValue() {
-		return element( by.css( 'input#surname' ) ).getAttribute( 'value' );
+		return element( by.css( 'app-root  input#surname' ) ).getAttribute( 'value' );
 	}
 
-	setSurnameInputValue( value: string ) {
-		const el = element( by.css( 'input#surname' ) );
+	async setSurnameInputValue( value: string ) {
+		const el = element( by.css( 'app-root  input#surname' ) );
 
-		return el.clear().then( () => el.sendKeys( value ) );
+		await el.clear();
+		await el.sendKeys( value );
 	}
 
 	getDescription() {
 		return browser.executeScript( 'return arguments[0].innerHTML', element( by.css( 'app-root #description .ck-editor__editable' ) ) );
+	}
+
+	getFormDataPreview() {
+		return element( by.css( 'app-root pre' ) ).getText();
+	}
+
+	async setDescription( value: string ) {
+		const descEl = element( by.css( 'app-root #description .ck-editor__editable' ) );
+
+		// Select the whole content.
+		await descEl.click();
+		await browser.executeScript( 'document.execCommand( "selectAll", false, null )' );
+
+		// Update it.
+		await descEl.sendKeys( value );
 	}
 }

@@ -1,5 +1,4 @@
 import { AppPage } from './app.po';
-import { promise } from 'protractor';
 
 describe( 'app', () => {
 	let page: AppPage;
@@ -43,6 +42,18 @@ describe( 'app', () => {
 			const desc = await page.getDescription();
 
 			expect( desc ).toEqual( '<p>A <strong>really</strong> nice fellow.</p>' );
+		} );
+
+		it( 'should show and update json data preview', async () => {
+			expect( await page.getFormDataPreview() )
+				.toEqual( '{"name":"John","surname":"Doe","description":"<p>A <b>really</b> nice fellow.</p>"}' );
+
+			await page.setNameInputValue( 'Jessica' );
+			await page.setSurnameInputValue( 'Jones' );
+			await page.setDescription( 'A superhero!' );
+
+			expect( await page.getFormDataPreview() )
+				.toEqual( '{"name":"Jessica","surname":"Jones","description":"<p>A superhero!</p>"}' );
 		} );
 	} );
 } );
