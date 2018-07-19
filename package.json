@@ -8,7 +8,7 @@
     "build-package": "ng-packagr -p package.json",
     "publish": "npm publish dist",
     "test": "ng test",
-    "test-cc": "ng test --watch=false --code-coverage",
+    "coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
