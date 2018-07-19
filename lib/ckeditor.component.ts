@@ -225,11 +225,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		modelDocument.on( 'change:data', ( evt: any ) => {
 			const data = editor.getData();
 
-			if ( this.cvaOnChange ) {
-				this.ngZone.run( () => this.cvaOnChange!( data ) );
-			}
-
 			this.ngZone.run( () => {
+				if ( this.cvaOnChange ) {
+					this.cvaOnChange( data );
+				}
+
 				this.change.emit( { evt, editor, data } );
 			} );
 		} );
@@ -241,11 +241,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		} );
 
 		viewDocument.on( 'blur', ( evt: any ) => {
-			if ( this.cvaOnTouched ) {
-				this.ngZone.run( () => this.cvaOnTouched!() );
-			}
-
 			this.ngZone.run( () => {
+				if ( this.cvaOnTouched ) {
+					this.cvaOnTouched();
+				}
+
 				this.blur.emit( { evt, editor } );
 			} );
 		} );
