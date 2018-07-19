@@ -74,35 +74,27 @@ describe( 'SimpleUsageComponent', () => {
 
 	describe( 'listeners', () => {
 		it( 'ready should be called on ckeditorComponent.ready()', () => {
-			const spy = spyOn( component, 'onReady' );
-
 			ckeditorComponent.ready.emit();
 
-			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( component.componentEvents ).toContain( 'The editor is ready.' );
 		} );
 
 		it( 'change should be called on ckeditorComponent.change()', () => {
-			const spy = spyOn( component, 'onChange' );
-
 			ckeditorComponent.change.emit();
 
-			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( component.componentEvents ).toContain( 'Editor model changed.' );
 		} );
 
 		it( 'focus should be called on ckeditorComponent.focus()', () => {
-			const spy = spyOn( component, 'onFocus' );
-
 			ckeditorComponent.focus.emit();
 
-			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( component.componentEvents ).toContain( 'Focused the editing view.' );
 		} );
 
 		it( 'blur should be called on ckeditorComponent.blur()', () => {
-			const spy = spyOn( component, 'onBlur' );
-
 			ckeditorComponent.blur.emit();
 
-			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( component.componentEvents ).toContain( 'Blurred the editing view.' );
 		} );
 	} );
 } );

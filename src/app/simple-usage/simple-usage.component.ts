@@ -16,25 +16,25 @@ export class SimpleUsageComponent {
 While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person.
 You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>`;
 
-	constructor() {}
+	public componentEvents: string[] = [];
 
 	toggleDisableEditors() {
 		this.isDisabled = !this.isDisabled;
 	}
 
-	onFocus( evt: any ): void {
-		// console.log( 'Focused the editing view', evt );
+	onReady(): void {
+		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	onBlur( evt: any ): void {
-		// console.log( 'Blurred the editing view', evt );
+	onChange(): void {
+		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	onChange( evt: any ): void {
-		// console.log( 'Editor model changed', evt );
+	onFocus(): void {
+		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	onReady( evt: any ): void {
-		// console.log( 'The editor is ready', evt );
+	onBlur(): void {
+		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 }
