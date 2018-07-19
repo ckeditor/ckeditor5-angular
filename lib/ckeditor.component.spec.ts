@@ -141,6 +141,69 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 	} );
+
+	describe( 'control value accessor callbacks', () => {
+		it( 'onTouched callback should be called when editor is blurred', () => {
+			return wait().then( () => {
+				const spy = jasmine.createSpy();
+
+				component.registerOnTouched( spy );
+				component.editor.editing.view.focus();
+
+				component.editor.editing.view.document.fire( 'blur', { target: null } );
+
+				expect( spy ).toHaveBeenCalled();
+			} );
+		} );
+
+		it( 'onChange callback should be called when editor model changes', () => {
+			return wait().then( () => {
+				const spy = jasmine.createSpy();
+				component.registerOnChange( spy );
+
+				component.editor.execute( 'input', { text: 'foo' } );
+
+				expect( spy ).toHaveBeenCalled();
+			} );
+		} );
+	} );
+} );
+
+describe( 'CKEditorComponent', () => {
+	describe( 'invalid initialization', () => {
+		let fixture: ComponentFixture<CKEditorComponent>;
+		let component: CKEditorComponent;
+
+		class EditorThatThrowsErrorDuringInitialization {
+			static create() {
+				return Promise.resolve().then( () => {
+					return Promise.reject( new Error() );
+				} );
+			}
+		}
+
+		beforeEach( async( () => {
+			TestBed.configureTestingModule( {
+				declarations: [ CKEditorComponent ]
+			} )
+				.compileComponents();
+		} ) );
+
+		beforeEach( () => {
+			fixture = TestBed.createComponent( CKEditorComponent );
+			component = fixture.componentInstance;
+			component.build = EditorThatThrowsErrorDuringInitialization;
+		} );
+
+		it( 'should result in error logged to the console', () => {
+			const spy = spyOn( console, 'error', );
+			fixture.detectChanges();
+
+			return wait().then( () => {
+				expect( spy ).toHaveBeenCalled();
+			} );
+		} );
+	} );
 } );
 
 function wait( time?: number ) {
