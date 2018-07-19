@@ -1,0 +1,27 @@
+{
+  "name": "@ckeditor/ckeditor5-angular",
+  "description": "CKEditor 5 component for Angular 2+.",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/forms": "^6.0.0"
+  },
+  "author": "CKSource (http://cksource.com/)",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://ckeditor.com",
+  "bugs": "https://github.com/ckeditor/ckeditor5-angular/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckeditor/ckeditor5-angular.git"
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "./ckeditor.module.ts"
+    },
+    "whitelistedNonPeerDependencies": [
+      "."
+    ],
+    "dest": "../dist"
+  }
+}

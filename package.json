@@ -2,10 +2,11 @@
   "name": "@ckeditor/ckeditor5-angular",
   "description": "CKEditor 5 component for Angular 2+.",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "start": "ng serve --open",
     "build": "ng build --prod",
-    "build-package": "ng-packagr -p package.json",
+    "build-package": "ng-packagr -p lib/package.json && cp LICENSE.md README.md ./dist",
     "publish": "npm publish dist",
     "test": "ng test",
     "coverage": "ng test --watch=false --code-coverage",
