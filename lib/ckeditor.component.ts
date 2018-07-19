@@ -204,7 +204,10 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 					editor.isReadOnly = this.initialIsDisabled;
 				}
 
-				this.ready.emit( editor );
+				this.ngZone.run( () => {
+					this.ready.emit( editor );
+				} );
+
 				this.setUpEditorEvents( editor );
 			} )
 			.catch( ( err: Error ) => {
@@ -226,11 +229,15 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				this.ngZone.run( () => this.cvaOnChange!( data ) );
 			}
 
-			this.change.emit( { evt, editor, data } );
+			this.ngZone.run( () => {
+				this.change.emit( { evt, editor, data } );
+			} );
 		} );
 
 		viewDocument.on( 'focus', ( evt: any ) => {
-			this.focus.emit( { evt, editor } );
+			this.ngZone.run( () => {
+				this.focus.emit( { evt, editor } );
+			} );
 		} );
 
 		viewDocument.on( 'blur', ( evt: any ) => {
@@ -238,7 +245,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				this.ngZone.run( () => this.cvaOnTouched!() );
 			}
 
-			this.blur.emit( { evt, editor } );
+			this.ngZone.run( () => {
+				this.blur.emit( { evt, editor } );
+			} );
 		} );
 	}
 }
