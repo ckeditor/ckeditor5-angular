@@ -64,13 +64,15 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * to learn more.
 	 */
 	@Input() set disabled( isDisabled: boolean ) {
-		this.isDisabled = isDisabled;
-
 		this.setDisabledState( isDisabled );
 	}
 
 	get disabled() {
-		return this.isDisabled;
+		if ( this.editor ) {
+			return this.editor.isReadOnly;
+		}
+
+		return this.initialIsDisabled;
 	}
 
 	/**
@@ -104,7 +106,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	private editor?: any;
+	public editor?: any;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -117,11 +119,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * withing the Angular event loop.
 	 */
 	private ngZone: NgZone;
-
-	/**
-	 * A helper variable for `disabled` `@Input`
-	 */
-	private isDisabled = false;
 
 	/**
 	 * A callback executed when the content of the editor changes. Part of the
@@ -159,7 +156,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	writeValue( value: any ): void {
+	writeValue( value: string ): void {
 		// If already initialized
 		if ( this.editor ) {
 			this.editor.setData( value );
@@ -207,7 +204,10 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 					editor.isReadOnly = this.initialIsDisabled;
 				}
 
-				this.ready.emit( editor );
+				this.ngZone.run( () => {
+					this.ready.emit( editor );
+				} );
+
 				this.setUpEditorEvents( editor );
 			} )
 			.catch( ( err: Error ) => {
@@ -225,23 +225,29 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		modelDocument.on( 'change:data', ( evt: any ) => {
 			const data = editor.getData();
 
-			if ( this.cvaOnChange ) {
-				this.ngZone.run( () => this.cvaOnChange!( data ) );
-			}
+			this.ngZone.run( () => {
+				if ( this.cvaOnChange ) {
+					this.cvaOnChange( data );
+				}
 
-			this.change.emit( { evt, editor, data } );
+				this.change.emit( { evt, editor, data } );
+			} );
 		} );
 
 		viewDocument.on( 'focus', ( evt: any ) => {
-			this.focus.emit( { evt, editor } );
+			this.ngZone.run( () => {
+				this.focus.emit( { evt, editor } );
+			} );
 		} );
 
 		viewDocument.on( 'blur', ( evt: any ) => {
-			if ( this.cvaOnTouched ) {
-				this.ngZone.run( () => this.cvaOnTouched!() );
-			}
+			this.ngZone.run( () => {
+				if ( this.cvaOnTouched ) {
+					this.cvaOnTouched();
+				}
 
-			this.blur.emit( { evt, editor } );
+				this.blur.emit( { evt, editor } );
+			} );
 		} );
 	}
 }
