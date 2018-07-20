@@ -20,6 +20,8 @@ import {
 	NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
+import { CKEditor5 } from './ckeditor';
+
 @Component( {
 	selector: 'ckeditor',
 	template: '<div #element></div>',
@@ -43,14 +45,14 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * The constructor of the editor build to be used for the instance of
 	 * the component.
 	 */
-	@Input() build?: CKEditorBuild;
+	@Input() build?: CKEditor5.EditorConstructor;
 
 	/**
 	 * The configuration of the editor.
 	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() config: { [ key: string ]: any } = {};
+	@Input() config?: CKEditor5.Config;
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
@@ -80,33 +82,33 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() ready = new EventEmitter<any>();
+	@Output() ready = new EventEmitter<CKEditor5.Editor>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change = new EventEmitter<{ evt: any, editor: any, data: string }>();
+	@Output() change = new EventEmitter<{ evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor, data: string }>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur = new EventEmitter<{ evt: any, editor: any }>();
+	@Output() blur = new EventEmitter<{ evt: CKEditor5.EventInfo<'blur'>, editor: CKEditor5.Editor }>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus = new EventEmitter<{ evt: any, editor: any }>();
+	@Output() focus = new EventEmitter<{ evt: CKEditor5.EventInfo<'focus'>, editor: CKEditor5.Editor }>();
 
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public editor?: any;
+	public editor: CKEditor5.Editor | null = null;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -218,11 +220,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * Integrates the editor with the component by attaching related event listeners.
 	 */
-	private setUpEditorEvents( editor: any ): void {
+	private setUpEditorEvents( editor: CKEditor5.Editor ): void {
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on( 'change:data', ( evt: any ) => {
+		modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
 			const data = editor.getData();
 
 			this.ngZone.run( () => {
@@ -234,13 +236,13 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			} );
 		} );
 
-		viewDocument.on( 'focus', ( evt: any ) => {
+		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
 			this.ngZone.run( () => {
 				this.focus.emit( { evt, editor } );
 			} );
 		} );
 
-		viewDocument.on( 'blur', ( evt: any ) => {
+		viewDocument.on( 'blur', ( evt: CKEditor5.EventInfo<'blur'> ) => {
 			this.ngZone.run( () => {
 				if ( this.cvaOnTouched ) {
 					this.cvaOnTouched();
@@ -250,8 +252,4 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			} );
 		} );
 	}
-}
-
-export interface CKEditorBuild {
-	create( sourceElementOrData: HTMLElement | string, config?: {} ): Promise<any>;
 }

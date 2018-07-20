@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor5 } from '../../../lib/ckeditor';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -22,19 +23,19 @@ You learn to appreciate each and every single one of the differences while you b
 		this.isDisabled = !this.isDisabled;
 	}
 
-	onReady(): void {
+	onReady( editor: CKEditor5.Editor ): void {
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	onChange(): void {
+	onChange( event: { evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor, data: string } ): void {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	onFocus(): void {
+	onFocus( event: { evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
 		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	onBlur(): void {
+	onBlur( event: { evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 }
