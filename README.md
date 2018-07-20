@@ -207,6 +207,12 @@ To run e2e tests run:
 npm run e2e
 ```
 
+To run coverage tests run:
+
+```
+npm run coverage
+```
+
 Play with the application and make sure the component works properly.
 
 ### Packaging the component
