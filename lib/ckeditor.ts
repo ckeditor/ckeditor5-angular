@@ -19,22 +19,14 @@ export namespace CKEditor5 {
 	/**
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_utils_eventinfo-EventInfo.html
 	 */
-	export interface EventInfo<name extends string> {
-		readonly name: name;
+	export interface EventInfo<EventName extends string> {
+		readonly name: EventName;
 		readonly path: any[];
 		readonly source: any;
 		return?: any;
 
 		off(): void;
 		stop(): void;
-	}
-
-	/**
-	 * Editor that implements `setData()` and `getData()`, e.g. the `ClassicEditor`, `InlineEditor`, etc.
-	 */
-	export interface Editor extends BaseEditor {
-		setData( data: string ): void;
-		getData(): string;
 	}
 
 	/**
@@ -68,5 +60,13 @@ export namespace CKEditor5 {
 		t( ...args: any[] ): void;
 
 		[ property: string ]: any;
+	}
+
+	/**
+	 * Editor that implements `setData()` and `getData()`, e.g. the `ClassicEditor`, `InlineEditor`, etc.
+	 */
+	export interface Editor extends BaseEditor {
+		setData( data: string ): void;
+		getData(): string;
 	}
 }
