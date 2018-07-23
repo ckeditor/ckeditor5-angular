@@ -11,7 +11,8 @@
     "test": "ng test",
     "coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "changelog": "node ./scripts/changelog.js"
   },
   "dependencies": {
     "@angular/animations": "^6.0.7",
@@ -32,7 +33,8 @@
     "@angular/cli": "~6.0.8",
     "@angular/compiler-cli": "^6.0.7",
     "@angular/language-service": "^6.0.7",
-    "@ckeditor/ckeditor5-build-classic": "^10.1.0",
+    "@ckeditor/ckeditor5-build-classic": "^11.0.1",
+    "@ckeditor/ckeditor5-dev-env": "^11.1.1",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^4.4.2",
