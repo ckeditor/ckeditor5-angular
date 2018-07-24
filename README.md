@@ -1,5 +1,4 @@
 # CKEditor 5 component for Angular 2+
-========================================
 
 [![Join the chat at https://gitter.im/ckeditor/ckeditor5](https://badges.gitter.im/ckeditor/ckeditor5.svg)](https://gitter.im/ckeditor/ckeditor5?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular)
@@ -35,7 +34,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 
    **Note:** You may need to allow external JS in your project's `tsconfig.json` for the builds to work properly:
 
-   ```
+   ```json
    "compilerOptions": {
    	"allowJs": true
    }
