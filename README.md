@@ -1,5 +1,13 @@
-CKEditor 5 component for Angular 2+
+# CKEditor 5 component for Angular 2+
 ========================================
+
+[![Join the chat at https://gitter.im/ckeditor/ckeditor5](https://badges.gitter.im/ckeditor/ckeditor5.svg)](https://gitter.im/ckeditor/ckeditor5?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular)
+[![Build Status](https://travis-ci.org/ckeditor/ckeditor5-angular.svg?branch=master)](https://travis-ci.org/ckeditor/ckeditor5-angular)
+[![Coverage Status](https://coveralls.io/repos/github/ckeditor/ckeditor5-angular/badge.svg?branch=master)](https://coveralls.io/github/ckeditor/ckeditor5-angular?branch=master)
+<br>
+[![Dependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular)
+[![devDependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular?type=dev)
 
 A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.com/) in Angular 2+ projects.
 
@@ -17,7 +25,9 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    * [build-balloon](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-balloon)
    * [build-decoupled-document](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-decoupled-document)
 
-   or [create a custom one](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html), for example
+   or [create a custom one](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html)
+
+   Let's pick the `ckeditor5-build-classic`:
 
    ```bash
    npm install --save @ckeditor/ckeditor5-build-classic
