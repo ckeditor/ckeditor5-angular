@@ -6,9 +6,11 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 ## Usage
 
 1. In your existing Angular project, install the CKEditor component:
-   ```
+
+   ```bash
    npm install --save @ckeditor/ckeditor5-angular
    ```
+
 2. [Install](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/installation.html) one of available editor builds:
    * [build-classic](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic)
    * [build-inline](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-inline)
@@ -17,17 +19,20 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 
    or [create a custom one](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html), for example
 
-   ```
+   ```bash
    npm install --save @ckeditor/ckeditor5-build-classic
    ```
 
    **Note:** You may need to allow external JS in your project's `tsconfig.json` for the builds to work properly:
+
    ```
    "compilerOptions": {
    	"allowJs": true
    }
    ```
+
 3. Include the CKEditor module:
+
    ```ts
    import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
@@ -40,7 +45,9 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    	...
    } )
    ```
+
 4. Import the editor build in your Angular component and assign it to a `public` property so it becomes accessible in the template:
+
    ```ts
    import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 
@@ -51,7 +58,9 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    	public EditorBuild = ClassicEditorBuild;
    	...
    }
+
    ```
+
 	 You can import as many editor builds as you want.
 5. Use the `<ckeditor>` tag in the template to run the editor
    ```html
@@ -63,6 +72,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 The component implements the [`ControlValueAccessor`](https://angular.io/api/forms/ControlValueAccessor) interface and works with the `ngModel`.
 
 1. Create some model in your component to share with the editor:
+
    ```ts
    @Component( {
    	...
@@ -74,6 +84,7 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
    	...
    }
    ```
+
 2. Use the model in the template to enable a 2–way data binding:
    ```html
    <ckeditor [(ngModel)]="model.editorData" [build]="EditorBuild"></ckeditor>
@@ -169,7 +180,7 @@ Fires when the editing view of the editor is focused. It corresponds with the [`
 
 Having cloned the repository, to install necessary dependencies, run:
 
-```
+```bash
 npm install
 ```
 
@@ -185,31 +196,31 @@ This repository contains the following code:
 
 To open a demo application using the component, run:
 
-```
+```bash
 npm run start
 ```
 
 To test it in the production, use:
 
-```
+```bash
 npm run start -- --prod
 ```
 
 To run unit tests, use:
 
-```
+```bash
 npm run test
 ```
 
 To run e2e tests run:
 
-```
+```bash
 npm run e2e
 ```
 
 To run coverage tests run:
 
-```
+```bash
 npm run coverage
 ```
 
@@ -219,7 +230,7 @@ Play with the application and make sure the component works properly.
 
 This project uses the [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create a package meeting the Angular Package Format specification. Calling
 
-```
+```bash
 npm run build-package
 ```
 
@@ -229,7 +240,7 @@ creates a package in the `./dist` directory, which can be then published in npm.
 
 To publish the new package in the npm registry, run:
 
-```
+```bash
 npm run publish
 ```
 
@@ -237,7 +248,7 @@ npm run publish
 
 Having generated a package, create a symlink to the `ckeditor5-angular/dist` package directory to test it in another (3rd–party) Angular project:
 
-```
+```bash
 ln -s /path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
 ```
 
