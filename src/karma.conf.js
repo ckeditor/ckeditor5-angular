@@ -19,7 +19,7 @@ module.exports = function( config ) {
 		},
 		coverageIstanbulReporter: {
 			dir: require( 'path' ).join( __dirname, '../coverage' ),
-			reports: [ 'html', 'lcovonly' ],
+			reports:[ 'html', 'lcovonly' ],
 			fixWebpackSourcePaths: true,
 			thresholds: {
 				statements: 100,
@@ -28,7 +28,9 @@ module.exports = function( config ) {
 				functions: 100
 			}
 		},
-		reporters: [ 'progress', 'kjhtml' ],
+		reporters: process.env.TRAVIS ?
+			[ 'progress', 'kjhtml', 'coveralls' ] :
+			[ 'progress', 'kjhtml' ],
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_INFO,
