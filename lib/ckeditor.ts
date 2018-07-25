@@ -1,23 +1,25 @@
 /**
- * Base typings for the CKEditor5 elements.
+ * Basic typings for the CKEditor5 elements.
  */
 export namespace CKEditor5 {
 	/**
-	 * CKEditor5 editor constructor.
+	 * The CKEditor5 editor constructor.
 	 */
 	export interface EditorConstructor {
 		create( sourceElementOrData: HTMLElement | string, config?: Config ): Promise<Editor>;
 	}
 
 	/**
-	 * CKEditor5 editor config.
+	 * The CKEditor5 editor config.
 	 */
 	export interface Config {
 		[ key: string ]: any;
 	}
 
 	/**
-	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_utils_eventinfo-EventInfo.html
+	 * The event object passed to CKEditor5 event callbacks.
+	 *
+	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_utils_eventinfo-EventInfo.html
 	 */
 	export interface EventInfo<EventName extends string> {
 		readonly name: EventName;
@@ -30,7 +32,7 @@ export namespace CKEditor5 {
 	}
 
 	/**
-	 * Base Editor class.
+	 * The base Editor class.
 	 *
 	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html
 	 */
@@ -63,10 +65,14 @@ export namespace CKEditor5 {
 	}
 
 	/**
-	 * Editor that implements `setData()` and `getData()`, e.g. the `ClassicEditor`, `InlineEditor`, etc.
+	 * A CKEditor5 editor that implements the
+	 * [DataApi interface](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html).
+	 * E.g. the `ClassicEditor`, `InlineEditor`, etc.
 	 */
-	export interface Editor extends BaseEditor {
-		setData( data: string ): void;
+	export interface Editor extends BaseEditor, DataApi {}
+
+	export interface DataApi {
 		getData(): string;
+		setData( data: string ): void;
 	}
 }

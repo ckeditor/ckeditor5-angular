@@ -70,8 +70,10 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 
    ```
 
-	 You can import as many editor builds as you want.
+	You can import as many editor builds as you want.
+
 5. Use the `<ckeditor>` tag in the template to run the editor
+
    ```html
    <ckeditor [build]="EditorBuild" data="<p>Hello world!</p>"></ckeditor>
    ```
@@ -95,6 +97,7 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
    ```
 
 2. Use the model in the template to enable a 2–way data binding:
+
    ```html
    <ckeditor [(ngModel)]="model.editorData" [build]="EditorBuild"></ckeditor>
    ```
