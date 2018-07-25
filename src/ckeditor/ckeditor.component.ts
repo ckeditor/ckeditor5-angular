@@ -20,6 +20,8 @@ import {
 	NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
+import { CKEditor5 } from './ckeditor';
+
 @Component( {
 	selector: 'ckeditor',
 	template: '<div #element></div>',
@@ -40,17 +42,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	@ViewChild( 'element' ) element!: ElementRef;
 
 	/**
-	 * The constructor of the editor build to be used for the instance of
-	 * the component.
+	 * The constructor of the editor to be used for the instance of the component.
+	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() build?: CKEditorBuild;
+	@Input() editor?: CKEditor5.EditorConstructor;
 
 	/**
 	 * The configuration of the editor.
 	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() config: { [ key: string ]: any } = {};
+	@Input() config?: CKEditor5.Config;
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
@@ -68,8 +70,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	get disabled() {
-		if ( this.editor ) {
-			return this.editor.isReadOnly;
+		if ( this.editorInstance ) {
+			return this.editorInstance.isReadOnly;
 		}
 
 		return this.initialIsDisabled;
@@ -80,33 +82,33 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() ready = new EventEmitter<any>();
+	@Output() ready = new EventEmitter<CKEditor5.Editor>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change = new EventEmitter<{ evt: any, editor: any, data: string }>();
+	@Output() change: EventEmitter<ChangeEvent> = new EventEmitter<ChangeEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur = new EventEmitter<{ evt: any, editor: any }>();
+	@Output() blur: EventEmitter<BlurEvent> = new EventEmitter<BlurEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus = new EventEmitter<{ evt: any, editor: any }>();
+	@Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public editor?: any;
+	public editorInstance: CKEditor5.Editor | null = null;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -149,17 +151,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the OnDestroy interface.
 	ngOnDestroy() {
-		if ( this.editor ) {
-			this.editor.destroy();
-			this.editor = null;
+		if ( this.editorInstance ) {
+			this.editorInstance.destroy();
+			this.editorInstance = null;
 		}
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
 	writeValue( value: string ): void {
 		// If already initialized
-		if ( this.editor ) {
-			this.editor.setData( value );
+		if ( this.editorInstance ) {
+			this.editorInstance.setData( value );
 		}
 		// If not, wait for it to be ready; store the data.
 		else {
@@ -180,8 +182,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
 	setDisabledState( isDisabled: boolean ): void {
 		// If already initialized
-		if ( this.editor ) {
-			this.editor.isReadOnly = isDisabled;
+		if ( this.editorInstance ) {
+			this.editorInstance.isReadOnly = isDisabled;
 		}
 		// If not, wait for it to be ready; store the state.
 		else {
@@ -194,9 +196,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * then integrates the editor with the Angular component.
 	 */
 	private createEditor(): Promise<any> {
-		return this.build!.create( this.element.nativeElement, this.config )
+		return this.editor!.create( this.element.nativeElement, this.config )
 			.then( editor => {
-				this.editor = editor;
+				this.editorInstance = editor;
 
 				editor.setData( this.data );
 
@@ -218,11 +220,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * Integrates the editor with the component by attaching related event listeners.
 	 */
-	private setUpEditorEvents( editor: any ): void {
+	private setUpEditorEvents( editor: CKEditor5.Editor ): void {
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on( 'change:data', ( evt: any ) => {
+		modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
 			const data = editor.getData();
 
 			this.ngZone.run( () => {
@@ -230,28 +232,39 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 					this.cvaOnChange( data );
 				}
 
-				this.change.emit( { evt, editor, data } );
+				this.change.emit( { event: evt, editor } );
 			} );
 		} );
 
-		viewDocument.on( 'focus', ( evt: any ) => {
+		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
 			this.ngZone.run( () => {
-				this.focus.emit( { evt, editor } );
+				this.focus.emit( { event: evt, editor } );
 			} );
 		} );
 
-		viewDocument.on( 'blur', ( evt: any ) => {
+		viewDocument.on( 'blur', ( evt: CKEditor5.EventInfo<'blur'> ) => {
 			this.ngZone.run( () => {
 				if ( this.cvaOnTouched ) {
 					this.cvaOnTouched();
 				}
 
-				this.blur.emit( { evt, editor } );
+				this.blur.emit( { event: evt, editor } );
 			} );
 		} );
 	}
 }
 
-export interface CKEditorBuild {
-	create( sourceElementOrData: HTMLElement | string, config?: {} ): Promise<any>;
+export interface BlurEvent {
+	event: CKEditor5.EventInfo<'blur'>;
+	editor: CKEditor5.Editor;
+}
+
+export interface FocusEvent {
+	event: CKEditor5.EventInfo<'focus'>;
+	editor: CKEditor5.Editor;
+}
+
+export interface ChangeEvent {
+	event: CKEditor5.EventInfo<'change:data'>;
+	editor: CKEditor5.Editor;
 }

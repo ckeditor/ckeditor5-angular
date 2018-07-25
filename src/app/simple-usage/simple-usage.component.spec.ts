@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CKEditorModule } from '../../../lib/ckeditor.module';
+import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { SimpleUsageComponent } from './simple-usage.component';
 import { By } from '@angular/platform-browser';
-import { CKEditorComponent } from 'lib/ckeditor.component';
+import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 import { DebugElement } from '@angular/core';
 
 describe( 'SimpleUsageComponent', () => {

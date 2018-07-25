@@ -21,7 +21,7 @@ describe( 'CKEditorComponent', () => {
 	beforeEach( () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
-		component.build = ClassicEditorBuild;
+		component.editor = ClassicEditorBuild;
 		fixture.detectChanges();
 	} );
 
@@ -37,17 +37,17 @@ describe( 'CKEditorComponent', () => {
 		it( 'simple usage', () => {
 			return wait().then( () => {
 				expect( component.disabled ).toBeFalsy();
-				expect( component.editor.isReadOnly ).toBeFalsy();
+				expect( component.editorInstance!.isReadOnly ).toBeFalsy();
 
 				component.disabled = true;
 
 				expect( component.disabled ).toBeTruthy();
-				expect( component.editor.isReadOnly ).toBeTruthy();
+				expect( component.editorInstance!.isReadOnly ).toBeTruthy();
 
 				component.disabled = false;
 
 				expect( component.disabled ).toBeFalsy();
-				expect( component.editor.isReadOnly ).toBeFalsy();
+				expect( component.editorInstance!.isReadOnly ).toBeFalsy();
 			} );
 		} );
 
@@ -56,7 +56,7 @@ describe( 'CKEditorComponent', () => {
 
 			return wait().then( () => {
 				expect( component.disabled ).toBeTruthy();
-				expect( component.editor.isReadOnly ).toBeTruthy();
+				expect( component.editorInstance!.isReadOnly ).toBeTruthy();
 			} );
 		} );
 	} );
@@ -65,7 +65,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'initial data should be empty', () => {
 			return wait().then( () => {
 				expect( component.data ).toEqual( '' );
-				expect( component.editor.getData() ).toEqual( '<p>&nbsp;</p>' );
+				expect( component.editorInstance!.getData() ).toEqual( '<p>&nbsp;</p>' );
 			} );
 		} );
 
@@ -74,7 +74,7 @@ describe( 'CKEditorComponent', () => {
 
 			return wait().then( () => {
 				expect( component.data ).toEqual( 'foo' );
-				expect( component.editor.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 			} );
 		} );
 
@@ -82,11 +82,11 @@ describe( 'CKEditorComponent', () => {
 			component.writeValue( 'foo' );
 
 			return wait().then( () => {
-				expect( component.editor.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 
 				component.writeValue( 'bar' );
 
-				expect( component.editor.getData() ).toEqual( '<p>bar</p>' );
+				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
 			} );
 		} );
 	} );
@@ -98,7 +98,7 @@ describe( 'CKEditorComponent', () => {
 
 			return wait().then( () => {
 				expect( spy ).toHaveBeenCalledTimes( 1 );
-				expect( spy ).toHaveBeenCalledWith( component.editor );
+				expect( spy ).toHaveBeenCalledWith( component.editorInstance );
 			} );
 		} );
 
@@ -107,11 +107,11 @@ describe( 'CKEditorComponent', () => {
 			component.change.subscribe( spy );
 
 			return wait().then( () => {
-				component.editor.execute( 'input', { text: 'foo' } );
+				component.editorInstance!.execute( 'input', { text: 'foo' } );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
-				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
-				expect( spy.calls.first().args[ 0 ].data ).toEqual( '<p>foo</p>' );
+				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editorInstance );
+				expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
 			} );
 		} );
 
@@ -120,10 +120,11 @@ describe( 'CKEditorComponent', () => {
 			component.focus.subscribe( spy );
 
 			return wait().then( () => {
-				component.editor.editing.view.document.fire( 'focus' );
+				component.editorInstance!.editing.view.document.fire( 'focus' );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
-				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
+				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editorInstance );
+				expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
 			} );
 		} );
 
@@ -132,12 +133,13 @@ describe( 'CKEditorComponent', () => {
 			component.blur.subscribe( spy );
 
 			return wait().then( () => {
-				component.editor.editing.view.focus();
+				component.editorInstance!.editing.view.focus();
 
-				component.editor.editing.view.document.fire( 'blur', { target: null } );
+				component.editorInstance!.editing.view.document.fire( 'blur', { target: null } );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
-				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
+				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editorInstance );
+				expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
 			} );
 		} );
 	} );
@@ -148,9 +150,9 @@ describe( 'CKEditorComponent', () => {
 				const spy = jasmine.createSpy();
 
 				component.registerOnTouched( spy );
-				component.editor.editing.view.focus();
+				component.editorInstance!.editing.view.focus();
 
-				component.editor.editing.view.document.fire( 'blur', { target: null } );
+				component.editorInstance!.editing.view.document.fire( 'blur', { target: null } );
 
 				expect( spy ).toHaveBeenCalled();
 			} );
@@ -161,7 +163,7 @@ describe( 'CKEditorComponent', () => {
 				const spy = jasmine.createSpy();
 				component.registerOnChange( spy );
 
-				component.editor.execute( 'input', { text: 'foo' } );
+				component.editorInstance!.execute( 'input', { text: 'foo' } );
 
 				expect( spy ).toHaveBeenCalled();
 			} );
@@ -192,7 +194,7 @@ describe( 'CKEditorComponent', () => {
 		beforeEach( () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.build = EditorThatThrowsErrorDuringInitialization;
+			component.editor = EditorThatThrowsErrorDuringInitialization;
 		} );
 
 		it( 'should result in error logged to the console', () => {

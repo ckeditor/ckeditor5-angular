@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor5 } from '../../ckeditor/ckeditor';
+import { ChangeEvent, FocusEvent, BlurEvent } from '../../ckeditor/ckeditor.component';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -8,7 +10,7 @@ import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 	styleUrls: [ './simple-usage.component.css' ]
 } )
 export class SimpleUsageComponent {
-	public EditorBuild = ClassicEditorBuild;
+	public Editor = ClassicEditorBuild;
 
 	public isDisabled = false;
 	public editorData =
@@ -22,19 +24,19 @@ You learn to appreciate each and every single one of the differences while you b
 		this.isDisabled = !this.isDisabled;
 	}
 
-	onReady(): void {
+	onReady( editor: CKEditor5.Editor ): void {
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	onChange(): void {
+	onChange( event: ChangeEvent ): void {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	onFocus(): void {
+	onFocus( event: FocusEvent ): void {
 		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	onBlur(): void {
+	onBlur( event: BlurEvent ): void {
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 }

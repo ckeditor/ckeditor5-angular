@@ -2,15 +2,17 @@
   "name": "@ckeditor/ckeditor5-angular",
   "description": "CKEditor 5 component for Angular 2+.",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "start": "ng serve --open",
     "build": "ng build --prod",
-    "build-package": "ng-packagr -p package.json",
+    "build-package": "node ./scripts/build-package.js",
     "publish": "npm publish dist",
     "test": "ng test",
     "coverage": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "changelog": "node ./scripts/changelog.js"
   },
   "dependencies": {
     "@angular/animations": "^6.0.7",
@@ -31,10 +33,12 @@
     "@angular/cli": "~6.0.8",
     "@angular/compiler-cli": "^6.0.7",
     "@angular/language-service": "^6.0.7",
-    "@ckeditor/ckeditor5-build-classic": "^10.1.0",
+    "@ckeditor/ckeditor5-build-classic": "^11.0.1",
+    "@ckeditor/ckeditor5-dev-env": "^11.1.1",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^4.4.2",
+    "fs-extra": "^7.0.0",
     "jasmine-core": "~3.1.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.4",
@@ -42,23 +46,15 @@
     "karma-coverage-istanbul-reporter": "^2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^1.2.0",
-    "ng-packagr": "^3.0.3",
-    "protractor": "~5.3.2",
+    "ng-packagr": "^4.0.0",
+    "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.10.0",
+    "tslint": "~5.11.0",
     "typescript": "~2.7.0"
   },
   "engines": {
     "node": ">=6.0.0",
     "npm": ">=3.0.0"
-  },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "./lib/ckeditor.module.ts"
-    },
-    "whitelistedNonPeerDependencies": [
-      "."
-    ]
   },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",
