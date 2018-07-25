@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
-import { CKEditor5 } from '../../../lib/ckeditor';
+import { CKEditor5 } from '../../ckeditor/ckeditor';
 
 @Component( {
 	selector: 'app-simple-usage',

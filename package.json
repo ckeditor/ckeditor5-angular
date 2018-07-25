@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ng serve --open",
     "build": "ng build --prod",
-    "build-package": "ng-packagr -p lib/package.json && cp LICENSE.md README.md ./dist",
+    "build-package": "ng-packagr -p src/ckeditor/package.json && cp LICENSE.md README.md ./dist",
     "publish": "npm publish dist",
     "test": "ng test",
     "coverage": "ng test --watch=false --code-coverage",
@@ -55,14 +55,6 @@
   "engines": {
     "node": ">=6.0.0",
     "npm": ">=3.0.0"
-  },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "./lib/ckeditor.module.ts"
-    },
-    "whitelistedNonPeerDependencies": [
-      "."
-    ]
   },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",

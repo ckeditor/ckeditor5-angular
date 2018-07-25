@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { CKEditorModule } from 'lib/ckeditor.module';
+import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { DemoFormComponent } from './demo-form.component';
 import { By } from '@angular/platform-browser';
-import { CKEditorComponent } from 'lib/ckeditor.component';
+import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 
 describe( 'DemoFormComponent', () => {
 	let component: DemoFormComponent;

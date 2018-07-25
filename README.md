@@ -199,8 +199,8 @@ npm install
 ### The structure of the repository
 
 This repository contains the following code:
-* `./lib` contains the CKEditor component,
-* `./src` a demo application using the component.
+* `./src/ckeditor` contains the CKEditor component,
+* `./src/app` a demo application using the component.
 
 **Note:** The [npm package](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) contains a [packaged component](#packaging-the-component) only.
 

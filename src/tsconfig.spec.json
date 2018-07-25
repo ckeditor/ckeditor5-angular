@@ -14,9 +14,7 @@
   ],
   "include": [
     "**/*.spec.ts",
-    "**/*.d.ts",
-    "../lib/**/*.spec.ts",
-    "../lib/**/*.d.ts"
+    "**/*.d.ts"
   ],
   "exclude": [
     "../dist/**"
