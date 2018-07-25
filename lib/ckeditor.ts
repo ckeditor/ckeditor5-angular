@@ -65,14 +65,19 @@ export namespace CKEditor5 {
 	}
 
 	/**
+	 * The CKEditor5 DataApi interface.
+	 *
+	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html.
+	 */
+	export interface DataApi {
+		getData(): string;
+		setData( data: string ): void;
+	}
+
+	/**
 	 * A CKEditor5 editor that implements the
 	 * [DataApi interface](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html).
 	 * E.g. the `ClassicEditor`, `InlineEditor`, etc.
 	 */
 	export interface Editor extends BaseEditor, DataApi {}
-
-	export interface DataApi {
-		getData(): string;
-		setData( data: string ): void;
-	}
 }
