@@ -8,7 +8,7 @@
 [![Dependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular)
 [![devDependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular?type=dev)
 
-A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.com/) in Angular 2+ projects.
+A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.com/ckeditor-5/) in Angular 2+ projects.
 
 ## Usage
 
