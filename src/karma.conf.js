@@ -12,7 +12,6 @@ module.exports = function( config ) {
 			require( 'karma-chrome-launcher' ),
 			require( 'karma-jasmine-html-reporter' ),
 			require( 'karma-coverage-istanbul-reporter' ),
-			require( 'karma-coveralls' ),
 			require( '@angular-devkit/build-angular/plugins/karma' )
 		],
 		client: {
@@ -29,9 +28,7 @@ module.exports = function( config ) {
 				functions: 100
 			}
 		},
-		reporters: process.env.TRAVIS ?
-			[ 'progress', 'kjhtml', 'coveralls' ] :
-			[ 'progress', 'kjhtml' ],
+		reporters: [ 'progress', 'kjhtml' ],
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_INFO,
