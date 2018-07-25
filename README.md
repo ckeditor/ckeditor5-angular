@@ -26,6 +26,8 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 
    or [create a custom one](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html)
 
+   **Note:** The Angular integration doesn't work for now with an editor built from source. If you need to integrate a custom editor, please, follow these [steps](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html) and then import the `ckeditor.js` file when building an angular component.
+
    Let's pick the `ckeditor5-build-classic`:
 
    ```bash
