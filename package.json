@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ng serve --open",
     "build": "ng build --prod",
-    "build-package": "ng-packagr -p src/ckeditor/package.json && cp LICENSE.md README.md ./dist",
+    "build-package": "node ./scripts/buildpackage",
     "publish": "npm publish dist",
     "test": "ng test",
     "coverage": "ng test --watch=false --code-coverage",
@@ -38,6 +38,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "codelyzer": "^4.4.2",
+    "fs-extra": "^7.0.0",
     "jasmine-core": "~3.1.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.4",
