@@ -9,6 +9,8 @@
 
 A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.com/ckeditor-5/) in Angular 2+ projects.
 
+**Note** This is development preview. There might be some small bugs and the API might change a little bit.
+
 ## Usage
 
 1. In your existing Angular project, install the CKEditor component:
