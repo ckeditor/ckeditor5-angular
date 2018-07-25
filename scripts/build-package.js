@@ -14,7 +14,7 @@ const path = require( 'path' );
 // Build package using ng-packagr.
 childProcess.spawnSync( 'ng-packagr', [ '-p', 'src/ckeditor/package.json' ] );
 
-// And Copy markdown files.
+// And copy markdown files.
 const filesToCopy = [
 	'LICENSE.md',
 	'README.md',
