@@ -9,7 +9,7 @@ import { CKEditor5 } from '../../ckeditor/ckeditor';
 	styleUrls: [ './simple-usage.component.css' ]
 } )
 export class SimpleUsageComponent {
-	public EditorBuild = ClassicEditorBuild;
+	public Editor = ClassicEditorBuild;
 
 	public isDisabled = false;
 	public editorData =

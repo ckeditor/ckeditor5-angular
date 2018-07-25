@@ -104,12 +104,12 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
 
 ## Supported `@Inputs`
 
-### `build` (required)
+### `editor` (required)
 
-The [editor build](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/basic-api.html) which provides the static [`create()`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#static-function-create) method to create an instance of the editor:
+The [Editor](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/basic-api.html) which provides the static [`create()`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#static-function-create) method to create an instance of the editor:
 
 ```html
-<ckeditor [build]="EditorBuild"></ckeditor>
+<ckeditor [editor]="Editor"></ckeditor>
 ```
 
 ### `config`

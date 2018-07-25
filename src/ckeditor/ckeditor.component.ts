@@ -42,10 +42,10 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	@ViewChild( 'element' ) element!: ElementRef;
 
 	/**
-	 * The constructor of the editor build to be used for the instance of
-	 * the component.
+	 * The constructor of the editor to be used for the instance of the component.
+	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() build?: CKEditor5.EditorConstructor;
+	@Input() editor?: CKEditor5.EditorConstructor;
 
 	/**
 	 * The configuration of the editor.
@@ -70,8 +70,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	get disabled() {
-		if ( this.editor ) {
-			return this.editor.isReadOnly;
+		if ( this.editorInstance ) {
+			return this.editorInstance.isReadOnly;
 		}
 
 		return this.initialIsDisabled;
@@ -108,7 +108,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public editor: CKEditor5.Editor | null = null;
+	public editorInstance: CKEditor5.Editor | null = null;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -151,17 +151,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the OnDestroy interface.
 	ngOnDestroy() {
-		if ( this.editor ) {
-			this.editor.destroy();
-			this.editor = null;
+		if ( this.editorInstance ) {
+			this.editorInstance.destroy();
+			this.editorInstance = null;
 		}
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
 	writeValue( value: string ): void {
 		// If already initialized
-		if ( this.editor ) {
-			this.editor.setData( value );
+		if ( this.editorInstance ) {
+			this.editorInstance.setData( value );
 		}
 		// If not, wait for it to be ready; store the data.
 		else {
@@ -182,8 +182,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
 	setDisabledState( isDisabled: boolean ): void {
 		// If already initialized
-		if ( this.editor ) {
-			this.editor.isReadOnly = isDisabled;
+		if ( this.editorInstance ) {
+			this.editorInstance.isReadOnly = isDisabled;
 		}
 		// If not, wait for it to be ready; store the state.
 		else {
@@ -196,9 +196,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * then integrates the editor with the Angular component.
 	 */
 	private createEditor(): Promise<any> {
-		return this.build!.create( this.element.nativeElement, this.config )
+		return this.editor!.create( this.element.nativeElement, this.config )
 			.then( editor => {
-				this.editor = editor;
+				this.editorInstance = editor;
 
 				editor.setData( this.data );
 

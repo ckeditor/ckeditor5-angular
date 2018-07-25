@@ -54,7 +54,7 @@ describe( 'DemoFormComponent', () => {
 		const ckeditorComponent: CKEditorComponent = debugElement.componentInstance;
 
 		setTimeout( () => {
-			ckeditorComponent.editor!.setData( '<p>An unidentified person</p>' );
+			ckeditorComponent.editorInstance!.setData( '<p>An unidentified person</p>' );
 
 			fixture.detectChanges();
 
