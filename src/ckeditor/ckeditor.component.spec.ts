@@ -111,7 +111,7 @@ describe( 'CKEditorComponent', () => {
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
 				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
-				expect( spy.calls.first().args[ 0 ].data ).toEqual( '<p>foo</p>' );
+				expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
 			} );
 		} );
 
@@ -124,6 +124,7 @@ describe( 'CKEditorComponent', () => {
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
 				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
+				expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
 			} );
 		} );
 
@@ -138,6 +139,7 @@ describe( 'CKEditorComponent', () => {
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
 				expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editor );
+				expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
 			} );
 		} );
 	} );

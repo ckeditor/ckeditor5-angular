@@ -104,7 +104,7 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
 
 ## Supported `@Inputs`
 
-### `build` (mandatory)
+### `build` (required)
 
 The [editor build](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/basic-api.html) which provides the static [`create()`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#static-function-create) method to create an instance of the editor:
 
@@ -174,19 +174,22 @@ export class MyComponent {
 ### `ready`
 
 Fires when the editor is ready. It corresponds with the [`editor#ready`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready)
-event.
+event. Fires with the editor instance.
 
 ### `change`
 
 Fires when the content of the editor has changed. It corresponds with the [`editor.model.document#change`](https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change) event.
+Fires with an object containing the editor and the CKEditor5 change event.
 
 ### `blur`
 
 Fires when the editing view of the editor is blurred. It corresponds with the [`editor.editing.view.document#blur`](https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur) event.
+Fires with an object containing the editor and the CKEditor5 blur event.
 
 ### `focus`
 
 Fires when the editing view of the editor is focused. It corresponds with the [`editor.editing.view.document#focus`](https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus) event.
+Fires with an object containing the editor and the CKEditor5 focus event.
 
 ## 🚧 Development 🚧
 

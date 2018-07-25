@@ -89,21 +89,21 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change = new EventEmitter<{ evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor, data: string }>();
+	@Output() change = new EventEmitter<{ event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor }>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur = new EventEmitter<{ evt: CKEditor5.EventInfo<'blur'>, editor: CKEditor5.Editor }>();
+	@Output() blur = new EventEmitter<{ event: CKEditor5.EventInfo<'blur'>, editor: CKEditor5.Editor }>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus = new EventEmitter<{ evt: CKEditor5.EventInfo<'focus'>, editor: CKEditor5.Editor }>();
+	@Output() focus = new EventEmitter<{ event: CKEditor5.EventInfo<'focus'>, editor: CKEditor5.Editor }>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -232,13 +232,13 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 					this.cvaOnChange( data );
 				}
 
-				this.change.emit( { evt, editor, data } );
+				this.change.emit( { event: evt, editor } );
 			} );
 		} );
 
 		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
 			this.ngZone.run( () => {
-				this.focus.emit( { evt, editor } );
+				this.focus.emit( { event: evt, editor } );
 			} );
 		} );
 
@@ -248,7 +248,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 					this.cvaOnTouched();
 				}
 
-				this.blur.emit( { evt, editor } );
+				this.blur.emit( { event: evt, editor } );
 			} );
 		} );
 	}

@@ -27,15 +27,15 @@ You learn to appreciate each and every single one of the differences while you b
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	onChange( event: { evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor, data: string } ): void {
+	onChange( event: { event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor } ): void {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	onFocus( event: { evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
+	onFocus( event: { event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
 		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	onBlur( event: { evt: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
+	onBlur( event: { event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 }
