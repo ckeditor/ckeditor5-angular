@@ -89,21 +89,21 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change = new EventEmitter<{ event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor }>();
+	@Output() change: EventEmitter<ChangeEvent> = new EventEmitter<ChangeEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur = new EventEmitter<{ event: CKEditor5.EventInfo<'blur'>, editor: CKEditor5.Editor }>();
+	@Output() blur: EventEmitter<BlurEvent> = new EventEmitter<BlurEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus = new EventEmitter<{ event: CKEditor5.EventInfo<'focus'>, editor: CKEditor5.Editor }>();
+	@Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -252,4 +252,19 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			} );
 		} );
 	}
+}
+
+export interface BlurEvent {
+	event: CKEditor5.EventInfo<'blur'>;
+	editor: CKEditor5.Editor;
+}
+
+export interface FocusEvent {
+	event: CKEditor5.EventInfo<'focus'>;
+	editor: CKEditor5.Editor;
+}
+
+export interface ChangeEvent {
+	event: CKEditor5.EventInfo<'change:data'>;
+	editor: CKEditor5.Editor;
 }

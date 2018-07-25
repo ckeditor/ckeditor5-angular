@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 import { CKEditor5 } from '../../ckeditor/ckeditor';
+import { ChangeEvent, FocusEvent, BlurEvent } from '../../ckeditor/ckeditor.component';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -27,15 +28,15 @@ You learn to appreciate each and every single one of the differences while you b
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	onChange( event: { event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor } ): void {
+	onChange( event: ChangeEvent ): void {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	onFocus( event: { event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
+	onFocus( event: FocusEvent ): void {
 		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	onBlur( event: { event: CKEditor5.EventInfo<'change:data'>, editor: CKEditor5.Editor} ): void {
+	onBlur( event: BlurEvent ): void {
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 }
