@@ -77,7 +77,7 @@ Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 
 4. Import the editor build in your Angular component and assign it to a `public` property so it becomes accessible in the template:
 
 	```ts
-	import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+	import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 	@Component( {
 		...
@@ -102,7 +102,7 @@ Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 
 If you use the [Document editor](https://docs.ckeditor.com/ckeditor5/latest/framework/guides/ui/document-editor.html), you need to [add the toolbar to the DOM manually](https://docs.ckeditor.com/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create).
 
  ```ts
-import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 @Component( {
 	...
