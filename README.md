@@ -86,13 +86,13 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
 If you use the [`Decoupled Document`](https://docs.ckeditor.com/ckeditor5/latest/framework/guides/ui/document-editor.html), you need to [add the toolbar manually](https://docs.ckeditor.com/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create).
 
  ```ts
-   import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+   import * as DecoupledDocument from '@ckeditor/ckeditor5-build-decoupled-document';
 
    @Component( {
    	...
    } )
    export class MyComponent {
-   	public Editor = ClassicEditorBuild;
+   	public Editor = DecoupledDocument;
 
    	public onReady( editor ) {
    		editor.ui.view.editable.element.parentElement.insertBefore(
