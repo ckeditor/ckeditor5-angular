@@ -81,7 +81,7 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    <ckeditor [editor]="Editor" data="<p>Hello world!</p>"></ckeditor>
    ```
 
-## Integration with the DecoupledDocument Editor
+#### Integration with the DecoupledDocument Editor
 
 If you use the [`Decoupled Document`](https://docs.ckeditor.com/ckeditor5/latest/framework/guides/ui/document-editor.html), you need to [add the toolbar manually](https://docs.ckeditor.com/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create).
 
@@ -101,7 +101,6 @@ If you use the [`Decoupled Document`](https://docs.ckeditor.com/ckeditor5/latest
    		);
    	}
    }
-
    ```
 
    ```html
@@ -172,6 +171,16 @@ export class MyComponent {
 
 ```html
 <ckeditor [data]="editorData" ...></ckeditor>
+```
+
+### `tagName`
+
+Specifies the tag name of the HTML element on which the editor will be created.
+
+The default tag is `div`.
+
+```html
+<ckeditor tagName="textarea" ...></ckeditor>
 ```
 
 ### `disabled`

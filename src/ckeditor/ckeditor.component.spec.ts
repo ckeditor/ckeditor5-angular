@@ -22,7 +22,6 @@ describe( 'CKEditorComponent', () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
 		component.editor = ClassicEditorBuild;
-		fixture.detectChanges();
 	} );
 
 	afterEach( () => {
@@ -35,6 +34,8 @@ describe( 'CKEditorComponent', () => {
 
 	describe( 'disabled state', () => {
 		it( 'simple usage', () => {
+			fixture.detectChanges();
+
 			return wait().then( () => {
 				expect( component.disabled ).toBeFalsy();
 				expect( component.editorInstance!.isReadOnly ).toBeFalsy();
@@ -52,6 +53,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'editor disabled by the ControlValueAccessor', () => {
+			fixture.detectChanges();
 			component.setDisabledState( true );
 
 			return wait().then( () => {
@@ -61,8 +63,19 @@ describe( 'CKEditorComponent', () => {
 		} );
 	} );
 
+	describe( 'tagName', () => {
+		it( 'should enable creating component on textarea element', () => {
+			component.tagName = 'textarea';
+			fixture.detectChanges();
+
+			expect( fixture.nativeElement.lastChild.tagName ).toEqual( 'TEXTAREA' );
+		} );
+	} );
+
 	describe( 'component data', () => {
 		it( 'initial data should be empty', () => {
+			fixture.detectChanges();
+
 			return wait().then( () => {
 				expect( component.data ).toEqual( '' );
 				expect( component.editorInstance!.getData() ).toEqual( '<p>&nbsp;</p>' );
@@ -70,6 +83,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be configurable at the start of the component', () => {
+			fixture.detectChanges();
 			component.data = 'foo';
 
 			return wait().then( () => {
@@ -79,6 +93,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be writeable by ControlValueAccessor', () => {
+			fixture.detectChanges();
 			component.writeValue( 'foo' );
 
 			return wait().then( () => {
@@ -93,6 +108,7 @@ describe( 'CKEditorComponent', () => {
 
 	describe( 'emitters', () => {
 		it( 'ready', () => {
+			fixture.detectChanges();
 			const spy = jasmine.createSpy();
 			component.ready.subscribe( spy );
 
@@ -103,6 +119,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'change', () => {
+			fixture.detectChanges();
 			const spy = jasmine.createSpy();
 			component.change.subscribe( spy );
 
@@ -116,6 +133,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'focus', () => {
+			fixture.detectChanges();
 			const spy = jasmine.createSpy();
 			component.focus.subscribe( spy );
 
@@ -129,6 +147,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'blur', () => {
+			fixture.detectChanges();
 			const spy = jasmine.createSpy();
 			component.blur.subscribe( spy );
 
@@ -146,6 +165,8 @@ describe( 'CKEditorComponent', () => {
 
 	describe( 'control value accessor callbacks', () => {
 		it( 'onTouched callback should be called when editor is blurred', () => {
+			fixture.detectChanges();
+
 			return wait().then( () => {
 				const spy = jasmine.createSpy();
 
@@ -159,6 +180,8 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'onChange callback should be called when editor model changes', () => {
+			fixture.detectChanges();
+
 			return wait().then( () => {
 				const spy = jasmine.createSpy();
 				component.registerOnChange( spy );

@@ -10,7 +10,6 @@ import {
 	NgZone,
 	EventEmitter,
 	forwardRef,
-	ViewChild,
 	AfterViewInit, OnDestroy,
 	ElementRef
 } from '@angular/core';
@@ -24,7 +23,7 @@ import { CKEditor5 } from './ckeditor';
 
 @Component( {
 	selector: 'ckeditor',
-	template: '<div #element></div>',
+	template: '<ng-template></ng-template>',
 
 	// Integration with @angular/forms.
 	providers: [
@@ -39,7 +38,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * The reference to the DOM element created by the component.
 	 */
-	@ViewChild( 'element' ) element!: ElementRef;
+	private elementRef!: ElementRef<HTMLElement>;
 
 	/**
 	 * The constructor of the editor to be used for the instance of the component.
@@ -59,6 +58,13 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * See https://angular.io/api/forms/NgModel to learn more.
 	 */
 	@Input() data = '';
+
+	/**
+	 * Tag name of the editor component.
+	 *
+	 * The default tag is 'div'.
+	 */
+	@Input() tagName = 'div';
 
 	/**
 	 * When set `true`, the editor becomes read-only.
@@ -138,8 +144,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private cvaOnTouched?: () => void;
 
-	constructor( ngZone: NgZone ) {
+	constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
+		this.elementRef = elementRef;
 	}
 
 	// Implementing the AfterViewInit interface.
@@ -196,7 +203,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * then integrates the editor with the Angular component.
 	 */
 	private createEditor(): Promise<any> {
-		return this.editor!.create( this.element.nativeElement, this.config )
+		const element = document.createElement( this.tagName );
+
+		this.elementRef.nativeElement.appendChild( element );
+
+		return this.editor!.create( element, this.config )
 			.then( editor => {
 				this.editorInstance = editor;
 
