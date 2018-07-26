@@ -81,6 +81,33 @@ A simple component that simplifies the usage of [CKEditor 5](https://ckeditor.co
    <ckeditor [editor]="Editor" data="<p>Hello world!</p>"></ckeditor>
    ```
 
+## Integration with the DecoupledDocument Editor
+
+If you use the [`Decoupled Document`](https://docs.ckeditor.com/ckeditor5/latest/framework/guides/ui/document-editor.html), you need to [add the toolbar manually](https://docs.ckeditor.com/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create).
+
+ ```ts
+   import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+
+   @Component( {
+   	...
+   } )
+   export class MyComponent {
+   	public Editor = ClassicEditorBuild;
+
+   	public onReady( editor ) {
+   		editor.ui.view.editable.element.parentElement.insertBefore(
+    		editor.ui.view.toolbar.element,
+    		editor.ui.view.editable.element
+   		);
+   	}
+   }
+
+   ```
+
+   ```html
+   <ckeditor [editor]="Editor" data="<p>Hello world!</p>" (ready)="onReady($event)"></ckeditor>
+   ```
+
 ## Integration with the `ngModel`
 
 The component implements the [`ControlValueAccessor`](https://angular.io/api/forms/ControlValueAccessor) interface and works with the `ngModel`.
