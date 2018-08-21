@@ -233,8 +233,31 @@ event. Fires with the editor instance.
 
 ### `change`
 
-Fires when the content of the editor has changed. It corresponds with the [`editor.model.document#change`](https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change) event.
-Fires with an object containing the editor and the CKEditor5 change event.
+Fires when the content of the editor has changed. It corresponds with the [`editor.model.document#change:data`](https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-:data) event.
+Fires with an object containing the editor and the CKEditor5 change:data event.
+
+```html
+<ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
+```
+
+```ts
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular/ckeditor.component';
+
+@Component( {
+	...
+} )
+export class MyComponent {
+	public Editor = ClassicEditor;
+
+	public onChange( { editor }: ChangeEvent ) {
+		const data = editor.getData();
+
+		console.log( data );
+	}
+	...
+}
+```
 
 ### `blur`
 
