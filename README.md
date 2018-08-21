@@ -24,9 +24,9 @@ Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) Angular 2+ component.
 
 ## Usage
 
-CKEditor 5 consists of a [ready to use builds](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/overview.html) and a [CKEditor 5 Framework](https://docs.ckeditor.com/ckeditor5/latest/framework/guides/overview.html) upon which the builds are based.
+CKEditor 5 consists of a [ready to use builds](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html) and a [CKEditor 5 Framework](https://ckeditor.com/docs/ckeditor5/latest/framework/guides/overview.html) upon which the builds are based.
 
-Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 only via builds. Integrating [CKEditor 5 from source](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/advanced-setup.html#scenario-2-building-from-source) is not yet possible due to the lack of ability to [adjust webpack configuration in `angular-cli`](https://github.com/angular/angular-cli/issues/10618).
+Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 only via builds. Integrating [CKEditor 5 from source](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/advanced-setup.html#scenario-2-building-from-source) is not yet possible due to the lack of ability to [adjust webpack configuration in `angular-cli`](https://github.com/angular/angular-cli/issues/10618).
 
 ### Quick start
 
@@ -43,7 +43,7 @@ Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 
 	* [Balloon editor build](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-balloon)
 	* [Document editor build](https://www.npmjs.com/package/@ckeditor/ckeditor5-build-decoupled-document)
 
-	or [create a custom one](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/development/custom-builds.html) (e.g. if you want to install more plugins or customize any other thing which cannot be controlled via [editor configuration](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/configuration.html)).
+	or [create a custom one](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/development/custom-builds.html) (e.g. if you want to install more plugins or customize any other thing which cannot be controlled via [editor configuration](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/configuration.html)).
 
 	Let's pick the `@ckeditor/ckeditor5-build-classic`:
 
@@ -99,7 +99,7 @@ Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 
 
 ### Note: Using the Document editor build
 
-If you use the [Document editor](https://docs.ckeditor.com/ckeditor5/latest/framework/guides/ui/document-editor.html), you need to [add the toolbar to the DOM manually](https://docs.ckeditor.com/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create).
+If you use the [Document editor](https://ckeditor.com/docs/ckeditor5/latest/framework/guides/ui/document-editor.html), you need to [add the toolbar to the DOM manually](https://ckeditor.com/docs/ckeditor5/latest/api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create).
 
  ```ts
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
@@ -151,7 +151,7 @@ The component implements the [`ControlValueAccessor`](https://angular.io/api/for
 
 ### `editor` (required)
 
-The [Editor](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integration/basic-api.html) which provides the static [`create()`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#static-function-create) method to create an instance of the editor:
+The [Editor](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/basic-api.html) which provides the static [`create()`](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#static-function-create) method to create an instance of the editor:
 
 ```html
 <ckeditor [editor]="Editor"></ckeditor>
@@ -159,7 +159,7 @@ The [Editor](https://docs.ckeditor.com/ckeditor5/latest/builds/guides/integratio
 
 ### `config`
 
-The [configuration](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html) of the editor:
+The [configuration](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html) of the editor:
 
 ```html
 <ckeditor [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }" ...></ckeditor>
@@ -201,7 +201,7 @@ The default tag is `div`.
 
 ### `disabled`
 
-Controls the editor's [read–only](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#member-isReadOnly) state:
+Controls the editor's [read–only](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#member-isReadOnly) state:
 
 ```ts
 @Component( {
@@ -228,22 +228,22 @@ export class MyComponent {
 
 ### `ready`
 
-Fires when the editor is ready. It corresponds with the [`editor#ready`](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready)
+Fires when the editor is ready. It corresponds with the [`editor#ready`](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready)
 event. Fires with the editor instance.
 
 ### `change`
 
-Fires when the content of the editor has changed. It corresponds with the [`editor.model.document#change`](https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change) event.
+Fires when the content of the editor has changed. It corresponds with the [`editor.model.document#change`](https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change) event.
 Fires with an object containing the editor and the CKEditor5 change event.
 
 ### `blur`
 
-Fires when the editing view of the editor is blurred. It corresponds with the [`editor.editing.view.document#blur`](https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur) event.
+Fires when the editing view of the editor is blurred. It corresponds with the [`editor.editing.view.document#blur`](https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur) event.
 Fires with an object containing the editor and the CKEditor5 blur event.
 
 ### `focus`
 
-Fires when the editing view of the editor is focused. It corresponds with the [`editor.editing.view.document#focus`](https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus) event.
+Fires when the editing view of the editor is focused. It corresponds with the [`editor.editing.view.document#focus`](https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus) event.
 Fires with an object containing the editor and the CKEditor5 focus event.
 
 ## Contributing

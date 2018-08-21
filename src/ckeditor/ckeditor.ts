@@ -19,7 +19,7 @@ export namespace CKEditor5 {
 	/**
 	 * The event object passed to CKEditor5 event callbacks.
 	 *
-	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_utils_eventinfo-EventInfo.html
+	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_utils_eventinfo-EventInfo.html
 	 */
 	export interface EventInfo<EventName extends string> {
 		readonly name: EventName;
@@ -34,7 +34,7 @@ export namespace CKEditor5 {
 	/**
 	 * The base Editor class.
 	 *
-	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html
+	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html
 	 */
 	export interface BaseEditor {
 		readonly commands: any;
@@ -67,7 +67,7 @@ export namespace CKEditor5 {
 	/**
 	 * The CKEditor5 DataApi interface.
 	 *
-	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html.
+	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html.
 	 */
 	export interface DataApi {
 		getData(): string;
@@ -76,7 +76,7 @@ export namespace CKEditor5 {
 
 	/**
 	 * A CKEditor5 editor that implements the
-	 * [DataApi interface](https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html).
+	 * [DataApi interface](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_utils_dataapimixin-DataApi.html).
 	 * E.g. the `ClassicEditor`, `InlineEditor`, etc.
 	 */
 	export interface Editor extends BaseEditor, DataApi {}

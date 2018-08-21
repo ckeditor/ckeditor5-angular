@@ -48,7 +48,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	/**
 	 * The configuration of the editor.
-	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
+	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
 	@Input() config?: CKEditor5.Config;
@@ -68,7 +68,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	/**
 	 * When set `true`, the editor becomes read-only.
-	 * See https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#member-isReadOnly
+	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#member-isReadOnly
 	 * to learn more.
 	 */
 	@Input() set disabled( isDisabled: boolean ) {
@@ -85,28 +85,28 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	/**
 	 * Fires when the editor is ready. It corresponds with the `editor#ready`
-	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
+	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
 	@Output() ready = new EventEmitter<CKEditor5.Editor>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
-	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
+	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
 	@Output() change: EventEmitter<ChangeEvent> = new EventEmitter<ChangeEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
-	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
+	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
 	@Output() blur: EventEmitter<BlurEvent> = new EventEmitter<BlurEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
-	 * https://docs.ckeditor.com/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
+	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
 	@Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
