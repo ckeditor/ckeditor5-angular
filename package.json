@@ -12,7 +12,8 @@
     "e2e": "ng e2e",
     "changelog": "node ./scripts/changelog.js",
     "build-package": "node ./scripts/build-package.js",
-    "release": "node ./scripts/release.js"
+    "release": "node ./scripts/release.js",
+    "preversion": "npm run build-package"
   },
   "dependencies": {
     "@angular/animations": "^6.1.3",

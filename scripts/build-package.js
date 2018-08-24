@@ -29,3 +29,14 @@ for ( const file of filesToCopy ) {
 		fs.copyFileSync( src, dest );
 	}
 }
+
+// Update the version of package in dist/package.json
+const srcPackageJsonPath = path.join( process.cwd(), 'package.json' );
+const distPackageJsonPath = path.join( process.cwd(), 'dist', 'package.json' );
+
+const updatedVersion = fs.readJsonSync( srcPackageJsonPath );
+const distPackageJson = fs.readJsonSync( distPackageJsonPath );
+
+distPackageJson.version = updatedVersion;
+
+fs.writeJsonSync( distPackageJsonPath, distPackageJson );

@@ -24,7 +24,7 @@ const distPath = path.resolve( packageRoot, 'dist' );
 cli.provideToken()
 	.then( token => {
 		const gitVersion = versionUtils.getLastTagFromGit();
-		const changelogVersion = versionUtils.getLastFromChangelog( distPath );
+		const changelogVersion = versionUtils.getLastFromChangelog();
 
 		log.info( 'Checking whether there is anything to release...' );
 
@@ -33,7 +33,7 @@ cli.provideToken()
 			return reject( 'Before starting the release process, you should generate the changelog and then build the package.' );
 		}
 
-		const releaseDescription = getChangesForVersion( changelogVersion, distPath );
+		const releaseDescription = getChangesForVersion( changelogVersion );
 
 		log.info( 'Validating the repository for the release...' );
 
