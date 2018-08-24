@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { CKEditorModule } from '../ckeditor/ckeditor.module';
 import { SimpleUsageComponent } from './simple-usage/simple-usage.component';
 import { DemoFormComponent } from './demo-form/demo-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatFormFieldModule } from '@angular/material';
 
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/simple-usage', pathMatch: 'full' },
@@ -19,7 +21,10 @@ const appRoutes: Routes = [
 		BrowserModule,
 		FormsModule,
 		CKEditorModule,
-		RouterModule.forRoot( appRoutes )
+		RouterModule.forRoot( appRoutes ),
+		BrowserAnimationsModule,
+		MatButtonModule,
+		MatFormFieldModule
 	],
 	declarations: [
 		AppComponent,
@@ -30,4 +35,4 @@ const appRoutes: Routes = [
 	bootstrap: [ AppComponent ]
 } )
 
-export class AppModule {}
+export class AppModule { }

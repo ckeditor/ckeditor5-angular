@@ -3,22 +3,24 @@
 <p><strong>Note:</strong> Open the console for additional logs.</p>
 
 <p>
-	<button (click)="toggleDisableEditors()">{{ isDisabled ? 'Enable editors' : 'Disable editors' }}</button>
+	<button mat-button (click)="toggleDisableEditors()">{{ isDisabled ? 'Enable editors' : 'Disable editors' }}</button>
 </p>
 
 <h3>Classic build</h3>
-<ckeditor
-	[data]="editorData"
-	[editor]="Editor"
-	[disabled]="isDisabled"
-	id="classic-editor"
-	name="classic-editor"
+<mat-form-field>
+	<ckeditor
+		[data]="editorData"
+		[editor]="Editor"
+		[disabled]="isDisabled"
+		id="classic-editor"
+		name="classic-editor"
 
-	(ready)="onReady($event)"
-	(change)="onChange($event)"
-	(focus)="onFocus($event)"
-	(blur)="onBlur($event)">
-</ckeditor>
+		(ready)="onReady($event)"
+		(change)="onChange($event)"
+		(focus)="onFocus($event)"
+		(blur)="onBlur($event)">
+	</ckeditor>
+</mat-form-field>
 
 <h4>Component events:</h4>
 <ul>

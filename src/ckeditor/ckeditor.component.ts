@@ -11,30 +11,41 @@ import {
 	EventEmitter,
 	forwardRef,
 	AfterViewInit, OnDestroy,
-	ElementRef
+	ElementRef,
+	Optional,
+	Self,
+	HostBinding
 } from '@angular/core';
 
 import {
 	ControlValueAccessor,
-	NG_VALUE_ACCESSOR
+	NG_VALUE_ACCESSOR,
+	NgControl
 } from '@angular/forms';
 
 import { CKEditor5 } from './ckeditor';
+import { MatFormFieldControl } from '@angular/material';
+import { Subject } from 'rxjs';
+
+type CKEditorData = string;
+
+let componentId = 0;
 
 @Component( {
 	selector: 'ckeditor',
 	template: '<ng-template></ng-template>',
 
 	// Integration with @angular/forms.
-	providers: [
-		{
-			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef( () => CKEditorComponent ),
-			multi: true,
-		}
-	]
+	// providers: [
+	// 	{
+	// 		provide: NG_VALUE_ACCESSOR,
+	// 		useExisting: forwardRef( () => CKEditorComponent ),
+	// 		multi: true,
+	// 	}
+	// ]
+	providers: [ { provide: MatFormFieldControl, useExisting: CKEditorComponent } ],
 } )
-export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValueAccessor, MatFormFieldControl<CKEditorData> {
 	/**
 	 * The reference to the DOM element created by the component.
 	 */
@@ -116,6 +127,39 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	public editorInstance: CKEditor5.Editor | null = null;
 
+	// Implementing MatFormFieldControl.
+	get value() {
+		return this.data;
+	}
+
+	// Implementing MatFormFieldControl.
+	public id = 'ckeditor-' + ( componentId++ );
+
+	// Implementing MatFormFieldControl.
+	public stateChanges = new Subject<void>();
+
+	// Implementing MatFormFieldControl.
+	public placeholder = '';
+
+	// Implementing MatFormFieldControl.
+	public get focused() {
+		return this._focused;
+	}
+	private _focused = false;
+
+	// Implementing MatFormFieldControl.
+	public get empty() {
+		return !!this.editorInstance && this.editorInstance.getData() === '<p>&nbsp;</p>';
+	}
+
+	public shouldLabelFloat = false;
+
+	@Input() public required = false;
+
+	public errorState = false;
+
+	@HostBinding( 'attr.aria-describedby' ) describedBy = '';
+
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
 	 * so the editor can become read–only once it is ready.
@@ -144,9 +188,22 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private cvaOnTouched?: () => void;
 
-	constructor( elementRef: ElementRef, ngZone: NgZone ) {
+	constructor( elementRef: ElementRef, ngZone: NgZone, @Optional() @Self() public ngControl: NgControl, ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
+
+		if ( this.ngControl != null ) { this.ngControl.valueAccessor = this; }
+	}
+
+	setDescribedByIds( ids: string[] ) {
+		this.describedBy = ids.join( ' ' );
+	}
+
+	onContainerClick( event: MouseEvent ) {
+		if ( this.editorInstance ) {
+			this.editorInstance.editing.view.focus();
+			this.stateChanges.next();
+		}
 	}
 
 	// Implementing the AfterViewInit interface.
@@ -197,6 +254,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		// If already initialized
 		if ( this.editorInstance ) {
 			this.editorInstance.isReadOnly = isDisabled;
+			this.stateChanges.next();
 		}
 		// If not, wait for it to be ready; store the state.
 		else {
@@ -228,6 +286,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				} );
 
 				this.setUpEditorEvents( editor );
+				this.stateChanges.next();
 			} )
 			.catch( ( err: Error ) => {
 				console.error( err.stack );
@@ -250,12 +309,15 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				}
 
 				this.change.emit( { event: evt, editor } );
+				this.stateChanges.next();
 			} );
 		} );
 
 		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
 			this.ngZone.run( () => {
+				this._focused = true;
 				this.focus.emit( { event: evt, editor } );
+				this.stateChanges.next();
 			} );
 		} );
 
@@ -265,7 +327,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 					this.cvaOnTouched();
 				}
 
+				this._focused = false;
 				this.blur.emit( { event: evt, editor } );
+				this.stateChanges.next();
 			} );
 		} );
 	}

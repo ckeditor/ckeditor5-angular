@@ -5,6 +5,8 @@ import { SimpleUsageComponent } from './simple-usage.component';
 import { By } from '@angular/platform-browser';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 import { DebugElement } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe( 'SimpleUsageComponent', () => {
 	let component: SimpleUsageComponent;
@@ -15,7 +17,7 @@ describe( 'SimpleUsageComponent', () => {
 	beforeEach( async( () => {
 		TestBed.configureTestingModule( {
 			declarations: [ SimpleUsageComponent ],
-			imports: [ CKEditorModule ]
+			imports: [ CKEditorModule, MatFormFieldModule, NoopAnimationsModule ]
 		} )
 			.compileComponents();
 	} ) );
