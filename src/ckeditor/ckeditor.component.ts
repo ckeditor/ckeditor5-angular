@@ -168,11 +168,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	writeValue( value: string ): void {
 		// If already initialized
 		if ( this.editorInstance ) {
-			this.editorInstance.setData( value != null ? value : "" );
+			this.editorInstance.setData( value != null ? value : '' );
 		}
 		// If not, wait for it to be ready; store the data.
 		else {
-			this.data = value != null ? value : "";
+			this.data = value != null ? value : '';
 		}
 	}
 
