@@ -34,9 +34,12 @@ for ( const file of filesToCopy ) {
 const srcPackageJsonPath = path.join( process.cwd(), 'package.json' );
 const distPackageJsonPath = path.join( process.cwd(), 'dist', 'package.json' );
 
-const updatedVersion = fs.readJsonSync( srcPackageJsonPath );
+const srcPackageJson = fs.readJsonSync( srcPackageJsonPath );
 const distPackageJson = fs.readJsonSync( distPackageJsonPath );
 
-distPackageJson.version = updatedVersion;
+console.log( srcPackageJson.version );
+console.log( distPackageJson.version );
 
-fs.writeJsonSync( distPackageJsonPath, distPackageJson );
+distPackageJson.version = srcPackageJson.version;
+
+fs.writeJsonSync( distPackageJsonPath, distPackageJson, { spaces: 2 } );
