@@ -320,7 +320,15 @@ npm run coverage
 
 Play with the application and make sure the component works properly.
 
-### Packaging the component
+### Releasing
+
+#### Generating the changelog
+
+```bash
+npm run changelog
+```
+
+#### Packaging the component
 
 This project uses the [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create a package meeting the Angular Package Format specification. Calling
 
@@ -328,17 +336,7 @@ This project uses the [ng-packagr](https://www.npmjs.com/package/ng-packagr) to 
 npm run build-package
 ```
 
-creates a package in the `./dist` directory, which can be then published in npm.
-
-#### Publishing the package
-
-To publish the new package in the npm registry, run:
-
-```bash
-npm run publish
-```
-
-### Testing a package before releasing
+#### Testing a package before releasing
 
 Having generated a package, create a symlink to the `ckeditor5-angular/dist` package directory to test it in another (3rd–party) Angular project:
 
@@ -360,6 +358,16 @@ You may also need the following config in `angular.json` to include the symlinke
 		}
 	}
 }
+```
+
+creates a package in the `./dist` directory, which can be then published in npm.
+
+#### Publishing the package
+
+To publish the new package in the npm registry, run:
+
+```bash
+npm run release
 ```
 
 ## License
