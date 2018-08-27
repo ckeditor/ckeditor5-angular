@@ -165,7 +165,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	writeValue( value: string ): void {
+	writeValue( value: string | null ): void {
 		// If already initialized
 		if ( this.editorInstance ) {
 			this.editorInstance.setData( value != null ? value : '' );
