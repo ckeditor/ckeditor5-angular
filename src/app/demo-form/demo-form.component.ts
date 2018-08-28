@@ -33,6 +33,10 @@ export class DemoFormComponent implements AfterViewInit {
 		console.log( 'Form submit, model', this.model );
 	}
 
+	reset() {
+		this.demoForm!.reset();
+	}
+
 	get description() {
 		return this.demoForm!.controls.description;
 	}
