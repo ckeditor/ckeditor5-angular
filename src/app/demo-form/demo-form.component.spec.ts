@@ -35,7 +35,7 @@ describe( 'DemoFormComponent', () => {
 	it( 'should log the model to the console when user submits the form', () => {
 		const spy = spyOn( console, 'log' );
 
-		const submitButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button' ) ).nativeElement;
+		const submitButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=submit]' ) ).nativeElement;
 		submitButton.click();
 
 		expect( spy ).toHaveBeenCalledTimes( 1 );
@@ -59,6 +59,19 @@ describe( 'DemoFormComponent', () => {
 			fixture.detectChanges();
 
 			expect( component.formDataPreview ).toEqual( '{"name":"John","surname":"Doe","description":"<p>An unidentified person</p>"}' );
+
+			done();
+		} );
+	} );
+
+	it( 'should reset form after clicking the reset button', ( done: Function ) => {
+		setTimeout( () => {
+			const resetButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=reset]' ) ).nativeElement;
+			resetButton.click();
+
+			fixture.detectChanges();
+
+			expect( component.formDataPreview ).toEqual( '{"name":null,"surname":null,"description":"<p>&nbsp;</p>"}' );
 
 			done();
 		} );

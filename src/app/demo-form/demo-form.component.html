@@ -24,6 +24,7 @@
 	<p *ngIf="description && description.dirty" class="alert">Description is "dirty".</p>
 	<p *ngIf="description && description.touched" class="alert">Description has been "touched".</p>
 
+	<p><button type="reset" (click)="reset()">Reset form</button></p>
 	<p><button type="submit">Submit this form</button> <em>(Open the console first)</em></p>
 </form>
 
