@@ -19,6 +19,7 @@ Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) Angular 2+ component.
 * [Integration with `ngModel`](#integration-with-ngmodel)
 * [Supported `@Inputs`](#supported-inputs)
 * [Supported `@Outputs`](#supported-outputs)
+* [Localization](#localization)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -268,6 +269,46 @@ Fires with an object containing the editor and the CKEditor5 blur event.
 
 Fires when the editing view of the editor is focused. It corresponds with the [`editor.editing.view.document#focus`](https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus) event.
 Fires with an object containing the editor and the CKEditor5 focus event.
+
+## Localization
+
+The CKEditor can be localized. This can be simply achieved in two different ways:
+
+1. By importing translations for given languages directly in the component file
+
+	```ts
+	import '@ckeditor/ckeditor5-build-classic/build/translations/de';
+	import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+	...
+	```
+
+2. By adding paths to translation files to the `"scripts"` array in the `angular.json`.
+
+	```json
+		"architect": {
+			"build": {
+				"options": {
+					"scripts": [ "node_modules/@ckeditor/ckeditor5-build-classic/build/translations/de.js" ]
+				}
+			}
+		}
+	```
+
+Then the component's config must specify the UI language that will be used in the editor:
+
+```ts
+@Component( {
+		...
+	} )
+	export class MyComponent {
+		public Editor = ClassicEditor;
+		public config = {
+			language: 'de'
+		};
+	}
+```
+
+For the advanced usage see https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html.
 
 ## Contributing
 
