@@ -3,9 +3,9 @@
   "description": "CKEditor 5 component for Angular 2+.",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/core": "^6.0.0",
-    "@angular/common": "^6.0.0",
-    "@angular/forms": "^6.0.0"
+    "@angular/core": ">=5.0.0",
+    "@angular/common": ">=5.0.0",
+    "@angular/forms": ">=5.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",
