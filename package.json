@@ -15,7 +15,7 @@
     "component",
     "ckeditor",
     "ckeditor5",
-    "ckeditor 5",
+    "ckeditor 5"
   ],
   "scripts": {
     "start": "ng serve --open",
