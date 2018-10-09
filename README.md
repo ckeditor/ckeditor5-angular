@@ -1,4 +1,4 @@
-# CKEditor 5 rich-text editor component for Angular 2+
+# CKEditor 5 rich text editor component for Angular 2+
 
 [![Join the chat at https://gitter.im/ckeditor/ckeditor5](https://badges.gitter.im/ckeditor/ckeditor5.svg)](https://gitter.im/ckeditor/ckeditor5?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular)
@@ -7,7 +7,7 @@
 [![Dependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular)
 [![devDependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular?type=dev)
 
-Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich-text editor component for Angular 2+.
+Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 2+.
 
 ## Documentation
 
