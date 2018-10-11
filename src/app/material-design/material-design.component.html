@@ -1,0 +1,15 @@
+<h2>Integration with Angular Material</h2>
+
+<form (ngSubmit)="onSubmit()" #demoForm="ngForm">
+	<label for="description">Editor with an angular-material hint and label</label>
+	<mat-form-field hintLabel="Try to write posts containing at least 1000 characters.">
+		<mat-label>Both a label and a placeholder</mat-label>
+		<ckeditor [(ngModel)]="model.editor" [editor]="Editor" id="description" name="description">
+		</ckeditor>
+		<mat-hint align="end">{{model.editor && model.editor.length}}/1000</mat-hint>
+	</mat-form-field>
+	<p *ngIf="editor && editor.dirty" class="alert">editor is "dirty".</p>
+	<p *ngIf="editor && editor.touched" class="alert">editor has been "touched".</p>
+
+	<p><button mat-button type="reset" (click)="reset()">Reset form</button></p>
+</form>

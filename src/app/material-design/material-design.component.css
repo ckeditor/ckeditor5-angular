@@ -1,0 +1,34 @@
+textarea {
+	font-family: monospace;
+}
+
+form {
+	background: #eee;
+	padding: 1em 1.5em;
+}
+
+form label {
+	display: block;
+	font-weight: bold;
+}
+
+form input {
+	width: 30em;
+}
+
+form > div {
+	margin-bottom: 1em;
+}
+
+pre {
+	word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+p.alert {
+	color: orange;
+}
+
+p.alert::before {
+	content: "⚠️ ";
+}

@@ -14,13 +14,7 @@
 	</div>
 
 	<label for="description">Description</label>
-	<ckeditor
-		[(ngModel)]="model.description"
-		[editor]="Editor"
-		id="description"
-		name="description">
-	</ckeditor>
-
+	<ckeditor [(ngModel)]="model.description" [editor]="Editor" id="description" name="description"></ckeditor>
 	<p *ngIf="description && description.dirty" class="alert">Description is "dirty".</p>
 	<p *ngIf="description && description.touched" class="alert">Description has been "touched".</p>
 

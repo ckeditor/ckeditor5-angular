@@ -9,11 +9,13 @@ import { SimpleUsageComponent } from './simple-usage/simple-usage.component';
 import { DemoFormComponent } from './demo-form/demo-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatFormFieldModule } from '@angular/material';
+import { MaterialDesignComponent } from './material-design/material-design.component';
 
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/simple-usage', pathMatch: 'full' },
 	{ path: 'simple-usage', component: SimpleUsageComponent },
 	{ path: 'forms', component: DemoFormComponent },
+	{ path: 'material', component: MaterialDesignComponent }
 ];
 
 @NgModule( {
@@ -29,7 +31,8 @@ const appRoutes: Routes = [
 	declarations: [
 		AppComponent,
 		DemoFormComponent,
-		SimpleUsageComponent
+		SimpleUsageComponent,
+		MaterialDesignComponent,
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]
