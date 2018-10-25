@@ -17,7 +17,7 @@ before_install:
 install:
 - npm install
 script:
-- ng lint && ng test --watch=false --code-coverage && ng e2e
+- ng lint && npm run coverage && ng e2e && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 env:
   global:
   - secure: U+n/+bjnWUdkmcRtPzYGciEaHpzwuyKf2g4JA78QmRHGdmaPLmfrX65bjYFZcfnO4YboCr6nlnziDCQwdbXb1hbGnBTgyzLkk5xxAY4GVzZKoyyGIZ+jYQ6fMsC8d6ZG1LOwDAZAmIN/mpNXg/63mTuJmsOUBEnt9GkcVGz0PD4FsFrVQ48Gk2EAc9vYYZs9JcXc0thh7QUS107Mz9m/szbaNUvX4V2iC0AoQBiNfShxEDOKdhXjuFH0vZ3Faex39r6hfuGk9SWEfCqR+ebOdgZA/Vgcb54k/BNifFiI7SuMjeoeEYpVHxsEXrUsLgzKOmZpah0JOjXixcGwpvyZXr7JvJ2IMCIGzpO5VpzunXfu5ahViLn2c759vEbZEddJBBHVEzxbY0IMCxlS0iP2ALfmIPzSU1mMdLFRohcRGYUinVvzi/7oRmDcQ/sj0ar1yuKCB0Be53XGwWdd1Nz++nMZihNW1UqsQX9MyZuGrDChM2pf2AIEUPUdSq2Bps92SVz31eYJ1BSjkXbgqUhd1dCl+jUC5YHwryQoxDfY+9gxZMkak0cohoB7flnZG4wfj5IfqygGmk8kk8HHXefAEFJhosLx+FyZKAaaBmp98t/UbCRqV16XG2wNENklcTnNQdP8QIWSxhx7BnLV5HbKwXgTv2C6ILRkRf2YFuZRZYg=
