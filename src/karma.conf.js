@@ -4,7 +4,7 @@
 /* eslint-env node */
 
 module.exports = function( config ) {
-	config.set( {
+	const karmaConfig = {
 		basePath: '',
 		frameworks: [ 'jasmine', '@angular-devkit/build-angular' ],
 		plugins: [
@@ -33,7 +33,69 @@ module.exports = function( config ) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 		autoWatch: true,
-		browsers: [ 'Chrome' ],
+		browsers: getBrowsers(),
+		customLaunchers: {
+			CHROME_TRAVIS_CI: {
+				base: 'Chrome',
+				flags: [ '--no-sandbox', '--disable-background-timer-throttling' ]
+			},
+			CHROME_LOCAL: {
+				base: 'Chrome',
+				flags: [ '--disable-background-timer-throttling' ]
+			},
+			BrowserStack_Edge: {
+				base: 'BrowserStack',
+				os: 'Windows',
+				os_version: '10',
+				browser: 'edge'
+			},
+			BrowserStack_Safari: {
+				base: 'BrowserStack',
+				os: 'OS X',
+				os_version: 'High Sierra',
+				browser: 'safari'
+			}
+		},
 		singleRun: false
-	} );
+	};
+
+	if ( shouldEnableBrowserStack() ) {
+		karmaConfig.browserStack = {
+			username: process.env.BROWSER_STACK_USERNAME,
+			accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
+			build: process.env.TRAVIS_REPO_SLUG,
+			project: 'ckeditor5'
+		};
+
+		karmaConfig.reporters = [ 'dots', 'BrowserStack' ];
+	}
+
+	config.set( karmaConfig );
 };
+
+function getBrowsers() {
+	if ( shouldEnableBrowserStack() ) {
+		return [
+			'Firefox',
+			'BrowserStack_Edge',
+			'BrowserStack_Safari',
+			'CHROME_TRAVIS_CI'
+		];
+	}
+
+	return [ 'CHROME_LOCAL' ];
+}
+
+function shouldEnableBrowserStack() {
+	if ( !process.env.BROWSER_STACK_USERNAME ) {
+		return false;
+	}
+
+	if ( !process.env.BROWSER_STACK_ACCESS_KEY ) {
+		return false;
+	}
+
+	// If the repository slugs are different, the pull request comes from the community (forked repository).
+	// For such builds, BrowserStack will be disabled. Read more: https://github.com/ckeditor/ckeditor5-dev/issues/358.
+	return ( process.env.TRAVIS_EVENT_TYPE !== 'pull_request' || process.env.TRAVIS_PULL_REQUEST_SLUG === process.env.TRAVIS_REPO_SLUG );
+}
