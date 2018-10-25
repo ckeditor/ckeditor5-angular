@@ -63,7 +63,7 @@ module.exports = function( config ) {
 		karmaConfig.browserStack = {
 			username: process.env.BROWSER_STACK_USERNAME,
 			accessKey: process.env.BROWSER_STACK_ACCESS_KEY,
-			build: process.env.TRAVIS_REPO_SLUG,
+			build: getBuildName(),
 			project: 'ckeditor5'
 		};
 
@@ -72,6 +72,20 @@ module.exports = function( config ) {
 
 	config.set( karmaConfig );
 };
+
+// Formats name of the build for BrowserStack. It merges a repository name and current timestamp.
+// If env variable `TRAVIS_REPO_SLUG` is not available, the function returns `undefined`.
+//
+// @returns {String|undefined}
+function getBuildName() {
+	const repoSlug = process.env.TRAVIS_REPO_SLUG;
+ 	if ( !repoSlug ) {
+		return;
+	}
+ 	const repositoryName = repoSlug.split( '/' )[ 1 ].replace( /-/g, '_' );
+	const date = new Date().getTime();
+ 	return `${ repositoryName } ${ date }`;
+}
 
 function getBrowsers() {
 	if ( shouldEnableBrowserStack() ) {
