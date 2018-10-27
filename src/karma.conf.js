@@ -79,11 +79,14 @@ module.exports = function( config ) {
 // @returns {String|undefined}
 function getBuildName() {
 	const repoSlug = process.env.TRAVIS_REPO_SLUG;
+
  	if ( !repoSlug ) {
 		return;
 	}
+
  	const repositoryName = repoSlug.split( '/' )[ 1 ].replace( /-/g, '_' );
 	const date = new Date().getTime();
+
  	return `${ repositoryName } ${ date }`;
 }
 
