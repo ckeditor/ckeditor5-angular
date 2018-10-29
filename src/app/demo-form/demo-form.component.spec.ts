@@ -61,7 +61,7 @@ describe( 'DemoFormComponent', () => {
 			expect( component.formDataPreview ).toEqual( '{"name":"John","surname":"Doe","description":"<p>An unidentified person</p>"}' );
 
 			done();
-		} );
+		}, 50 );
 	} );
 
 	it( 'should reset form after clicking the reset button', ( done: Function ) => {
