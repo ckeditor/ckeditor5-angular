@@ -12,7 +12,7 @@ const childProcess = require( 'child_process' );
 const path = require( 'path' );
 
 // Build package using ng-packagr.
-childProcess.spawnSync( 'ng-packagr', [ '-p', 'src/ckeditor/package.json' ] );
+childProcess.spawnSync( 'ng-packagr', [ '-p', 'src/ckeditor/package.json' ], { input: 'inherit' } );
 
 // And copy markdown files.
 const filesToCopy = [
