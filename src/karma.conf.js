@@ -7,13 +7,7 @@ module.exports = function( config ) {
 	const karmaConfig = {
 		basePath: '',
 		frameworks: [ 'jasmine', '@angular-devkit/build-angular' ],
-		plugins: [
-			require( 'karma-jasmine' ),
-			require( 'karma-chrome-launcher' ),
-			require( 'karma-jasmine-html-reporter' ),
-			require( 'karma-coverage-istanbul-reporter' ),
-			require( '@angular-devkit/build-angular/plugins/karma' )
-		],
+		plugins: getPlugins(),
 		client: {
 			clearContext: false // leave Jasmine Spec Runner output visible in browser
 		},
@@ -88,6 +82,24 @@ function getBuildName() {
 	const date = new Date().getTime();
 
  	return `${ repositoryName } ${ date }`;
+}
+
+function getPlugins() {
+	const plugins = [
+		require( 'karma-jasmine' ),
+		require( 'karma-chrome-launcher' ),
+		require( 'karma-jasmine-html-reporter' ),
+		require( 'karma-coverage-istanbul-reporter' ),
+		require( '@angular-devkit/build-angular/plugins/karma' )
+	];
+
+	if ( shouldEnableBrowserStack() ) {
+		plugins.push(
+			require( 'karma-browserstack-launcher' )
+		);
+	}
+
+	return plugins;
 }
 
 function getBrowsers() {
