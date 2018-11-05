@@ -1,6 +1,6 @@
 {
   "name": "@ckeditor/ckeditor5-angular",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Official Angular 2+ component for CKEditor 5 – the best browser-based rich text editor.",
   "scripts": {
