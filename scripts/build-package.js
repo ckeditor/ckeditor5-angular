@@ -20,7 +20,8 @@ console.log( output.toString() );
 const filesToCopy = [
 	'LICENSE.md',
 	'README.md',
-	'CHANGELOG.md'
+	'CHANGELOG.md',
+	'CONTRIBUTING.md'
 ];
 
 for ( const file of filesToCopy ) {
