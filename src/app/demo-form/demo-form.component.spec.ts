@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { DemoFormComponent } from './demo-form.component';
 import { By } from '@angular/platform-browser';
-import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 
 describe( 'DemoFormComponent', () => {
 	let component: DemoFormComponent;
@@ -47,21 +46,6 @@ describe( 'DemoFormComponent', () => {
 				description: '<p>A <b>really</b> nice fellow.</p>'
 			} )
 		] ) );
-	} );
-
-	it( 'should show form data preview after change', ( done: Function ) => {
-		const debugElement = fixture.debugElement.query( By.directive( CKEditorComponent ) );
-		const ckeditorComponent: CKEditorComponent = debugElement.componentInstance;
-
-		setTimeout( () => {
-			ckeditorComponent.editorInstance!.setData( '<p>An unidentified person</p>' );
-
-			fixture.detectChanges();
-
-			expect( component.formDataPreview ).toEqual( '{"name":"John","surname":"Doe","description":"<p>An unidentified person</p>"}' );
-
-			done();
-		}, 50 );
 	} );
 
 	it( 'should reset form after clicking the reset button', ( done: Function ) => {
