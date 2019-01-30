@@ -28,9 +28,7 @@ for ( const file of filesToCopy ) {
 	const src = path.join( process.cwd(), file );
 	const dest = path.join( process.cwd(), 'dist', file );
 
-	if ( fs.existsSync( src ) ) {
-		fs.copyFileSync( src, dest );
-	}
+	fs.copyFileSync( src, dest );
 }
 
 // Update the version of package in dist/package.json
