@@ -15,6 +15,14 @@ Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor compone
 
 See the [Angular 2+ component](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) article in the [CKEditor 5 documentation](https://ckeditor.com/docs/ckeditor5/latest).
 
+### Table of content:
+1. [Quick start](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#quick-start)
+1. [Integration with `ngModel`](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#integration-with-ngmodel)
+1. [Supported `@Input` properties](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#supported-input-properties)
+1. [Supported `@Output` properties](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#supported-output-properties)
+1. [Styling](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#styling)
+1. [Localization](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#localization)
+
 ## Contributing
 
 After cloning this repository, install necessary dependencies:
