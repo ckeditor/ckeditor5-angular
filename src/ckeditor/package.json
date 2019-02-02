@@ -32,7 +32,7 @@
   },
   "ngPackage": {
     "lib": {
-      "entryFile": "./ckeditor.module.ts"
+      "entryFile": "./index.ts"
     },
     "whitelistedNonPeerDependencies": [
       "."
