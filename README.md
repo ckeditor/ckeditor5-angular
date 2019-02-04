@@ -76,7 +76,7 @@ npm run changelog
 
 #### Packaging the component
 
-**Note** This step is optional in the release process (the script is executed anyway by the postversion hook) but it's required to test the package used as NPM dependency.
+**Note** This step is optional in the release process (the script is executed anyway by the postversion hook) but it is required to test the package used as an NPM dependency.
 
 This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create a package meeting the Angular Package Format specification.
 
@@ -90,7 +90,7 @@ creates a package in the `./dist` directory, which can be then published in the 
 
 #### Testing the package before releasing
 
-To test the `ckeditor5-angular` package, first bootstrap an empty angular package using [ng new] (https://angular.io/cli/new) and add the `<ckeditor>` component using the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) or by cloning and installing the https://github.com/ma2ciek/ckeditor5-angular-test.
+To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`] (https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) or by cloning and installing the https://github.com/ma2ciek/ckeditor5-angular-test.
 
 Then, create a symlink to the `ckeditor5-angular/dist` package directory to test it in another angular project, e.g.:
 
