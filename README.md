@@ -90,12 +90,12 @@ creates a package in the `./dist` directory, which can be then published in the 
 
 #### Testing the package before releasing
 
-To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`] (https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) or by cloning and installing the https://github.com/ma2ciek/ckeditor5-angular-test.
+To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`] (https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
 
-Then, create a symlink to the `ckeditor5-angular/dist` package directory to test it in another angular project, e.g.:
+Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` via this repository.
 
 ```bash
-ln -s /path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
+ln -s path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
 ```
 
 Make sure that the `preserveSymlinks` option is set to `true` for the `build` architect in `angular.json`:
