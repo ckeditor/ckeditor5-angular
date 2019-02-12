@@ -97,7 +97,7 @@ creates a package in the `./dist` directory, which can be then published in the 
 
 #### Testing the package before releasing
 
-To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`] (https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
+To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`](https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
 
 Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` via this repository.
 
