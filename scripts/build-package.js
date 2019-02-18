@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2018, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
 
@@ -28,9 +28,11 @@ for ( const file of filesToCopy ) {
 	const src = path.join( process.cwd(), file );
 	const dest = path.join( process.cwd(), 'dist', file );
 
-	if ( fs.existsSync( src ) ) {
-		fs.copyFileSync( src, dest );
+	if ( !fs.existsSync( src ) ) {
+		throw new Error( `File ${ src } does not exist and cannot be copied.` );
 	}
+
+	fs.copyFileSync( src, dest );
 }
 
 // Update the version of package in dist/package.json

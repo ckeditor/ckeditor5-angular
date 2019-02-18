@@ -11,9 +11,16 @@
 
 Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 2+.
 
-## Documentation
+## [Developer Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) 📖
 
-See the [Angular 2+ component](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) article in the [CKEditor 5 documentation](https://ckeditor.com/docs/ckeditor5/latest).
+See the ["Rich text editor component for Angular 2+"](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) guide in the [CKEditor 5 documentation](https://ckeditor.com/docs/ckeditor5/latest) to learn more:
+
+* [Quick start](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#quick-start)
+* [Integration with `ngModel`](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#integration-with-ngmodel)
+* [Supported `@Input` properties](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#supported-input-properties)
+* [Supported `@Output` properties](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#supported-output-properties)
+* [Styling](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#styling)
+* [Localization](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#localization)
 
 ## Contributing
 
@@ -76,6 +83,8 @@ npm run changelog
 
 #### Packaging the component
 
+**Note** This step is optional in the release process (the script is executed anyway by the postversion hook) but it is required to test the package used as an NPM dependency.
+
 This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create a package meeting the Angular Package Format specification.
 
 Calling:
@@ -88,13 +97,15 @@ creates a package in the `./dist` directory, which can be then published in the 
 
 #### Testing the package before releasing
 
-After generating the package, create a symlink to the `ckeditor5-angular/dist` package directory to test it in another (third–party) Angular project:
+To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`](https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
+
+Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` via this repository.
 
 ```bash
-ln -s /path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
+ln -s path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
 ```
 
-You may also need the following configuration in `angular.json` to include the symlinked component package without errors:
+Make sure that the `preserveSymlinks` option is set to `true` for the `build` architect in `angular.json`:
 
 ```json
 {

@@ -1,4 +1,9 @@
 /**
+ * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
  * Basic typings for the CKEditor5 elements.
  */
 export namespace CKEditor5 {
