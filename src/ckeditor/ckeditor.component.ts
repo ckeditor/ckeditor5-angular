@@ -211,13 +211,15 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	private createEditor(): Promise<any> {
 		const element = document.createElement( this.tagName );
 
+		// Do not use the `editor.setData()` here because of the issue in the collaboration mode (#6).
+		// Instead set data to the element on which the editor will be later initialized.
+		element.innerHTML = this.data;
+
 		this.elementRef.nativeElement.appendChild( element );
 
 		return this.editor!.create( element, this.config )
 			.then( editor => {
 				this.editorInstance = editor;
-
-				editor.setData( this.data );
 
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;

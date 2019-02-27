@@ -83,8 +83,9 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be configurable at the start of the component', () => {
-			fixture.detectChanges();
 			component.data = 'foo';
+
+			fixture.detectChanges();
 
 			return wait().then( () => {
 				expect( component.data ).toEqual( 'foo' );
@@ -93,8 +94,8 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be writeable by ControlValueAccessor', () => {
-			fixture.detectChanges();
 			component.writeValue( 'foo' );
+			fixture.detectChanges();
 
 			return wait().then( () => {
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
