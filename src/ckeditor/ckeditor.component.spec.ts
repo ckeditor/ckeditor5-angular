@@ -107,13 +107,28 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
-			class EventEmitter {
-				on() {}
+			class EditorMock {
+				model = {
+					document: new EventEmitter()
+				};
+
+				editing = {
+					view: {
+						document: new EventEmitter()
+					}
+				};
+
+				setData = createSpy();
+
+				static create() {
+					return Promise.resolve( new this() );
+				}
+
+				destroy() {}
 			}
 
-			interface Spy {
-				(): void;
-				called: boolean;
+			class EventEmitter {
+				on() {}
 			}
 
 			function createSpy() {
@@ -126,22 +141,9 @@ describe( 'CKEditorComponent', () => {
 				return spy;
 			}
 
-			class EditorMock {
-				public model = {
-					document: new EventEmitter()
-				};
-				public editing = {
-					view: {
-						document: new EventEmitter()
-					}
-				};
-				public setData = createSpy();
-
-				static create() {
-					return Promise.resolve( new this() );
-				}
-
-				destroy() {}
+			interface Spy {
+				(): void;
+				called: boolean;
 			}
 
 			component.editor = ( EditorMock as any );
