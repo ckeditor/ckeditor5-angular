@@ -105,6 +105,59 @@ describe( 'CKEditorComponent', () => {
 				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
 			} );
 		} );
+
+		it( 'should not be set using `editor.setData()` during the initialization step', () => {
+			class EventEmitter {
+				on() {}
+			}
+
+			interface Spy {
+				(): void;
+				called: boolean;
+			}
+
+			function createSpy() {
+				const spy: Spy = function() {
+					spy.called = true;
+				};
+
+				spy.called = false;
+
+				return spy;
+			}
+
+			class EditorMock {
+				public model = {
+					document: new EventEmitter()
+				};
+				public editing = {
+					view: {
+						document: new EventEmitter()
+					}
+				};
+				public setData = createSpy();
+
+				static create() {
+					return Promise.resolve( new this() );
+				}
+
+				destroy() {}
+			}
+
+			component.editor = ( EditorMock as any );
+
+			component.writeValue( 'foo' );
+			fixture.detectChanges();
+
+			return wait().then( () => {
+				const fakeEditorInstance = component.editorInstance as any as EditorMock;
+
+				expect( fakeEditorInstance.setData.called ).toBe( false );
+
+				component.writeValue( 'bar' );
+				expect( fakeEditorInstance.setData.called ).toBe( true );
+			} );
+		} );
 	} );
 
 	describe( 'emitters', () => {
@@ -222,7 +275,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should result in error logged to the console', () => {
-			const spy = spyOn( console, 'error', );
+			const spy = spyOn( console, 'error' );
 			fixture.detectChanges();
 
 			return wait().then( () => {
