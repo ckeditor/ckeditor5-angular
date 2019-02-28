@@ -144,6 +144,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private cvaOnTouched?: () => void;
 
+	/**
+	 * Reference to the source element used by the editor.
+	 */
+	private editorElement?: HTMLElement;
+
 	constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
@@ -179,6 +184,12 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		// If not, wait for it to be ready; store the data.
 		else {
 			this.data = value;
+
+			// If the editor element is already available, then update its content.
+			// If the ngModel is used then the editor element should be updated directly here.
+			if ( this.editorElement ) {
+				this.editorElement.innerHTML = this.data;
+			}
 		}
 	}
 
@@ -210,23 +221,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private createEditor(): Promise<any> {
 		const element = document.createElement( this.tagName );
+		this.editorElement = element;
 
 		// Do not use the `editor.setData()` here because of the issue in the collaboration mode (#6).
 		// Instead set data to the element on which the editor will be later initialized.
 		element.innerHTML = this.data;
-
-		const oldData = this.data;
 
 		this.elementRef.nativeElement.appendChild( element );
 
 		return this.editor!.create( element, this.config )
 			.then( editor => {
 				this.editorInstance = editor;
-
-				// Update data if it has changed in the meantime.
-				if ( this.data !== oldData ) {
-					this.editorInstance.setData( this.data );
-				}
 
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;
