@@ -215,11 +215,18 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		// Instead set data to the element on which the editor will be later initialized.
 		element.innerHTML = this.data;
 
+		const oldData = this.data;
+
 		this.elementRef.nativeElement.appendChild( element );
 
 		return this.editor!.create( element, this.config )
 			.then( editor => {
 				this.editorInstance = editor;
+
+				// Update data if it has changed in the meantime.
+				if ( this.data !== oldData ) {
+					this.editorInstance.setData( this.data );
+				}
 
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;
