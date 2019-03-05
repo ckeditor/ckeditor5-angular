@@ -83,8 +83,9 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be configurable at the start of the component', () => {
-			fixture.detectChanges();
 			component.data = 'foo';
+
+			fixture.detectChanges();
 
 			return wait().then( () => {
 				expect( component.data ).toEqual( 'foo' );
@@ -93,8 +94,8 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be writeable by ControlValueAccessor', () => {
-			fixture.detectChanges();
 			component.writeValue( 'foo' );
+			fixture.detectChanges();
 
 			return wait().then( () => {
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
@@ -102,6 +103,61 @@ describe( 'CKEditorComponent', () => {
 				component.writeValue( 'bar' );
 
 				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
+			} );
+		} );
+
+		it( 'should not be set using `editor.setData()` during the initialization step', () => {
+			class EventEmitter {
+				on() {}
+			}
+
+			class EditorMock {
+				model = {
+					document: new EventEmitter()
+				};
+
+				editing = {
+					view: {
+						document: new EventEmitter()
+					}
+				};
+
+				setData = createSpy();
+
+				static create() {
+					return Promise.resolve( new this() );
+				}
+
+				destroy() {}
+			}
+
+			function createSpy() {
+				const spy: Spy = function() {
+					spy.called = true;
+				};
+
+				spy.called = false;
+
+				return spy;
+			}
+
+			interface Spy {
+				(): void;
+				called: boolean;
+			}
+
+			component.editor = ( EditorMock as any );
+
+			component.writeValue( 'foo' );
+			fixture.detectChanges();
+
+			return wait().then( () => {
+				const fakeEditorInstance = component.editorInstance as any as EditorMock;
+
+				expect( fakeEditorInstance.setData.called ).toBe( false );
+
+				component.writeValue( 'bar' );
+				expect( fakeEditorInstance.setData.called ).toBe( true );
 			} );
 		} );
 	} );
@@ -221,7 +277,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should result in error logged to the console', () => {
-			const spy = spyOn( console, 'error', );
+			const spy = spyOn( console, 'error' );
 			fixture.detectChanges();
 
 			return wait().then( () => {
