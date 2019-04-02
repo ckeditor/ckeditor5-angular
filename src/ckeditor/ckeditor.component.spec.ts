@@ -188,6 +188,24 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 
+		it( 'change - should not calculate editor data when the control value ancestor is not specified', () => {
+			fixture.detectChanges();
+
+			const changeSpy = jasmine.createSpy();
+			component.change.subscribe( changeSpy );
+
+			return wait().then( () => {
+				spyOn( component.editorInstance!, 'getData' ).and.callThrough();
+
+				component.editorInstance!.execute( 'input', { text: 'foo' } );
+				component.editorInstance!.execute( 'input', { text: 'foo' } );
+				component.editorInstance!.execute( 'input', { text: 'foo' } );
+
+				expect( component.editorInstance!.getData ).toHaveBeenCalledTimes( 0 );
+				expect( changeSpy ).toHaveBeenCalledTimes( 3 );
+			} );
+		} );
+
 		it( 'focus', () => {
 			fixture.detectChanges();
 			const spy = jasmine.createSpy();
@@ -235,7 +253,7 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 
-		it( 'onChange callback should be called when editor model changes', () => {
+		it( 'onChange callback should be called when editor model changes with editor data', () => {
 			fixture.detectChanges();
 
 			return wait().then( () => {
@@ -244,7 +262,7 @@ describe( 'CKEditorComponent', () => {
 
 				component.editorInstance!.execute( 'input', { text: 'foo' } );
 
-				expect( spy ).toHaveBeenCalled();
+				expect( spy ).toHaveBeenCalledWith( '<p>foo</p>' );
 			} );
 		} );
 	} );
