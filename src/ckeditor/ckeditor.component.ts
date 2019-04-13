@@ -225,11 +225,15 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 		// Do not use the `editor.setData()` here because of the issue in the collaboration mode (#6).
 		// Instead set data to the element on which the editor will be later initialized.
-		element.innerHTML = this.data;
+		let config = this.config;
+
+		if ( this.data ) {
+			config = { ...config, initialData: this.data };
+		}
 
 		this.elementRef.nativeElement.appendChild( element );
 
-		return this.editor!.create( element, this.config )
+		return this.editor!.create( element, config )
 			.then( editor => {
 				this.editorInstance = editor;
 

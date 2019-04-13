@@ -78,7 +78,7 @@ describe( 'CKEditorComponent', () => {
 
 			return wait().then( () => {
 				expect( component.data ).toEqual( '' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>&nbsp;</p>' );
+				expect( component.editorInstance!.getData() ).toEqual( '' );
 			} );
 		} );
 

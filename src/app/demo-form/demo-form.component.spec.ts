@@ -55,7 +55,7 @@ describe( 'DemoFormComponent', () => {
 
 			fixture.detectChanges();
 
-			expect( component.formDataPreview ).toEqual( '{"name":null,"surname":null,"description":"<p>&nbsp;</p>"}' );
+			expect( component.formDataPreview ).toEqual( '{"name":null,"surname":null,"description":""}' );
 
 			done();
 		} );
