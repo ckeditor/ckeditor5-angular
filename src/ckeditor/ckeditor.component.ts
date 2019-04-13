@@ -216,15 +216,14 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	/**
-	 * Creates the editor instance, sets initial editor data,
-	 * then integrates the editor with the Angular component.
+	 * Creates the editor instance, sets initial editor data, then integrates
+	 * the editor with the Angular component. This method does not use the `editor.setData()`
+	 * because of the issue in the collaboration mode (#6).
 	 */
 	private createEditor(): Promise<any> {
 		const element = document.createElement( this.tagName );
 		this.editorElement = element;
 
-		// Do not use the `editor.setData()` here because of the issue in the collaboration mode (#6).
-		// Instead set data to the element on which the editor will be later initialized.
 		let config = this.config;
 
 		if ( this.data ) {
