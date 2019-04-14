@@ -51,7 +51,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() config?: CKEditor5.Config;
+	@Input() config: CKEditor5.Config = {};
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
@@ -224,11 +224,15 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		const element = document.createElement( this.tagName );
 		this.editorElement = element;
 
-		let config = this.config;
-
-		if ( this.data ) {
-			config = { ...config, initialData: this.data };
+		if ( this.data && this.config.initialData ) {
+			throw new Error( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		}
+
+		// Merge two possible ways of providing data into the `config.initialData` field.
+		const config = {
+			...this.config,
+			initialData: this.config.initialData || this.data || ''
+		};
 
 		this.elementRef.nativeElement.appendChild( element );
 

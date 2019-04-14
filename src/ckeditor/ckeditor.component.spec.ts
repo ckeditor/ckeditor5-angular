@@ -82,7 +82,7 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 
-		it( 'should be configurable at the start of the component', () => {
+		it( 'should be configurable at the start of the component using the `data` property', () => {
 			component.data = 'foo';
 
 			fixture.detectChanges();
@@ -91,6 +91,26 @@ describe( 'CKEditorComponent', () => {
 				expect( component.data ).toEqual( 'foo' );
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 			} );
+		} );
+
+		it( 'should be configurable at the start of the component using the `config.initialData` property', () => {
+			component.config = { initialData: 'foo' };
+
+			fixture.detectChanges();
+
+			return wait().then( () => {
+				expect( component.config.initialData ).toEqual( 'foo' );
+				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+			} );
+		} );
+
+		it( 'should not be provided using both `config.initialData` or `data` properties', () => {
+			component.config = { initialData: 'foo' };
+			component.data = 'bar';
+
+			expect( () => {
+				fixture.detectChanges();
+			} ).toThrowError( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		} );
 
 		it( 'should be writeable by ControlValueAccessor', () => {
@@ -108,7 +128,7 @@ describe( 'CKEditorComponent', () => {
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
 			class EventEmitter {
-				on() {}
+				on() { }
 			}
 
 			class EditorMock {
@@ -128,7 +148,7 @@ describe( 'CKEditorComponent', () => {
 					return Promise.resolve( new this() );
 				}
 
-				destroy() {}
+				destroy() { }
 			}
 
 			function createSpy() {
