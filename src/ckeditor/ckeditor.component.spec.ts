@@ -128,7 +128,7 @@ describe( 'CKEditorComponent', () => {
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
 			class EventEmitter {
-				on() { }
+				on() {}
 			}
 
 			class EditorMock {
@@ -148,7 +148,7 @@ describe( 'CKEditorComponent', () => {
 					return Promise.resolve( new this() );
 				}
 
-				destroy() { }
+				destroy() {}
 			}
 
 			function createSpy() {
