@@ -1,6 +1,23 @@
 Changelog
 =========
 
+## [1.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v1.0.1...v1.1.0) (2019-04-15)
+
+### Features
+
+* Re-exported `CKEditorModule`, `CKEditorComponent` and typings from the package entry point. Closes [#66](https://github.com/ckeditor/ckeditor5-angular/issues/66). ([2a6f55e](https://github.com/ckeditor/ckeditor5-angular/commit/2a6f55e))
+
+### Bug fixes
+
+* Fixed integration with collaboration features by changing the way how the initial data is passed to an editor instance. Previously the `<ckeditor>` component was using the `editor.setData()` method which produces invalid results in collaboration. Now, the initial data is injected directly into the container on which the editor will be created. Closes [#75](https://github.com/ckeditor/ckeditor5-angular/issues/75). ([63c0073](https://github.com/ckeditor/ckeditor5-angular/commit/63c0073))
+
+### Other changes
+
+* Improved performance by processing data only when effectively needed. Closes [#82](https://github.com/ckeditor/ckeditor5-angular/issues/82). Closes [#83](https://github.com/ckeditor/ckeditor5-angular/issues/83). ([0e4638e](https://github.com/ckeditor/ckeditor5-angular/commit/0e4638e))
+* Added support for `config.initialData` introduced in CKEditor 5 v12.1.0. Effectively, the editor data can now be provided by `config.initialData` or `data` properties. Closes [#89](https://github.com/ckeditor/ckeditor5-angular/issues/89). ([2b96fa3](https://github.com/ckeditor/ckeditor5-angular/commit/2b96fa3))
+* Upgraded the minimal versions of Node and npm. See: [ckeditor/ckeditor5#1507](https://github.com/ckeditor/ckeditor5/issues/1507). ([47f4ca4](https://github.com/ckeditor/ckeditor5-angular/commit/47f4ca4))
+
+
 ## [1.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v1.0.0...v1.0.1) (2018-11-05)
 
 Internal changes only (updated dependencies, documentation, etc.).
