@@ -51,7 +51,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() config?: CKEditor5.Config;
+	@Input() config: CKEditor5.Config = {};
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
@@ -216,20 +216,27 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	/**
-	 * Creates the editor instance, sets initial editor data,
-	 * then integrates the editor with the Angular component.
+	 * Creates the editor instance, sets initial editor data, then integrates
+	 * the editor with the Angular component. This method does not use the `editor.setData()`
+	 * because of the issue in the collaboration mode (#6).
 	 */
-	private createEditor(): Promise<any> {
+	private createEditor(): Promise<void> {
 		const element = document.createElement( this.tagName );
 		this.editorElement = element;
 
-		// Do not use the `editor.setData()` here because of the issue in the collaboration mode (#6).
-		// Instead set data to the element on which the editor will be later initialized.
-		element.innerHTML = this.data;
+		if ( this.data && this.config.initialData ) {
+			throw new Error( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
+		}
+
+		// Merge two possible ways of providing data into the `config.initialData` field.
+		const config = {
+			...this.config,
+			initialData: this.config.initialData || this.data || ''
+		};
 
 		this.elementRef.nativeElement.appendChild( element );
 
-		return this.editor!.create( element, this.config )
+		return this.editor!.create( element, config )
 			.then( editor => {
 				this.editorInstance = editor;
 

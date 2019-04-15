@@ -78,11 +78,11 @@ describe( 'CKEditorComponent', () => {
 
 			return wait().then( () => {
 				expect( component.data ).toEqual( '' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>&nbsp;</p>' );
+				expect( component.editorInstance!.getData() ).toEqual( '' );
 			} );
 		} );
 
-		it( 'should be configurable at the start of the component', () => {
+		it( 'should be configurable at the start of the component using the `data` property', () => {
 			component.data = 'foo';
 
 			fixture.detectChanges();
@@ -91,6 +91,26 @@ describe( 'CKEditorComponent', () => {
 				expect( component.data ).toEqual( 'foo' );
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 			} );
+		} );
+
+		it( 'should be configurable at the start of the component using the `config.initialData` property', () => {
+			component.config = { initialData: 'foo' };
+
+			fixture.detectChanges();
+
+			return wait().then( () => {
+				expect( component.config.initialData ).toEqual( 'foo' );
+				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+			} );
+		} );
+
+		it( 'should not be provided using both `config.initialData` or `data` properties', () => {
+			component.config = { initialData: 'foo' };
+			component.data = 'bar';
+
+			expect( () => {
+				fixture.detectChanges();
+			} ).toThrowError( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		} );
 
 		it( 'should be writeable by ControlValueAccessor', () => {
