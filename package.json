@@ -80,10 +80,7 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
-      "eslint --quiet"
-    ],
-    "**/*.ts": [
+    "**/*.+(js|ts)": [
       "eslint --quiet"
     ]
   },
