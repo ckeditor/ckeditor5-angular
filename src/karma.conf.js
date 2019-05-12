@@ -2,6 +2,7 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 /* eslint-env node */
+/* eslint-disable @typescript-eslint/camelcase */
 
 module.exports = function( config ) {
 	const karmaConfig = {
@@ -74,14 +75,14 @@ module.exports = function( config ) {
 function getBuildName() {
 	const repoSlug = process.env.TRAVIS_REPO_SLUG;
 
- 	if ( !repoSlug ) {
+	if ( !repoSlug ) {
 		return;
 	}
 
- 	const repositoryName = repoSlug.split( '/' )[ 1 ].replace( /-/g, '_' );
+	const repositoryName = repoSlug.split( '/' )[ 1 ].replace( /-/g, '_' );
 	const date = new Date().getTime();
 
- 	return `${ repositoryName } ${ date }`;
+	return `${ repositoryName } ${ date }`;
 }
 
 function getPlugins() {
