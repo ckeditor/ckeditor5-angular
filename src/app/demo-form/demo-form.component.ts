@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 	styleUrls: [ './demo-form.component.css' ]
 } )
 export class DemoFormComponent implements AfterViewInit {
-	@ViewChild( 'demoForm' ) demoForm?: NgForm;
+	@ViewChild( 'demoForm' ) public demoForm?: NgForm;
 
 	public Editor = ClassicEditorBuild;
 	public model = {
@@ -24,20 +24,21 @@ export class DemoFormComponent implements AfterViewInit {
 
 	public formDataPreview?: string;
 
-	ngAfterViewInit() {
-		this.demoForm!.control.valueChanges
-			.subscribe( values => this.formDataPreview = JSON.stringify( values ) );
+	public get description() {
+		return this.demoForm!.controls.description;
 	}
 
-	onSubmit() {
+	public ngAfterViewInit() {
+		this.demoForm!.control.valueChanges.subscribe( values => {
+			this.formDataPreview = JSON.stringify( values );
+		} );
+	}
+
+	public onSubmit() {
 		console.log( 'Form submit, model', this.model );
 	}
 
-	reset() {
+	public reset() {
 		this.demoForm!.reset();
-	}
-
-	get description() {
-		return this.demoForm!.controls.description;
 	}
 }

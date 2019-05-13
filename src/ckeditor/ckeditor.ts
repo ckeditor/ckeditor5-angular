@@ -7,6 +7,7 @@
  * Basic typings for the CKEditor5 elements.
  */
 export namespace CKEditor5 {
+
 	/**
 	 * The CKEditor5 editor constructor.
 	 */

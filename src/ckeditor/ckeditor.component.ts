@@ -29,6 +29,7 @@ import { CKEditor5 } from './ckeditor';
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
+			// eslint-disable-next-line @typescript-eslint/no-use-before-define
 			useExisting: forwardRef( () => CKEditorComponent ),
 			multi: true,
 		}
@@ -44,38 +45,38 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() editor?: CKEditor5.EditorConstructor;
+	@Input() public editor?: CKEditor5.EditorConstructor;
 
 	/**
 	 * The configuration of the editor.
 	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() config: CKEditor5.Config = {};
+	@Input() public config: CKEditor5.Config = {};
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
 	 * See https://angular.io/api/forms/NgModel to learn more.
 	 */
-	@Input() data = '';
+	@Input() public data = '';
 
 	/**
 	 * Tag name of the editor component.
 	 *
 	 * The default tag is 'div'.
 	 */
-	@Input() tagName = 'div';
+	@Input() public tagName = 'div';
 
 	/**
 	 * When set `true`, the editor becomes read-only.
 	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#member-isReadOnly
 	 * to learn more.
 	 */
-	@Input() set disabled( isDisabled: boolean ) {
+	@Input() public set disabled( isDisabled: boolean ) {
 		this.setDisabledState( isDisabled );
 	}
 
-	get disabled() {
+	public get disabled() {
 		if ( this.editorInstance ) {
 			return this.editorInstance.isReadOnly;
 		}
@@ -88,28 +89,28 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() ready = new EventEmitter<CKEditor5.Editor>();
+	@Output() public ready = new EventEmitter<CKEditor5.Editor>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() change: EventEmitter<ChangeEvent> = new EventEmitter<ChangeEvent>();
+	@Output() public change: EventEmitter<ChangeEvent> = new EventEmitter<ChangeEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() blur: EventEmitter<BlurEvent> = new EventEmitter<BlurEvent>();
+	@Output() public blur: EventEmitter<BlurEvent> = new EventEmitter<BlurEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+	@Output() public focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -149,20 +150,20 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private editorElement?: HTMLElement;
 
-	constructor( elementRef: ElementRef, ngZone: NgZone ) {
+	public constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
 	}
 
 	// Implementing the AfterViewInit interface.
-	ngAfterViewInit() {
+	public ngAfterViewInit() {
 		this.ngZone.runOutsideAngular( () => {
 			this.createEditor();
 		} );
 	}
 
 	// Implementing the OnDestroy interface.
-	ngOnDestroy() {
+	public ngOnDestroy() {
 		if ( this.editorInstance ) {
 			this.editorInstance.destroy();
 			this.editorInstance = null;
@@ -170,7 +171,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	writeValue( value: string | null ): void {
+	public writeValue( value: string | null ): void {
 		// This method is called with the `null` value when the form resets.
 		// A component's responsibility is to restore to the initial state.
 		if ( value === null ) {
@@ -194,17 +195,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	registerOnChange( callback: ( data: string ) => void ): void {
+	public registerOnChange( callback: ( data: string ) => void ): void {
 		this.cvaOnChange = callback;
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	registerOnTouched( callback: () => void ): void {
+	public registerOnTouched( callback: () => void ): void {
 		this.cvaOnTouched = callback;
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
-	setDisabledState( isDisabled: boolean ): void {
+	public setDisabledState( isDisabled: boolean ): void {
 		// If already initialized
 		if ( this.editorInstance ) {
 			this.editorInstance.isReadOnly = isDisabled;

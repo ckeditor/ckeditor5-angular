@@ -1,49 +1,49 @@
 import { browser, by, element, promise } from 'protractor';
 
 export class AppPage {
-	navigateTo( url = '' ) {
+	public navigateTo( url = '' ) {
 		return browser.get( '/' + url );
 	}
 
-	getHeaderContent() {
+	public getHeaderContent() {
 		return element( by.css( 'app-root h1' ) ).getText();
 	}
 
-	getEditorContent(): promise.Promise<string> {
+	public getEditorContent(): promise.Promise<string> {
 		return browser.executeScript( 'return arguments[0].innerHTML', element( by.css( 'app-root #classic-editor' ) ) );
 	}
 
-	getNameInputValue() {
+	public getNameInputValue() {
 		return element( by.css( 'app-root  input#name' ) ).getAttribute( 'value' );
 	}
 
-	async setNameInputValue( value: string ) {
+	public async setNameInputValue( value: string ) {
 		const el = element( by.css( 'app-root  input#name' ) );
 
 		await el.clear();
 		await el.sendKeys( value );
 	}
 
-	getSurnameInputValue() {
+	public getSurnameInputValue() {
 		return element( by.css( 'app-root  input#surname' ) ).getAttribute( 'value' );
 	}
 
-	async setSurnameInputValue( value: string ) {
+	public async setSurnameInputValue( value: string ) {
 		const el = element( by.css( 'app-root  input#surname' ) );
 
 		await el.clear();
 		await el.sendKeys( value );
 	}
 
-	getDescription() {
+	public getDescription() {
 		return browser.executeScript( 'return arguments[0].innerHTML', element( by.css( 'app-root #description .ck-editor__editable' ) ) );
 	}
 
-	getFormDataPreview() {
+	public getFormDataPreview() {
 		return element( by.css( 'app-root pre' ) ).getText();
 	}
 
-	async setDescription( value: string ) {
+	public async setDescription( value: string ) {
 		const descEl = element( by.css( 'app-root #description .ck-editor__editable' ) );
 
 		// Select the whole content.

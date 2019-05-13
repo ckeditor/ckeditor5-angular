@@ -128,27 +128,27 @@ describe( 'CKEditorComponent', () => {
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
 			class EventEmitter {
-				on() {}
+				public on() {}
 			}
 
 			class EditorMock {
-				model = {
+				public model = {
 					document: new EventEmitter()
 				};
 
-				editing = {
+				public editing = {
 					view: {
 						document: new EventEmitter()
 					}
 				};
 
-				setData = createSpy();
+				public setData = createSpy();
 
-				static create() {
+				public static create() {
 					return Promise.resolve( new this() );
 				}
 
-				destroy() {}
+				public destroy() {}
 			}
 
 			function createSpy() {
@@ -294,7 +294,7 @@ describe( 'CKEditorComponent', () => {
 		let component: CKEditorComponent;
 
 		class EditorThatThrowsErrorDuringInitialization {
-			static create() {
+			public static create() {
 				return Promise.resolve().then( () => {
 					return Promise.reject( new Error() );
 				} );

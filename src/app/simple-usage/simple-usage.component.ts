@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
-import { CKEditor5 } from '../../ckeditor/ckeditor';
-import { ChangeEvent, FocusEvent, BlurEvent } from '../../ckeditor/ckeditor.component';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -14,29 +12,29 @@ export class SimpleUsageComponent {
 
 	public isDisabled = false;
 	public editorData =
-		`<p>Getting used to an entirely different culture can be challenging.
+	`<p>Getting used to an entirely different culture can be challenging.
 While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person.
 You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>`;
 
 	public componentEvents: string[] = [];
 
-	toggleDisableEditors() {
+	public toggleDisableEditors() {
 		this.isDisabled = !this.isDisabled;
 	}
 
-	onReady( editor: CKEditor5.Editor ): void {
+	public onReady() {
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	onChange( event: ChangeEvent ): void {
+	public onChange() {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	onFocus( event: FocusEvent ): void {
+	public onFocus() {
 		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	onBlur( event: BlurEvent ): void {
+	public onBlur() {
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 }
