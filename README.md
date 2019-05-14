@@ -9,7 +9,7 @@
 [![Dependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular)
 [![devDependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular?type=dev)
 
-Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 2+.
+Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 2+ (Angular 5+).
 
 ## [Developer Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) 📖
 
