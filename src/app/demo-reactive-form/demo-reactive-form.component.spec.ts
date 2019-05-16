@@ -12,7 +12,7 @@ describe( 'DemoReactiveFormComponent', () => {
 	beforeEach( async( () => {
 		TestBed.configureTestingModule( {
 			declarations: [ DemoReactiveFormComponent ],
-			imports: [ CKEditorModule, FormsModule, ReactiveFormsModule  ]
+			imports: [ CKEditorModule, FormsModule, ReactiveFormsModule ]
 		} )
 			.compileComponents();
 	} ) );
