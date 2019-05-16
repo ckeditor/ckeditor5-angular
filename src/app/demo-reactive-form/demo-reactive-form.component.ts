@@ -25,12 +25,12 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 	public ngAfterViewInit() {
 		this.demoReactiveForm!.valueChanges
 			.subscribe( values => {
-				this.formDataPreview = JSON.stringify(values);
+				this.formDataPreview = JSON.stringify( values );
 			} );
 	}
 
 	public onSubmit() {
-		console.log('Form submit, model', this.demoReactiveForm.value);
+		console.log( 'Form submit, model', this.demoReactiveForm.value );
 	}
 
 	public reset() {
