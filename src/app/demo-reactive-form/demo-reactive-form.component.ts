@@ -6,37 +6,38 @@ import {
 import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 import { FormGroup, FormControl } from '@angular/forms';
 
-@Component({
+@Component( {
 	selector: 'app-demo-reactive-form',
 	templateUrl: './demo-reactive-form.component.html',
-	styleUrls: ['./demo-reactive-form.component.css']
-})
+	styleUrls: [ './demo-reactive-form.component.css' ]
+} )
 export class DemoReactiveFormComponent implements AfterViewInit {
-
 	public Editor = ClassicEditorBuild;
 
-	public demoReactiveForm = new FormGroup({
-		name: new FormControl('John'),
-		surname: new FormControl('Doe'),
-		description: new FormControl('<p>A <b>really</b> nice fellow.</p>'),
-	});
+	public demoReactiveForm = new FormGroup( {
+		name: new FormControl( 'John' ),
+		surname: new FormControl( 'Doe' ),
+		description: new FormControl( '<p>A <b>really</b> nice fellow.</p>' ),
+	} );
 
 	public formDataPreview?: string;
 
-	ngAfterViewInit() {
+	public ngAfterViewInit() {
 		this.demoReactiveForm!.valueChanges
-			.subscribe(values => this.formDataPreview = JSON.stringify(values));
+			.subscribe( values => {
+				this.formDataPreview = JSON.stringify(values);
+			} );
 	}
 
-	onSubmit() {
+	public onSubmit() {
 		console.log('Form submit, model', this.demoReactiveForm.value);
 	}
 
-	reset() {
+	public reset() {
 		this.demoReactiveForm!.reset();
 	}
 
-	get description() {
+	public get description() {
 		return this.demoReactiveForm!.controls.description;
 	}
 }
