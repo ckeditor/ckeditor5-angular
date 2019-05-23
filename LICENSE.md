@@ -1,7 +1,7 @@
 Software License Agreement
 ==========================
 
-**CKEditor 5 component for Angular 2+** – https://github.com/ckeditor/ckeditor5-angular <br>
+**CKEditor 5 component for Angular** – https://github.com/ckeditor/ckeditor5-angular <br>
 Copyright (c) 2003-2019, [CKSource](http://cksource.com) Frederico Knabben. All rights reserved.
 
 Licensed under the terms of [GNU General Public License Version 2 or later](http://www.gnu.org/licenses/gpl.html).

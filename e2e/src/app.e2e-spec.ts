@@ -15,7 +15,7 @@ describe( 'app', () => {
 		it( 'should display header message', async() => {
 			const content = await page.getHeaderContent();
 
-			expect( content ).toEqual( 'CKEditor integration with Angular 2+' );
+			expect( content ).toEqual( 'CKEditor 5 integration with Angular' );
 		} );
 
 		it( 'should display editor with set content', async() => {

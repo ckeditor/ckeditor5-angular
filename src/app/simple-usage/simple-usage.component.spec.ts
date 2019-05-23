@@ -58,7 +58,7 @@ describe( 'SimpleUsageComponent', () => {
 	} );
 
 	describe( 'data', () => {
-		it( 'should set initial data on the CKEditor component', () => {
+		it( 'should set initial data on the `<ckeditor>` component', () => {
 			expect( ckeditorComponent.data )
 				.toContain( '<p>Getting used to an entirely different culture can be challenging.' );
 		} );

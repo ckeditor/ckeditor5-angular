@@ -1,4 +1,4 @@
-# CKEditor 5 rich text editor component for Angular 2+
+# CKEditor 5 rich text editor component for Angular
 
 [![Join the chat at https://gitter.im/ckeditor/ckeditor5](https://badges.gitter.im/ckeditor/ckeditor5.svg)](https://gitter.im/ckeditor/ckeditor5?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular)
@@ -9,11 +9,11 @@
 [![Dependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular)
 [![devDependency Status](https://david-dm.org/ckeditor/ckeditor5-angular/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor5-angular?type=dev)
 
-Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 2+.
+Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 5+.
 
 ## [Developer Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) 📖
 
-See the ["Rich text editor component for Angular 2+"](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) guide in the [CKEditor 5 documentation](https://ckeditor.com/docs/ckeditor5/latest) to learn more:
+See the ["Rich text editor component for Angular"](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) guide in the [CKEditor 5 documentation](https://ckeditor.com/docs/ckeditor5/latest) to learn more:
 
 * [Quick start](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#quick-start)
 * [Integration with `ngModel`](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#integration-with-ngmodel)
@@ -21,6 +21,10 @@ See the ["Rich text editor component for Angular 2+"](https://ckeditor.com/docs/
 * [Supported `@Output` properties](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#supported-output-properties)
 * [Styling](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#styling)
 * [Localization](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#localization)
+
+## Supported Angular versions
+
+The integration can be used together with Angular at version `5.0.0` and higher. It is an implication of Angular metadata produced for this package by the Angular builder. Note that the `package.json` used in the main repository isn't published on NPM (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 5.0.0`, `@angular/common >= 5.0.0` and `@angular/forms >= 5.0.0` required by this package.
 
 ## Contributing
 
@@ -34,7 +38,7 @@ npm install
 
 This repository contains the following code:
 
-* `./src/ckeditor` contains the CKEditor component,
+* `./src/ckeditor` contains the implementation of `<ckeditor>` component,
 * `./src/app` is a demo application using the component.
 
 **Note:** The [npm package](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) contains a [packaged component](#packaging-the-component) only.
