@@ -1,0 +1,39 @@
+<h2>Integration with reactive forms (<code>ngModel</code>)</h2>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="demoReactiveForm">
+	<h3>User profile form</h3>
+
+	<div>
+		<label for="name">Name</label>
+		<input formControlName="name" type="text" name="name" id="name">
+	</div>
+
+	<div>
+		<label for="surname">Surname</label>
+		<input formControlName="surname" type="text" name="surname" id="surname">
+	</div>
+
+	<label for="description">Description</label>
+	<ckeditor
+		formControlName="description"
+		[editor]="Editor"
+		id="description"
+		name="description">
+	</ckeditor>
+
+	<p *ngIf="description && description.dirty" class="alert">Description is "dirty".</p>
+	<p *ngIf="description && description.touched" class="alert">Description has been "touched".</p>
+
+	<p><button type="reset" (click)="reset()">Reset form</button></p>
+	<p><button type="submit">Submit this form</button> <em>(Open the console first)</em></p>
+</form>
+
+<h3>Editor data preview (readable and writable)</h3>
+<p>
+	Note that it's only a prove of concept of using the `ngModel`.
+	It allows editing, but the editor instantly strips out unknown tags and autoparagraphs text outside of block elements.
+</p>
+<textarea [(ngModel)]="description.value" style="width: 100%; height: 40px"></textarea>
+
+<h3>Form data preview</h3>
+<pre>{{ formDataPreview }}</pre>
