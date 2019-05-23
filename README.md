@@ -22,6 +22,10 @@ See the ["Rich text editor component for Angular"](https://ckeditor.com/docs/cke
 * [Styling](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#styling)
 * [Localization](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html#localization)
 
+## Supported Angular versions
+
+The integration can be used together with Angular at version 5.0.0 and highers. It is an implication of Angular metadata produced for this package by the Angular builder. Note that the `package.json` used in the main repository isn't published on NPM (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 5.0.0`, `@angular/common >= 5.0.0` and `@angular/forms >= 5.0.0` required by this package.
+
 ## Contributing
 
 After cloning this repository, install necessary dependencies:
