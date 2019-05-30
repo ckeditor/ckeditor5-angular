@@ -4,7 +4,6 @@
  */
 
 /* eslint-env node */
-const path = require( 'path' );
 
 module.exports = {
   extends: [
@@ -39,7 +38,7 @@ module.exports = {
       jasmine: true
     },
     parserOptions: {
-      tsconfigRootDir: path.join( __dirname, 'src' ),
+      tsconfigRootDir: __dirname,
       project: 'tsconfig.app.json'
     },
   } ]
