@@ -35,11 +35,15 @@ module.exports = function( config ) {
 		colors: true,
 		logLevel: config.LOG_INFO,
 		autoWatch: true,
-		browsers: [ 'CHROME_TRAVIS_CI' ],
+		browsers: getBrowsers(),
 		customLaunchers: {
 			CHROME_TRAVIS_CI: {
 				base: 'Chrome',
 				flags: [ '--no-sandbox', '--disable-background-timer-throttling' ]
+			},
+			CHROME_LOCAL: {
+				base: 'Chrome',
+				flags: [ '--disable-background-timer-throttling' ]
 			}
 		},
 		singleRun: false
@@ -47,3 +51,14 @@ module.exports = function( config ) {
 
 	config.set( karmaConfig );
 };
+
+function getBrowsers() {
+	if ( process.env.TRAVIS_CI ) {
+		return [
+			'CHROME_TRAVIS_CI',
+			'Firefox'
+		];
+	}
+
+	return [ 'CHROME_LOCAL' ];
+}
