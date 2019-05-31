@@ -5,17 +5,14 @@ addons:
   firefox: latest
 language: node_js
 node_js:
-- '8'
+- '10'
 cache:
 - node_modules
 before_install:
 - export DISPLAY=:99.0
+- export NG_CLI_ANALYTICS=ci
 - sh -e /etc/init.d/xvfb start
 install:
 - npm install
 script:
 - npm run lint && npm run coverage && ng e2e && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-env:
-  global:
-  - secure: U+n/+bjnWUdkmcRtPzYGciEaHpzwuyKf2g4JA78QmRHGdmaPLmfrX65bjYFZcfnO4YboCr6nlnziDCQwdbXb1hbGnBTgyzLkk5xxAY4GVzZKoyyGIZ+jYQ6fMsC8d6ZG1LOwDAZAmIN/mpNXg/63mTuJmsOUBEnt9GkcVGz0PD4FsFrVQ48Gk2EAc9vYYZs9JcXc0thh7QUS107Mz9m/szbaNUvX4V2iC0AoQBiNfShxEDOKdhXjuFH0vZ3Faex39r6hfuGk9SWEfCqR+ebOdgZA/Vgcb54k/BNifFiI7SuMjeoeEYpVHxsEXrUsLgzKOmZpah0JOjXixcGwpvyZXr7JvJ2IMCIGzpO5VpzunXfu5ahViLn2c759vEbZEddJBBHVEzxbY0IMCxlS0iP2ALfmIPzSU1mMdLFRohcRGYUinVvzi/7oRmDcQ/sj0ar1yuKCB0Be53XGwWdd1Nz++nMZihNW1UqsQX9MyZuGrDChM2pf2AIEUPUdSq2Bps92SVz31eYJ1BSjkXbgqUhd1dCl+jUC5YHwryQoxDfY+9gxZMkak0cohoB7flnZG4wfj5IfqygGmk8kk8HHXefAEFJhosLx+FyZKAaaBmp98t/UbCRqV16XG2wNENklcTnNQdP8QIWSxhx7BnLV5HbKwXgTv2C6ILRkRf2YFuZRZYg=
-  - secure: aWPRy0mzxZahT/xuVz5oFoykQhZst65XXUmPO/D3TvVJzbv8UlLAkqh3tE02oLAuvii5uDSSjQU0oGazQJc6BLxoA2fmPmBmc7kQ+jjTQ+Z5HFJJOb7yqZDDDK01WUVYt0iuFXX02k98ekfPfczt6BJDe3O0j0b2GZTNUW8da1GCC6A3Vl84NWZAchtyhwMdWDZZg9wiIyfKCd7orUuM5wQ78H+sh5P/Cc4dkvq+AAGjG+uci17q9ZHgTP1ovBER8K/sdA/HLrLwejR8IypkEgro7D0AtYh1JATTdh6rw0beuUtYDi8f4kyDcZx2bGf2HubxqkifXzTyDazhQ0vu2k6ZalemrjogTzs26uikeA0BQ/h6f/rnWmawlQw/sJ8XMmu5Ly1gVH3zLDYMMXka1xkwz1C8QkolCvvruXY0IczR1/GAo76KEVaqZ+kk+rE5ktVXv25vBgKWd+FTOoN90fyi0OvhV2LSyqxSMVKWid3KVT/2rire4sT22beNYJvDmE3wg8xZ56NE6RwtnPAuPFgGIr21ssDPJ1f155q0arShPW/qAOrVWoiNt8lK0+ZEvDZNONgycUf7Ycjq/fBoSE87+yskefUu5nHACZYn/sEWQjIKCE7ppZTYSaE6mMMvzWj9i6rINxLqVbYibVMG0dGOVkT4RA5l2kvwzgt2rSs=

@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 	styleUrls: [ './demo-form.component.css' ]
 } )
 export class DemoFormComponent implements AfterViewInit {
-	@ViewChild( 'demoForm' ) public demoForm?: NgForm;
+	@ViewChild( 'demoForm', { static: true } ) public demoForm?: NgForm;
 
 	public Editor = ClassicEditorBuild;
 	public model = {
