@@ -1,17 +1,17 @@
 sudo: required
-dist: trusty
+dist: xenial
 addons:
   chrome: stable
   firefox: latest
 language: node_js
+services:
+- xvfb
 node_js:
 - '10'
 cache:
 - node_modules
 before_install:
-- export DISPLAY=:99.0
 - export NG_CLI_ANALYTICS=ci
-- sh -e /etc/init.d/xvfb start
 install:
 - npm install
 script:
