@@ -4,7 +4,7 @@ import {
 	AfterViewInit
 } from '@angular/core';
 
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import * as CKEditor from '../../superbuild';
 import { NgForm } from '@angular/forms';
 
 @Component( {
@@ -15,7 +15,7 @@ import { NgForm } from '@angular/forms';
 export class DemoFormComponent implements AfterViewInit {
 	@ViewChild( 'demoForm', { static: true } ) public demoForm?: NgForm;
 
-	public Editor = ClassicEditorBuild;
+	public Editor = CKEditor.BalloonBlockEditor;
 	public model = {
 		name: 'John',
 		surname: 'Doe',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditorBuild from '../../superbuild';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -8,7 +8,7 @@ import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 	styleUrls: [ './simple-usage.component.css' ]
 } )
 export class SimpleUsageComponent {
-	public Editor = ClassicEditorBuild;
+	public Editor = ClassicEditorBuild.BalloonEditor;
 
 	public isDisabled = false;
 	public editorData =

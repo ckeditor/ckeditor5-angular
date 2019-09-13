@@ -3,7 +3,7 @@ import {
 	AfterViewInit
 } from '@angular/core';
 
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditorBuild from '../../superbuild';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component( {
@@ -12,7 +12,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 	styleUrls: [ './demo-reactive-form.component.css' ]
 } )
 export class DemoReactiveFormComponent implements AfterViewInit {
-	public Editor = ClassicEditorBuild;
+	public Editor = ClassicEditorBuild.BalloonEditor;
 
 	public demoReactiveForm = new FormGroup( {
 		name: new FormControl( 'John' ),
