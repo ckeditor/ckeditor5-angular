@@ -85,6 +85,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	/**
+	 * True to disable on-change event which boosts performance with large texts, use Editor.getData() to get the latest data.
+	 */
+	@Input() public disableOnChange: boolean = false;
+
+	/**
 	 * Fires when the editor is ready. It corresponds with the `editor#ready`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
@@ -263,17 +268,18 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
-			this.ngZone.run( () => {
-				if ( this.cvaOnChange ) {
-					const data = editor.getData();
+		if ( !this.disableOnChange ) {
+			modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
+				this.ngZone.run( () => {
+					if ( this.cvaOnChange ) {
+						const data = editor.getData();
+						this.cvaOnChange( data );
+					}
 
-					this.cvaOnChange( data );
-				}
-
-				this.change.emit( { event: evt, editor } );
+					this.change.emit( { event: evt, editor } );
+				} );
 			} );
-		} );
+		}
 
 		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
 			this.ngZone.run( () => {
@@ -285,6 +291,12 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			this.ngZone.run( () => {
 				if ( this.cvaOnTouched ) {
 					this.cvaOnTouched();
+				}
+
+				// if we disable onChange event, then we have to push changes to ngModel when leaving the text editor
+				if ( this.disableOnChange && this.cvaOnChange ) {
+					const data = editor.getData();
+					this.cvaOnChange( data );
 				}
 
 				this.blur.emit( { event: evt, editor } );
