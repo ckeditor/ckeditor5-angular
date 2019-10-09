@@ -16,6 +16,7 @@ export class DemoFormComponent implements AfterViewInit {
 	@ViewChild( 'demoForm', { static: true } ) public demoForm?: NgForm;
 
 	public Editor = ClassicEditorBuild;
+
 	public model = {
 		name: 'John',
 		surname: 'Doe',
@@ -23,6 +24,7 @@ export class DemoFormComponent implements AfterViewInit {
 	};
 
 	public formDataPreview?: string;
+	public disabledOnChangeEvent: boolean = false;
 
 	public get description() {
 		return this.demoForm!.controls.description;
@@ -35,6 +37,9 @@ export class DemoFormComponent implements AfterViewInit {
 	}
 
 	public onSubmit() {
+		if ( this.disabledOnChangeEvent ) {
+			this.model.description = this.Editor.getData();
+		}
 		console.log( 'Form submit, model', this.model );
 	}
 
