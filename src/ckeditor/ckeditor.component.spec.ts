@@ -285,6 +285,19 @@ describe( 'CKEditorComponent', () => {
 				expect( spy ).toHaveBeenCalledWith( '<p>foo</p>' );
 			} );
 		} );
+
+		it( 'onChange callback should not be called when the change is coming from outside of the editor', () => {
+			fixture.detectChanges();
+
+			return wait().then( () => {
+				const spy = jasmine.createSpy();
+				component.registerOnChange( spy );
+
+				component.writeValue( 'foo' );
+
+				expect( spy ).not.toHaveBeenCalled();
+			} );
+		} );
 	} );
 } );
 

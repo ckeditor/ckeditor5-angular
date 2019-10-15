@@ -150,6 +150,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private editorElement?: HTMLElement;
 
+	/**
+	 * A lock flag preventing from calling the `cvaOnChange()` during setting editor data.
+	 */
+	private isEditorSettingData = false;
+
 	public constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
@@ -180,7 +185,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 		// If already initialized.
 		if ( this.editorInstance ) {
+			// The lock mechanism prevents from calling `cvaOnChange()` during changing
+			// the editor state. See #139
+			this.isEditorSettingData = true;
 			this.editorInstance.setData( value );
+			this.isEditorSettingData = false;
 		}
 		// If not, wait for it to be ready; store the data.
 		else {
@@ -265,7 +274,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 		modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
 			this.ngZone.run( () => {
-				if ( this.cvaOnChange ) {
+				if ( this.cvaOnChange && !this.isEditorSettingData ) {
 					const data = editor.getData();
 
 					this.cvaOnChange( data );
