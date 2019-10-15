@@ -18,7 +18,7 @@
 		[(ngModel)]="model.description"
 		[editor]="Editor"
 		id="description"
-		[disableOnChange]="disabledOnChangeEvent"
+		[dataChangeEventDisabled]="dataChangeEventDisabled"
 		name="description">
 	</ckeditor>
 
@@ -28,6 +28,9 @@
 	<p><button type="reset" (click)="reset()">Reset form</button></p>
 	<p><button type="submit">Submit this form</button> <em>(Open the console first)</em></p>
 </form>
+
+<button (click)="toggleChangeEvent()">Toggle performance for large documents</button>
+<output>Performance boost is {{ dataChangeEventDisabled ? 'on' : 'off' }}</output>
 
 <h3>Editor data preview (readable and writable)</h3>
 <p>

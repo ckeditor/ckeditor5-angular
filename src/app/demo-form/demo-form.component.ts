@@ -24,7 +24,7 @@ export class DemoFormComponent implements AfterViewInit {
 	};
 
 	public formDataPreview?: string;
-	public disabledOnChangeEvent: boolean = false;
+	public dataChangeEventDisabled = false;
 
 	public get description() {
 		return this.demoForm!.controls.description;
@@ -36,10 +36,11 @@ export class DemoFormComponent implements AfterViewInit {
 		} );
 	}
 
+	public toggleChangeEvent() {
+		this.dataChangeEventDisabled = !this.dataChangeEventDisabled;
+	}
+
 	public onSubmit() {
-		if ( this.disabledOnChangeEvent ) {
-			this.model.description = this.Editor.getData();
-		}
 		console.log( 'Form submit, model', this.model );
 	}
 
