@@ -85,9 +85,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	/**
-	 * True to disable on-change event which boosts performance with large texts, use Editor.getData() to get the latest data.
+	 * Boosts performance for large documents if set to `true`.
+	 * When a component is connected using the [(ngModel)] directive then all data will appear on the `blur` event.
+	 * Otherwise the component (blur) event should be used to get editor data after editing.
 	 */
-	@Input() public disableOnChange: boolean = false;
+	@Input() public dataChangeEventDisabled = false;
 
 	/**
 	 * Fires when the editor is ready. It corresponds with the `editor#ready`
@@ -268,18 +270,20 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		if ( !this.disableOnChange ) {
-			modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
-				this.ngZone.run( () => {
-					if ( this.cvaOnChange ) {
-						const data = editor.getData();
-						this.cvaOnChange( data );
-					}
+		modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
+			if ( this.dataChangeEventDisabled ) {
+				return;
+			}
 
-					this.change.emit( { event: evt, editor } );
-				} );
+			this.ngZone.run( () => {
+				if ( this.cvaOnChange ) {
+					const data = editor.getData();
+					this.cvaOnChange( data );
+				}
+
+				this.change.emit( { event: evt, editor } );
 			} );
-		}
+		} );
 
 		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
 			this.ngZone.run( () => {
@@ -289,14 +293,13 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 		viewDocument.on( 'blur', ( evt: CKEditor5.EventInfo<'blur'> ) => {
 			this.ngZone.run( () => {
-				if ( this.cvaOnTouched ) {
-					this.cvaOnTouched();
+				// If we muted the `data:change` event listeners, then we have to push changes when leaving the text editor.
+				if ( this.dataChangeEventDisabled && this.cvaOnChange ) {
+					this.cvaOnChange( editor.getData() );
 				}
 
-				// if we disable onChange event, then we have to push changes to ngModel when leaving the text editor
-				if ( this.disableOnChange && this.cvaOnChange ) {
-					const data = editor.getData();
-					this.cvaOnChange( data );
+				if ( this.cvaOnTouched ) {
+					this.cvaOnTouched();
 				}
 
 				this.blur.emit( { event: evt, editor } );
