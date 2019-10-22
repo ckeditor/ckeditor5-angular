@@ -128,6 +128,7 @@ describe( 'CKEditorComponent', () => {
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
 			class EventEmitter {
+				/* eslint-disable-next-line */
 				public on() {}
 			}
 
@@ -148,6 +149,7 @@ describe( 'CKEditorComponent', () => {
 					return Promise.resolve( new this() );
 				}
 
+				/* eslint-disable-next-line */
 				public destroy() {}
 			}
 
