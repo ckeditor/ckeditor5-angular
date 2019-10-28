@@ -1,4 +1,4 @@
-import { browser, by, element, promise } from 'protractor';
+import { browser, by, element, promise, Key } from 'protractor';
 
 export class AppPage {
 	public navigateTo( url = '' ) {
@@ -49,6 +49,9 @@ export class AppPage {
 		// Select the whole content.
 		await descEl.click();
 		await browser.executeScript( 'document.execCommand( "selectAll", false, null )' );
+
+		// Delete the content.
+		await browser.actions().sendKeys( Key.DELETE ).perform();
 
 		// Update it.
 		await descEl.sendKeys( value );

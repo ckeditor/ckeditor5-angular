@@ -20,6 +20,7 @@ exports.config = {
 	jasmineNodeOpts: {
 		showColors: true,
 		defaultTimeoutInterval: 30000,
+		/* eslint-disable-next-line */
 		print() {}
 	},
 	onPrepare() {

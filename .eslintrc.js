@@ -19,7 +19,9 @@ module.exports = {
   ],
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: './tsconfig.json'
+    project: [
+      './tsconfig.json'
+    ]
   },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
@@ -39,7 +41,7 @@ module.exports = {
     },
     parserOptions: {
       tsconfigRootDir: __dirname,
-      project: 'tsconfig.app.json'
+      project: 'tsconfig.spec.json'
     },
   } ]
 }
