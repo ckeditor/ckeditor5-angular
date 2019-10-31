@@ -6,12 +6,12 @@ Changelog
 ### Bug fixes
 
 * Fixed displaying events in simple-usage sample. ([50441c1](https://github.com/ckeditor/ckeditor5-angular/commit/50441c1))
-* The `<ckeditor>` component won't call the CVA `registerOnChange()` when the change comes from the CVA. This will fix an issue with changing data in Reactive Forms. Closes [#139](https://github.com/ckeditor/ckeditor5-angular/issues/139). ([4fd431e](https://github.com/ckeditor/ckeditor5-angular/commit/4fd431e))
+* The `<ckeditor>` component won't call the CVA `registerOnChange()` when the change comes from the CVA. This will fix an issue with changing editor data in Reactive Forms. Closes [#139](https://github.com/ckeditor/ckeditor5-angular/issues/139). ([4fd431e](https://github.com/ckeditor/ckeditor5-angular/commit/4fd431e))
 
 ### Other changes
 
 * Added example of integration reactive forms with `<ckeditor>` component. ([3f19f92](https://github.com/ckeditor/ckeditor5-angular/commit/3f19f92))
-* Removed usages of `Angular 2+` from code and readmes; added information about supported Angular versions. Closes [#95](https://github.com/ckeditor/ckeditor5-angular/issues/95). ([3244433](https://github.com/ckeditor/ckeditor5-angular/commit/3244433))
+* Removed usages of `Angular 2+` from code and READMEs. Added information about supported Angular versions. Closes [#95](https://github.com/ckeditor/ckeditor5-angular/issues/95). ([3244433](https://github.com/ckeditor/ckeditor5-angular/commit/3244433))
 
 
 ## [1.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v1.0.1...v1.1.0) (2019-04-15)
