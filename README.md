@@ -123,6 +123,8 @@ Make sure that the `preserveSymlinks` option is set to `true` for the `build` ar
 }
 ```
 
+Make sure to test package with the production setup (`ng build --prod`) and with older Angular versions (at least with the 5.2.).
+
 #### Publishing the package
 
 To publish the new package in the npm registry, run:
