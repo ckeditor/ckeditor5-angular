@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [1.1.2](https://github.com/ckeditor/ckeditor5-angular/compare/v1.1.1...v1.1.2) (2019-11-04)
+
+### Bug fixes
+
+* Downgraded the `ng-packagr` package to fix the `ng build --prod` ([#153](https://github.com/ckeditor/ckeditor5-angular/issues/153)). ([5c9de91](https://github.com/ckeditor/ckeditor5-angular/commit/5c9de91))
+
+
 ## [1.1.1](https://github.com/ckeditor/ckeditor5-angular/compare/v1.1.0...v1.1.1) (2019-10-31)
 
 ### Bug fixes
