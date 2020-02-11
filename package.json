@@ -37,6 +37,7 @@
     "@ckeditor/ckeditor5-build-classic": "^15.0.0",
     "@ckeditor/ckeditor5-dev-env": "^17.0.0",
     "@ckeditor/ckeditor5-dev-utils": "^12.0.1",
+    "@ckeditor/ckeditor5-watchdog": "git://github.com/ckeditor/ckeditor5-watchdog.git",
     "@types/jasmine": "^3.3.13",
     "@types/jasminewd2": "^2.0.6",
     "@typescript-eslint/eslint-plugin": "^2.5.0",

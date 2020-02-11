@@ -14,6 +14,8 @@ import {
 	ElementRef
 } from '@angular/core';
 
+import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
+
 import {
 	ControlValueAccessor,
 	NG_VALUE_ACCESSOR
@@ -113,9 +115,23 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	@Output() public focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
 
 	/**
+	 * Fires when the editor component crashes.
+	 */
+	@Output() public crash: EventEmitter<void> = new EventEmitter<void>();
+
+	/**
 	 * The instance of the editor created by this component.
 	 */
-	public editorInstance: CKEditor5.Editor | null = null;
+	public get editorInstance(): CKEditor5.Editor | null {
+		return this.watchdog ?
+			this.watchdog.editor :
+			null;
+	}
+
+	/**
+	 * The editor watchdog.
+	 */
+	private watchdog: EditorWatchdog | null = null;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -162,17 +178,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the AfterViewInit interface.
 	public ngAfterViewInit() {
-		this.ngZone.runOutsideAngular( () => {
-			this.createEditor();
-		} );
+		this.createWatchdog();
+		this.initialize();
 	}
 
 	// Implementing the OnDestroy interface.
-	public ngOnDestroy() {
-		if ( this.editorInstance ) {
-			this.editorInstance.destroy();
-			this.editorInstance = null;
+	public async ngOnDestroy() {
+		if ( this.watchdog && this.watchdog.editor ) {
+			await this.watchdog.destroy();
 		}
+
+		this.watchdog = null;
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
@@ -215,14 +231,52 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
 	public setDisabledState( isDisabled: boolean ): void {
-		// If already initialized
+		// If already initialized.
 		if ( this.editorInstance ) {
 			this.editorInstance.isReadOnly = isDisabled;
 		}
-		// If not, wait for it to be ready; store the state.
-		else {
-			this.initialIsDisabled = isDisabled;
-		}
+
+		// Store the state anyway to use it once the editor is created.
+		this.initialIsDisabled = isDisabled;
+	}
+
+	/**
+	 * Initializes the watchdog feature.
+	 */
+	private createWatchdog() {
+		this.watchdog = new EditorWatchdog( this.editor );
+
+		this.watchdog.setCreator( async ( element: HTMLElement, config: CKEditor5.Config ) => {
+			return this.ngZone.runOutsideAngular( async () => {
+				this.elementRef.nativeElement.appendChild( element );
+
+				const editor = await this.editor!.create( element, config );
+
+				if ( this.initialIsDisabled ) {
+					editor.isReadOnly = this.initialIsDisabled;
+				}
+
+				this.ngZone.run( () => {
+					this.ready.emit( editor );
+				} );
+
+				this.setUpEditorEvents( editor );
+
+				return editor;
+			} );
+		} );
+
+		this.watchdog.setDestructor( async ( editor: CKEditor5.Editor ) => {
+			await editor.destroy();
+
+			this.elementRef.nativeElement.removeChild( this.editorElement! );
+		} );
+
+		this.watchdog.on( 'error', () => {
+			this.ngZone.run( () => {
+				this.crash.emit();
+			} );
+		} );
 	}
 
 	/**
@@ -230,8 +284,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * the editor with the Angular component. This method does not use the `editor.setData()`
 	 * because of the issue in the collaboration mode (#6).
 	 */
-	private createEditor(): Promise<void> {
+	private initialize() {
 		const element = document.createElement( this.tagName );
+
 		this.editorElement = element;
 
 		if ( this.data && this.config.initialData ) {
@@ -244,25 +299,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			initialData: this.config.initialData || this.data || ''
 		};
 
-		this.elementRef.nativeElement.appendChild( element );
-
-		return this.editor!.create( element, config )
-			.then( editor => {
-				this.editorInstance = editor;
-
-				if ( this.initialIsDisabled ) {
-					editor.isReadOnly = this.initialIsDisabled;
-				}
-
-				this.ngZone.run( () => {
-					this.ready.emit( editor );
-				} );
-
-				this.setUpEditorEvents( editor );
-			} )
-			.catch( ( err: Error ) => {
-				console.error( err.stack );
-			} );
+		return this.watchdog.create( element, config );
 	}
 
 	/**

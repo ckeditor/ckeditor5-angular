@@ -64,33 +64,35 @@ describe( 'CKEditorComponent', () => {
 	} );
 
 	describe( 'tagName', () => {
-		it( 'should enable creating component on textarea element', () => {
+		it( 'should enable creating component on textarea element', async () => {
 			component.tagName = 'textarea';
 			fixture.detectChanges();
 
-			expect( fixture.nativeElement.lastChild.tagName ).toEqual( 'TEXTAREA' );
+			await wait();
+
+			expect( fixture.nativeElement.querySelector( 'textarea' ) ).toBeDefined();
 		} );
 	} );
 
 	describe( 'component data', () => {
-		it( 'initial data should be empty', () => {
+		it( 'initial data should be empty', async () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( component.data ).toEqual( '' );
-				expect( component.editorInstance!.getData() ).toEqual( '' );
-			} );
+			await wait();
+
+			expect( component.data ).toEqual( '' );
+			expect( component.editorInstance!.getData() ).toEqual( '' );
 		} );
 
-		it( 'should be configurable at the start of the component using the `data` property', () => {
+		it( 'should be configurable at the start of the component using the `data` property', async () => {
 			component.data = 'foo';
 
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( component.data ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
-			} );
+			await wait();
+
+			expect( component.data ).toEqual( 'foo' );
+			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 		} );
 
 		it( 'should be configurable at the start of the component using the `config.initialData` property', () => {
@@ -104,37 +106,42 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 
-		it( 'should not be provided using both `config.initialData` or `data` properties', () => {
+		it( 'should not be provided using both `config.initialData` or `data` properties', async () => {
 			component.config = { initialData: 'foo' };
 			component.data = 'bar';
 
-			expect( () => {
+			await expect( () => {
 				fixture.detectChanges();
 			} ).toThrowError( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		} );
 
-		it( 'should be writeable by ControlValueAccessor', () => {
+		it( 'should be writeable by ControlValueAccessor', async () => {
 			component.writeValue( 'foo' );
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+			await wait();
 
-				component.writeValue( 'bar' );
+			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
-			} );
+			component.writeValue( 'bar' );
+
+			expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
 		} );
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
 			class EventEmitter {
 				/* eslint-disable-next-line */
-				public on() {}
+				public on() { }
+			}
+
+			class ModelDocument extends EventEmitter {
+				public getRootNames = () => [];
+				public version = 0;
 			}
 
 			class EditorMock {
 				public model = {
-					document: new EventEmitter()
+					document: new ModelDocument()
 				};
 
 				public editing = {
@@ -298,43 +305,6 @@ describe( 'CKEditorComponent', () => {
 				component.writeValue( 'foo' );
 
 				expect( spy ).not.toHaveBeenCalled();
-			} );
-		} );
-	} );
-} );
-
-describe( 'CKEditorComponent', () => {
-	describe( 'invalid initialization', () => {
-		let fixture: ComponentFixture<CKEditorComponent>;
-		let component: CKEditorComponent;
-
-		class EditorThatThrowsErrorDuringInitialization {
-			public static create() {
-				return Promise.resolve().then( () => {
-					return Promise.reject( new Error() );
-				} );
-			}
-		}
-
-		beforeEach( async( () => {
-			TestBed.configureTestingModule( {
-				declarations: [ CKEditorComponent ]
-			} )
-				.compileComponents();
-		} ) );
-
-		beforeEach( () => {
-			fixture = TestBed.createComponent( CKEditorComponent );
-			component = fixture.componentInstance;
-			component.editor = EditorThatThrowsErrorDuringInitialization;
-		} );
-
-		it( 'should result in error logged to the console', () => {
-			const spy = spyOn( console, 'error' );
-			fixture.detectChanges();
-
-			return wait().then( () => {
-				expect( spy ).toHaveBeenCalled();
 			} );
 		} );
 	} );
