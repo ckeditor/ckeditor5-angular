@@ -117,7 +117,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	/**
 	 * Fires when the editor component crashes.
 	 */
-	@Output() public crash: EventEmitter<void> = new EventEmitter<void>();
+	@Output() public error: EventEmitter<void> = new EventEmitter<void>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -250,7 +250,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			return this.ngZone.runOutsideAngular( async () => {
 				this.elementRef.nativeElement.appendChild( element );
 
-				const editor = await this.editor!.create( element, config );
+				let editor: CKEditor5.Editor;
+
+				try {
+					editor = await this.editor!.create( element, config );
+				} catch ( err ) {
+					this.ngZone.run( () => {
+						this.error.emit();
+					} );
+
+					throw err;
+				}
 
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;
@@ -267,14 +277,22 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		} );
 
 		this.watchdog.setDestructor( async ( editor: CKEditor5.Editor ) => {
-			await editor.destroy();
+			try {
+				await editor.destroy();
+			} catch ( err ) {
+				this.ngZone.run( () => {
+					this.error.emit();
+				} );
+
+				throw err;
+			}
 
 			this.elementRef.nativeElement.removeChild( this.editorElement! );
 		} );
 
 		this.watchdog.on( 'error', () => {
 			this.ngZone.run( () => {
-				this.crash.emit();
+				this.error.emit();
 			} );
 		} );
 	}

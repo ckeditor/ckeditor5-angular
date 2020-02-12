@@ -36,7 +36,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'simple usage', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( component.disabled ).toBeFalsy();
 				expect( component.editorInstance!.isReadOnly ).toBeFalsy();
 
@@ -56,7 +56,7 @@ describe( 'CKEditorComponent', () => {
 			fixture.detectChanges();
 			component.setDisabledState( true );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( component.disabled ).toBeTruthy();
 				expect( component.editorInstance!.isReadOnly ).toBeTruthy();
 			} );
@@ -68,7 +68,7 @@ describe( 'CKEditorComponent', () => {
 			component.tagName = 'textarea';
 			fixture.detectChanges();
 
-			await wait();
+			await waitCycle();
 
 			expect( fixture.nativeElement.querySelector( 'textarea' ) ).toBeDefined();
 		} );
@@ -78,7 +78,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'initial data should be empty', async () => {
 			fixture.detectChanges();
 
-			await wait();
+			await waitCycle();
 
 			expect( component.data ).toEqual( '' );
 			expect( component.editorInstance!.getData() ).toEqual( '' );
@@ -89,7 +89,7 @@ describe( 'CKEditorComponent', () => {
 
 			fixture.detectChanges();
 
-			await wait();
+			await waitCycle();
 
 			expect( component.data ).toEqual( 'foo' );
 			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
@@ -100,7 +100,7 @@ describe( 'CKEditorComponent', () => {
 
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( component.config.initialData ).toEqual( 'foo' );
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 			} );
@@ -119,7 +119,7 @@ describe( 'CKEditorComponent', () => {
 			component.writeValue( 'foo' );
 			fixture.detectChanges();
 
-			await wait();
+			await waitCycle();
 
 			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 
@@ -157,7 +157,7 @@ describe( 'CKEditorComponent', () => {
 				}
 
 				/* eslint-disable-next-line */
-				public destroy() {}
+				public destroy() { }
 			}
 
 			function createSpy() {
@@ -180,7 +180,7 @@ describe( 'CKEditorComponent', () => {
 			component.writeValue( 'foo' );
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const fakeEditorInstance = component.editorInstance as any as EditorMock;
 
 				expect( fakeEditorInstance.setData.called ).toBe( false );
@@ -197,7 +197,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.ready.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( spy ).toHaveBeenCalledTimes( 1 );
 				expect( spy ).toHaveBeenCalledWith( component.editorInstance );
 			} );
@@ -208,7 +208,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.change.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				component.editorInstance!.execute( 'input', { text: 'foo' } );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
@@ -223,7 +223,7 @@ describe( 'CKEditorComponent', () => {
 			const changeSpy = jasmine.createSpy();
 			component.change.subscribe( changeSpy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				spyOn( component.editorInstance!, 'getData' ).and.callThrough();
 
 				component.editorInstance!.execute( 'input', { text: 'foo' } );
@@ -240,7 +240,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.focus.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				component.editorInstance!.editing.view.document.fire( 'focus' );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
@@ -254,7 +254,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.blur.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				component.editorInstance!.editing.view.focus();
 
 				component.editorInstance!.editing.view.document.fire( 'blur', { target: null } );
@@ -270,7 +270,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'onTouched callback should be called when editor is blurred', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const spy = jasmine.createSpy();
 
 				component.registerOnTouched( spy );
@@ -285,7 +285,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'onChange callback should be called when editor model changes with editor data', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const spy = jasmine.createSpy();
 				component.registerOnChange( spy );
 
@@ -298,7 +298,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'onChange callback should not be called when the change is coming from outside of the editor', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const spy = jasmine.createSpy();
 				component.registerOnChange( spy );
 
@@ -308,9 +308,64 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 	} );
+
+	describe( 'watchdog integration', () => {
+		it( 'should restart the editor when th editor crashes', async () => {
+			window.onerror = null;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			const oldEditor = component.editorInstance;
+			expect( oldEditor ).toBeTruthy();
+
+			setTimeout( () => {
+				const error: any = new Error( 'foo' );
+				error.is = () => true;
+				error.context = oldEditor;
+
+				throw error;
+			} );
+
+			await waitCycle();
+
+			expect( oldEditor ).not.toEqual( component.editorInstance );
+			expect( component.editorInstance ).toBeTruthy();
+		} );
+
+		it( 'should fire the `error` event when an error occurs and the `ready` event afterwards', async () => {
+			window.onerror = null;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			const readySpy = jasmine.createSpy( 'readySpy' );
+
+			component.error.subscribe( errorSpy );
+			component.ready.subscribe( readySpy );
+
+			await waitCycle();
+
+			const oldEditor = component.editorInstance;
+
+			setTimeout( () => {
+				const error: any = new Error( 'foo' );
+				error.is = () => true;
+				error.context = oldEditor;
+
+				throw error;
+			} );
+
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+			expect( readySpy ).toHaveBeenCalledTimes( 1 );
+		} );
+	} );
 } );
 
-function wait( time?: number ) {
+function waitCycle( time?: number ) {
 	return new Promise( res => {
 		setTimeout( res, time );
 	} );

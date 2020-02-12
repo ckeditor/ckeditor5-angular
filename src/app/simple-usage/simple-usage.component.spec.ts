@@ -96,5 +96,11 @@ describe( 'SimpleUsageComponent', () => {
 
 			expect( component.componentEvents ).toContain( 'Blurred the editing view.' );
 		} );
+
+		it( 'error should be called on ckeditorComponent.error()', () => {
+			ckeditorComponent.error.emit();
+
+			expect( component.componentEvents ).toContain( 'The editor crashed.' );
+		} );
 	} );
 } );

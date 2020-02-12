@@ -38,7 +38,7 @@ You learn to appreciate each and every single one of the differences while you b
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 
-	public onCrash() {
+	public onError() {
 		this.componentEvents.push( 'The editor crashed.' );
 	}
 }
