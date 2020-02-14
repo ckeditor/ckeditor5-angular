@@ -16,6 +16,8 @@ import {
 
 import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
 
+import uid from './uid';
+
 import {
 	ControlValueAccessor,
 	NG_VALUE_ACCESSOR
@@ -68,6 +70,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * The default tag is 'div'.
 	 */
 	@Input() public tagName = 'div';
+
+	/**
+	 * The context watchdog.
+	 */
+	@Input() public watchdog?: CKEditor5.ContextWatchdog;
 
 	/**
 	 * When set `true`, the editor becomes read-only.
@@ -123,15 +130,21 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * The instance of the editor created by this component.
 	 */
 	public get editorInstance(): CKEditor5.Editor | null {
-		return this.watchdog ?
-			this.watchdog.editor :
-			null;
+		if ( this.editorWatchdog ) {
+			return this.editorWatchdog.editor;
+		}
+
+		if ( this.watchdog ) {
+			return this.watchdog.getItem( this.id );
+		}
+
+		return null;
 	}
 
 	/**
 	 * The editor watchdog.
 	 */
-	private watchdog: EditorWatchdog | null = null;
+	private editorWatchdog?: CKEditor5.EditorWatchdog;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -171,6 +184,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 */
 	private isEditorSettingData = false;
 
+	private id = uid();
+
 	public constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
@@ -178,17 +193,18 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 	// Implementing the AfterViewInit interface.
 	public ngAfterViewInit() {
-		this.createWatchdog();
-		this.initialize();
+		this.attachToWatchdog();
 	}
 
 	// Implementing the OnDestroy interface.
 	public async ngOnDestroy() {
-		if ( this.watchdog && this.watchdog.editor ) {
-			await this.watchdog.destroy();
-		}
+		if ( this.watchdog ) {
+			await this.watchdog.remove( this.id );
+		} else if ( this.editorWatchdog && this.editorWatchdog.editor ) {
+			await this.editorWatchdog.destroy();
 
-		this.watchdog = null;
+			this.editorWatchdog = undefined;
+		}
 	}
 
 	// Implementing the ControlValueAccessor interface (only when binding to ngModel).
@@ -241,26 +257,16 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	/**
-	 * Initializes the watchdog feature.
+	 * Creates the editor instance, sets initial editor data, then integrates
+	 * the editor with the Angular component. This method does not use the `editor.setData()`
+	 * because of the issue in the collaboration mode (#6).
 	 */
-	private createWatchdog() {
-		this.watchdog = new EditorWatchdog( this.editor );
-
-		this.watchdog.setCreator( async ( element: HTMLElement, config: CKEditor5.Config ) => {
+	private attachToWatchdog() {
+		const creator = async ( element: HTMLElement, config: CKEditor5.Config ) => {
 			return this.ngZone.runOutsideAngular( async () => {
 				this.elementRef.nativeElement.appendChild( element );
 
-				let editor: CKEditor5.Editor;
-
-				try {
-					editor = await this.editor!.create( element, config );
-				} catch ( err ) {
-					this.ngZone.run( () => {
-						this.error.emit();
-					} );
-
-					throw err;
-				}
+				const editor = await this.editor!.create( element, config );
 
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;
@@ -274,50 +280,65 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 				return editor;
 			} );
-		} );
+		};
 
-		this.watchdog.setDestructor( async ( editor: CKEditor5.Editor ) => {
-			try {
-				await editor.destroy();
-			} catch ( err ) {
-				this.ngZone.run( () => {
-					this.error.emit();
-				} );
-
-				throw err;
-			}
+		const destructor = async ( editor: CKEditor5.Editor ) => {
+			await editor.destroy();
 
 			this.elementRef.nativeElement.removeChild( this.editorElement! );
-		} );
+		};
 
-		this.watchdog.on( 'error', () => {
+		const emitError = () => {
 			this.ngZone.run( () => {
 				this.error.emit();
 			} );
-		} );
-	}
+		};
 
-	/**
-	 * Creates the editor instance, sets initial editor data, then integrates
-	 * the editor with the Angular component. This method does not use the `editor.setData()`
-	 * because of the issue in the collaboration mode (#6).
-	 */
-	private initialize() {
 		const element = document.createElement( this.tagName );
+		const config = this.getConfig();
+
+		console.log( config );
 
 		this.editorElement = element;
 
+		if ( this.watchdog ) {
+			this.watchdog.add( {
+				id: this.id,
+				type: 'editor',
+				creator,
+				destructor,
+				sourceElementOrData: element,
+				config
+			} );
+
+			this.watchdog.on( 'itemError', ( _, { itemId } ) => {
+				if ( itemId === this.id ) {
+					emitError();
+				}
+			} );
+		} else {
+			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor );
+
+			editorWatchdog.setCreator( creator );
+			editorWatchdog.setDestructor( destructor );
+			editorWatchdog.on( 'error', emitError );
+
+			this.editorWatchdog = editorWatchdog;
+
+			this.editorWatchdog.create( element, config );
+		}
+	}
+
+	private getConfig() {
 		if ( this.data && this.config.initialData ) {
 			throw new Error( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		}
 
 		// Merge two possible ways of providing data into the `config.initialData` field.
-		const config = {
+		return {
 			...this.config,
 			initialData: this.config.initialData || this.data || ''
 		};
-
-		return this.watchdog.create( element, config );
 	}
 
 	/**

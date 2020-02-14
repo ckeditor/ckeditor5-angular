@@ -86,4 +86,24 @@ export namespace CKEditor5 {
 	 * E.g. the `ClassicEditor`, `InlineEditor`, etc.
 	 */
 	export interface Editor extends BaseEditor, DataApi {}
+
+	export interface ContextWatchdog extends Watchdog<any>{
+		context: any;
+		add( items: any ): Promise<void>;
+		remove( items: string | string[] ): Promise<void>;
+		getItem( itemId: string ): Editor;
+		addItemWatchdog( itemId: string, itemType: string, watchdog: Watchdog<any> ): Promise<void>;
+	}
+
+	export interface EditorWatchdog extends Watchdog<Editor> {
+		editor: Editor;
+	}
+
+	export interface Watchdog<T> {
+		setCreator( creator: ( ...args: any[] ) => Promise<T> ): void;
+		setDestructor( destructor: ( item: T ) => Promise<void> ): void;
+		on( event: string, callback: ( ...args: any ) => any ): void;
+		destroy(): Promise<void>;
+		create( ...args: any[] ): Promise<void>;
+	}
 }
