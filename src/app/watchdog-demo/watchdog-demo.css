@@ -1,0 +1,4 @@
+:host ::ng-deep .ck.ck-editor__editable.ck-read-only {
+	background: #fafafa;
+	color: #888;
+}

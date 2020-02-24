@@ -1,0 +1,7 @@
+<h2>Watchdog demo</h2>
+
+<div *ngIf="config">
+	<ckeditor [data]="foo" [config]="config" [editor]="Editor" (ready)="onReady($event)"
+		id="first-editor" name="first-editor" [watchdog]="watchdog">
+	</ckeditor>
+</div>
