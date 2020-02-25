@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 import * as CKSource from '../../../ckeditor/build/cksource';
 
@@ -16,15 +16,11 @@ export class WatchdogDemoComponent {
 	public watchdog: any;
 	public ready = false;
 
-	constructor( private ngZone: NgZone ) {
-		this.ngZone = ngZone;
-	}
-
 	public onReady( editor: any ) {
 		console.log( editor );
 	}
 
-	async ngOnInit() {
+	ngOnInit() {
 		const contextConfig = {
 			// Fill in cloud services data here:
 			cloudServices: {
@@ -58,14 +54,14 @@ export class WatchdogDemoComponent {
 			sidebar: {
 				container: document.createElement( 'div' )
 			},
+			initialData: '<p>Watchdog demo</p>'
 		};
 
 		this.watchdog = new CKSource.ContextWatchdog( CKSource.Context );
 
-		await this.watchdog.create( contextConfig );
-
-		this.ngZone.run( () => {
-			this.ready = true;
-		} );
+		this.watchdog.create( contextConfig )
+			.then( () => {
+				this.ready = true;
+			} );
 	}
 }

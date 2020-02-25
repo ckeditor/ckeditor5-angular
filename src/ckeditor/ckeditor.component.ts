@@ -142,7 +142,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	/**
-	 * The editor watchdog.
+	 * The editor watchdog. It is created when the context watchdog is not passed to the component.
+	 * It keeps the editor running.
 	 */
 	private editorWatchdog?: CKEditor5.EditorWatchdog;
 
@@ -268,8 +269,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 				const editor = await this.editor!.create( element, config );
 
-				console.log( 1 );
-
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;
 				}
@@ -299,11 +298,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		const element = document.createElement( this.tagName );
 		const config = this.getConfig();
 
-		console.log( config );
-
 		this.editorElement = element;
 
+		// Based on the presence of the watchdog decide how to initialize the editor.
 		if ( this.watchdog ) {
+			// When the context watchdog is passed add the new item to it based on the passed configuration.
 			this.watchdog.add( {
 				id: this.id,
 				type: 'editor',
@@ -313,14 +312,13 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				config
 			} );
 
-			( window as any ).watchdog = this.watchdog;
-
 			this.watchdog.on( 'itemError', ( _, { itemId } ) => {
 				if ( itemId === this.id ) {
 					emitError();
 				}
 			} );
 		} else {
+			// In the other case create the watchdog by hand to keep the editor running.
 			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor );
 
 			editorWatchdog.setCreator( creator );

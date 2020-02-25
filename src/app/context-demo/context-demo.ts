@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, NgZone } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 import * as CKSource from '../../../ckeditor/build/cksource';
 
@@ -22,11 +22,7 @@ export class ContextDemoComponent {
 		console.log( editor );
 	}
 
-	constructor( private ngZone: NgZone ) {
-		this.ngZone = ngZone;
-	}
-
-	async ngAfterViewInit() {
+	ngAfterViewInit() {
 		this.contextConfig = {
 			// Fill in cloud services data here:
 			cloudServices: {
@@ -45,16 +41,15 @@ export class ContextDemoComponent {
 			}
 		};
 
-		this.context = await Context.create( this.contextConfig );
+		Context.create( this.contextConfig ).then( () => {
+			this.config = {
+				context: this.context,
+				collaboration: {
+					channelId: 'foobar-baz'
+				},
+				initialData: '<p>Context demo</p>'
+			};
 
-		this.config = {
-			context: this.context,
-			collaboration: {
-				channelId: 'foobar-baz'
-			}
-		};
-
-		this.ngZone.run( () => {
 			this.ready = true;
 		} );
 	}
