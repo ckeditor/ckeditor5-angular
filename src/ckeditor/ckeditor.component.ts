@@ -268,6 +268,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 				const editor = await this.editor!.create( element, config );
 
+				console.log( 1 );
+
 				if ( this.initialIsDisabled ) {
 					editor.isReadOnly = this.initialIsDisabled;
 				}
@@ -310,6 +312,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				sourceElementOrData: element,
 				config
 			} );
+
+			( window as any ).watchdog = this.watchdog;
 
 			this.watchdog.on( 'itemError', ( _, { itemId } ) => {
 				if ( itemId === this.id ) {

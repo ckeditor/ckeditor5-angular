@@ -1,6 +1,6 @@
 <h2>Context demo</h2>
 
-<div *ngIf="config">
+<div *ngIf="ready">
 	<ckeditor [data]="foo" [config]="config" [editor]="Editor" (ready)="onReady($event)"
 		id="first-editor" name="first-editor">
 	</ckeditor>
