@@ -22,28 +22,13 @@ export class WatchdogDemoComponent {
 
 	ngOnInit() {
 		const contextConfig = {
-			// Fill in cloud services data here:
-			cloudServices: {
-				tokenUrl: 'https://33333.cke-cs.com/token/dev/dbIg4Hr2bqf5bSV3wuzN8bW8td7OAStvLjRlJof9ZW13cUXRHRraVJsD8J9J',
-				webSocketUrl: '33333.cke-cs.com/ws',
-				uploadUrl: 'https://33333.cke-cs.com/easyimage/upload/'
-			},
-			collaboration: {
-				channelId: 'foobar'
-			},
-			presenceList: {
-				container: document.createElement( 'div' )
-			},
-			sidebar: {
-				container: document.createElement( 'div' )
-			}
+			foo: 'bar'
 		};
 
 		this.config = {
 			collaboration: {
 				channelId: 'foobar-baz'
 			},
-			initialData: '<p>Watchdog demo</p>'
 		};
 
 		this.watchdog = new CKSource.ContextWatchdog( CKSource.Context );
