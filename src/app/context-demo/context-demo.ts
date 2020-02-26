@@ -41,16 +41,17 @@ export class ContextDemoComponent {
 			}
 		};
 
-		Context.create( this.contextConfig ).then( () => {
-			this.config = {
-				context: this.context,
-				collaboration: {
-					channelId: 'foobar-baz'
-				},
-				initialData: '<p>Context demo</p>'
-			};
+		Context.create( this.contextConfig )
+			.then( () => {
+				this.config = {
+					context: this.context,
+					collaboration: {
+						channelId: 'foobar-baz'
+					},
+					initialData: '<p>Context demo</p>'
+				};
 
-			this.ready = true;
-		} );
+				this.ready = true;
+			} );
 	}
 }

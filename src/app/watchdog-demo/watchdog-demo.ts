@@ -43,17 +43,6 @@ export class WatchdogDemoComponent {
 			collaboration: {
 				channelId: 'foobar-baz'
 			},
-			cloudServices: {
-				tokenUrl: 'https://33333.cke-cs.com/token/dev/dbIg4Hr2bqf5bSV3wuzN8bW8td7OAStvLjRlJof9ZW13cUXRHRraVJsD8J9J',
-				webSocketUrl: '33333.cke-cs.com/ws',
-				uploadUrl: 'https://33333.cke-cs.com/easyimage/upload/'
-			},
-			presenceList: {
-				container: document.createElement( 'div' )
-			},
-			sidebar: {
-				container: document.createElement( 'div' )
-			},
 			initialData: '<p>Watchdog demo</p>'
 		};
 

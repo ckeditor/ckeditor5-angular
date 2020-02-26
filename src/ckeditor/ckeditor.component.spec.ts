@@ -309,8 +309,78 @@ describe( 'CKEditorComponent', () => {
 		} );
 	} );
 
-	describe( 'watchdog integration', () => {
-		it( 'should restart the editor when th editor crashes', async () => {
+	describe( 'in case of the context watchdog integration', () => {
+		it( 'should create an editor internally', async () => {
+			const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+			const spy = jasmine.createSpy();
+
+			await contextWatchdog.create();
+
+			component.watchdog = contextWatchdog;
+			component.ready.subscribe( spy );
+
+			fixture.detectChanges();
+
+			await waitCycle();
+
+			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( spy ).toHaveBeenCalledWith( component.editorInstance );
+		} );
+
+		it( 'should fire the `error` event when an error occurs and the `ready` event afterwards #2', async () => {
+			// Create a second component to test whether the `error` event will be fired only
+			// on the proper component.
+			const fixture2 = TestBed.createComponent( CKEditorComponent );
+			const component2 = fixture2.componentInstance;
+
+			component2.editor = CKSource.ClassicEditor;
+
+			window.onerror = null;
+
+			const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+
+			await contextWatchdog.create();
+
+			component.watchdog = contextWatchdog;
+			component2.watchdog = contextWatchdog;
+
+			fixture.detectChanges();
+			fixture2.detectChanges();
+			await waitCycle();
+
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			const error2Spy = jasmine.createSpy( 'errorSpy' );
+			const readySpy = jasmine.createSpy( 'readySpy' );
+
+			component.error.subscribe( errorSpy );
+			component2.error.subscribe( error2Spy );
+			component.ready.subscribe( readySpy );
+
+			await waitCycle();
+
+			const oldEditor = component.editorInstance;
+
+			setTimeout( () => {
+				const error: any = new Error( 'foo' );
+				error.is = () => true;
+				error.context = oldEditor;
+
+				throw error;
+			} );
+
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+			expect( readySpy ).toHaveBeenCalledTimes( 1 );
+
+			expect( error2Spy ).toHaveBeenCalledTimes( 0 );
+
+			fixture2.destroy();
+		} );
+	} );
+
+	describe( 'in case of the editor watchdog integration', () => {
+		it( 'should restart the editor when the editor crashes', async () => {
 			window.onerror = null;
 
 			fixture.detectChanges();
