@@ -109,6 +109,7 @@
   "eslintIgnore": [
     "**/node_modules/**",
     "**/dist/**",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "ckeditor/**"
   ]
 }
