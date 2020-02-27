@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [1.2.0](https://github.com/ckeditor/ckeditor5-angular/compare/v1.1.2...v1.2.0) (2020-02-27)
+
+### Features
+
+* Improved Angular integration to handle Context and ContextWatchdog. Closes [#165](https://github.com/ckeditor/ckeditor5-angular/issues/165). ([87a1c89](https://github.com/ckeditor/ckeditor5-angular/commit/87a1c89))
+
+
 ## [1.1.2](https://github.com/ckeditor/ckeditor5-angular/compare/v1.1.1...v1.1.2) (2019-11-04)
 
 ### Bug fixes
