@@ -1,0 +1,6 @@
+<h2>Context demo</h2>
+
+<div *ngIf="ready">
+	<ckeditor data="Lorem ipsum dolor sit amet." [config]="config" [editor]="Editor" (ready)="onReady($event)"></ckeditor>
+	<ckeditor data="Consectetur adipiscing elit." [config]="config" [editor]="Editor" (ready)="onReady($event)"></ckeditor>
+</div>

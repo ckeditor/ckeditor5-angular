@@ -4,8 +4,10 @@ import {
 	AfterViewInit
 } from '@angular/core';
 
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
 import { NgForm } from '@angular/forms';
+import * as CKSource from '../../../ckeditor/build/cksource';
+
+const ClassicEditor = CKSource.ClassicEditor;
 
 @Component( {
 	selector: 'app-demo-form',
@@ -15,7 +17,7 @@ import { NgForm } from '@angular/forms';
 export class DemoFormComponent implements AfterViewInit {
 	@ViewChild( 'demoForm', { static: true } ) public demoForm?: NgForm;
 
-	public Editor = ClassicEditorBuild;
+	public Editor = ClassicEditor;
 	public model = {
 		name: 'John',
 		surname: 'Doe',

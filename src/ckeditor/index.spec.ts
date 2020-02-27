@@ -4,7 +4,7 @@
  */
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import * as CKSource from '../../ckeditor/build/cksource';
 
 import {
 	CKEditorComponent,
@@ -26,7 +26,7 @@ describe( 'index.ts - the entry file', () => {
 	beforeEach( () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
-		component.editor = ClassicEditorBuild;
+		component.editor = CKSource.ClassicEditor;
 	} );
 
 	it( 'should expose the CKEditorComponent', () => {

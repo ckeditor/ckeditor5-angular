@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { SimpleUsageComponent } from './simple-usage.component';
@@ -12,13 +12,13 @@ describe( 'SimpleUsageComponent', () => {
 	let ckeditorComponent: CKEditorComponent;
 	let debugElement: DebugElement;
 
-	beforeEach( async( () => {
-		TestBed.configureTestingModule( {
+	beforeEach( () => {
+		return TestBed.configureTestingModule( {
 			declarations: [ SimpleUsageComponent ],
 			imports: [ CKEditorModule ]
 		} )
 			.compileComponents();
-	} ) );
+	} );
 
 	beforeEach( () => {
 		fixture = TestBed.createComponent( SimpleUsageComponent );
@@ -95,6 +95,12 @@ describe( 'SimpleUsageComponent', () => {
 			ckeditorComponent.blur.emit();
 
 			expect( component.componentEvents ).toContain( 'Blurred the editing view.' );
+		} );
+
+		it( 'error should be called on ckeditorComponent.error()', () => {
+			ckeditorComponent.error.emit();
+
+			expect( component.componentEvents ).toContain( 'The editor crashed.' );
 		} );
 	} );
 } );

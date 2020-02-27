@@ -8,12 +8,16 @@ import { CKEditorModule } from '../ckeditor/ckeditor.module';
 import { SimpleUsageComponent } from './simple-usage/simple-usage.component';
 import { DemoFormComponent } from './demo-form/demo-form.component';
 import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-form.component';
+import { ContextDemoComponent } from './context-demo/context-demo';
+import { WatchdogDemoComponent } from './watchdog-demo/watchdog-demo';
 
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/simple-usage', pathMatch: 'full' },
-	{ path: 'simple-usage', component: SimpleUsageComponent },
+	{ path: 'context', component: ContextDemoComponent },
 	{ path: 'forms', component: DemoFormComponent },
 	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
+	{ path: 'simple-usage', component: SimpleUsageComponent },
+	{ path: 'watchdog', component: WatchdogDemoComponent },
 ];
 
 @NgModule( {
@@ -26,9 +30,11 @@ const appRoutes: Routes = [
 	],
 	declarations: [
 		AppComponent,
+		ContextDemoComponent,
 		DemoFormComponent,
 		DemoReactiveFormComponent,
-		SimpleUsageComponent
+		SimpleUsageComponent,
+		WatchdogDemoComponent,
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

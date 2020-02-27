@@ -5,7 +5,7 @@
 
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
-import * as ClassicEditorBuild from '@ckeditor/ckeditor5-build-classic';
+import * as CKSource from '../../ckeditor/build/cksource';
 
 describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
@@ -21,7 +21,7 @@ describe( 'CKEditorComponent', () => {
 	beforeEach( () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
-		component.editor = ClassicEditorBuild;
+		component.editor = CKSource.ClassicEditor;
 	} );
 
 	afterEach( () => {
@@ -36,7 +36,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'simple usage', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( component.disabled ).toBeFalsy();
 				expect( component.editorInstance!.isReadOnly ).toBeFalsy();
 
@@ -56,7 +56,7 @@ describe( 'CKEditorComponent', () => {
 			fixture.detectChanges();
 			component.setDisabledState( true );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( component.disabled ).toBeTruthy();
 				expect( component.editorInstance!.isReadOnly ).toBeTruthy();
 			} );
@@ -64,33 +64,35 @@ describe( 'CKEditorComponent', () => {
 	} );
 
 	describe( 'tagName', () => {
-		it( 'should enable creating component on textarea element', () => {
+		it( 'should enable creating component on textarea element', async () => {
 			component.tagName = 'textarea';
 			fixture.detectChanges();
 
-			expect( fixture.nativeElement.lastChild.tagName ).toEqual( 'TEXTAREA' );
+			await waitCycle();
+
+			expect( fixture.nativeElement.querySelector( 'textarea' ) ).toBeDefined();
 		} );
 	} );
 
 	describe( 'component data', () => {
-		it( 'initial data should be empty', () => {
+		it( 'initial data should be empty', async () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( component.data ).toEqual( '' );
-				expect( component.editorInstance!.getData() ).toEqual( '' );
-			} );
+			await waitCycle();
+
+			expect( component.data ).toEqual( '' );
+			expect( component.editorInstance!.getData() ).toEqual( '' );
 		} );
 
-		it( 'should be configurable at the start of the component using the `data` property', () => {
+		it( 'should be configurable at the start of the component using the `data` property', async () => {
 			component.data = 'foo';
 
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( component.data ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
-			} );
+			await waitCycle();
+
+			expect( component.data ).toEqual( 'foo' );
+			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 		} );
 
 		it( 'should be configurable at the start of the component using the `config.initialData` property', () => {
@@ -98,43 +100,48 @@ describe( 'CKEditorComponent', () => {
 
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( component.config.initialData ).toEqual( 'foo' );
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 			} );
 		} );
 
-		it( 'should not be provided using both `config.initialData` or `data` properties', () => {
+		it( 'should not be provided using both `config.initialData` or `data` properties', async () => {
 			component.config = { initialData: 'foo' };
 			component.data = 'bar';
 
-			expect( () => {
+			await expect( () => {
 				fixture.detectChanges();
 			} ).toThrowError( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		} );
 
-		it( 'should be writeable by ControlValueAccessor', () => {
+		it( 'should be writeable by ControlValueAccessor', async () => {
 			component.writeValue( 'foo' );
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+			await waitCycle();
 
-				component.writeValue( 'bar' );
+			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
-			} );
+			component.writeValue( 'bar' );
+
+			expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
 		} );
 
 		it( 'should not be set using `editor.setData()` during the initialization step', () => {
 			class EventEmitter {
 				/* eslint-disable-next-line */
-				public on() {}
+				public on() { }
+			}
+
+			class ModelDocument extends EventEmitter {
+				public getRootNames = () => [];
+				public version = 0;
 			}
 
 			class EditorMock {
 				public model = {
-					document: new EventEmitter()
+					document: new ModelDocument()
 				};
 
 				public editing = {
@@ -150,7 +157,7 @@ describe( 'CKEditorComponent', () => {
 				}
 
 				/* eslint-disable-next-line */
-				public destroy() {}
+				public destroy() { }
 			}
 
 			function createSpy() {
@@ -173,7 +180,7 @@ describe( 'CKEditorComponent', () => {
 			component.writeValue( 'foo' );
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const fakeEditorInstance = component.editorInstance as any as EditorMock;
 
 				expect( fakeEditorInstance.setData.called ).toBe( false );
@@ -190,7 +197,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.ready.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				expect( spy ).toHaveBeenCalledTimes( 1 );
 				expect( spy ).toHaveBeenCalledWith( component.editorInstance );
 			} );
@@ -201,7 +208,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.change.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				component.editorInstance!.execute( 'input', { text: 'foo' } );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
@@ -216,7 +223,7 @@ describe( 'CKEditorComponent', () => {
 			const changeSpy = jasmine.createSpy();
 			component.change.subscribe( changeSpy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				spyOn( component.editorInstance!, 'getData' ).and.callThrough();
 
 				component.editorInstance!.execute( 'input', { text: 'foo' } );
@@ -233,7 +240,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.focus.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				component.editorInstance!.editing.view.document.fire( 'focus' );
 
 				expect( spy ).toHaveBeenCalledTimes( 1 );
@@ -247,7 +254,7 @@ describe( 'CKEditorComponent', () => {
 			const spy = jasmine.createSpy();
 			component.blur.subscribe( spy );
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				component.editorInstance!.editing.view.focus();
 
 				component.editorInstance!.editing.view.document.fire( 'blur', { target: null } );
@@ -263,7 +270,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'onTouched callback should be called when editor is blurred', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const spy = jasmine.createSpy();
 
 				component.registerOnTouched( spy );
@@ -278,7 +285,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'onChange callback should be called when editor model changes with editor data', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const spy = jasmine.createSpy();
 				component.registerOnChange( spy );
 
@@ -291,7 +298,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'onChange callback should not be called when the change is coming from outside of the editor', () => {
 			fixture.detectChanges();
 
-			return wait().then( () => {
+			return waitCycle().then( () => {
 				const spy = jasmine.createSpy();
 				component.registerOnChange( spy );
 
@@ -301,46 +308,134 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 	} );
-} );
 
-describe( 'CKEditorComponent', () => {
-	describe( 'invalid initialization', () => {
-		let fixture: ComponentFixture<CKEditorComponent>;
-		let component: CKEditorComponent;
+	describe( 'in case of the context watchdog integration', () => {
+		it( 'should create an editor internally', async () => {
+			const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+			const spy = jasmine.createSpy();
 
-		class EditorThatThrowsErrorDuringInitialization {
-			public static create() {
-				return Promise.resolve().then( () => {
-					return Promise.reject( new Error() );
-				} );
-			}
-		}
+			await contextWatchdog.create();
 
-		beforeEach( async( () => {
-			TestBed.configureTestingModule( {
-				declarations: [ CKEditorComponent ]
-			} )
-				.compileComponents();
-		} ) );
+			component.watchdog = contextWatchdog;
+			component.ready.subscribe( spy );
 
-		beforeEach( () => {
-			fixture = TestBed.createComponent( CKEditorComponent );
-			component = fixture.componentInstance;
-			component.editor = EditorThatThrowsErrorDuringInitialization;
-		} );
-
-		it( 'should result in error logged to the console', () => {
-			const spy = spyOn( console, 'error' );
 			fixture.detectChanges();
 
-			return wait().then( () => {
-				expect( spy ).toHaveBeenCalled();
+			await waitCycle();
+
+			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( spy ).toHaveBeenCalledWith( component.editorInstance );
+		} );
+
+		it( 'should fire the `error` event when an error occurs and the `ready` event afterwards #2', async () => {
+			// Create a second component to test whether the `error` event will be fired only
+			// on the proper component.
+			const fixture2 = TestBed.createComponent( CKEditorComponent );
+			const component2 = fixture2.componentInstance;
+
+			component2.editor = CKSource.ClassicEditor;
+
+			window.onerror = null;
+
+			const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+
+			await contextWatchdog.create();
+
+			component.watchdog = contextWatchdog;
+			component2.watchdog = contextWatchdog;
+
+			fixture.detectChanges();
+			fixture2.detectChanges();
+			await waitCycle();
+
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			const error2Spy = jasmine.createSpy( 'errorSpy' );
+			const readySpy = jasmine.createSpy( 'readySpy' );
+
+			component.error.subscribe( errorSpy );
+			component2.error.subscribe( error2Spy );
+			component.ready.subscribe( readySpy );
+
+			await waitCycle();
+
+			const oldEditor = component.editorInstance;
+
+			setTimeout( () => {
+				const error: any = new Error( 'foo' );
+				error.is = () => true;
+				error.context = oldEditor;
+
+				throw error;
 			} );
+
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+			expect( readySpy ).toHaveBeenCalledTimes( 1 );
+
+			expect( error2Spy ).toHaveBeenCalledTimes( 0 );
+
+			fixture2.destroy();
+		} );
+	} );
+
+	describe( 'in case of the editor watchdog integration', () => {
+		it( 'should restart the editor when the editor crashes', async () => {
+			window.onerror = null;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			const oldEditor = component.editorInstance;
+			expect( oldEditor ).toBeTruthy();
+
+			setTimeout( () => {
+				const error: any = new Error( 'foo' );
+				error.is = () => true;
+				error.context = oldEditor;
+
+				throw error;
+			} );
+
+			await waitCycle();
+
+			expect( oldEditor ).not.toEqual( component.editorInstance );
+			expect( component.editorInstance ).toBeTruthy();
+		} );
+
+		it( 'should fire the `error` event when an error occurs and the `ready` event afterwards', async () => {
+			window.onerror = null;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			const readySpy = jasmine.createSpy( 'readySpy' );
+
+			component.error.subscribe( errorSpy );
+			component.ready.subscribe( readySpy );
+
+			await waitCycle();
+
+			const oldEditor = component.editorInstance;
+
+			setTimeout( () => {
+				const error: any = new Error( 'foo' );
+				error.is = () => true;
+				error.context = oldEditor;
+
+				throw error;
+			} );
+
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+			expect( readySpy ).toHaveBeenCalledTimes( 1 );
 		} );
 	} );
 } );
 
-function wait( time?: number ) {
+function waitCycle( time?: number ) {
 	return new Promise( res => {
 		setTimeout( res, time );
 	} );
