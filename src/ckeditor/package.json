@@ -23,6 +23,9 @@
     "@angular/common": ">=5.0.0",
     "@angular/forms": ">=5.0.0"
   },
+  "dependencies": {
+    "@ckeditor/ckeditor5-watchdog": "^17.0.0"
+  },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",
   "homepage": "https://ckeditor.com",
