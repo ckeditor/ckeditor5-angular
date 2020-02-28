@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [1.2.1](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.0...v1.2.1) (2020-02-28)
+
+### Bug fixes
+
+* Added `ckeditor5-watchdog` to package dependencies. ([b4278d1](https://github.com/ckeditor/ckeditor5-angular/commit/b4278d1))
+
+
 ## [1.2.0](https://github.com/ckeditor/ckeditor5-angular/compare/v1.1.2...v1.2.0) (2020-02-27)
 
 ### Features
