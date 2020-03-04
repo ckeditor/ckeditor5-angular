@@ -102,7 +102,7 @@ export namespace CKEditor5 {
 	export interface Watchdog<T> {
 		setCreator( creator: ( ...args: any[] ) => Promise<T> ): void;
 		setDestructor( destructor: ( item: T ) => Promise<void> ): void;
-		on( event: string, callback: ( ...args: any ) => any ): void;
+		on( event: string, callback: ( ...args: any[] ) => any ): void;
 		destroy(): Promise<void>;
 		create( ...args: any[] ): Promise<void>;
 	}
