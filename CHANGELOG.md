@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [1.2.2](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.1...v1.2.2) (2020-03-04)
+
+### Bug fixes
+
+* Fixed typings for `Watchdog` to make old TS compilers happy. Closes [#172](https://github.com/ckeditor/ckeditor5-angular/issues/172). ([2a3d121](https://github.com/ckeditor/ckeditor5-angular/commit/2a3d121))
+
+
 ## [1.2.1](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.0...v1.2.1) (2020-02-28)
 
 ### Bug fixes
