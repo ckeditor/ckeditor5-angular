@@ -43,6 +43,12 @@ This repository contains the following code:
 
 ### Testing the component (demo)
 
+First, the CKEditor 5 build should be created of source files:
+
+```bash
+npm run build-ckeditor
+```
+
 To open the demo application using the component, run:
 
 ```bash
