@@ -90,7 +90,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			return this.editorInstance.isReadOnly;
 		}
 
-		return this.isInitiallyDisabled;
+		return this.initiallyDisabled;
 	}
 
 	/**
@@ -156,7 +156,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	 * If the component is read–only before the editor instance is created, it remembers that state,
 	 * so the editor can become read–only once it is ready.
 	 */
-	private isInitiallyDisabled = false;
+	private initiallyDisabled = false;
 
 	/**
 	 * An instance of https://angular.io/api/core/NgZone to allow the interaction with the editor
@@ -259,7 +259,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		}
 
 		// Store the state anyway to use it once the editor is created.
-		this.isInitiallyDisabled = isDisabled;
+		this.initiallyDisabled = isDisabled;
 	}
 
 	/**
@@ -274,8 +274,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 
 				const editor = await this.editor!.create( element, config );
 
-				if ( this.isInitiallyDisabled ) {
-					editor.isReadOnly = this.isInitiallyDisabled;
+				if ( this.initiallyDisabled ) {
+					editor.isReadOnly = this.initiallyDisabled;
 				}
 
 				this.ngZone.run( () => {
