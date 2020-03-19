@@ -133,6 +133,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		let editorWatchdog = this.editorWatchdog;
 
 		if ( this.watchdog ) {
+			// Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
+			// an error when the item is not registered yet.
+			// See https://github.com/ckeditor/ckeditor5-angular/issues/177.
 			editorWatchdog = this.watchdog._watchdogs.get( this.id );
 		}
 
