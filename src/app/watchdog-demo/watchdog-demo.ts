@@ -16,6 +16,8 @@ export class WatchdogDemoComponent {
 	public watchdog: any;
 	public ready = false;
 
+	public isDisabled = true;
+
 	public onReady( editor: any ) {
 		console.log( editor );
 	}
@@ -37,5 +39,9 @@ export class WatchdogDemoComponent {
 			.then( () => {
 				this.ready = true;
 			} );
+	}
+
+	toggle() {
+		this.isDisabled = !this.isDisabled;
 	}
 }
