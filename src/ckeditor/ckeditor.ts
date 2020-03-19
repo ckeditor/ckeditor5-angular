@@ -87,8 +87,9 @@ export namespace CKEditor5 {
 	 */
 	export interface Editor extends BaseEditor, DataApi {}
 
-	export interface ContextWatchdog extends Watchdog<any>{
+	export interface ContextWatchdog extends Watchdog<any> {
 		context: any;
+		_watchdogs: Map<string, EditorWatchdog>;
 		add( items: any ): Promise<void>;
 		remove( items: string | string[] ): Promise<void>;
 		getItem( itemId: string ): Editor;
