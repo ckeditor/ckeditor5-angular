@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [1.2.3](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.2...v1.2.3) (2020-03-26)
+
+### Bug fixes
+
+* Changing `disabled` property on `<ckeditor5>` component while using the watchdog property won't throw an error anymore. Closes [#177](https://github.com/ckeditor/ckeditor5-angular/issues/177). ([496b39f](https://github.com/ckeditor/ckeditor5-angular/commit/496b39f))
+
+
 ## [1.2.2](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.1...v1.2.2) (2020-03-04)
 
 ### Bug fixes
