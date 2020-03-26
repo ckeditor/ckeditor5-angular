@@ -377,6 +377,21 @@ describe( 'CKEditorComponent', () => {
 
 			fixture2.destroy();
 		} );
+
+		it( 'should update the editor once the editor is ready', async () => {
+			const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+
+			await contextWatchdog.create();
+
+			component.watchdog = contextWatchdog;
+			component.disabled = true;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			expect( component.editorInstance ).toBeTruthy();
+			expect( component.editorInstance!.isReadOnly ).toEqual( true );
+		} );
 	} );
 
 	describe( 'in case of the editor watchdog integration', () => {
