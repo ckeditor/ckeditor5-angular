@@ -16,7 +16,7 @@ export class WatchdogDemoComponent {
 	public watchdog: any;
 	public ready = false;
 
-	public isDisabled = true;
+	public isDisabled = false;
 
 	public onReady( editor: any ) {
 		console.log( editor );
