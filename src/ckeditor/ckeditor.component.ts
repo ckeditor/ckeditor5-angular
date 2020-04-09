@@ -217,7 +217,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	public writeValue( value: string | null ): void {
 		// This method is called with the `null` value when the form resets.
 		// A component's responsibility is to restore to the initial state.
-		if ( value === null ) {
+		if ( value === null || value === undefined ) {
 			value = '';
 		}
 
