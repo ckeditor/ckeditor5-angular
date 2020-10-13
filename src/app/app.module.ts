@@ -17,7 +17,7 @@ const appRoutes: Routes = [
 	{ path: 'forms', component: DemoFormComponent },
 	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
 	{ path: 'simple-usage', component: SimpleUsageComponent },
-	{ path: 'watchdog', component: WatchdogDemoComponent },
+	{ path: 'watchdog', component: WatchdogDemoComponent }
 ];
 
 @NgModule( {
@@ -34,7 +34,7 @@ const appRoutes: Routes = [
 		DemoFormComponent,
 		DemoReactiveFormComponent,
 		SimpleUsageComponent,
-		WatchdogDemoComponent,
+		WatchdogDemoComponent
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

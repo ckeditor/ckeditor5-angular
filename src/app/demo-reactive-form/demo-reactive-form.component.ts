@@ -3,7 +3,7 @@ import {
 	AfterViewInit
 } from '@angular/core';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import * as CKSource from '../../../ckeditor/build/cksource';
 
 const ClassicEditor = CKSource.ClassicEditor;
@@ -19,7 +19,7 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 	public demoReactiveForm = new FormGroup( {
 		name: new FormControl( 'John' ),
 		surname: new FormControl( 'Doe' ),
-		description: new FormControl( '<p>A <b>really</b> nice fellow.</p>' ),
+		description: new FormControl( '<p>A <b>really</b> nice fellow.</p>' )
 	} );
 
 	public formDataPreview?: string;
@@ -31,15 +31,15 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 			} );
 	}
 
-	public onSubmit() {
+	public onSubmit(): void {
 		console.log( 'Form submit, model', this.demoReactiveForm.value );
 	}
 
-	public reset() {
+	public reset(): void {
 		this.demoReactiveForm!.reset();
 	}
 
-	public get description() {
+	public get description(): AbstractControl {
 		return this.demoReactiveForm!.controls.description;
 	}
 }

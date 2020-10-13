@@ -3,17 +3,12 @@
  * For licensing, see LICENSE.md.
  */
 
+type AnyFunction = ( ...args: any[] ) => any;
+
 /**
  * Basic typings for the CKEditor5 elements.
  */
 export namespace CKEditor5 {
-
-	/**
-	 * The CKEditor5 editor constructor.
-	 */
-	export interface EditorConstructor {
-		create( sourceElementOrData: HTMLElement | string, config?: Config ): Promise<Editor>;
-	}
 
 	/**
 	 * The CKEditor5 editor config.
@@ -60,11 +55,11 @@ export namespace CKEditor5 {
 		destroy(): Promise<void>;
 		execute( commandName: string, ...params: any[] ): any;
 		fire( eventName: string, args?: any ): any;
-		listenTo( emitter: any, eventName: string, callback: Function, options?: any ): void;
-		off( eventName: string, callback: Function ): void;
-		on( eventName: string, callback: Function, options?: any ): void;
-		once( eventName: string, callback: Function, options?: any ): void;
-		stopListening( emitter: any, eventName: string, callback: Function ): void;
+		listenTo( emitter: any, eventName: string, callback: AnyFunction, options?: any ): void;
+		off( eventName: string, callback: AnyFunction ): void;
+		on( eventName: string, callback: AnyFunction, options?: any ): void;
+		once( eventName: string, callback: AnyFunction, options?: any ): void;
+		stopListening( emitter: any, eventName: string, callback: AnyFunction ): void;
 		t( ...args: any[] ): void;
 
 		[ property: string ]: any;
@@ -87,17 +82,11 @@ export namespace CKEditor5 {
 	 */
 	export interface Editor extends BaseEditor, DataApi {}
 
-	export interface ContextWatchdog extends Watchdog<any> {
-		context: any;
-		_watchdogs: Map<string, EditorWatchdog>;
-		add( items: any ): Promise<void>;
-		remove( items: string | string[] ): Promise<void>;
-		getItem( itemId: string ): Editor;
-		addItemWatchdog( itemId: string, itemType: string, watchdog: Watchdog<any> ): Promise<void>;
-	}
-
-	export interface EditorWatchdog extends Watchdog<Editor> {
-		editor: Editor;
+	/**
+	 * The CKEditor5 editor constructor.
+	 */
+	export interface EditorConstructor {
+		create( sourceElementOrData: HTMLElement | string, config?: Config ): Promise<Editor>;
 	}
 
 	export interface Watchdog<T> {
@@ -106,5 +95,18 @@ export namespace CKEditor5 {
 		on( event: string, callback: ( ...args: any[] ) => any ): void;
 		destroy(): Promise<void>;
 		create( ...args: any[] ): Promise<void>;
+	}
+
+	export interface EditorWatchdog extends Watchdog<Editor> {
+		editor: Editor;
+	}
+
+	export interface ContextWatchdog extends Watchdog<any> {
+		context: any;
+		_watchdogs: Map<string, EditorWatchdog>;
+		add( items: any ): Promise<void>;
+		remove( items: string | string[] ): Promise<void>;
+		getItem( itemId: string ): Editor;
+		addItemWatchdog( itemId: string, itemType: string, watchdog: Watchdog<any> ): Promise<void>;
 	}
 }

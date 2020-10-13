@@ -12,15 +12,13 @@ describe( 'SimpleUsageComponent', () => {
 	let ckeditorComponent: CKEditorComponent;
 	let debugElement: DebugElement;
 
-	beforeEach( () => {
-		return TestBed.configureTestingModule( {
+	beforeEach( async () => {
+		await TestBed.configureTestingModule( {
 			declarations: [ SimpleUsageComponent ],
 			imports: [ CKEditorModule ]
 		} )
 			.compileComponents();
-	} );
 
-	beforeEach( () => {
 		fixture = TestBed.createComponent( SimpleUsageComponent );
 		component = fixture.componentInstance;
 		debugElement = fixture.debugElement.query( By.directive( CKEditorComponent ) );

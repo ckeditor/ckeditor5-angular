@@ -9,7 +9,7 @@ import * as CKSource from '../../../ckeditor/build/cksource';
 } )
 export class WatchdogDemoComponent {
 	public Editor = CKSource.ClassicEditor;
-	@ViewChild( CKEditorComponent, { static: false } ) ckeditor?: ElementRef<CKEditorComponent>;
+	@ViewChild( CKEditorComponent ) ckeditor?: ElementRef<CKEditorComponent>;
 
 	public context: any;
 	public config: any;
@@ -18,11 +18,11 @@ export class WatchdogDemoComponent {
 
 	public isDisabled = false;
 
-	public onReady( editor: any ) {
+	public onReady( editor: any ): void {
 		console.log( editor );
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		const contextConfig = {
 			foo: 'bar'
 		};
@@ -30,7 +30,7 @@ export class WatchdogDemoComponent {
 		this.config = {
 			collaboration: {
 				channelId: 'foobar-baz'
-			},
+			}
 		};
 
 		this.watchdog = new CKSource.ContextWatchdog( CKSource.Context );
@@ -41,7 +41,7 @@ export class WatchdogDemoComponent {
 			} );
 	}
 
-	toggle() {
+	toggle(): void {
 		this.isDisabled = !this.isDisabled;
 	}
 }
