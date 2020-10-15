@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## [2.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v2.0.0...v2.0.1) (2020-10-15)
+
+Internal changes only (updated dependencies, documentation, etc.).
+
+
 ## [2.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.3...v2.0.0) (2020-10-15)
 
 ### BREAKING CHANGES
