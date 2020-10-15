@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## [2.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.3...v2.0.0) (2020-10-15)
+
+### BREAKING CHANGES
+
+* Angular<9 will not work with the new `ckeditor5-angular` library anymore (it's mostly connected with an update of TypeScript to version TS 4.0, which produces declaration files incompatible with the previous TypeScript versions used by older versions of Angular). 
+
+### Other changes
+
+* Bumped up all internals to match the Angular@10 ecosystem. Bumped up peer dependencies and dependencies of the library - to Angular>=9.  Building an Angular app with the `ckeditor5-angular` library on production with sourcemaps turned on will no longer throw errors. Closes [#182](https://github.com/ckeditor/ckeditor5-angular/issues/182), [#194](https://github.com/ckeditor/ckeditor5-angular/issues/194). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/012c06cfd839a2e6d712e9b2893be80381f75288))
+
+
 ## [1.2.3](https://github.com/ckeditor/ckeditor5-angular/compare/v1.2.2...v1.2.3) (2020-03-26)
 
 ### Bug fixes
