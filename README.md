@@ -22,7 +22,9 @@ See the ["Rich text editor component for Angular"](https://ckeditor.com/docs/cke
 
 ## Supported Angular versions
 
-The integration can be used together with Angular at version `5.0.0` and higher. It is an implication of Angular metadata produced for this package by the Angular builder. Note that the `package.json` used in the main repository isn't published on NPM (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 5.0.0`, `@angular/common >= 5.0.0` and `@angular/forms >= 5.0.0` required by this package.
+The integration can be used together with Angular at version `9.0.0` and higher. It is an implication of Angular metadata produced for this package by the Angular builder. Note that the `package.json` used in the main repository isn't published on NPM (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 9.0.0`, `@angular/common >= 9.0.0` and `@angular/forms >= 9.0.0` required by this package.
+
+**Note:** For Angular >= 5.0.0 && < 9.0.0 use `ckeditor5-angular@1.x.x` releases.
 
 ## Contributing
 
