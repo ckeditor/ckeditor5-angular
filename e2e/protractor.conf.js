@@ -27,7 +27,7 @@ exports.config = {
 		require( 'ts-node' ).register( {
 			project: require( 'path' ).join( __dirname, './tsconfig.json' )
 		} );
-		jasmine.getEnv().addReporter( new SpecReporter( { spec: { displayStacktrace: true } } ) );
+		jasmine.getEnv().addReporter( new SpecReporter( { spec: { displayStacktrace: 'pretty' } } ) );
 	},
 	useAllAngular2AppRoots: true
 };
