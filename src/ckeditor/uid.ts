@@ -20,7 +20,7 @@ const HEX_NUMBERS = new Array( 256 ).fill( 0 )
  *
  * @returns An unique id string.
  */
-export default function uid() {
+export default function uid(): string {
 	// Let's create some positive random 32bit integers first.
 	//
 	// 1. Math.random() is a float between 0 and 1.

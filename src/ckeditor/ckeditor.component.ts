@@ -25,6 +25,21 @@ import {
 
 import { CKEditor5 } from './ckeditor';
 
+export interface BlurEvent {
+	event: CKEditor5.EventInfo<'blur'>;
+	editor: CKEditor5.Editor;
+}
+
+export interface FocusEvent {
+	event: CKEditor5.EventInfo<'focus'>;
+	editor: CKEditor5.Editor;
+}
+
+export interface ChangeEvent {
+	event: CKEditor5.EventInfo<'change:data'>;
+	editor: CKEditor5.Editor;
+}
+
 @Component( {
 	selector: 'ckeditor',
 	template: '<ng-template></ng-template>',
@@ -35,7 +50,7 @@ import { CKEditor5 } from './ckeditor';
 			provide: NG_VALUE_ACCESSOR,
 			// eslint-disable-next-line @typescript-eslint/no-use-before-define
 			useExisting: forwardRef( () => CKEditorComponent ),
-			multi: true,
+			multi: true
 		}
 	]
 } )
@@ -85,7 +100,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		this.setDisabledState( isDisabled );
 	}
 
-	public get disabled() {
+	public get disabled(): boolean {
 		if ( this.editorInstance ) {
 			return this.editorInstance.isReadOnly;
 		}
@@ -198,12 +213,12 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	}
 
 	// Implementing the AfterViewInit interface.
-	public ngAfterViewInit() {
+	public ngAfterViewInit(): void {
 		this.attachToWatchdog();
 	}
 
 	// Implementing the OnDestroy interface.
-	public async ngOnDestroy() {
+	public async ngOnDestroy(): Promise<void> {
 		if ( this.watchdog ) {
 			await this.watchdog.remove( this.id );
 		} else if ( this.editorWatchdog && this.editorWatchdog.editor ) {
@@ -383,19 +398,4 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			} );
 		} );
 	}
-}
-
-export interface BlurEvent {
-	event: CKEditor5.EventInfo<'blur'>;
-	editor: CKEditor5.Editor;
-}
-
-export interface FocusEvent {
-	event: CKEditor5.EventInfo<'focus'>;
-	editor: CKEditor5.Editor;
-}
-
-export interface ChangeEvent {
-	event: CKEditor5.EventInfo<'change:data'>;
-	editor: CKEditor5.Editor;
 }

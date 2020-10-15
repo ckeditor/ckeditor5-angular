@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { CKEditorModule } from '../../ckeditor/ckeditor.module';
@@ -9,15 +9,13 @@ describe( 'DemoFormComponent', () => {
 	let component: DemoFormComponent;
 	let fixture: ComponentFixture<DemoFormComponent>;
 
-	beforeEach( async( () => {
-		TestBed.configureTestingModule( {
+	beforeEach( async () => {
+		await TestBed.configureTestingModule( {
 			declarations: [ DemoFormComponent ],
 			imports: [ FormsModule, CKEditorModule ]
 		} )
 			.compileComponents();
-	} ) );
 
-	beforeEach( () => {
 		fixture = TestBed.createComponent( DemoFormComponent );
 		component = fixture.componentInstance;
 		fixture.detectChanges();
@@ -48,7 +46,7 @@ describe( 'DemoFormComponent', () => {
 		] ) );
 	} );
 
-	it( 'should reset form after clicking the reset button', ( done: Function ) => {
+	it( 'should reset form after clicking the reset button', done => {
 		setTimeout( () => {
 			const resetButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=reset]' ) ).nativeElement;
 			resetButton.click();

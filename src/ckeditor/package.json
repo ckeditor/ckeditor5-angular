@@ -19,12 +19,12 @@
     "ckeditor 5"
   ],
   "peerDependencies": {
-    "@angular/core": ">=5.0.0",
-    "@angular/common": ">=5.0.0",
-    "@angular/forms": ">=5.0.0"
+    "@angular/core": ">=9.0.0",
+    "@angular/common": ">=9.0.0",
+    "@angular/forms": ">=9.0.0"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-watchdog": "^17.0.0"
+    "@ckeditor/ckeditor5-watchdog": "^23.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",

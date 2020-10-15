@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md.
  */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
 import * as CKSource from '../../ckeditor/build/cksource';
 
@@ -11,14 +11,12 @@ describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
 	let fixture: ComponentFixture<CKEditorComponent>;
 
-	beforeEach( async( () => {
-		TestBed.configureTestingModule( {
+	beforeEach( async () => {
+		await TestBed.configureTestingModule( {
 			declarations: [ CKEditorComponent ]
 		} )
 			.compileComponents();
-	} ) );
 
-	beforeEach( () => {
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
 		component.editor = CKSource.ClassicEditor;
@@ -160,6 +158,11 @@ describe( 'CKEditorComponent', () => {
 				public destroy() { }
 			}
 
+			interface Spy {
+				(): void;
+				called: boolean;
+			}
+
 			function createSpy() {
 				const spy: Spy = function() {
 					spy.called = true;
@@ -168,11 +171,6 @@ describe( 'CKEditorComponent', () => {
 				spy.called = false;
 
 				return spy;
-			}
-
-			interface Spy {
-				(): void;
-				called: boolean;
 			}
 
 			component.editor = ( EditorMock as any );
