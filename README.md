@@ -27,7 +27,7 @@ Because of the breaking changes in the Angular library output format, the `ckedi
 * Versions `1.x.x` &ndash; For **Angular 5-8** applications. Support for this version will end when the official support for Angular 8 is dropped (planned date: November 2020).
 * Versions `2.x.x` &ndash; For **Angular 9.1+** applications. This version is currently actively supported.
 
-Note that the `package.json` file used in the main repository isn't published on NPM (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 9.0.0`, `@angular/common >= 9.0.0` and `@angular/forms >= 9.0.0` required by this package.
+Note that the `package.json` file used in the main repository isn't published on npm (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 9.0.0`, `@angular/common >= 9.0.0` and `@angular/forms >= 9.0.0` required by this package.
 
 ## Contributing
 
@@ -41,14 +41,14 @@ npm install
 
 This repository contains the following code:
 
-* `./src/ckeditor` contains the implementation of `<ckeditor>` component,
+* `./src/ckeditor` contains the implementation of the `<ckeditor>` component,
 * `./src/app` is a demo application using the component.
 
 **Note:** The [npm package](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) contains a [packaged component](#packaging-the-component) only.
 
 ### Testing the component (demo)
 
-First, the CKEditor 5 build should be created of source files:
+First, the CKEditor 5 build should be created out of source files:
 
 ```bash
 npm run build-ckeditor
@@ -72,13 +72,13 @@ To run unit tests, use:
 npm run test
 ```
 
-To run e2e tests run:
+To run e2e tests, run:
 
 ```bash
 npm run e2e
 ```
 
-To run coverage tests run:
+To run coverage tests, run:
 
 ```bash
 npm run coverage
@@ -96,9 +96,9 @@ npm run changelog
 
 #### Packaging the component
 
-**Note** This step is optional in the release process (the script is executed anyway by the postversion hook) but it is required to test the package used as an NPM dependency.
+**Note** This step is optional in the release process (the script is executed anyway by the postversion hook) but it is required to test the package used as an npm dependency.
 
-This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create a package meeting the Angular Package Format specification.
+This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create the package meeting the Angular Package Format specification.
 
 Calling:
 
@@ -112,7 +112,7 @@ creates a package in the `./dist` directory, which can be then published in the 
 
 To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`](https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
 
-Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` via this repository.
+Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` component via this repository.
 
 ```bash
 ln -s path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
@@ -134,7 +134,7 @@ Make sure that the `preserveSymlinks` option is set to `true` for the `build` ar
 }
 ```
 
-Make sure to test package with the production setup (`ng build --prod`) and with older Angular versions (at least with the 9.1).
+Make sure to test the package with the production setup (`ng build --prod`) and with older Angular versions (at least with the 9.1).
 
 #### Publishing the package
 
