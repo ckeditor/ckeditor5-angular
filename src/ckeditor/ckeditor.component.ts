@@ -247,12 +247,6 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		// If not, wait for it to be ready; store the data.
 		else {
 			this.data = value;
-
-			// If the editor element is already available, then update its content.
-			// If the ngModel is used then the editor element should be updated directly here.
-			if ( this.editorElement ) {
-				this.editorElement.innerHTML = this.data;
-			}
 		}
 	}
 
@@ -298,6 +292,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				} );
 
 				this.setUpEditorEvents( editor );
+
+				editor.setData(this.data);
 
 				return editor;
 			} );
