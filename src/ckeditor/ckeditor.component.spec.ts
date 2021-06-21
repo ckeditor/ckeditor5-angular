@@ -93,15 +93,15 @@ describe( 'CKEditorComponent', () => {
 			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 		} );
 
-		it( 'should be configurable at the start of the component using the `config.initialData` property', () => {
+		it( 'should be configurable at the start of the component using the `config.initialData` property', async () => {
 			component.config = { initialData: 'foo' };
 
 			fixture.detectChanges();
 
-			return waitCycle().then( () => {
-				expect( component.config.initialData ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
-			} );
+			await waitCycle();
+
+			expect( component.config.initialData ).toEqual( 'foo' );
+			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 		} );
 
 		it( 'should not be provided using both `config.initialData` or `data` properties', async () => {
@@ -114,78 +114,28 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should be writeable by ControlValueAccessor', async () => {
-			component.writeValue( 'foo' );
+			component.writeValue( '<p>foo</p>' );
 			fixture.detectChanges();
 
 			await waitCycle();
 
 			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 
-			component.writeValue( 'bar' );
+			component.writeValue( '<p>bar</p>' );
 
 			expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
 		} );
 
-		it( 'should not be set using `editor.setData()` during the initialization step', () => {
-			class EventEmitter {
-				/* eslint-disable-next-line */
-				public on() { }
-			}
-
-			class ModelDocument extends EventEmitter {
-				public getRootNames = () => [];
-				public version = 0;
-			}
-
-			class EditorMock {
-				public model = {
-					document: new ModelDocument()
-				};
-
-				public editing = {
-					view: {
-						document: new EventEmitter()
-					}
-				};
-
-				public setData = createSpy();
-
-				public static create() {
-					return Promise.resolve( new this() );
-				}
-
-				/* eslint-disable-next-line */
-				public destroy() { }
-			}
-
-			interface Spy {
-				(): void;
-				called: boolean;
-			}
-
-			function createSpy() {
-				const spy: Spy = function() {
-					spy.called = true;
-				};
-
-				spy.called = false;
-
-				return spy;
-			}
-
-			component.editor = ( EditorMock as any );
-
-			component.writeValue( 'foo' );
+		it( 'should be set during the initialization step if the editor was not initialized yet', async () => {
 			fixture.detectChanges();
 
-			return waitCycle().then( () => {
-				const fakeEditorInstance = component.editorInstance as any as EditorMock;
+			expect( component.editorInstance ).toBeFalsy();
 
-				expect( fakeEditorInstance.setData.called ).toBe( false );
+			component.writeValue( '<p>foo</p>' );
 
-				component.writeValue( 'bar' );
-				expect( fakeEditorInstance.setData.called ).toBe( true );
-			} );
+			await waitCycle();
+
+			expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
 		} );
 	} );
 

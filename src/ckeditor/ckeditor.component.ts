@@ -15,6 +15,7 @@ import {
 } from '@angular/core';
 
 import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
+import { first } from 'rxjs/operators';
 
 import uid from './uid';
 
@@ -246,13 +247,16 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		}
 		// If not, wait for it to be ready; store the data.
 		else {
+			// If the editor element is already available, then update its content.
 			this.data = value;
 
-			// If the editor element is already available, then update its content.
-			// If the ngModel is used then the editor element should be updated directly here.
-			if ( this.editorElement ) {
-				this.editorElement.innerHTML = this.data;
-			}
+			// If not, then wait until it is ready
+			// and change data only for the first `ready` event.
+			this.ready
+				.pipe( first() )
+				.subscribe( ( editor: CKEditor5.Editor ) => {
+					editor.setData( this.data );
+				} );
 		}
 	}
 
@@ -356,11 +360,17 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			throw new Error( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
 		}
 
+		const config = { ...this.config };
+
 		// Merge two possible ways of providing data into the `config.initialData` field.
-		return {
-			...this.config,
-			initialData: this.config.initialData || this.data || ''
-		};
+		const initialData = this.config.initialData || this.data;
+
+		if ( initialData ) {
+			// Define the `config.initialData` only when the initial content is specified.
+			config.initialData = initialData;
+		}
+
+		return config;
 	}
 
 	/**
