@@ -21,7 +21,8 @@
   "peerDependencies": {
     "@angular/core": ">=9.0.0",
     "@angular/common": ">=9.0.0",
-    "@angular/forms": ">=9.0.0"
+    "@angular/forms": ">=9.0.0",
+    "rxjs": ">=6.0.0"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-watchdog": "^23.0.0"
