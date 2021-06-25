@@ -56,7 +56,7 @@
     "@ckeditor/ckeditor5-list": "^28.0.0",
     "@ckeditor/ckeditor5-media-embed": "^28.0.0",
     "@ckeditor/ckeditor5-paragraph": "^28.0.0",
-    "@ckeditor/ckeditor5-paste-from-office": "^28.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "^27.0.0",
     "@ckeditor/ckeditor5-table": "^28.0.0",
     "@ckeditor/ckeditor5-theme-lark": "^28.0.0",
     "@ckeditor/ckeditor5-watchdog": "^28.0.0",
