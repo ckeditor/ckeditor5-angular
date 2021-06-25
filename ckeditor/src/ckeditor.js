@@ -28,6 +28,7 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
 import Context from '@ckeditor/ckeditor5-core/src/context';
 import ContextWatchdog from '@ckeditor/ckeditor5-watchdog/src/contextwatchdog';
@@ -36,14 +37,13 @@ class ClassicEditor extends ClassicEditorBase {}
 
 // Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
-	Essentials,
-	UploadAdapter,
 	Autoformat,
-	Bold,
-	Italic,
 	BlockQuote,
+	Bold,
 	CKFinder,
+	CloudServices,
 	EasyImage,
+	Essentials,
 	Heading,
 	Image,
 	ImageCaption,
@@ -51,13 +51,15 @@ ClassicEditor.builtinPlugins = [
 	ImageToolbar,
 	ImageUpload,
 	Indent,
+	Italic,
 	Link,
 	List,
 	MediaEmbed,
 	Paragraph,
 	PasteFromOffice,
 	Table,
-	TableToolbar
+	TableToolbar,
+	UploadAdapter
 ];
 
 // Editor configuration.
