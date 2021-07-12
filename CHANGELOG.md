@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## [2.0.2](https://github.com/ckeditor/ckeditor5-angular/compare/v2.0.1...v2.0.2) (2021-07-12)
+
+### Bug fixes
+
+* Fixed setting data on the editor component when the component is initializing. Closes [ckeditor/ckeditor5#9620](https://github.com/ckeditor/ckeditor5/issues/9620). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/bdfabf453349004043c930e605e7ccd0954bc804))
+
+### Other changes
+
+* Added support for Angular 11. Internal: Updated internal Angular deps to v. 11. Closes [#235](https://github.com/ckeditor/ckeditor5-angular/issues/235). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/5e9da543a7cd7313fc530d11482f293bd973ba17))
+
+
 ## [2.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v2.0.0...v2.0.1) (2020-10-15)
 
 Internal changes only (updated dependencies, documentation, etc.).
