@@ -43,7 +43,7 @@
     "@ckeditor/ckeditor5-ckfinder": "^28.0.0",
     "@ckeditor/ckeditor5-cloud-services": "^28.0.0",
     "@ckeditor/ckeditor5-core": "^28.0.0",
-    "@ckeditor/ckeditor5-dev-env": "^25.2.3",
+    "@ckeditor/ckeditor5-dev-env": "^27.4.0",
     "@ckeditor/ckeditor5-dev-utils": "^25.2.3",
     "@ckeditor/ckeditor5-dev-webpack-plugin": "^25.2.3",
     "@ckeditor/ckeditor5-easy-image": "^28.0.0",
