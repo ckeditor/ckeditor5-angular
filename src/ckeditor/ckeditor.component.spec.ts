@@ -275,9 +275,7 @@ describe( 'CKEditorComponent', () => {
 			expect( spy ).toHaveBeenCalledWith( component.editorInstance );
 		} );
 
-		// The test below has started to fail after bumping the CKEditor 5 packages to v29.0.0 or newer.
-		// Let's keep it disabled until https://github.com/ckeditor/ckeditor5/issues/11328 is fixed.
-		xit( 'should fire the `error` event when an error occurs and the `ready` event afterwards #2', async () => {
+		it( 'should fire the `error` event when an error occurs and the `ready` event afterwards #2', async () => {
 			// Create a second component to test whether the `error` event will be fired only
 			// on the proper component.
 			const fixture2 = TestBed.createComponent( CKEditorComponent );
