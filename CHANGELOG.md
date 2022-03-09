@@ -1,6 +1,18 @@
 Changelog
 =========
 
+## [3.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v2.0.2...v3.0.0) (2022-03-09)
+
+### BREAKING CHANGES
+
+* Upgraded the minimal versions of Node.js to `14.0.0` due to the end of LTS.
+
+### Other changes
+
+* Updated the required version of Node.js to 14. See [ckeditor/ckeditor5#10972](https://github.com/ckeditor/ckeditor5/issues/10972). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/bb14c61c1f88ec761334049fc9e204565718df80))
+* Updated dependencies of the component. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/1e1ffaad531d50dc99ac0412d937d3e8ee4e16ed))
+
+
 ## [2.0.2](https://github.com/ckeditor/ckeditor5-angular/compare/v2.0.1...v2.0.2) (2021-07-12)
 
 ### Bug fixes
