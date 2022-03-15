@@ -17,12 +17,6 @@ module.exports = {
   plugins: [
     '@typescript-eslint/eslint-plugin'
   ],
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: [
-      './tsconfig.json'
-    ]
-  },
   rules: {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/indent': [ 'error', 'tab' ],
@@ -43,6 +37,15 @@ module.exports = {
     } ]
   },
   overrides: [
+    {
+      files: ['*.ts'],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: [
+          './tsconfig.json'
+        ]
+      },
+    },
     {
       files: [ '**/*.spec.ts' ],
       env: {
