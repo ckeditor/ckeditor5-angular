@@ -1,6 +1,6 @@
 /**
  * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * This file is licensed under the terms of the MIT License (see LICENSE.md).
+ * For licensing, see LICENSE.md.
  */
 
 /* eslint-env node */
@@ -33,15 +33,37 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': [ 'error', 'nofunc' ],
     '@typescript-eslint/no-var-requires': 'off',
     'new-cap': 'off',
+    'ckeditor5-rules/license-header': [ 'error', {
+      headerLines: [
+        '/**',
+        ' * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.',
+        ' * For licensing, see LICENSE.md.',
+        ' */'
+      ]
+    } ]
   },
-  overrides: [ {
-    files: [ '**/*.spec.ts' ],
-    env: {
-      jasmine: true
+  overrides: [
+    {
+      files: [ '**/*.spec.ts' ],
+      env: {
+        jasmine: true
+      },
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: 'tsconfig.spec.json'
+      }
     },
-    parserOptions: {
-      tsconfigRootDir: __dirname,
-      project: 'tsconfig.spec.json'
+    {  // Disable license header requirement for entire `src` directory...
+      files: [ 'src/**/*.ts', 'src/**/*.js' ],
+      rules: {
+        'ckeditor5-rules/license-header': 0
+      }
     },
-  } ]
-}
+    {  // ...and enable it back again for `ckeditor` directory only.
+      files: [ 'src/ckeditor/**/*.ts', 'src/ckeditor/**/*.js' ],
+      rules: {
+        'ckeditor5-rules/license-header': 2
+      }
+    }
+  ]
+};
