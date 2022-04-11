@@ -48,9 +48,10 @@ export namespace CKEditor5 {
 		readonly model: any;
 		readonly plugins: any;
 		readonly state: 'initializing' | 'ready' | 'destroyed';
+		readonly isReadOnly: boolean;
 
-		isReadOnly: boolean;
-
+		enableReadOnlyMode( lockId: string | symbol ): void;
+		disableReadOnlyMode( lockId: string | symbol ): void;
 		delegate( events: string[] ): any;
 		destroy(): Promise<void>;
 		execute( commandName: string, ...params: any[] ): any;

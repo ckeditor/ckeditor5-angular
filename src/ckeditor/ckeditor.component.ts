@@ -3,6 +3,12 @@
  * For licensing, see LICENSE.md.
  */
 
+declare global {
+	interface Window {
+		CKEDITOR_VERSION?: string;
+	}
+}
+
 import {
 	Component,
 	Input,
@@ -25,6 +31,8 @@ import {
 } from '@angular/forms';
 
 import { CKEditor5 } from './ckeditor';
+
+const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
 export interface BlurEvent {
 	event: CKEditor5.EventInfo<'blur'>;
@@ -211,6 +219,21 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	public constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
+
+		const { CKEDITOR_VERSION } = window;
+
+		// Starting from v34.0.0, CKEditor 5 introduces a lock mechanism enabling/disabling the read-only mode.
+		// As it is a breaking change between major releases of the integration, the component requires using
+		// CKEditor 5 in version 34 or higher.
+		if ( CKEDITOR_VERSION ) {
+			const [ major ] = CKEDITOR_VERSION.split( '.' ).map( Number );
+
+			if ( major < 34 ) {
+				console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 34 or higher.' );
+			}
+		} else {
+			console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
+		}
 	}
 
 	// Implementing the AfterViewInit interface.
@@ -274,7 +297,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	public setDisabledState( isDisabled: boolean ): void {
 		// If already initialized.
 		if ( this.editorInstance ) {
-			this.editorInstance.isReadOnly = isDisabled;
+			if ( isDisabled ) {
+				this.editorInstance.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
+			} else {
+				this.editorInstance.disableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
+			}
 		}
 
 		// Store the state anyway to use it once the editor is created.
@@ -294,7 +321,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 				const editor = await this.editor!.create( element, config );
 
 				if ( this.initiallyDisabled ) {
-					editor.isReadOnly = this.initiallyDisabled;
+					editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
 				}
 
 				this.ngZone.run( () => {
