@@ -1,6 +1,19 @@
 Changelog
 =========
 
+## [4.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v3.0.0...v4.0.0) (2022-04-12)
+
+### BREAKING CHANGES
+
+* Due to introducing the lock mechanism for the `Editor#isReadOnly` property, the `<CKEditor>` component uses the new way of enabling the read-only mode in the editor. The component requires an instance of CKEditor 5 in version 34 or higher. See [ckeditor/ckeditor5#10496](https://github.com/ckeditor/ckeditor5/issues/10496).
+
+### Other changes
+
+* Aligned the `<CKEditor>` component API to use the new lock mechanism when enabling/disabling the read-only mode. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/cba95bfe4d7881c8013b8dabc58b6674bf61b442))
+* Bumped Karma test runner to v6.x. Closes [#308](https://github.com/ckeditor/ckeditor5-angular/issues/308). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/c4c80cd9e8acce4054428c9b6402d1ac6b27db47))
+* Upgraded the CKEditor 5 packages to their latest versions. Closes [#304](https://github.com/ckeditor/ckeditor5-angular/issues/304). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/cba95bfe4d7881c8013b8dabc58b6674bf61b442))
+
+
 ## [3.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v2.0.2...v3.0.0) (2022-03-09)
 
 ### BREAKING CHANGES
