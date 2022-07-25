@@ -24,7 +24,7 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 
 	public formDataPreview?: string;
 
-	public ngAfterViewInit() {
+	public ngAfterViewInit(): void {
 		this.demoReactiveForm!.valueChanges
 			.subscribe( values => {
 				this.formDataPreview = JSON.stringify( values );

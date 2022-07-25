@@ -19,27 +19,27 @@ You learn to appreciate each and every single one of the differences while you b
 
 	public componentEvents: string[] = [];
 
-	public toggleDisableEditors() {
+	public toggleDisableEditors(): void {
 		this.isDisabled = !this.isDisabled;
 	}
 
-	public onReady() {
+	public onReady(): void {
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	public onChange() {
+	public onChange(): void {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 
-	public onFocus() {
+	public onFocus(): void {
 		this.componentEvents.push( 'Focused the editing view.' );
 	}
 
-	public onBlur() {
+	public onBlur(): void {
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 
-	public onError() {
+	public onError(): void {
 		this.componentEvents.push( 'The editor crashed.' );
 	}
 }

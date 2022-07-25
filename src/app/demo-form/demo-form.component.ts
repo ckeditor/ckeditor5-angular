@@ -4,7 +4,7 @@ import {
 	AfterViewInit
 } from '@angular/core';
 
-import { NgForm } from '@angular/forms';
+import { AbstractControl, NgForm } from '@angular/forms';
 import * as CKSource from '../../../ckeditor/build/cksource';
 
 const ClassicEditor = CKSource.ClassicEditor;
@@ -26,21 +26,21 @@ export class DemoFormComponent implements AfterViewInit {
 
 	public formDataPreview?: string;
 
-	public get description() {
+	public get description(): AbstractControl {
 		return this.demoForm!.controls.description;
 	}
 
-	public ngAfterViewInit() {
+	public ngAfterViewInit(): void {
 		this.demoForm!.control.valueChanges.subscribe( values => {
 			this.formDataPreview = JSON.stringify( values );
 		} );
 	}
 
-	public onSubmit() {
+	public onSubmit(): void {
 		console.log( 'Form submit, model', this.model );
 	}
 
-	public reset() {
+	public reset(): void {
 		this.demoForm!.reset();
 	}
 }

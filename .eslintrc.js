@@ -67,6 +67,12 @@ module.exports = {
 			rules: {
 				'ckeditor5-rules/license-header': 2
 			}
+		},
+		{ // ...and enable it back again for `ckeditor` directory only.
+			files: [ 'e2e/**/*.ts' ],
+			rules: {
+				'@typescript-eslint/explicit-module-boundary-types': 0
+			}
 		}
 	]
 };

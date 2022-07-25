@@ -18,6 +18,7 @@ export class ContextDemoComponent {
 	public config: any;
 	public ready = false;
 
+	// eslint-disable-next-line  @typescript-eslint/explicit-module-boundary-types
 	public onReady( editor: any ): void {
 		console.log( editor );
 	}

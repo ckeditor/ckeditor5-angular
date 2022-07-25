@@ -32,7 +32,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.18",
+    "@angular-devkit/build-angular": "^0.1102.19",
     "@angular/cli": "^11.0.7",
     "@angular/compiler-cli": "^11.0.7",
     "@angular/language-service": "^11.0.7",
@@ -68,7 +68,7 @@
     "coveralls": "^3.1.1",
     "css-loader": "^5.2.7",
     "eslint": "^7.11.0",
-    "eslint-config-ckeditor5": "^4.0.0",
+    "eslint-config-ckeditor5": "4.0.0",
     "fs-extra": "^10.0.1",
     "husky": "^4.3.0",
     "jasmine-core": "~3.8.0",
@@ -82,8 +82,8 @@
     "lint-staged": "^10.4.0",
     "ng-packagr": "^11.0.3",
     "postcss-loader": "^4.3.0",
-    "raw-loader": "^4.0.1",
     "protractor": "~7.0.0",
+    "raw-loader": "^4.0.1",
     "style-loader": "^2.0.0",
     "ts-node": "^9.0.0",
     "typescript": "~4.0.3",
@@ -115,6 +115,7 @@
   "eslintIgnore": [
     "**/node_modules/**",
     "**/dist/**",
+    "**/coverage/",
     "src/polyfills.ts",
     "ckeditor/**"
   ]
