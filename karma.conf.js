@@ -9,8 +9,6 @@
 /* eslint-env node */
 
 module.exports = function( config ) {
-	const coverageDir = require( 'path' ).join( __dirname, './coverage' );
-
 	const karmaConfig = {
 		basePath: '',
 		frameworks: [ 'jasmine', '@angular-devkit/build-angular' ],
@@ -33,13 +31,15 @@ module.exports = function( config ) {
 				},
 				// Generates HTML tables with the results.
 				{
-					dir: coverageDir,
+					dir: './coverage',
+					subdir: '.',
 					type: 'html'
 				},
 				// Generates "lcov.info" file. It's used by external code coverage services.
 				{
-					type: 'lcovonly',
-					dir: coverageDir
+					dir: './coverage',
+					subdir: '.',
+					type: 'lcovonly'
 				}
 			],
 			thresholds: {
