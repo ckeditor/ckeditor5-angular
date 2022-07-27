@@ -1,9 +1,10 @@
 /**
  * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-import { browser, by, element, promise, Key } from 'protractor';
+import type { promise } from 'protractor';
+import { browser, by, element, Key } from 'protractor';
 
 export class AppPage {
 	public navigateTo( url = '' ) {

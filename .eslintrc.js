@@ -1,6 +1,6 @@
 /**
  * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
 /* eslint-env node */
@@ -27,11 +27,13 @@ module.exports = {
 		'@typescript-eslint/no-use-before-define': [ 'error', 'nofunc' ],
 		'@typescript-eslint/no-var-requires': 'off',
 		'new-cap': 'off',
+		// The `no-duplicate-imports` rule has been deprecated in favour of the `import/no-duplicates` rule.
+		'no-duplicate-imports': 'off',
 		'ckeditor5-rules/license-header': [ 'error', {
 			headerLines: [
 				'/**',
 				' * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.',
-				' * For licensing, see LICENSE.md.',
+				' * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license',
 				' */'
 			]
 		} ]

@@ -7,9 +7,10 @@
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 /* eslint-env node */
-/* eslint-disable @typescript-eslint/camelcase */
 
 module.exports = function( config ) {
+	const coverageDir = require( 'path' ).join( __dirname, './coverage' );
+
 	const karmaConfig = {
 		basePath: '',
 		frameworks: [ 'jasmine', '@angular-devkit/build-angular' ],
@@ -18,16 +19,29 @@ module.exports = function( config ) {
 			require( 'karma-chrome-launcher' ),
 			require( 'karma-firefox-launcher' ),
 			require( 'karma-jasmine-html-reporter' ),
-			require( 'karma-coverage-istanbul-reporter' ),
+			require( 'karma-coverage' ),
 			require( '@angular-devkit/build-angular/plugins/karma' )
 		],
 		client: {
 			clearContext: false // leave Jasmine Spec Runner output visible in browser
 		},
-		coverageIstanbulReporter: {
-			dir: require( 'path' ).join( __dirname, './coverage' ),
-			reports: [ 'html', 'lcovonly' ],
-			fixWebpackSourcePaths: true,
+		coverageReporter: {
+			reporters: [
+				// Prints a table after tests result.
+				{
+					type: 'text-summary'
+				},
+				// Generates HTML tables with the results.
+				{
+					dir: coverageDir,
+					type: 'html'
+				},
+				// Generates "lcov.info" file. It's used by external code coverage services.
+				{
+					type: 'lcovonly',
+					dir: coverageDir
+				}
+			],
 			thresholds: {
 				statements: 100,
 				lines: 100,

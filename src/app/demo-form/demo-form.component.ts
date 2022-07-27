@@ -1,10 +1,13 @@
-import {
-	Component,
-	ViewChild,
+import type {
 	AfterViewInit
 } from '@angular/core';
+import {
+	Component,
+	ViewChild
+} from '@angular/core';
 
-import { AbstractControl, NgForm } from '@angular/forms';
+import type { AbstractControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import * as CKSource from '../../../ckeditor/build/cksource';
 
 const ClassicEditor = CKSource.ClassicEditor;

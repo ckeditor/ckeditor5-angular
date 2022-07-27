@@ -1,15 +1,18 @@
 /**
  * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import * as CKSource from '../../ckeditor/build/cksource';
 
+import type {
+	CKEditor5
+} from './index';
 import {
 	CKEditorComponent,
-	CKEditorModule,
-	CKEditor5
+	CKEditorModule
 } from './index';
 
 describe( 'index.ts - the entry file', () => {

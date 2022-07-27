@@ -13,7 +13,7 @@ export class SimpleUsageComponent {
 
 	public isDisabled = false;
 	public editorData =
-	`<p>Getting used to an entirely different culture can be challenging.
+		`<p>Getting used to an entirely different culture can be challenging.
 While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person.
 You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>`;
 

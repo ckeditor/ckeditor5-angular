@@ -61,7 +61,7 @@ npm run start
 To test it in production, use:
 
 ```bash
-npm run start -- --prod
+npm run start -- --configuration production
 ```
 
 To run unit tests, use:
@@ -132,7 +132,7 @@ Make sure that the `preserveSymlinks` option is set to `true` for the `build` ar
 }
 ```
 
-Make sure to test the package with the production setup (`ng build --prod`) and with older Angular versions (at least with the 9.1).
+Make sure to test the package with the production setup (`ng build --configuration production`) and with older Angular versions (at least with the 9.1).
 
 #### Publishing the package
 
