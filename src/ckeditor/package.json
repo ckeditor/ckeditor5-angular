@@ -24,7 +24,7 @@
     "@angular/forms": ">=9.0.0",
     "rxjs": ">=6.0.0"
   },
-  "dependencies": {
+  "devDependencies": {
     "@ckeditor/ckeditor5-watchdog": "^34.2.0"
   },
   "author": "CKSource (http://cksource.com/)",
