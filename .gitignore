@@ -12,6 +12,7 @@ dist.tgz
 
 # misc
 /.sass-cache
+/.angular
 /connect.lock
 /coverage
 /libpeerconnection.log

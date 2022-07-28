@@ -27,6 +27,8 @@ module.exports = {
 		'@typescript-eslint/no-use-before-define': [ 'error', 'nofunc' ],
 		'@typescript-eslint/no-var-requires': 'off',
 		'new-cap': 'off',
+		// The `no-duplicate-imports` rule has been deprecated in favour of the `import/no-duplicates` rule.
+		'no-duplicate-imports': 'off',
 		'ckeditor5-rules/license-header': [ 'error', {
 			headerLines: [
 				'/**',

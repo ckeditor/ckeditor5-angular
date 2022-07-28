@@ -1,9 +1,12 @@
-import {
-	Component,
+import type {
 	AfterViewInit
 } from '@angular/core';
+import {
+	Component
+} from '@angular/core';
 
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import type { AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import * as CKSource from '../../../ckeditor/build/cksource';
 
 const ClassicEditor = CKSource.ClassicEditor;

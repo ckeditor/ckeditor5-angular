@@ -1,13 +1,12 @@
 /**
  * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ * For licensing, see LICENSE.md.
  */
 
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
 /* eslint-env node */
-/* eslint-disable @typescript-eslint/camelcase */
 
 module.exports = function( config ) {
 	const karmaConfig = {
@@ -18,16 +17,31 @@ module.exports = function( config ) {
 			require( 'karma-chrome-launcher' ),
 			require( 'karma-firefox-launcher' ),
 			require( 'karma-jasmine-html-reporter' ),
-			require( 'karma-coverage-istanbul-reporter' ),
+			require( 'karma-coverage' ),
 			require( '@angular-devkit/build-angular/plugins/karma' )
 		],
 		client: {
 			clearContext: false // leave Jasmine Spec Runner output visible in browser
 		},
-		coverageIstanbulReporter: {
-			dir: require( 'path' ).join( __dirname, './coverage' ),
-			reports: [ 'html', 'lcovonly' ],
-			fixWebpackSourcePaths: true,
+		coverageReporter: {
+			reporters: [
+				// Prints a table after tests result.
+				{
+					type: 'text-summary'
+				},
+				// Generates HTML tables with the results.
+				{
+					dir: './coverage',
+					subdir: '.',
+					type: 'html'
+				},
+				// Generates "lcov.info" file. It's used by external code coverage services.
+				{
+					dir: './coverage',
+					subdir: '.',
+					type: 'lcovonly'
+				}
+			],
 			thresholds: {
 				statements: 100,
 				lines: 100,

@@ -9,6 +9,8 @@ declare global {
 	}
 }
 
+import type {
+	AfterViewInit, OnDestroy } from '@angular/core';
 import {
 	Component,
 	Input,
@@ -16,7 +18,6 @@ import {
 	NgZone,
 	EventEmitter,
 	forwardRef,
-	AfterViewInit, OnDestroy,
 	ElementRef
 } from '@angular/core';
 
@@ -25,8 +26,9 @@ import { first } from 'rxjs/operators';
 
 import uid from './uid';
 
+import type {
+	ControlValueAccessor } from '@angular/forms';
 import {
-	ControlValueAccessor,
 	NG_VALUE_ACCESSOR
 } from '@angular/forms';
 

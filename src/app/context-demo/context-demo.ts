@@ -11,7 +11,7 @@ const Context = CKSource.Context;
 } )
 export class ContextDemoComponent {
 	public Editor = CKSource.ClassicEditor;
-	@ViewChild( CKEditorComponent, { static: true } ) ckeditor?: ElementRef<CKEditorComponent>;
+	@ViewChild( CKEditorComponent, { static: true } ) public ckeditor?: ElementRef<CKEditorComponent>;
 
 	public contextConfig: any;
 	public context: any;
@@ -23,7 +23,7 @@ export class ContextDemoComponent {
 		console.log( editor );
 	}
 
-	ngAfterViewInit(): void {
+	public ngAfterViewInit(): void {
 		this.contextConfig = {
 			// Fill in cloud services data here:
 			collaboration: {

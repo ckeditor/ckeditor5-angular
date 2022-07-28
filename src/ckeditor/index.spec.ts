@@ -3,13 +3,16 @@
  * For licensing, see LICENSE.md.
  */
 
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import type { ComponentFixture } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import * as CKSource from '../../ckeditor/build/cksource';
 
+import type {
+	CKEditor5
+} from './index';
 import {
 	CKEditorComponent,
-	CKEditorModule,
-	CKEditor5
+	CKEditorModule
 } from './index';
 
 describe( 'index.ts - the entry file', () => {

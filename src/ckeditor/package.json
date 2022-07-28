@@ -24,8 +24,8 @@
     "@angular/forms": ">=9.0.0",
     "rxjs": ">=6.0.0"
   },
-  "dependencies": {
-    "@ckeditor/ckeditor5-watchdog": "^34.0.0"
+  "devDependencies": {
+    "@ckeditor/ckeditor5-watchdog": "^34.2.0"
   },
   "author": "CKSource (http://cksource.com/)",
   "license": "GPL-2.0-or-later",
@@ -34,14 +34,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ckeditor/ckeditor5-angular.git"
-  },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "./index.ts"
-    },
-    "whitelistedNonPeerDependencies": [
-      "."
-    ],
-    "dest": "../../dist"
   }
 }

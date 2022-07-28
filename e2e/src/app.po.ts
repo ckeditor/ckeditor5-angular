@@ -3,7 +3,8 @@
  * For licensing, see LICENSE.md.
  */
 
-import { browser, by, element, promise, Key } from 'protractor';
+import type { promise } from 'protractor';
+import { browser, by, element, Key } from 'protractor';
 
 export class AppPage {
 	public navigateTo( url = '' ) {
