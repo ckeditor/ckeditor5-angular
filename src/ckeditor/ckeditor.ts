@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md.
  */
 
-type AnyFunction = ( ...args: any[] ) => any;
+type AnyFunction = ( ...args: Array<any> ) => any;
 
 /**
  * Basic typings for the CKEditor5 elements.
@@ -24,7 +24,7 @@ export namespace CKEditor5 {
 	 */
 	export interface EventInfo<EventName extends string> {
 		readonly name: EventName;
-		readonly path: any[];
+		readonly path: Array<any>;
 		readonly source: any;
 		return?: any;
 
@@ -52,16 +52,16 @@ export namespace CKEditor5 {
 
 		enableReadOnlyMode( lockId: string | symbol ): void;
 		disableReadOnlyMode( lockId: string | symbol ): void;
-		delegate( events: string[] ): any;
+		delegate( events: Array<string> ): any;
 		destroy(): Promise<void>;
-		execute( commandName: string, ...params: any[] ): any;
+		execute( commandName: string, ...params: Array<any> ): any;
 		fire( eventName: string, args?: any ): any;
 		listenTo( emitter: any, eventName: string, callback: AnyFunction, options?: any ): void;
 		off( eventName: string, callback: AnyFunction ): void;
 		on( eventName: string, callback: AnyFunction, options?: any ): void;
 		once( eventName: string, callback: AnyFunction, options?: any ): void;
 		stopListening( emitter: any, eventName: string, callback: AnyFunction ): void;
-		t( ...args: any[] ): void;
+		t( ...args: Array<any> ): void;
 
 		[ property: string ]: any;
 	}
@@ -91,11 +91,11 @@ export namespace CKEditor5 {
 	}
 
 	export interface Watchdog<T> {
-		setCreator( creator: ( ...args: any[] ) => Promise<T> ): void;
+		setCreator( creator: ( ...args: Array<any> ) => Promise<T> ): void;
 		setDestructor( destructor: ( item: T ) => Promise<void> ): void;
-		on( event: string, callback: ( ...args: any[] ) => any ): void;
+		on( event: string, callback: ( ...args: Array<any> ) => any ): void;
 		destroy(): Promise<void>;
-		create( ...args: any[] ): Promise<void>;
+		create( ...args: Array<any> ): Promise<void>;
 	}
 
 	export interface EditorWatchdog extends Watchdog<Editor> {
@@ -106,7 +106,7 @@ export namespace CKEditor5 {
 		context: any;
 		_watchdogs: Map<string, EditorWatchdog>;
 		add( items: any ): Promise<void>;
-		remove( items: string | string[] ): Promise<void>;
+		remove( items: string | Array<string> ): Promise<void>;
 		getItem( itemId: string ): Editor;
 		addItemWatchdog( itemId: string, itemType: string, watchdog: Watchdog<any> ): Promise<void>;
 	}
