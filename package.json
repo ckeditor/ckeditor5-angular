@@ -19,6 +19,7 @@
     "build-ckeditor": "cd ckeditor && webpack --mode production"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-dev-ci": "^32.0.1",
     "@angular/animations": "^13.3.11",
     "@angular/common": "^13.3.11",
     "@angular/compiler": "^13.3.11",

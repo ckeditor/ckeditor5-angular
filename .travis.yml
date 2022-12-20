@@ -12,7 +12,11 @@ cache:
 - node_modules
 before_install:
 - export NG_CLI_ANALYTICS=ci
+- export START_TIME=$( date +%s )
 install:
 - npm install
 script:
 - npm run build-ckeditor && npm run lint && npm run coverage && ng e2e && cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+after_script:
+- export END_TIME=$( date +%s )
+- ckeditor5-dev-ci-notify-travis-status
