@@ -20,6 +20,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+.idea
 
 # e2e
 /e2e/src/*.js
