@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
  * For licensing, see LICENSE.md.
  */
 
@@ -28,7 +28,15 @@ require( '@ckeditor/ckeditor5-dev-env' )
 				}
 			},
 			{
-				pattern: '!(coverage|.nyc_output|dist)/**'
+				pattern: '.husky/*'
+			},
+			{
+				pattern: '!(coverage|.nyc_output|dist)/**',
+				options: {
+					ignore: [
+						'**/build/**'
+					]
+				}
 			}
 		]
 	} );
