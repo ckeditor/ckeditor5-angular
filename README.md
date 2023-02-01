@@ -20,12 +20,52 @@ See the ["Rich text editor component for Angular"](https://ckeditor.com/docs/cke
 
 ## Supported Angular versions
 
-Because of the breaking changes in the Angular library output format, the `ckeditor5-angular` package is released in the following versions to support various Angular ecosystems:
+Because of the breaking changes in the Angular library output format, the `@ckeditor/ckeditor5-angular` package is released in the following versions to support various Angular ecosystems:
 
-* Versions `1.x.x` &ndash; For **Angular 5-8** applications. Support for this version will end when the official support for Angular 8 is dropped (planned date: November 2020).
-* Versions `2.x.x` &ndash; For **Angular 9.1+** applications. This version is currently actively supported.
+<table>
+  <thead>
+    <tr>
+      <th>Package&nbsp;version</th>
+      <th>Angular&nbsp;version</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="3">Actively supported versions</td>
+    </tr>
+    <tr>
+      <td><code>^5</code></td>
+      <td><code>13+</code></td>
+      <td>Requires Angular at least in version 13+. Lower versions are no longer maintained.</td>
+    </tr>
+    <tr>
+      <td colspan="3">Past releases (no longer maintained)</td>
+    </tr>
+    <tr>
+      <td><code>^4</code></td>
+      <td><code>9.1+</code></td>
+      <td>Requires CKEditor&nbsp;5 at least in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v34.0.0">34</a>.</td>
+    </tr>
+    <tr>
+      <td><code>^3</code></td>
+      <td><code>9.1+</code></td>
+      <td>Requires Node.js at least in version 14.</td>
+    </tr>
+    <tr>
+      <td><code>^2</code></td>
+      <td><code>9.1+</code></td>
+      <td>Migration to TypeScript&nbsp;4. Declaration files are not backward compatible.</td>
+    </tr>
+    <tr>
+      <td><code>^1</code></td>
+      <td><code>5.x&nbsp;-&nbsp;8.x</code></td>
+      <td>Angular versions are no longer maintained.</td>
+    </tr>
+  </tbody>
+</table>
 
-Note that the `package.json` file used in the main repository isn't published on npm (the production one is present in `src/ckeditor/package.json`), so there are only a few peer dependencies to `@angular/core >= 9.0.0`, `@angular/common >= 9.0.0` and `@angular/forms >= 9.0.0` required by this package.
+Note that the `package.json` file used in the main repository isn't published on npm (the production one is present in [`src/ckeditor/package.json`](https://github.com/ckeditor/ckeditor5-angular/blob/master/src/ckeditor/package.json)).
 
 ## Contributing
 
