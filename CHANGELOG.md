@@ -6,6 +6,7 @@ Changelog
 ### BREAKING CHANGES
 
 * The minimal supported version of Angular by the `<CKEditor>` component is 13.
+* Make sure to install the [`@ckeditor/ckeditor5-watchdog`](https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog) package that is defined as a peer dependency of the `<CKEditor>` component in your integration.
 
 ### Other changes
 
