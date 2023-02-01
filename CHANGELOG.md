@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## [5.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v4.0.0...v5.0.0) (2023-02-01)
+
+### BREAKING CHANGES
+
+* The minimal supported version of Angular by the `<CKEditor>` component is 13.
+
+### Other changes
+
+* Upgraded dependencies to fix vulnerability issues. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/79ebca27e482bcb417e8f91329d697b838a21067))
+
+
 ## [4.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v3.0.0...v4.0.0) (2022-04-12)
 
 ### BREAKING CHANGES
