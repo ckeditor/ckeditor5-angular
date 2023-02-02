@@ -16,7 +16,9 @@
 	<label for="description">Description</label>
 	<ckeditor
 		[(ngModel)]="model.description"
+		[disableTwoWayDataBinding]="shouldDisableTwoWayDataBinding"
 		[editor]="Editor"
+		(ready)="onReady($event)"
 		id="description"
 		name="description">
 	</ckeditor>
@@ -24,9 +26,19 @@
 	<p *ngIf="description && description.dirty" class="alert">Description is "dirty".</p>
 	<p *ngIf="description && description.touched" class="alert">Description has been "touched".</p>
 
-	<p><button type="reset" (click)="reset()">Reset form</button></p>
-	<p><button type="submit">Submit this form</button> <em>(Open the console first)</em></p>
+	<p>
+		<button type="button" (click)="toggleDisableTwoWayDataBinding()">{{ shouldDisableTwoWayDataBinding ? 'Enable' : 'Disable' }} two-way data binding</button>
+		<em>Two-way data binding is {{ shouldDisableTwoWayDataBinding ? 'disabled' : 'enabled' }}.</em>
+	</p>
+	<p>
+		<button type="reset" (click)="reset()">Reset form</button>
+	</p>
+	<p>
+		<button type="submit">Submit this form</button> <em>(Open the console first)</em>
+	</p>
 </form>
+
+
 
 <h3>Editor data preview (readable and writable)</h3>
 <p>

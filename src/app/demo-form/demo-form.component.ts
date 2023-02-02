@@ -26,11 +26,17 @@ export class DemoFormComponent implements AfterViewInit {
 		surname: 'Doe',
 		description: '<p>A <b>really</b> nice fellow.</p>'
 	};
-
 	public formDataPreview?: string;
+	public shouldDisableTwoWayDataBinding = false;
+
+	protected editorInstance: typeof ClassicEditor;
 
 	public get description(): AbstractControl {
 		return this.demoForm!.controls.description;
+	}
+
+	public toggleDisableTwoWayDataBinding(): void {
+		this.shouldDisableTwoWayDataBinding = !this.shouldDisableTwoWayDataBinding;
 	}
 
 	public ngAfterViewInit(): void {
@@ -39,7 +45,16 @@ export class DemoFormComponent implements AfterViewInit {
 		} );
 	}
 
+	public onReady( editor: typeof ClassicEditor ): void {
+		this.editorInstance = editor;
+	}
+
 	public onSubmit(): void {
+		// Read editor's data only when two-way data binding is disabled
+		if ( this.shouldDisableTwoWayDataBinding ) {
+			this.model.description = this.editorInstance.getData();
+		}
+
 		console.log( 'Form submit, model', this.model );
 	}
 
