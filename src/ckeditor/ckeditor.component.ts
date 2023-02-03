@@ -103,9 +103,10 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 	@Input() public watchdog?: CKEditor5.ContextWatchdog;
 
 	/**
-	 * Allows disabling the two-way data binding mechanism. It can boosts performance for large documents if set to `true`.
+	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
 	 *
-	 * When a component is connected using the [(ngModel)] or [formControl] directives then all data will be never synchronized.
+	 * When a component is connected using the [(ngModel)] or [formControl] directives and this value is set to true then none of the data
+	 * will ever be synchronized.
 	 *
 	 * An integrator must call `editor.getData()` manually once the application needs the editor's data.
 	 * An editor instance can be received in the `ready()` callback.

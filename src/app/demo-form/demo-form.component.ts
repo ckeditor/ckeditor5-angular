@@ -26,10 +26,11 @@ export class DemoFormComponent implements AfterViewInit {
 		surname: 'Doe',
 		description: '<p>A <b>really</b> nice fellow.</p>'
 	};
+
 	public formDataPreview?: string;
 	public shouldDisableTwoWayDataBinding = false;
 
-	protected editorInstance: typeof ClassicEditor;
+	public editorInstance: typeof ClassicEditor;
 
 	public get description(): AbstractControl {
 		return this.demoForm!.controls.description;

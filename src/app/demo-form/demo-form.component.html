@@ -27,18 +27,17 @@
 	<p *ngIf="description && description.touched" class="alert">Description has been "touched".</p>
 
 	<p>
-		<button type="button" (click)="toggleDisableTwoWayDataBinding()">{{ shouldDisableTwoWayDataBinding ? 'Enable' : 'Disable' }} two-way data binding</button>
-		<em>Two-way data binding is {{ shouldDisableTwoWayDataBinding ? 'disabled' : 'enabled' }}.</em>
+		<button type="button" id="toggleBinding" (click)="toggleDisableTwoWayDataBinding()">{{ shouldDisableTwoWayDataBinding ? 'Enable' : 'Disable' }} two-way data binding</button>
+		&nbsp;<em>Two-way data binding is {{ shouldDisableTwoWayDataBinding ? 'disabled' : 'enabled' }}.</em>
 	</p>
 	<p>
 		<button type="reset" (click)="reset()">Reset form</button>
 	</p>
 	<p>
-		<button type="submit">Submit this form</button> <em>(Open the console first)</em>
+		<button type="submit">Submit this form</button>
+		&nbsp;<em>(Open the console first)</em>
 	</p>
 </form>
-
-
 
 <h3>Editor data preview (readable and writable)</h3>
 <p>
