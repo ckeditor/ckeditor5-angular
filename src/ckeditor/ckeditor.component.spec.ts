@@ -61,7 +61,7 @@ describe( 'CKEditorComponent', () => {
 			expect( console.warn ).toHaveBeenCalledWith( 'The <CKEditor> component requires using CKEditor 5 in version 34 or higher.' );
 		} );
 
-		it( 'should not print any warninig if using CKEditor 5 in version 34 or higher', () => {
+		it( 'should not print any warning if using CKEditor 5 in version 34 or higher', () => {
 			window.CKEDITOR_VERSION = '34.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
@@ -220,9 +220,8 @@ describe( 'CKEditorComponent', () => {
 
 			it( 'change - should not calculate editor data when the control value ancestor is not specified', () => {
 				fixture.detectChanges();
-
-				const changeSpy = jasmine.createSpy();
-				component.change.subscribe( changeSpy );
+				const spy = jasmine.createSpy();
+				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
 					spyOn( component.editorInstance!, 'getData' ).and.callThrough();
@@ -232,7 +231,23 @@ describe( 'CKEditorComponent', () => {
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
 					expect( component.editorInstance!.getData ).toHaveBeenCalledTimes( 0 );
-					expect( changeSpy ).toHaveBeenCalledTimes( 3 );
+					expect( spy ).toHaveBeenCalledTimes( 3 );
+				} );
+			} );
+
+			it( 'change - should not calculate editor data when the two way data binding is disabled', () => {
+				component.disableTwoWayDataBinding = true;
+
+				fixture.detectChanges();
+				const spy = jasmine.createSpy();
+				component.change.subscribe( spy );
+
+				return waitCycle().then( () => {
+					spyOn( component.editorInstance!, 'getData' ).and.callThrough();
+
+					component.editorInstance!.execute( 'input', { text: 'foo' } );
+
+					expect( spy ).toHaveBeenCalledTimes( 0 );
 				} );
 			} );
 

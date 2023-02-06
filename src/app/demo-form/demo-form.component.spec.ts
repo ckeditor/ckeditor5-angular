@@ -59,4 +59,30 @@ describe( 'DemoFormComponent', () => {
 			done();
 		} );
 	} );
+
+	it( 'should assign editor data to the model description if two way binding is disabled', done => {
+		setTimeout( () => {
+			const spy = spyOn( console, 'log' );
+
+			const toggleButton: HTMLButtonElement = fixture.debugElement.query( By.css( '#toggleBinding' ) ).nativeElement;
+			const submitButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=submit]' ) ).nativeElement;
+			const editorDataPreview: HTMLTextAreaElement = fixture.debugElement.query( By.css( 'textarea' ) ).nativeElement;
+
+			toggleButton.click();
+			component.editorInstance.setData( '<p>Foo bar baz.</p>' );
+			submitButton.click();
+
+			expect( editorDataPreview.value ).toEqual( '<p>A <b>really</b> nice fellow.</p>' );
+
+			expect( spy ).toHaveBeenCalledTimes( 1 );
+			expect( spy.calls.first().args[ 0 ] ).toEqual( 'Form submit, model' );
+			expect( spy.calls.first().args[ 1 ] ).toEqual( {
+				name: 'John',
+				surname: 'Doe',
+				description: '<p>Foo bar baz.</p>'
+			} );
+
+			done();
+		} );
+	} );
 } );

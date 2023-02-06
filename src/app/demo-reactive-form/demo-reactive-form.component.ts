@@ -26,6 +26,13 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 	} );
 
 	public formDataPreview?: string;
+	public shouldDisableTwoWayDataBinding = false;
+
+	public editorInstance: typeof ClassicEditor;
+
+	public toggleDisableTwoWayDataBinding(): void {
+		this.shouldDisableTwoWayDataBinding = !this.shouldDisableTwoWayDataBinding;
+	}
 
 	public ngAfterViewInit(): void {
 		this.demoReactiveForm!.valueChanges
@@ -34,7 +41,16 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 			} );
 	}
 
+	public onReady( editor: typeof ClassicEditor ): void {
+		this.editorInstance = editor;
+	}
+
 	public onSubmit(): void {
+		// Read editor's data only when two-way data binding is disabled
+		if ( this.shouldDisableTwoWayDataBinding ) {
+			this.demoReactiveForm.value.description = this.editorInstance.getData();
+		}
+
 		console.log( 'Form submit, model', this.demoReactiveForm.value );
 	}
 
