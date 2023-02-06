@@ -10,7 +10,7 @@ declare global {
 }
 
 import type {
-	AfterViewInit, OnDestroy } from '@angular/core';
+	AfterViewInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import {
 	Component,
 	Input,
@@ -65,7 +65,7 @@ export interface ChangeEvent {
 		}
 	]
 } )
-export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValueAccessor {
+export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, ControlValueAccessor {
 	/**
 	 * The reference to the DOM element created by the component.
 	 */
@@ -235,6 +235,16 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 			}
 		} else {
 			console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
+		}
+	}
+
+	/**
+	 *Implementing the OnChanges interface.
+	 *Whenever 'data' property changes we need to update the contents of the editor.
+	*/
+	public ngOnChanges( changes: SimpleChanges ): void {
+		if ( Object.prototype.hasOwnProperty.call( changes, 'data' ) && changes.data && !changes.data.isFirstChange() ) {
+			this.writeValue( changes.data.currentValue );
 		}
 	}
 

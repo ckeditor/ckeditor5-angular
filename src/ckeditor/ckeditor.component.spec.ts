@@ -7,6 +7,7 @@ import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
 import * as CKSource from '../../ckeditor/build/cksource';
+import { SimpleChange } from '@angular/core';
 
 describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
@@ -189,6 +190,19 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+			} );
+
+			it( 'should update editor instance data when \'data\' input property changes', async () => {
+				const updatedText = '<p>Updated data</p>';
+
+				component.ngOnChanges( {
+					data: new SimpleChange( '', updatedText, false )
+				} );
+
+				fixture.detectChanges();
+				await waitCycle();
+
+				expect( component.editorInstance!.getData() ).toEqual( updatedText );
 			} );
 		} );
 
