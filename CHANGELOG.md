@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## [5.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.0.0...v5.1.0) (2023-02-09)
+
+### Features
+
+* Added an optional option called `disableTwoWayDataBinding` that allows disabling the two-way data binding. It increases performance when working with large documents. Closes [#141](https://github.com/ckeditor/ckeditor5-angular/issues/141). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/594c044fd49d37bd14b7519ae5eac363384fbf40))
+
+### Bug fixes
+
+* Aligned `window.CKEDITOR_VERSION` type with the community typings. Closes [#342](https://github.com/ckeditor/ckeditor5-angular/issues/342). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/44f3a63fe98b58cd06014fbc20b531669838353b))
+
+
 ## [5.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v4.0.0...v5.0.0) (2023-02-01)
 
 ### BREAKING CHANGES
