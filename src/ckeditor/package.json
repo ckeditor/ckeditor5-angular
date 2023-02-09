@@ -18,11 +18,14 @@
     "ckeditor5",
     "ckeditor 5"
   ],
+  "dependencies": {
+    "@ckeditor/ckeditor5-watchdog": ">=34.0.0",
+    "@types/ckeditor__ckeditor5-utils": "^28.0.14"
+  },
   "peerDependencies": {
     "@angular/core": ">=13.0.0",
     "@angular/common": ">=13.0.0",
     "@angular/forms": ">=13.0.0",
-    "@ckeditor/ckeditor5-watchdog": ">=34.0.0",
     "rxjs": ">=6.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
