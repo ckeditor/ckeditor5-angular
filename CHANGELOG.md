@@ -9,8 +9,11 @@ Changelog
 
 ### Bug fixes
 
-* Aligned `window.CKEDITOR_VERSION` type with the community typings. Closes [#342](https://github.com/ckeditor/ckeditor5-angular/issues/342). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/44f3a63fe98b58cd06014fbc20b531669838353b))
+* Aligned the `window.CKEDITOR_VERSION` type with the [community typings](https://www.npmjs.com/package/@types/ckeditor__ckeditor5-utils). Closes [#342](https://github.com/ckeditor/ckeditor5-angular/issues/342). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/44f3a63fe98b58cd06014fbc20b531669838353b))
 
+### Other changes
+
+* Marked the [`@ckeditor/ckeditor5-watchdog`](https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog) package as a dependency.
 
 ## [5.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v4.0.0...v5.0.0) (2023-02-01)
 
