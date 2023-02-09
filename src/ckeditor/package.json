@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "@ckeditor/ckeditor5-watchdog": ">=34.0.0",
-    "@types/ckeditor__ckeditor5-utils": "^28.0.14"
+    "@types/ckeditor__ckeditor5-utils": ">=28.0.14"
   },
   "peerDependencies": {
     "@angular/core": ">=13.0.0",
