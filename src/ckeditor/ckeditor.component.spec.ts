@@ -24,13 +24,13 @@ describe( 'CKEditorComponent', () => {
 		beforeEach( () => {
 			spyOn( console, 'warn' );
 
-			CKEDITOR_VERSION = window.CKEDITOR_VERSION;
+			CKEDITOR_VERSION = ( window as any ).CKEDITOR_VERSION;
 		} );
 
 		afterEach( () => {
 			fixture.destroy();
 
-			window.CKEDITOR_VERSION = CKEDITOR_VERSION;
+			( window as any ).CKEDITOR_VERSION = CKEDITOR_VERSION;
 		} );
 
 		it( 'should create', () => {
@@ -42,7 +42,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should print a warning if the "window.CKEDITOR_VERSION" variable is not available', () => {
-			delete window.CKEDITOR_VERSION;
+			delete ( window as any ).CKEDITOR_VERSION;
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
@@ -52,7 +52,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should print a warning if using CKEditor 5 in version lower than 34', () => {
-			window.CKEDITOR_VERSION = '30.0.0';
+			( window as any ).CKEDITOR_VERSION = '30.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
@@ -62,7 +62,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should not print any warning if using CKEditor 5 in version 34 or higher', () => {
-			window.CKEDITOR_VERSION = '34.0.0';
+			( window as any ).CKEDITOR_VERSION = '34.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
