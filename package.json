@@ -27,6 +27,7 @@
     "@angular/platform-browser": "^13.3.11",
     "@angular/platform-browser-dynamic": "^13.3.11",
     "@angular/router": "^13.3.11",
+    "@types/ckeditor__ckeditor5-utils": "^28.0.14",
     "core-js": "^3.21.1",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.3",

@@ -3,9 +3,11 @@
  * For licensing, see LICENSE.md.
  */
 
+import type { version } from 'ckeditor__ckeditor5-utils';
+
 declare global {
 	interface Window {
-		CKEDITOR_VERSION?: string;
+		CKEDITOR_VERSION: typeof version;
 	}
 }
 
