@@ -251,10 +251,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 		}
 	}
 
-	/**
-	 *Implementing the OnChanges interface.
-	 *Whenever 'data' property changes we need to update the contents of the editor.
-	*/
+	// Implementing the OnChanges interface. Whenever the `data` property is changed, update the editor content.
 	public ngOnChanges( changes: SimpleChanges ): void {
 		if ( Object.prototype.hasOwnProperty.call( changes, 'data' ) && changes.data && !changes.data.isFirstChange() ) {
 			this.writeValue( changes.data.currentValue );
