@@ -3,8 +3,7 @@
     "entryFile": "./index.ts"
   },
   "allowedNonPeerDependencies": [
-    "@ckeditor/ckeditor5-watchdog",
-    "@types/ckeditor__ckeditor5-utils"
+    "@ckeditor/ckeditor5-watchdog"
   ],
   "dest": "../../dist"
 }

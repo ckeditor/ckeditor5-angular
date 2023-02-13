@@ -3,14 +3,6 @@
  * For licensing, see LICENSE.md.
  */
 
-import type { version } from 'ckeditor__ckeditor5-utils';
-
-declare global {
-	interface Window {
-		CKEDITOR_VERSION: typeof version;
-	}
-}
-
 import type {
 	AfterViewInit, OnDestroy } from '@angular/core';
 import {
@@ -235,7 +227,8 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, ControlValue
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
 
-		const { CKEDITOR_VERSION } = window;
+		// To avoid issues with the community typings and CKEditor 5, let's treat window as any. See #342.
+		const { CKEDITOR_VERSION } = ( window as any );
 
 		// Starting from v34.0.0, CKEditor 5 introduces a lock mechanism enabling/disabling the read-only mode.
 		// As it is a breaking change between major releases of the integration, the component requires using
