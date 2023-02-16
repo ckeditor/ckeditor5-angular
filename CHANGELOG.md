@@ -1,6 +1,18 @@
 Changelog
 =========
 
+## [5.1.1](https://github.com/ckeditor/ckeditor5-angular/compare/v5.1.0...v5.1.1) (2023-02-16)
+
+### Bug fixes
+
+* Added support for `OnChanges` lifecycle hook that updates editor content when data-bound property of a component changes. Closes [#215](https://github.com/ckeditor/ckeditor5-angular/issues/215). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/fc50094b68d507c2909ed5b1e7dce6c651dbd1e8))
+
+### Other changes
+
+* Removed the `@types/ckeditor__ckeditor5-utils` dependency to avoid issues with CKEditor 5 typings when building an application using CKEditor 5 sources (TypeScript). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/24b3e08b10bc4c707d1a336fcd659e870d617681))
+* Replaced the minimal required version of the `@ckeditor/ckeditor5-watchdog` package with a caret range. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/24b3e08b10bc4c707d1a336fcd659e870d617681))
+
+
 ## [5.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.0.0...v5.1.0) (2023-02-09)
 
 ### Features
