@@ -426,7 +426,7 @@ describe( 'CKEditorComponent', () => {
 
 		describe( 'in case of the editor watchdog integration', () => {
 			it( 'should use the provided configuration', async () => {
-				component.watchdogConfig = { crashNumberLimit: 678 };
+				component.editorWatchdogConfig = { crashNumberLimit: 678 };
 
 				fixture.detectChanges();
 

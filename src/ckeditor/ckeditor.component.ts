@@ -100,7 +100,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	/**
 	 * Config for the EditorWatchdog.
 	 */
-	@Input() public watchdogConfig?: WatchdogConfig;
+	@Input() public editorWatchdogConfig?: WatchdogConfig;
 
 	/**
 	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
@@ -391,7 +391,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			} );
 		} else {
 			// In the other case create the watchdog by hand to keep the editor running.
-			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor, this.watchdogConfig );
+			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor, this.editorWatchdogConfig );
 
 			editorWatchdog.setCreator( creator );
 			editorWatchdog.setDestructor( destructor );
