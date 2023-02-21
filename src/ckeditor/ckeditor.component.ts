@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 
 import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
+import WatchdogConfig from '@ckeditor/ckeditor5-watchdog/src/watchdog';
 import { first } from 'rxjs/operators';
 
 import uid from './uid';
@@ -95,6 +96,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The context watchdog.
 	 */
 	@Input() public watchdog?: CKEditor5.ContextWatchdog;
+
+	/**
+	 * Config for the EditorWatchdog.
+	 */
+	@Input() public watchdogConfig?: WatchdogConfig;
 
 	/**
 	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
@@ -385,7 +391,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			} );
 		} else {
 			// In the other case create the watchdog by hand to keep the editor running.
-			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor );
+			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor, this.watchdogConfig );
 
 			editorWatchdog.setCreator( creator );
 			editorWatchdog.setDestructor( destructor );

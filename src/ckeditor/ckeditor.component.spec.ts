@@ -425,6 +425,15 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		describe( 'in case of the editor watchdog integration', () => {
+			it( 'should use the provided configuration', async () => {
+				component.watchdogConfig = { crashNumberLimit: 678 };
+
+				fixture.detectChanges();
+
+				expect( ( component as any ).editorWatchdog ).not.toBeUndefined();
+				expect( ( component as any ).editorWatchdog._crashNumberLimit ).toEqual( 678 );
+			} );
+
 			it( 'should restart the editor when the editor crashes', async () => {
 				window.onerror = null;
 
