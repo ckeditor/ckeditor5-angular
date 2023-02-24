@@ -6,3 +6,10 @@ declare module '@ckeditor/ckeditor5-watchdog/src/editorwatchdog' {
 
 	export default EditorWatchdog;
 }
+
+declare module '@ckeditor/ckeditor5-watchdog/src/watchdog' {
+	const WatchdogConfig: any;
+	type WatchdogConfig = any;
+
+	export default WatchdogConfig;
+}
