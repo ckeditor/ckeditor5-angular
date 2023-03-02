@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [5.2.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.1.1...v5.2.0) (2023-03-02)
+
+### Features
+
+* Added the `editorWatchdogConfig` property that allows defining configuration for the [Watchdog](https://ckeditor.com/docs/ckeditor5/latest/features/watchdog.html) feature. Closes [#351](https://github.com/ckeditor/ckeditor5-angular/issues/351). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/3b9ef5b98d36e9408d04d3ec1d0f6997f7d31a7c))
+
+
 ## [5.1.1](https://github.com/ckeditor/ckeditor5-angular/compare/v5.1.0...v5.1.1) (2023-02-16)
 
 ### Bug fixes
