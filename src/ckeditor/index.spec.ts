@@ -5,11 +5,9 @@
 
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
-import * as CKSource from '../../ckeditor/build/cksource';
+import type { Editor } from '@ckeditor/ckeditor5-core';
+import { AngularEditor } from '../../ckeditor/build/ckeditor';
 
-import type {
-	CKEditor5
-} from './index';
 import {
 	CKEditorComponent,
 	CKEditorModule
@@ -27,14 +25,14 @@ describe( 'index.ts - the entry file', () => {
 
 		fixture = TestBed.createComponent( CKEditorComponent );
 		component = fixture.componentInstance;
-		component.editor = CKSource.ClassicEditor;
+		component.editor = AngularEditor;
 	} );
 
 	it( 'should expose the CKEditorComponent', () => {
 		fixture.detectChanges();
 
 		return wait().then( () => {
-			const componentInstance: CKEditor5.Editor = component.editorInstance!;
+			const componentInstance: Editor = component.editorInstance!;
 
 			expect( componentInstance ).toBeTruthy();
 		} );

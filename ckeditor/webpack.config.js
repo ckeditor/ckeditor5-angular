@@ -17,16 +17,15 @@ module.exports = {
 	devtool: 'source-map',
 	performance: { hints: false },
 
-	entry: path.resolve( __dirname, 'src', 'ckeditor.js' ),
+	entry: path.resolve( __dirname, 'src', 'ckeditor.ts' ),
 
 	output: {
 		// The name under which the editor will be exported.
 		library: 'CKSource',
 
 		path: path.resolve( __dirname, 'build' ),
-		filename: 'cksource.js',
-		libraryTarget: 'umd',
-		libraryExport: 'default'
+		filename: 'ckeditor.js',
+		libraryTarget: 'umd'
 	},
 
 	optimization: {
@@ -88,9 +87,22 @@ module.exports = {
 								minify: true
 							} )
 						}
-					},
+					}
 				]
+			},
+			{
+				test: /\.ts$/,
+				use: [ {
+					loader: 'ts-loader',
+					options: {
+						logLevel: "info"
+					}
+				} ]
 			}
 		]
+	},
+
+	resolve: {
+		extensions: [ '.ts', '.js', '.json' ]
 	}
 };

@@ -7,9 +7,8 @@ import {
 
 import type { AbstractControl } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
-import * as CKSource from '../../../ckeditor/build/cksource';
 
-const ClassicEditor = CKSource.ClassicEditor;
+import { AngularEditor } from '../../../ckeditor/build/ckeditor';
 
 @Component( {
 	selector: 'app-demo-reactive-form',
@@ -17,7 +16,7 @@ const ClassicEditor = CKSource.ClassicEditor;
 	styleUrls: [ './demo-reactive-form.component.css' ]
 } )
 export class DemoReactiveFormComponent implements AfterViewInit {
-	public Editor = ClassicEditor;
+	public Editor = AngularEditor;
 
 	public demoReactiveForm = new FormGroup( {
 		name: new FormControl( 'John' ),
@@ -28,7 +27,7 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 	public formDataPreview?: string;
 	public shouldDisableTwoWayDataBinding = false;
 
-	public editorInstance: typeof ClassicEditor;
+	public editorInstance?: AngularEditor;
 
 	public toggleDisableTwoWayDataBinding(): void {
 		this.shouldDisableTwoWayDataBinding = !this.shouldDisableTwoWayDataBinding;
@@ -41,14 +40,14 @@ export class DemoReactiveFormComponent implements AfterViewInit {
 			} );
 	}
 
-	public onReady( editor: typeof ClassicEditor ): void {
+	public onReady( editor: AngularEditor ): void {
 		this.editorInstance = editor;
 	}
 
 	public onSubmit(): void {
 		// Read editor's data only when two-way data binding is disabled
 		if ( this.shouldDisableTwoWayDataBinding ) {
-			this.demoReactiveForm.value.description = this.editorInstance.getData();
+			this.demoReactiveForm.value.description = this.editorInstance!.getData();
 		}
 
 		console.log( 'Form submit, model', this.demoReactiveForm.value );

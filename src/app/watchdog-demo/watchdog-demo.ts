@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
-import * as CKSource from '../../../ckeditor/build/cksource';
+import { AngularEditor, Context, ContextWatchdog } from '../../../ckeditor/build/ckeditor';
 
 @Component( {
 	selector: 'watchdog-demo',
@@ -8,10 +8,10 @@ import * as CKSource from '../../../ckeditor/build/cksource';
 	styleUrls: [ './watchdog-demo.css' ]
 } )
 export class WatchdogDemoComponent {
-	public Editor = CKSource.ClassicEditor;
+	public Editor = AngularEditor;
+
 	@ViewChild( CKEditorComponent ) public ckeditor?: ElementRef<CKEditorComponent>;
 
-	public context: any;
 	public config: any;
 	public watchdog: any;
 	public ready = false;
@@ -19,7 +19,7 @@ export class WatchdogDemoComponent {
 	public isDisabled = false;
 
 	// eslint-disable-next-line  @typescript-eslint/explicit-module-boundary-types
-	public onReady( editor: any ): void {
+	public onReady( editor: AngularEditor ): void {
 		console.log( editor );
 	}
 
@@ -34,7 +34,7 @@ export class WatchdogDemoComponent {
 			}
 		};
 
-		this.watchdog = new CKSource.ContextWatchdog( CKSource.Context );
+		this.watchdog = new ContextWatchdog( Context );
 
 		this.watchdog.create( contextConfig )
 			.then( () => {

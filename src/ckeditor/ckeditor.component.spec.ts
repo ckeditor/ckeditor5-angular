@@ -6,7 +6,7 @@
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
-import * as CKSource from '../../ckeditor/build/cksource';
+import { AngularEditor, Context, ContextWatchdog } from '../../ckeditor/build/ckeditor';
 import { SimpleChange } from '@angular/core';
 
 describe( 'CKEditorComponent', () => {
@@ -37,7 +37,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'should create', () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( component ).toBeTruthy();
 		} );
@@ -47,7 +47,7 @@ describe( 'CKEditorComponent', () => {
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( console.warn ).toHaveBeenCalledWith( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
 		} );
@@ -57,7 +57,7 @@ describe( 'CKEditorComponent', () => {
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( console.warn ).toHaveBeenCalledWith( 'The <CKEditor> component requires using CKEditor 5 in version 34 or higher.' );
 		} );
@@ -67,7 +67,7 @@ describe( 'CKEditorComponent', () => {
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( console.warn ).not.toHaveBeenCalled();
 		} );
@@ -77,7 +77,7 @@ describe( 'CKEditorComponent', () => {
 		beforeEach( async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 		} );
 
 		afterEach( () => {
@@ -341,7 +341,8 @@ describe( 'CKEditorComponent', () => {
 
 		describe( 'in case of the context watchdog integration', () => {
 			it( 'should create an editor internally', async () => {
-				const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+				// const contextWatchdog = new ContextWatchdog( AngularEditor.Context );
+				const contextWatchdog = new ContextWatchdog( Context );
 				const spy = jasmine.createSpy();
 
 				await contextWatchdog.create();
@@ -363,11 +364,11 @@ describe( 'CKEditorComponent', () => {
 				const fixture2 = TestBed.createComponent( CKEditorComponent );
 				const component2 = fixture2.componentInstance;
 
-				component2.editor = CKSource.ClassicEditor;
+				component2.editor = AngularEditor;
 
 				window.onerror = null;
 
-				const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+				const contextWatchdog = new ContextWatchdog( Context );
 
 				await contextWatchdog.create();
 
@@ -409,7 +410,7 @@ describe( 'CKEditorComponent', () => {
 			} );
 
 			it( 'should update the editor once the editor is ready', async () => {
-				const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+				const contextWatchdog = new ContextWatchdog( Context );
 
 				await contextWatchdog.create();
 

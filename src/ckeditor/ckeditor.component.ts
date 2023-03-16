@@ -15,8 +15,12 @@ import {
 	ElementRef
 } from '@angular/core';
 
-import EditorWatchdog from '@ckeditor/ckeditor5-watchdog/src/editorwatchdog';
-import WatchdogConfig from '@ckeditor/ckeditor5-watchdog/src/watchdog';
+import { ContextWatchdog, EditorWatchdog } from '@ckeditor/ckeditor5-watchdog';
+import { WatchdogConfig } from '@ckeditor/ckeditor5-watchdog/src/watchdog';
+import { type Editor, EditorConfig, type DataApi } from '@ckeditor/ckeditor5-core';
+import type { GetEventInfo } from '@ckeditor/ckeditor5-utils';
+import type { DocumentChangeEvent } from '@ckeditor/ckeditor5-engine';
+import type { ViewDocumentBlurEvent, ViewDocumentFocusEvent } from '@ckeditor/ckeditor5-engine/src/view/observer/focusobserver';
 import { first } from 'rxjs/operators';
 
 import uid from './uid';
@@ -27,23 +31,21 @@ import {
 	NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
-import { CKEditor5 } from './ckeditor';
-
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
 export interface BlurEvent {
-	event: CKEditor5.EventInfo<'blur'>;
-	editor: CKEditor5.Editor;
+	event: GetEventInfo<ViewDocumentBlurEvent>;
+	editor: Editor;
 }
 
 export interface FocusEvent {
-	event: CKEditor5.EventInfo<'focus'>;
-	editor: CKEditor5.Editor;
+	event: GetEventInfo<ViewDocumentFocusEvent>;
+	editor: Editor;
 }
 
 export interface ChangeEvent {
-	event: CKEditor5.EventInfo<'change:data'>;
-	editor: CKEditor5.Editor;
+	event: GetEventInfo<DocumentChangeEvent>;
+	editor: Editor;
 }
 
 @Component( {
@@ -70,14 +72,14 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: CKEditor5.EditorConstructor;
+	@Input() public editor?: { create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<Editor & DataApi> };
 
 	/**
 	 * The configuration of the editor.
 	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() public config: CKEditor5.Config = {};
+	@Input() public config: EditorConfig = {};
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
@@ -92,10 +94,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 */
 	@Input() public tagName = 'div';
 
+	// TODO Change to ContextWatchdog<Editor, HTMLElement> after new ckeditor5 alpha release
 	/**
 	 * The context watchdog.
 	 */
-	@Input() public watchdog?: CKEditor5.ContextWatchdog;
+	@Input() public watchdog?: ContextWatchdog;
 
 	/**
 	 * Config for the EditorWatchdog.
@@ -135,45 +138,46 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() public ready = new EventEmitter<CKEditor5.Editor>();
+	@Output() public ready = new EventEmitter<Editor & DataApi>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() public change: EventEmitter<ChangeEvent> = new EventEmitter<ChangeEvent>();
+	@Output() public change = new EventEmitter<ChangeEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() public blur: EventEmitter<BlurEvent> = new EventEmitter<BlurEvent>();
+	@Output() public blur = new EventEmitter<BlurEvent>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() public focus: EventEmitter<FocusEvent> = new EventEmitter<FocusEvent>();
+	@Output() public focus = new EventEmitter<FocusEvent>();
 
 	/**
 	 * Fires when the editor component crashes.
 	 */
-	@Output() public error: EventEmitter<void> = new EventEmitter<void>();
+	@Output() public error = new EventEmitter<void>();
 
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public get editorInstance(): CKEditor5.Editor | null {
+	public get editorInstance(): Editor & DataApi | null {
 		let editorWatchdog = this.editorWatchdog;
 
 		if ( this.watchdog ) {
 			// Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
 			// an error when the item is not registered yet.
 			// See https://github.com/ckeditor/ckeditor5-angular/issues/177.
-			editorWatchdog = this.watchdog._watchdogs.get( this.id );
+			// TODO should be able to change when new chages in Watcdog are released.
+			editorWatchdog = ( this.watchdog as any )._watchdogs.get( this.id );
 		}
 
 		if ( editorWatchdog ) {
@@ -187,7 +191,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The editor watchdog. It is created when the context watchdog is not passed to the component.
 	 * It keeps the editor running.
 	 */
-	private editorWatchdog?: CKEditor5.EditorWatchdog;
+	private editorWatchdog?: EditorWatchdog<Editor & DataApi>;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -298,7 +302,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			// and change data only for the first `ready` event.
 			this.ready
 				.pipe( first() )
-				.subscribe( ( editor: CKEditor5.Editor ) => {
+				.subscribe( editor => {
 					editor.setData( this.data );
 				} );
 		}
@@ -335,11 +339,12 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
-		const creator = async ( element: HTMLElement, config: CKEditor5.Config ) => {
+		// TODO: elementOrData parameter type can be simplified to HTMLElemen after templated Watchdog will be released.
+		const creator = ( ( elementOrData: HTMLElement | string | Record<string, string>, config: EditorConfig ) => {
 			return this.ngZone.runOutsideAngular( async () => {
-				this.elementRef.nativeElement.appendChild( element );
+				this.elementRef.nativeElement.appendChild( elementOrData as HTMLElement );
 
-				const editor = await this.editor!.create( element, config );
+				const editor = await this.editor!.create( elementOrData as HTMLElement, config );
 
 				if ( this.initiallyDisabled ) {
 					editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
@@ -353,9 +358,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 
 				return editor;
 			} );
-		};
+		} );
 
-		const destructor = async ( editor: CKEditor5.Editor ) => {
+		const destructor = async ( editor: Editor ) => {
 			await editor.destroy();
 
 			this.elementRef.nativeElement.removeChild( this.editorElement! );
@@ -391,7 +396,9 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			} );
 		} else {
 			// In the other case create the watchdog by hand to keep the editor running.
-			const editorWatchdog: CKEditor5.EditorWatchdog = new EditorWatchdog( this.editor, this.editorWatchdogConfig );
+			const editorWatchdog = new EditorWatchdog(
+				this.editor!,
+				this.editorWatchdogConfig );
 
 			editorWatchdog.setCreator( creator );
 			editorWatchdog.setDestructor( destructor );
@@ -424,11 +431,11 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	/**
 	 * Integrates the editor with the component by attaching related event listeners.
 	 */
-	private setUpEditorEvents( editor: CKEditor5.Editor ): void {
+	private setUpEditorEvents( editor: Editor & DataApi ): void {
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on( 'change:data', ( evt: CKEditor5.EventInfo<'change:data'> ) => {
+		modelDocument.on<DocumentChangeEvent>( 'change:data', evt => {
 			this.ngZone.run( () => {
 				if ( this.disableTwoWayDataBinding ) {
 					return;
@@ -444,13 +451,13 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			} );
 		} );
 
-		viewDocument.on( 'focus', ( evt: CKEditor5.EventInfo<'focus'> ) => {
+		viewDocument.on<ViewDocumentFocusEvent>( 'focus', evt => {
 			this.ngZone.run( () => {
 				this.focus.emit( { event: evt, editor } );
 			} );
 		} );
 
-		viewDocument.on( 'blur', ( evt: CKEditor5.EventInfo<'blur'> ) => {
+		viewDocument.on<ViewDocumentBlurEvent>( 'blur', evt => {
 			this.ngZone.run( () => {
 				if ( this.cvaOnTouched ) {
 					this.cvaOnTouched();

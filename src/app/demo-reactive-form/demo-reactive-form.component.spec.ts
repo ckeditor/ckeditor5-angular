@@ -69,7 +69,7 @@ describe( 'DemoReactiveFormComponent', () => {
 			const editorDataPreview: HTMLTextAreaElement = fixture.debugElement.query( By.css( 'textarea' ) ).nativeElement;
 
 			toggleButton.click();
-			component.editorInstance.setData( '<p>Foo bar baz.</p>' );
+			component.editorInstance!.setData( '<p>Foo bar baz.</p>' );
 			submitButton.click();
 
 			expect( editorDataPreview.value ).toEqual( '<p>A <b>really</b> nice fellow.</p>' );
