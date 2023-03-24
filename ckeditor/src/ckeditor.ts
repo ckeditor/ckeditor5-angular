@@ -24,10 +24,7 @@ import { PasteFromOffice } from '@ckeditor/ckeditor5-paste-from-office';
 import { Table, TableToolbar } from '@ckeditor/ckeditor5-table';
 import { CloudServices } from '@ckeditor/ckeditor5-cloud-services';
 
-import { Context } from '@ckeditor/ckeditor5-core';
-import { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
-
-class AngularEditor extends ClassicEditor {
+export default class AngularEditor extends ClassicEditor {
 	// Plugins to include in the build.
 	public static override builtinPlugins = [
 		Autoformat,
@@ -96,12 +93,4 @@ class AngularEditor extends ClassicEditor {
 		// This value must be kept in sync with the language defined in webpack.config.js.
 		language: 'en'
 	};
-
-	// public static Context = Context;
-}
-
-export {
-	AngularEditor,
-	Context,
-	ContextWatchdog
 }

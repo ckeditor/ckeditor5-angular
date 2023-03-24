@@ -8,7 +8,7 @@ import {
 
 import type { AbstractControl } from '@angular/forms';
 import { NgForm } from '@angular/forms';
-import { AngularEditor } from '../../../ckeditor/build/ckeditor';
+import AngularEditor from '../../../ckeditor/build/ckeditor';
 
 @Component( {
 	selector: 'app-demo-form',

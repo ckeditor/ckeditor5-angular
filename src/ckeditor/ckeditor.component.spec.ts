@@ -6,7 +6,7 @@
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
-import { AngularEditor, Context, ContextWatchdog } from '../../ckeditor/build/ckeditor';
+import AngularEditor from '../../ckeditor/build/ckeditor';
 import { SimpleChange } from '@angular/core';
 
 describe( 'CKEditorComponent', () => {
@@ -341,8 +341,7 @@ describe( 'CKEditorComponent', () => {
 
 		describe( 'in case of the context watchdog integration', () => {
 			it( 'should create an editor internally', async () => {
-				// const contextWatchdog = new ContextWatchdog( AngularEditor.Context );
-				const contextWatchdog = new ContextWatchdog( Context );
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 				const spy = jasmine.createSpy();
 
 				await contextWatchdog.create();
@@ -368,7 +367,7 @@ describe( 'CKEditorComponent', () => {
 
 				window.onerror = null;
 
-				const contextWatchdog = new ContextWatchdog( Context );
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 
 				await contextWatchdog.create();
 
@@ -410,7 +409,7 @@ describe( 'CKEditorComponent', () => {
 			} );
 
 			it( 'should update the editor once the editor is ready', async () => {
-				const contextWatchdog = new ContextWatchdog( Context );
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 
 				await contextWatchdog.create();
 

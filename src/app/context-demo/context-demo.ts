@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
-import { AngularEditor, Context } from '../../../ckeditor/build/ckeditor';
+import AngularEditor from '../../../ckeditor/build/ckeditor';
 
 @Component( {
 	selector: 'context-demo',
@@ -28,7 +28,7 @@ export class ContextDemoComponent {
 			}
 		};
 
-		Context.create( this.contextConfig )
+		AngularEditor.Context.create( this.contextConfig )
 			.then( () => {
 				this.config = {
 					context: this.context,
