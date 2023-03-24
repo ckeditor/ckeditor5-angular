@@ -19,12 +19,12 @@
     "ckeditor 5"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-watchdog": "^37.0.0-alpha.1"
+    "@ckeditor/ckeditor5-watchdog": "^37.0.0-alpha.3"
   },
   "devDependencies": {
-    "@ckeditor/ckeditor5-core": "^37.0.0-alpha.1",
-    "@ckeditor/ckeditor5-engine": "^37.0.0-alpha.1",
-    "@ckeditor/ckeditor5-utils": "^37.0.0-alpha.1"
+    "@ckeditor/ckeditor5-core": "^37.0.0-alpha.3",
+    "@ckeditor/ckeditor5-engine": "^37.0.0-alpha.3",
+    "@ckeditor/ckeditor5-utils": "^37.0.0-alpha.3"
   },
   "peerDependencies": {
     "@angular/core": ">=13.0.0",

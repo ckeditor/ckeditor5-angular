@@ -16,9 +16,7 @@
     "build-package": "node ./scripts/build-package.js",
     "release": "node ./scripts/release.js",
     "postversion": "npm run build-package",
-    "abc": "cd ckeditor && tsc --init",
-    "build-ckeditor": "cd ckeditor && webpack --mode production && tsc --emitDeclarationOnly",
-    "generate-typings": "cd ckeditor && tsc -p ./tsconfig.types.json"
+    "build-ckeditor": "cd ckeditor && webpack --mode production && tsc --emitDeclarationOnly"
   },
   "dependencies": {
     "@angular/animations": "^13.3.11",
