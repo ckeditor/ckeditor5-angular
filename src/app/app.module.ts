@@ -17,8 +17,8 @@ const appRoutes: Routes = [
 	{ path: 'context', component: ContextDemoComponent },
 	{ path: 'forms', component: DemoFormComponent },
 	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
-	{ path: 'simple-usage', component: SimpleUsageComponent },
-	{ path: 'watchdog', component: WatchdogDemoComponent }
+	{ path: 'watchdog', component: WatchdogDemoComponent },
+	{ path: 'simple-usage', component: SimpleUsageComponent }
 ];
 
 @NgModule( {

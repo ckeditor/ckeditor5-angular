@@ -6,7 +6,7 @@
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
-import * as CKSource from '../../ckeditor/build/cksource';
+import AngularEditor from '../../ckeditor/build/ckeditor';
 import { SimpleChange } from '@angular/core';
 
 describe( 'CKEditorComponent', () => {
@@ -37,7 +37,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'should create', () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( component ).toBeTruthy();
 		} );
@@ -47,27 +47,27 @@ describe( 'CKEditorComponent', () => {
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( console.warn ).toHaveBeenCalledWith( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
 		} );
 
-		it( 'should print a warning if using CKEditor 5 in version lower than 34', () => {
+		it( 'should print a warning if using CKEditor 5 in version lower than 37', () => {
 			( window as any ).CKEDITOR_VERSION = '30.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
-			expect( console.warn ).toHaveBeenCalledWith( 'The <CKEditor> component requires using CKEditor 5 in version 34 or higher.' );
+			expect( console.warn ).toHaveBeenCalledWith( 'The <CKEditor> component requires using CKEditor 5 in version 37 or higher.' );
 		} );
 
-		it( 'should not print any warning if using CKEditor 5 in version 34 or higher', () => {
-			( window as any ).CKEDITOR_VERSION = '34.0.0';
+		it( 'should not print any warning if using CKEditor 5 in version 37 or higher', () => {
+			( window as any ).CKEDITOR_VERSION = '37.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 
 			expect( console.warn ).not.toHaveBeenCalled();
 		} );
@@ -77,7 +77,7 @@ describe( 'CKEditorComponent', () => {
 		beforeEach( async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = CKSource.ClassicEditor;
+			component.editor = AngularEditor;
 		} );
 
 		afterEach( () => {
@@ -133,7 +133,7 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.data ).toEqual( '' );
-				expect( component.editorInstance!.getData() ).toEqual( '' );
+				expect( component.editorInstance!.data.get() ).toEqual( '' );
 			} );
 
 			it( 'should be configurable at the start of the component using the `data` property', async () => {
@@ -144,7 +144,7 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.data ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
 			it( 'should be configurable at the start of the component using the `config.initialData` property', async () => {
@@ -155,7 +155,7 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.config.initialData ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
 			it( 'should not be provided using both `config.initialData` or `data` properties', async () => {
@@ -173,11 +173,11 @@ describe( 'CKEditorComponent', () => {
 
 				await waitCycle();
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 
 				component.writeValue( '<p>bar</p>' );
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>bar</p>' );
 			} );
 
 			it( 'should be set during the initialization step if the editor was not initialized yet', async () => {
@@ -189,7 +189,7 @@ describe( 'CKEditorComponent', () => {
 
 				await waitCycle();
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
 			it( 'should update editor instance data when \'data\' input property changes', async () => {
@@ -202,7 +202,7 @@ describe( 'CKEditorComponent', () => {
 				fixture.detectChanges();
 				await waitCycle();
 
-				expect( component.editorInstance!.getData() ).toEqual( updatedText );
+				expect( component.editorInstance!.data.get() ).toEqual( updatedText );
 			} );
 		} );
 
@@ -238,13 +238,12 @@ describe( 'CKEditorComponent', () => {
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
-					spyOn( component.editorInstance!, 'getData' ).and.callThrough();
+					spyOn( component.editorInstance!.data, 'get' ).and.callThrough();
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
-					expect( component.editorInstance!.getData ).toHaveBeenCalledTimes( 0 );
 					expect( spy ).toHaveBeenCalledTimes( 3 );
 				} );
 			} );
@@ -257,7 +256,7 @@ describe( 'CKEditorComponent', () => {
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
-					spyOn( component.editorInstance!, 'getData' ).and.callThrough();
+					spyOn( component.editorInstance!.data, 'get' ).and.callThrough();
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
@@ -341,7 +340,7 @@ describe( 'CKEditorComponent', () => {
 
 		describe( 'in case of the context watchdog integration', () => {
 			it( 'should create an editor internally', async () => {
-				const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 				const spy = jasmine.createSpy();
 
 				await contextWatchdog.create();
@@ -363,11 +362,11 @@ describe( 'CKEditorComponent', () => {
 				const fixture2 = TestBed.createComponent( CKEditorComponent );
 				const component2 = fixture2.componentInstance;
 
-				component2.editor = CKSource.ClassicEditor;
+				component2.editor = AngularEditor;
 
 				window.onerror = null;
 
-				const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 
 				await contextWatchdog.create();
 
@@ -409,7 +408,7 @@ describe( 'CKEditorComponent', () => {
 			} );
 
 			it( 'should update the editor once the editor is ready', async () => {
-				const contextWatchdog = new CKSource.ContextWatchdog( CKSource.Context );
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 
 				await contextWatchdog.create();
 

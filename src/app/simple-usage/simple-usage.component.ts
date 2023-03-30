@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import * as CKSource from '../../../ckeditor/build/cksource';
-
-const ClassicEditor = CKSource.ClassicEditor;
+import AngularEditor from '../../../ckeditor/build/ckeditor';
 
 @Component( {
 	selector: 'app-simple-usage',
@@ -9,7 +7,7 @@ const ClassicEditor = CKSource.ClassicEditor;
 	styleUrls: [ './simple-usage.component.css' ]
 } )
 export class SimpleUsageComponent {
-	public Editor = ClassicEditor;
+	public Editor = AngularEditor;
 
 	public isDisabled = false;
 	public editorData =

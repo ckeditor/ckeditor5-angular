@@ -1,8 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
-import * as CKSource from '../../../ckeditor/build/cksource';
-
-const Context = CKSource.Context;
+import AngularEditor from '../../../ckeditor/build/ckeditor';
 
 @Component( {
 	selector: 'context-demo',
@@ -10,7 +8,7 @@ const Context = CKSource.Context;
 	styleUrls: [ './context-demo.css' ]
 } )
 export class ContextDemoComponent {
-	public Editor = CKSource.ClassicEditor;
+	public Editor = AngularEditor;
 	@ViewChild( CKEditorComponent, { static: true } ) public ckeditor?: ElementRef<CKEditorComponent>;
 
 	public contextConfig: any;
@@ -18,8 +16,7 @@ export class ContextDemoComponent {
 	public config: any;
 	public ready = false;
 
-	// eslint-disable-next-line  @typescript-eslint/explicit-module-boundary-types
-	public onReady( editor: any ): void {
+	public onReady( editor: AngularEditor ): void {
 		console.log( editor );
 	}
 
@@ -31,7 +28,7 @@ export class ContextDemoComponent {
 			}
 		};
 
-		Context.create( this.contextConfig )
+		AngularEditor.Context.create( this.contextConfig )
 			.then( () => {
 				this.config = {
 					context: this.context,
