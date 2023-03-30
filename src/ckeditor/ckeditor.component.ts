@@ -17,7 +17,7 @@ import {
 
 import { ContextWatchdog, EditorWatchdog } from '@ckeditor/ckeditor5-watchdog';
 import { WatchdogConfig } from '@ckeditor/ckeditor5-watchdog/src/watchdog';
-import { type Editor, EditorConfig, type DataApi } from '@ckeditor/ckeditor5-core';
+import { type Editor, EditorConfig } from '@ckeditor/ckeditor5-core';
 import type { GetEventInfo } from '@ckeditor/ckeditor5-utils';
 import type { DocumentChangeEvent } from '@ckeditor/ckeditor5-engine';
 import type { ViewDocumentBlurEvent, ViewDocumentFocusEvent } from '@ckeditor/ckeditor5-engine/src/view/observer/focusobserver';
@@ -72,7 +72,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: { create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<Editor & DataApi> };
+	@Input() public editor?: { create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<Editor> };
 
 	/**
 	 * The configuration of the editor.
@@ -111,7 +111,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * When a component is connected using the [(ngModel)] or [formControl] directives and this value is set to true then none of the data
 	 * will ever be synchronized.
 	 *
-	 * An integrator must call `editor.getData()` manually once the application needs the editor's data.
+	 * An integrator must call `editor.data.get()` manually once the application needs the editor's data.
 	 * An editor instance can be received in the `ready()` callback.
 	 */
 	@Input() public disableTwoWayDataBinding = false;
@@ -138,7 +138,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() public ready = new EventEmitter<Editor & DataApi>();
+	@Output() public ready = new EventEmitter<Editor>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
@@ -169,7 +169,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public get editorInstance(): Editor & DataApi | null {
+	public get editorInstance(): Editor | null {
 		let editorWatchdog = this.editorWatchdog;
 
 		if ( this.watchdog ) {
@@ -191,7 +191,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The editor watchdog. It is created when the context watchdog is not passed to the component.
 	 * It keeps the editor running.
 	 */
-	private editorWatchdog?: EditorWatchdog<Editor & DataApi>;
+	private editorWatchdog?: EditorWatchdog<Editor>;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -290,7 +290,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			// The lock mechanism prevents from calling `cvaOnChange()` during changing
 			// the editor state. See #139
 			this.isEditorSettingData = true;
-			this.editorInstance.setData( value );
+			this.editorInstance.data.set( value );
 			this.isEditorSettingData = false;
 		}
 		// If not, wait for it to be ready; store the data.
@@ -303,7 +303,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 			this.ready
 				.pipe( first() )
 				.subscribe( editor => {
-					editor.setData( this.data );
+					editor.data.set( this.data );
 				} );
 		}
 	}
@@ -335,7 +335,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 
 	/**
 	 * Creates the editor instance, sets initial editor data, then integrates
-	 * the editor with the Angular component. This method does not use the `editor.setData()`
+	 * the editor with the Angular component. This method does not use the `editor.data.set()`
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
@@ -431,7 +431,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	/**
 	 * Integrates the editor with the component by attaching related event listeners.
 	 */
-	private setUpEditorEvents( editor: Editor & DataApi ): void {
+	private setUpEditorEvents( editor: Editor ): void {
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
@@ -442,7 +442,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 				}
 
 				if ( this.cvaOnChange && !this.isEditorSettingData ) {
-					const data = editor.getData();
+					const data = editor.data.get();
 
 					this.cvaOnChange( data );
 				}

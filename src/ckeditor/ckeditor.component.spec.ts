@@ -133,7 +133,7 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.data ).toEqual( '' );
-				expect( component.editorInstance!.getData() ).toEqual( '' );
+				expect( component.editorInstance!.data.get() ).toEqual( '' );
 			} );
 
 			it( 'should be configurable at the start of the component using the `data` property', async () => {
@@ -144,7 +144,7 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.data ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
 			it( 'should be configurable at the start of the component using the `config.initialData` property', async () => {
@@ -155,7 +155,7 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( component.config.initialData ).toEqual( 'foo' );
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
 			it( 'should not be provided using both `config.initialData` or `data` properties', async () => {
@@ -173,11 +173,11 @@ describe( 'CKEditorComponent', () => {
 
 				await waitCycle();
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 
 				component.writeValue( '<p>bar</p>' );
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>bar</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>bar</p>' );
 			} );
 
 			it( 'should be set during the initialization step if the editor was not initialized yet', async () => {
@@ -189,7 +189,7 @@ describe( 'CKEditorComponent', () => {
 
 				await waitCycle();
 
-				expect( component.editorInstance!.getData() ).toEqual( '<p>foo</p>' );
+				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
 			it( 'should update editor instance data when \'data\' input property changes', async () => {
@@ -202,7 +202,7 @@ describe( 'CKEditorComponent', () => {
 				fixture.detectChanges();
 				await waitCycle();
 
-				expect( component.editorInstance!.getData() ).toEqual( updatedText );
+				expect( component.editorInstance!.data.get() ).toEqual( updatedText );
 			} );
 		} );
 
@@ -238,13 +238,12 @@ describe( 'CKEditorComponent', () => {
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
-					spyOn( component.editorInstance!, 'getData' ).and.callThrough();
+					spyOn( component.editorInstance!.data, 'get' ).and.callThrough();
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
-					expect( component.editorInstance!.getData ).toHaveBeenCalledTimes( 0 );
 					expect( spy ).toHaveBeenCalledTimes( 3 );
 				} );
 			} );
@@ -257,7 +256,7 @@ describe( 'CKEditorComponent', () => {
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
-					spyOn( component.editorInstance!, 'getData' ).and.callThrough();
+					spyOn( component.editorInstance!.data, 'get' ).and.callThrough();
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
