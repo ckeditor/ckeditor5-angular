@@ -52,18 +52,18 @@ describe( 'CKEditorComponent', () => {
 			expect( console.warn ).toHaveBeenCalledWith( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
 		} );
 
-		it( 'should print a warning if using CKEditor 5 in version lower than 34', () => {
+		it( 'should print a warning if using CKEditor 5 in version lower than 37', () => {
 			( window as any ).CKEDITOR_VERSION = '30.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
 			component.editor = AngularEditor;
 
-			expect( console.warn ).toHaveBeenCalledWith( 'The <CKEditor> component requires using CKEditor 5 in version 34 or higher.' );
+			expect( console.warn ).toHaveBeenCalledWith( 'The <CKEditor> component requires using CKEditor 5 in version 37 or higher.' );
 		} );
 
-		it( 'should not print any warning if using CKEditor 5 in version 34 or higher', () => {
-			( window as any ).CKEDITOR_VERSION = '34.0.0';
+		it( 'should not print any warning if using CKEditor 5 in version 37 or higher', () => {
+			( window as any ).CKEDITOR_VERSION = '37.0.0';
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
