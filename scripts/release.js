@@ -10,21 +10,30 @@
 'use strict';
 
 const path = require( 'path' );
+const minimist = require( 'minimist' );
 const { tools, logger } = require( '@ckeditor/ckeditor5-dev-utils' );
-const versionUtils = require( '@ckeditor/ckeditor5-dev-env/lib/release-tools/utils/versions' );
-const cli = require( '@ckeditor/ckeditor5-dev-env/lib/release-tools/utils/cli' );
-const createGithubRelease = require( '@ckeditor/ckeditor5-dev-env/lib/release-tools/utils/creategithubrelease' );
-const validatePackageToRelease = require( '@ckeditor/ckeditor5-dev-env/lib/release-tools/utils/validatepackagetorelease' );
-const { getChangesForVersion } = require( '@ckeditor/ckeditor5-dev-env/lib/release-tools/utils/changelog' );
+const { getLastTagFromGit, getLastFromChangelog, getChangesForVersion } = require( '@ckeditor/ckeditor5-dev-release-tools' );
+
+// TODO: Add it to the exported signatures.
+const cli = require( '@ckeditor/ckeditor5-dev-release-tools/lib/utils/cli' );
+const createGithubRelease = require( '@ckeditor/ckeditor5-dev-release-tools/lib/utils/creategithubrelease' );
+const validatePackageToRelease = require( '@ckeditor/ckeditor5-dev-release-tools/lib/utils/validatepackagetorelease' );
 
 const log = logger();
 const packageRoot = path.resolve( __dirname, '..' );
 const distPath = path.resolve( packageRoot, 'dist' );
 
+const argv = minimist( process.argv.slice( 2 ), {
+	string: [
+		'npm-tag'
+	]
+} );
+
 cli.provideToken()
 	.then( token => {
-		const gitVersion = versionUtils.getLastTagFromGit();
-		const changelogVersion = versionUtils.getLastFromChangelog();
+		const gitVersion = getLastTagFromGit();
+		const changelogVersion = getLastFromChangelog();
+		const npmTag = argv[ 'npm-tag' ] || 'latest';
 
 		log.info( 'Checking whether there is anything to release...' );
 
@@ -63,7 +72,7 @@ cli.provideToken()
 		log.info( 'Publishing on npm...' );
 
 		// Publish the package on npm.
-		tools.shExec( `cd ${ distPath } && npm publish && cd ${ packageRoot }` );
+		tools.shExec( `cd ${ distPath } && npm publish --tag ${ npmTag } && cd ${ packageRoot }` );
 
 		log.info( 'Creating a release on GitHub...' );
 
