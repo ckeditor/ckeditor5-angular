@@ -1,6 +1,22 @@
 Changelog
 =========
 
+## [6.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.2.0...v6.0.0-alpha.0) (2023-03-30)
+
+### BREAKING CHANGES
+
+* Integration now requires Editor version 37 or later.
+* Upgraded the minimal versions of Node.js to `16.0.0` due to the end of LTS.
+
+### Features
+
+* Migrate package to TypeScript. Closes [ckeditor/ckeditor5#13541](https://github.com/ckeditor/ckeditor5/issues/13541). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/a8342c91d35c53bdbdaadb1303a5486f848fc8aa))
+
+### Other changes
+
+* Updated the required version of Node.js to 16. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/47cf02ddb7f450d3da6067848eded478984c8a04))
+
+
 ## [5.2.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.1.1...v5.2.0) (2023-03-02)
 
 ### Features
