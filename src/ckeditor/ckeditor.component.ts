@@ -33,19 +33,19 @@ import {
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
-export interface BlurEvent {
+export interface BlurEvent<TEditor extends Editor = Editor> {
 	event: GetEventInfo<ViewDocumentBlurEvent>;
-	editor: Editor;
+	editor: TEditor;
 }
 
-export interface FocusEvent {
+export interface FocusEvent<TEditor extends Editor = Editor> {
 	event: GetEventInfo<ViewDocumentFocusEvent>;
-	editor: Editor;
+	editor: TEditor;
 }
 
-export interface ChangeEvent {
+export interface ChangeEvent<TEditor extends Editor = Editor> {
 	event: GetEventInfo<DocumentChangeEvent>;
-	editor: Editor;
+	editor: TEditor;
 }
 
 @Component( {
@@ -62,7 +62,7 @@ export interface ChangeEvent {
 		}
 	]
 } )
-export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, ControlValueAccessor {
+export class CKEditorComponent<TEditor extends Editor = Editor> implements AfterViewInit, OnDestroy, OnChanges, ControlValueAccessor {
 	/**
 	 * The reference to the DOM element created by the component.
 	 */
@@ -72,7 +72,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: { create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<Editor> };
+	@Input() public editor?: { create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<TEditor> };
 
 	/**
 	 * The configuration of the editor.
@@ -138,28 +138,28 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready
 	 * event.
 	 */
-	@Output() public ready = new EventEmitter<Editor>();
+	@Output() public ready = new EventEmitter<TEditor>();
 
 	/**
 	 * Fires when the content of the editor has changed. It corresponds with the `editor.model.document#change`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
 	 */
-	@Output() public change = new EventEmitter<ChangeEvent>();
+	@Output() public change = new EventEmitter<ChangeEvent<TEditor>>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:blur
 	 * event.
 	 */
-	@Output() public blur = new EventEmitter<BlurEvent>();
+	@Output() public blur = new EventEmitter<BlurEvent<TEditor>>();
 
 	/**
 	 * Fires when the editing view of the editor is focused. It corresponds with the `editor.editing.view.document#focus`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_view_document-Document.html#event-event:focus
 	 * event.
 	 */
-	@Output() public focus = new EventEmitter<FocusEvent>();
+	@Output() public focus = new EventEmitter<FocusEvent<TEditor>>();
 
 	/**
 	 * Fires when the editor component crashes.
@@ -169,7 +169,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	/**
 	 * The instance of the editor created by this component.
 	 */
-	public get editorInstance(): Editor | null {
+	public get editorInstance(): TEditor | null {
 		let editorWatchdog = this.editorWatchdog;
 
 		if ( this.watchdog ) {
@@ -191,7 +191,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	 * The editor watchdog. It is created when the context watchdog is not passed to the component.
 	 * It keeps the editor running.
 	 */
-	private editorWatchdog?: EditorWatchdog<Editor>;
+	private editorWatchdog?: EditorWatchdog<TEditor>;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -428,7 +428,7 @@ export class CKEditorComponent implements AfterViewInit, OnDestroy, OnChanges, C
 	/**
 	 * Integrates the editor with the component by attaching related event listeners.
 	 */
-	private setUpEditorEvents( editor: Editor ): void {
+	private setUpEditorEvents( editor: TEditor ): void {
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
