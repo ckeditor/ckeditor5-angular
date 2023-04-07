@@ -1,6 +1,11 @@
 Changelog
 =========
 
+## [6.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v6.0.0-alpha.0...v6.0.0) (2023-04-07)
+
+Internal changes only (updated dependencies, documentation, etc.).
+
+
 ## [6.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.2.0...v6.0.0-alpha.0) (2023-03-30)
 
 ### BREAKING CHANGES
