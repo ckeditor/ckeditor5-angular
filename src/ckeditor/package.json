@@ -22,6 +22,7 @@
     "@ckeditor/ckeditor5-watchdog": "^37.0.0"
   },
   "devDependencies": {
+    "ckeditor5": "^37.0.1",
     "@ckeditor/ckeditor5-core": "^37.0.0",
     "@ckeditor/ckeditor5-engine": "^37.0.0",
     "@ckeditor/ckeditor5-utils": "^37.0.0"
