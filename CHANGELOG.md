@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [6.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v6.0.0...v6.0.1) (2023-04-18)
+
+### Other changes
+
+* Add the generic type for `Editor` in `CKEditorComponent` to allow making the typed event handlers. Closes [ckeditor/ckeditor5#13838](https://github.com/ckeditor/ckeditor5/issues/13838). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/d136bd453db40d79939b8b81115ab01c8568d7fa))
+
+
 ## [6.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v5.2.0...v6.0.0) (2023-04-07)
 
 ### BREAKING CHANGES
