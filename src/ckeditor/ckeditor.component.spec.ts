@@ -7,7 +7,7 @@ import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { CKEditorComponent } from './ckeditor.component';
 import AngularEditor from '../../ckeditor/build/ckeditor';
-import { SimpleChange } from '@angular/core';
+import { ApplicationRef, Component, SimpleChange, ViewChild } from '@angular/core';
 
 describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
@@ -486,6 +486,89 @@ describe( 'CKEditorComponent', () => {
 				expect( readySpy ).toHaveBeenCalledTimes( 1 );
 			} );
 		} );
+	} );
+} );
+
+describe( 'change detection', () => {
+	it( 'should NOT run change detection if `error` does not have listeners', async () => {
+		window.onerror = null;
+
+		@Component( {
+			template: '<ckeditor [editor]="editor"></ckeditor>'
+		} )
+		class TestComponent {
+			public editor = AngularEditor;
+
+			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
+		}
+
+		TestBed.configureTestingModule( {
+			declarations: [ TestComponent, CKEditorComponent ]
+		} );
+
+		const appRef = TestBed.inject( ApplicationRef );
+
+		const fixture = TestBed.createComponent( TestComponent );
+		fixture.detectChanges();
+
+		await waitCycle();
+
+		spyOn( appRef, 'tick' );
+
+		const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+
+		const error: any = new Error( 'foo' );
+		error.is = () => true;
+		error.context = oldEditor;
+		Promise.resolve().then( () => {
+			window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+		} );
+
+		await waitCycle();
+
+		expect( appRef.tick ).toHaveBeenCalledTimes( 1 );
+	} );
+
+	it( 'should run change detection if `error` has listeners', async () => {
+		window.onerror = null;
+
+		@Component( {
+			template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>'
+		} )
+		class TestComponent {
+			public editor = AngularEditor;
+
+			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
+
+			// eslint-disable-next-line @typescript-eslint/no-empty-function
+			public onError(): void {}
+		}
+
+		TestBed.configureTestingModule( {
+			declarations: [ TestComponent, CKEditorComponent ]
+		} );
+
+		const appRef = TestBed.inject( ApplicationRef );
+
+		const fixture = TestBed.createComponent( TestComponent );
+		fixture.detectChanges();
+
+		await waitCycle();
+
+		spyOn( appRef, 'tick' );
+
+		const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+
+		const error: any = new Error( 'foo' );
+		error.is = () => true;
+		error.context = oldEditor;
+		Promise.resolve().then( () => {
+			window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+		} );
+
+		await waitCycle();
+
+		expect( appRef.tick ).toHaveBeenCalledTimes( 2 );
 	} );
 } );
 
