@@ -205,7 +205,7 @@ describe( 'CKEditorComponent', () => {
 				expect( component.editorInstance!.data.get() ).toEqual( updatedText );
 			} );
 
-			fit( 'should return component id', async () => {
+			it( 'should return component id', async () => {
 				expect( component.getId() ).toMatch( /e[0-9a-z]{32}/ );
 			} );
 		} );
