@@ -233,6 +233,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 	private id = uid();
 
+	public getId(): string {
+		return this.id;
+	}
+
 	public constructor( elementRef: ElementRef, ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
