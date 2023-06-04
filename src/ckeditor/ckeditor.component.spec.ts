@@ -494,85 +494,119 @@ describe( 'CKEditorComponent', () => {
 } );
 
 describe( 'change detection', () => {
-	it( 'should NOT run change detection if `error` does not have listeners', async () => {
-		window.onerror = null;
+	// Note: unit tests below assert a different number of change detection cycles when there're
+	// event listeners either without them. You can see different `toHaveBeenCalledTimes` values
+	// at the end of each unit test.
 
-		@Component( {
-			template: '<ckeditor [editor]="editor"></ckeditor>'
-		} )
-		class TestComponent {
-			public editor = AngularEditor;
+	describe( '(error) event', () => {
+		const testSetup = async ( hasListener: boolean ) => {
+			window.onerror = null;
 
-			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
-		}
+			const template = hasListener ?
+				'<ckeditor [editor]="editor" (error)="onError()"></ckeditor>' :
+				'<ckeditor [editor]="editor"></ckeditor>';
 
-		TestBed.configureTestingModule( {
-			declarations: [ TestComponent, CKEditorComponent ]
+			@Component( {
+				template
+			} )
+			class TestComponent {
+				public editor = AngularEditor;
+
+				@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
+
+				// eslint-disable-next-line @typescript-eslint/no-empty-function
+				public onError(): void {}
+			}
+
+			TestBed.configureTestingModule( {
+				declarations: [ TestComponent, CKEditorComponent ]
+			} );
+
+			const appRef = TestBed.inject( ApplicationRef );
+
+			const fixture = TestBed.createComponent( TestComponent );
+			fixture.detectChanges();
+
+			await waitCycle();
+
+			spyOn( appRef, 'tick' );
+
+			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+
+			return { fixture, appRef, oldEditor };
+		};
+
+		it( 'should NOT run change detection if `error` does not have listeners', async () => {
+			const { appRef, oldEditor } = await testSetup( /* hasListener */ false );
+
+			const error: any = new Error( 'foo' );
+			error.is = () => true;
+			error.context = oldEditor;
+			Promise.resolve().then( () => {
+				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			} );
+
+			await waitCycle();
+
+			expect( appRef.tick ).toHaveBeenCalledTimes( 0 );
 		} );
 
-		const appRef = TestBed.inject( ApplicationRef );
+		it( 'should run change detection if `error` has listeners', async () => {
+			const { appRef, oldEditor } = await testSetup( /* hasListener */ true );
 
-		const fixture = TestBed.createComponent( TestComponent );
-		fixture.detectChanges();
+			const error: any = new Error( 'foo' );
+			error.is = () => true;
+			error.context = oldEditor;
+			Promise.resolve().then( () => {
+				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			} );
 
-		await waitCycle();
+			await waitCycle();
 
-		spyOn( appRef, 'tick' );
-
-		const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
-
-		const error: any = new Error( 'foo' );
-		error.is = () => true;
-		error.context = oldEditor;
-		Promise.resolve().then( () => {
-			window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			expect( appRef.tick ).toHaveBeenCalledTimes( 1 );
 		} );
-
-		await waitCycle();
-
-		expect( appRef.tick ).toHaveBeenCalledTimes( 1 );
 	} );
 
-	it( 'should run change detection if `error` has listeners', async () => {
-		window.onerror = null;
+	describe( '(ready) event', () => {
+		const testSetup = async ( hasListener: boolean ) => {
+			const template = hasListener ?
+				'<ckeditor [editor]="editor" (ready)="onReady()"></ckeditor>' :
+				'<ckeditor [editor]="editor"></ckeditor>';
 
-		@Component( {
-			template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>'
-		} )
-		class TestComponent {
-			public editor = AngularEditor;
+			@Component( {
+				template
+			} )
+			class TestComponent {
+				public editor = AngularEditor;
 
-			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
+				// eslint-disable-next-line @typescript-eslint/no-empty-function
+				public onReady(): void {}
+			}
 
-			// eslint-disable-next-line @typescript-eslint/no-empty-function
-			public onError(): void {}
-		}
+			TestBed.configureTestingModule( {
+				declarations: [ TestComponent, CKEditorComponent ]
+			} );
 
-		TestBed.configureTestingModule( {
-			declarations: [ TestComponent, CKEditorComponent ]
+			const appRef = TestBed.inject( ApplicationRef );
+			spyOn( appRef, 'tick' );
+
+			const fixture = TestBed.createComponent( TestComponent );
+			fixture.detectChanges();
+
+			await waitCycle();
+
+			return { appRef };
+		};
+
+		it( 'should NOT run change detection if `ready` does not have listeners', async () => {
+			const { appRef } = await testSetup( /* hasListener */ false );
+			expect( appRef.tick ).toHaveBeenCalledTimes( 2 );
 		} );
 
-		const appRef = TestBed.inject( ApplicationRef );
-
-		const fixture = TestBed.createComponent( TestComponent );
-		fixture.detectChanges();
-
-		await waitCycle();
-
-		spyOn( appRef, 'tick' );
-
-		const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
-
-		const error: any = new Error( 'foo' );
-		error.is = () => true;
-		error.context = oldEditor;
-		Promise.resolve().then( () => {
-			window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+		it( 'should run change detection if `ready` has listeners', async () => {
+			const { appRef } = await testSetup( /* hasListener */ true );
+			expect( appRef.tick ).toHaveBeenCalledTimes( 3 );
 		} );
-
-		await waitCycle();
-
-		expect( appRef.tick ).toHaveBeenCalledTimes( 2 );
 	} );
 } );
 

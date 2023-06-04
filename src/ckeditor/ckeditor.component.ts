@@ -340,7 +340,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
-		// TODO: elementOrData parameter type can be simplified to HTMLElemen after templated Watchdog will be released.
+		// TODO: elementOrData parameter type can be simplified to HTMLElement after templated Watchdog will be released.
 		const creator = ( ( elementOrData: HTMLElement | string | Record<string, string>, config: EditorConfig ) => {
 			return this.ngZone.runOutsideAngular( async () => {
 				this.elementRef.nativeElement.appendChild( elementOrData as HTMLElement );
@@ -351,9 +351,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 					editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
 				}
 
-				this.ngZone.run( () => {
-					this.ready.emit( editor );
-				} );
+				// Do not run change detection if there're no `ready` listeners outside of the component.
+				if ( hasObservers( this.ready ) ) {
+					this.ngZone.run( () => this.ready.emit( editor ) );
+				}
 
 				this.setUpEditorEvents( editor );
 
