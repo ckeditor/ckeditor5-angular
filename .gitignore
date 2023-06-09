@@ -30,5 +30,7 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
 /ckeditor/build
+
+# release
+/release/
