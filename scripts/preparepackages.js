@@ -59,26 +59,32 @@ const tasks = new Listr( [
 		}
 	},
 	{
-		title: 'Updating the `#version` field in the release `package.json',
+		title: 'Updating the `#version` and `#scripts` fields in the release `package.json',
 		task: () => {
 			return tools.updateJSONFile(
 				upath.join( RELEASE_ANGULAR_DIR, 'package.json' ),
 				packageJson => {
 					packageJson.version = latestVersion;
+					packageJson.scripts = { 'postinstall': 'node ./scripts/postinstall.js' };
 
 					return packageJson;
 				} );
 		}
 	},
 	{
-		title: 'Copying LICENSE.md, README.md, CHANGELOG.md and CONTRIBUTING.md to the release dir.',
+		title: 'Copying required assets to the release dir.',
 		task: () => {
-			return [ 'LICENSE.md', 'README.md', 'CHANGELOG.md', 'CONTRIBUTING.md' ].forEach( file => {
+			return [
+				'LICENSE.md',
+				'README.md',
+				'CHANGELOG.md',
+				'CONTRIBUTING.md',
+				upath.join( 'scripts', 'postinstall.js' )
+			].forEach( file => {
 				return fs.copy( upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, file ), upath.join( RELEASE_ANGULAR_DIR, file ) );
 			} );
 		}
 	},
-	// TODO check if adding scripts/postinstall is re
 	{
 		title: 'Commit & tag.',
 		task: () => {
