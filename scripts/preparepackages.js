@@ -59,13 +59,12 @@ const tasks = new Listr( [
 		}
 	},
 	{
-		title: 'Updating the `#version` and `#scripts` fields in the release `package.json',
+		title: 'Updating the `#version` field in the release `package.json',
 		task: () => {
 			return tools.updateJSONFile(
 				upath.join( RELEASE_ANGULAR_DIR, 'package.json' ),
 				packageJson => {
 					packageJson.version = latestVersion;
-					packageJson.scripts = { 'postinstall': 'node ./scripts/postinstall.js' };
 
 					return packageJson;
 				} );
@@ -78,8 +77,7 @@ const tasks = new Listr( [
 				'LICENSE.md',
 				'README.md',
 				'CHANGELOG.md',
-				'CONTRIBUTING.md',
-				upath.join( 'scripts', 'postinstall.js' )
+				'CONTRIBUTING.md'
 			].forEach( file => {
 				return fs.copy( upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, file ), upath.join( RELEASE_ANGULAR_DIR, file ) );
 			} );
