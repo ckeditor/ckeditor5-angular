@@ -53,13 +53,13 @@ const tasks = new Listr( [
 		}
 	},
 	{
-		title: 'Copying dist to release dir.',
+		title: 'Copying dist to release directory.',
 		task: () => {
 			return fs.copy( DIST_DIR, RELEASE_ANGULAR_DIR );
 		}
 	},
 	{
-		title: 'Updating the `#version` field in the release `package.json',
+		title: 'Updating the `#version` field in the `package.json` in the release directory',
 		task: () => {
 			return tools.updateJSONFile(
 				upath.join( RELEASE_ANGULAR_DIR, 'package.json' ),
@@ -71,7 +71,7 @@ const tasks = new Listr( [
 		}
 	},
 	{
-		title: 'Copying required assets to the release dir.',
+		title: 'Copying required assets to the release directory.',
 		task: () => {
 			return [
 				'LICENSE.md',
