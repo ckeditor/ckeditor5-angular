@@ -139,7 +139,7 @@ npm run changelog
 
 #### Packaging the component
 
-**Note** This step is optional in the release process (the script is executed anyway by the postversion hook) but it is required to test the package used as an npm dependency.
+**Note** This step is required to test the package used as an npm dependency.
 
 This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create the package meeting the Angular Package Format specification.
 
@@ -181,10 +181,16 @@ Make sure to test the package with the production setup (`ng build --configurati
 
 #### Publishing the package
 
-To publish the new package in the npm registry, run:
+To create the release directory, run:
 
 ```bash
-npm run release
+npm run release:prepare-packages
+```
+
+Then, to publish the new package in the npm registry, run:
+
+```bash
+npm run release:publish-packages
 ```
 
 ## License
