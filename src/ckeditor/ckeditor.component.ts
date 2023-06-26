@@ -368,9 +368,13 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		};
 
 		const emitError = () => {
-			this.ngZone.run( () => {
-				this.error.emit();
-			} );
+			// Do not run change detection by re-entering the Angular zone if the `error`
+			// emitter doesn't have any subscribers.
+			// Subscribers are pushed onto the list whenever `error` is listened inside the template:
+			// `<ckeditor (error)="onError(...)"></ckeditor>`.
+			if ( hasObservers( this.error ) ) {
+				this.ngZone.run( () => this.error.emit() );
+			}
 		};
 
 		const element = document.createElement( this.tagName );
@@ -407,7 +411,11 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 			this.editorWatchdog = editorWatchdog;
 
-			this.editorWatchdog.create( element, config );
+			this.ngZone.runOutsideAngular( () => {
+				// Note: must be called outside of the Angular zone too because `create` is calling
+				// `_startErrorHandling` within a microtask which sets up `error` listener on the window.
+				editorWatchdog.create( element, config );
+			} );
 		}
 	}
 
@@ -468,4 +476,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			} );
 		} );
 	}
+}
+
+function hasObservers<T>( emitter: EventEmitter<T> ): boolean {
+	// Cast to `any` because `observed` property is available in RxJS >= 7.2.0.
+	// Fallback to checking `observers` list if this property is not defined.
+	return ( emitter as any ).observed ?? emitter.observers.length > 0;
 }
