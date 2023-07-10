@@ -2,8 +2,5 @@
   "lib": {
     "entryFile": "./index.ts"
   },
-  "allowedNonPeerDependencies": [
-    "@ckeditor/ckeditor5-watchdog"
-  ],
   "dest": "../../dist"
 }
