@@ -1,6 +1,28 @@
 Changelog
 =========
 
+## [7.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v6.0.1...v7.0.0) (2023-07-10)
+
+### BREAKING CHANGES
+
+* The [`@ckeditor/ckeditor5-angular`](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) package requires the following peer dependencies:
+  * [`@ckeditor/ckeditor5-core`](https://www.npmjs.com/package/@ckeditor/ckeditor5-core),
+  * [`@ckeditor/ckeditor5-engine`](https://www.npmjs.com/package/@ckeditor/ckeditor5-engine),
+  * [`@ckeditor/ckeditor5-utils`](https://www.npmjs.com/package/@ckeditor/ckeditor5-utils),
+  * [`@ckeditor/ckeditor5-watchdog`](https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog).
+
+  Make sure to install them in the same version as the editor build you want to use in your integration.
+
+### Bug fixes
+
+* Do not run change detection if `error` does not have observers. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/b82ce11cb5ae1a2172ce51abaf2c3ce333f94f84))
+
+### Other changes
+
+* Added the `getId()` method that returns the component id. Closes [#367](https://github.com/ckeditor/ckeditor5-angular/issues/367). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/e4bf808d5bca605635418a97acd40949ed289567))
+* The following packages are now marked as peer dependencies [`@ckeditor/ckeditor5-core`](https://www.npmjs.com/package/@ckeditor/ckeditor5-core), [`@ckeditor/ckeditor5-engine`](https://www.npmjs.com/package/@ckeditor/ckeditor5-engine), [`@ckeditor/ckeditor5-utils`](https://www.npmjs.com/package/@ckeditor/ckeditor5-utils) and [`@ckeditor/ckeditor5-watchdog`](https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog) to avoid issues when upgrading the CKEditor 5 version within the angular application. Closes [#376](https://github.com/ckeditor/ckeditor5-angular/issues/376). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/37e691a2f26ec4f04bb321205620a1344083a1d5))
+
+
 ## [6.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v6.0.0...v6.0.1) (2023-04-18)
 
 ### Other changes
