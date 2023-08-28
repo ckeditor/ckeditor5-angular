@@ -73,20 +73,19 @@ jobs:
       - run:
           name: Run unit tests
           command: yarn run coverage
-# TODO: To enable once https://github.com/ckeditor/ckeditor5-angular/issues/383 is resolved.
-#      - run:
-#          name: Verify the code coverage
-#          command: |
-#            #!/bin/bash
-#
-#            # Create the `nyc` directory.
-#            mkdir .nyc_output
-#
-#            # Copy results.
-#            cp coverage/coverage-final.json .nyc_output
-#
-#            # Verify results.
-#            npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
+      - run:
+          name: Verify the code coverage
+          command: |
+            #!/bin/bash
+
+            # Create the `nyc` directory.
+            mkdir .nyc_output
+
+            # Copy results.
+            cp coverage/coverage-final.json .nyc_output
+
+            # Verify results.
+            npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
 # TODO: To enable once https://github.com/ckeditor/ckeditor5-angular/issues/384 is resolved.
 #      - run:
 #          name: Run e2e tests
