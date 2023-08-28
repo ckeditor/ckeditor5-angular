@@ -40,6 +40,11 @@ module.exports = function( config ) {
 					dir: './coverage',
 					subdir: '.',
 					type: 'lcovonly'
+				},
+				{
+					dir: './coverage',
+					subdir: '.',
+					type: 'json'
 				}
 			],
 			thresholds: {
