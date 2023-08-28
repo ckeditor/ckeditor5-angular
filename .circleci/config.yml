@@ -46,7 +46,7 @@ jobs:
           command: |
             #!/bin/bash
 
-            if [[ -z ${GITHUB_TOKEN} ]];
+            if [[ -z ${COVERALLS_REPO_TOKEN} ]];
             then
               circleci-agent step halt
             fi
@@ -102,7 +102,7 @@ jobs:
                 command: |
                   #!/bin/bash
 
-                  if [[ -z ${GITHUB_TOKEN} ]];
+                  if [[ -z ${COVERALLS_REPO_TOKEN} ]];
                   then
                     circleci-agent step halt
                   fi
