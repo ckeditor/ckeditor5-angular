@@ -12,45 +12,45 @@ export class AppPage {
 	}
 
 	public getHeaderContent() {
-		return element( by.css( 'app-root h1' ) ).getText();
+		return cy.get( 'app-root h1' ).getText();
 	}
 
 	public getEditorContent(): promise.Promise<string> {
-		return browser.executeScript( 'return arguments[0].innerHTML', element( by.css( 'app-root #classic-editor' ) ) );
+		return browser.executeScript( 'return arguments[0].innerHTML', cy.get( 'app-root #classic-editor' ) );
 	}
 
 	public getNameInputValue() {
-		return element( by.css( 'app-root  input#name' ) ).getAttribute( 'value' );
+		return cy.get( 'app-root  input#name' ).getAttribute( 'value' );
 	}
 
 	public async setNameInputValue( value: string ) {
-		const el = element( by.css( 'app-root  input#name' ) );
+		const el = cy.get( 'app-root  input#name' );
 
 		await el.clear();
 		await el.sendKeys( value );
 	}
 
 	public getSurnameInputValue() {
-		return element( by.css( 'app-root  input#surname' ) ).getAttribute( 'value' );
+		return cy.get( 'app-root  input#surname' ).getAttribute( 'value' );
 	}
 
 	public async setSurnameInputValue( value: string ) {
-		const el = element( by.css( 'app-root  input#surname' ) );
+		const el = cy.get( 'app-root  input#surname' );
 
 		await el.clear();
 		await el.sendKeys( value );
 	}
 
 	public getDescription() {
-		return browser.executeScript( 'return arguments[0].innerHTML', element( by.css( 'app-root #description .ck-editor__editable' ) ) );
+		return browser.executeScript( 'return arguments[0].innerHTML', cy.get( 'app-root #description .ck-editor__editable' ) );
 	}
 
 	public getFormDataPreview() {
-		return element( by.css( 'app-root pre' ) ).getText();
+		return cy.get( 'app-root pre' ).getText();
 	}
 
 	public async setDescription( value: string ) {
-		const descEl = element( by.css( 'app-root #description .ck-editor__editable' ) );
+		const descEl = cy.get( 'app-root #description .ck-editor__editable' );
 
 		// Select the whole content.
 		await descEl.click();
