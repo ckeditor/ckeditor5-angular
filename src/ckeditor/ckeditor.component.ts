@@ -481,5 +481,5 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 function hasObservers<T>( emitter: EventEmitter<T> ): boolean {
 	// Cast to `any` because `observed` property is available in RxJS >= 7.2.0.
 	// Fallback to checking `observers` list if this property is not defined.
-	return ( emitter as any ).observed ?? emitter.observers.length > 0;
+	return ( emitter as any ).observed || emitter.observers.length > 0;
 }
