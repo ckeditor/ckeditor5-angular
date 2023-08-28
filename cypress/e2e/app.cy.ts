@@ -3,62 +3,63 @@
  * For licensing, see LICENSE.md.
  */
 
-import { AppPage } from './app.po';
-
 describe( 'App', () => {
-	let page: AppPage;
-
-	beforeEach( () => {
-		page = new AppPage();
-	} );
-
 	describe( 'simple-usage', () => {
 		beforeEach( () => {
-			return page.navigateTo();
+			cy.visit( '/' );
 		} );
 
-		it( 'should display header message', async () => {
-			const content = await page.getHeaderContent();
+		it( 'should display header message', () => {
+			const heading = cy.get( 'app-root h1' );
 
-			expect( content ).contains( 'CKEditor 5 integration with Angular' );
+			heading.should( 'have.text', 'CKEditor 5 integration with Angular' );
 		} );
 
-		it( 'should display editor with set content', async () => {
-			const content = await page.getEditorContent();
+		it( 'should display editor with set content', () => {
+			const editor = cy.get( 'app-root #classic-editor' );
 
-			expect( content ).should('include.text', 'Getting used to an entirely different culture can be challenging.' );
+			editor.should( $el => {
+				expect( $el.text() ).to.includes( 'Getting used to an entirely different culture can be challenging.' );
+			} );
 		} );
 	} );
 
 	describe( 'demo-form', () => {
 		beforeEach( () => {
-			return page.navigateTo( 'forms' );
+			cy.visit( '/forms' );
 		} );
 
-		it( 'should set initial values for name and surname fields', async () => {
-			const name = await page.getNameInputValue();
-			const surname = await page.getSurnameInputValue();
-
-			expect( name ).contains( 'John' );
-			expect( surname ).contains( 'Doe' );
+		it( 'should set initial values for name and surname fields', () => {
+			cy.get( 'app-root input#name' ).should( 'have.value', 'John' );
+			cy.get( 'app-root input#surname' ).should( 'have.value', 'Doe' );
 		} );
 
-		it( 'should set initial value for the description', async () => {
-			const desc = await page.getDescription();
+		it( 'should set initial value for the description', () => {
+			const description = cy.get( 'app-root #description .ck-editor__editable' );
 
-			expect( desc ).contains( '<p>A <strong>really</strong> nice fellow.</p>' );
+			description.should( $el => {
+				expect( $el.html() ).to.includes( '<p>A <strong>really</strong> nice fellow.</p>' );
+			} );
 		} );
 
-		it( 'should show and update json data preview', async () => {
-			expect( await page.getFormDataPreview() )
-				.contains( '{"name":"John","surname":"Doe","description":"<p>A <b>really</b> nice fellow.</p>"}' );
+		it( 'should show and update json data preview', () => {
+			cy.get( 'app-root pre' ).should( $el => {
+				expect( $el.text() ).to.includes( '{"name":"John","surname":"Doe","description":"<p>A <b>really</b> nice fellow.</p>"}' );
+			} );
 
-			await page.setNameInputValue( 'Jessica' );
-			await page.setSurnameInputValue( 'Jones' );
-			await page.setDescription( 'A superhero!' );
+			cy.get( 'app-root input#name' ).clear().type( 'Jessica' );
+			cy.get( 'app-root input#surname' ).clear().type( 'Jones' );
+			cy.get( 'app-root #description' ).within( () => {
+				cy.window().should( window => {
+					const { ckeditorInstance } = window.document.querySelector( 'app-root #description .ck-editor__editable' ) as any;
 
-			expect( await page.getFormDataPreview() )
-				.contains( '{"name":"Jessica","surname":"Jones","description":"<p>A superhero!</p>"}' );
+					ckeditorInstance.setData( 'A superhero!' );
+				} );
+			} );
+
+			cy.get( 'app-root pre' ).should( $el => {
+				expect( $el.text() ).to.includes( '{"name":"Jessica","surname":"Jones","description":"<p>A superhero!</p>"}' );
+			} );
 		} );
 	} );
 } );

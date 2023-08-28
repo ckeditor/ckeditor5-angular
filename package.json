@@ -6,11 +6,11 @@
   "description": "Official Angular component for CKEditor 5 – the best browser-based rich text editor.",
   "scripts": {
     "postinstall": "node ./scripts/postinstall.js",
-    "start": "ng serve --open",
+    "start": "ng serve",
     "build": "ng build --configuration production",
     "test": "ng test",
     "test:e2e": "cypress run",
-    "test:e2e:ci": "start-server-and-test 'yarn run start --no-open' :4200 'yarn run test:e2e --quiet'",
+    "test:e2e:ci": "start-server-and-test 'yarn run start' http://localhost:4200/ 'yarn run test:e2e --quiet'",
     "coverage": "ng test --watch=false --code-coverage",
     "lint": "eslint \"*/**/*.+(js|ts)\"",
     "changelog": "node ./scripts/changelog.js",

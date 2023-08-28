@@ -24,6 +24,8 @@ testem.log
 
 # e2e
 /cypress/videos
+/cypress/screenshots
+/cypress/downloads
 
 # System Files
 .DS_Store

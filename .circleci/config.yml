@@ -86,10 +86,9 @@ jobs:
 
             # Verify results.
             npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
-# TODO: To enable once https://github.com/ckeditor/ckeditor5-angular/issues/384 is resolved.
-#      - run:
-#          name: Run e2e tests
-#          command: yarn ng e2e
+      - run:
+          name: Run e2e tests
+          command: yarn run test:e2e:ci
       - unless:
           # Upload the code coverage results for non-nightly builds only.
           condition: << pipeline.parameters.isNightly >>
