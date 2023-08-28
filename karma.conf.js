@@ -61,7 +61,7 @@ module.exports = function( config ) {
 		autoWatch: true,
 		browsers: getBrowsers(),
 		customLaunchers: {
-			CHROME_TRAVIS_CI: {
+			CHROME_CI: {
 				base: 'Chrome',
 				flags: [ '--no-sandbox', '--disable-background-timer-throttling' ]
 			},
@@ -77,9 +77,9 @@ module.exports = function( config ) {
 };
 
 function getBrowsers() {
-	if ( process.env.TRAVIS_CI ) {
+	if ( process.env.CI ) {
 		return [
-			'CHROME_TRAVIS_CI',
+			'CHROME_CI',
 			'Firefox'
 		];
 	}
