@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/ckeditor/ckeditor5-angular/badge.svg?branch=master)](https://coveralls.io/github/ckeditor/ckeditor5-angular?branch=master)
 ![Dependency Status](https://img.shields.io/librariesio/release/npm/@ckeditor/ckeditor5-angular)
 
-Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 9.1+.
+Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 13+.
 
 ## [Developer Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) 📖
 
@@ -123,7 +123,10 @@ npm run test
 To run e2e tests, run:
 
 ```bash
-npm run e2e
+# Prepare the server.
+npm run start
+# Then, start tests.
+npm run test:e2e
 ```
 
 To run coverage tests, run:
