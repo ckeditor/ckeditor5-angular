@@ -18,9 +18,26 @@ export class WatchdogDemoComponent {
 	public ready = false;
 
 	public isDisabled = false;
+	public errorOccurred = false;
 
 	public onReady( editor: AngularEditor ): void {
 		console.log( editor );
+
+		const inputCommand = editor.commands.get( 'input' )!;
+
+		inputCommand.on( 'execute', ( evt, data ) => {
+			const commandArgs = data[ 0 ];
+
+			if ( commandArgs.text === '1' ) {
+				// Simulate an error.
+				throw new Error( 'a-custom-editor-error' );
+			}
+
+			if ( commandArgs.text === '2' ) {
+				// Simulate an error.
+				throw 'foobar';
+			}
+		} );
 	}
 
 	public ngOnInit(): void {
@@ -44,5 +61,9 @@ export class WatchdogDemoComponent {
 
 	public toggle(): void {
 		this.isDisabled = !this.isDisabled;
+	}
+
+	public onError(): void {
+		this.errorOccurred = true;
 	}
 }
