@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
+import { Component } from '@angular/core';
 import AngularEditor from '../../../ckeditor/build/ckeditor';
 import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
 
@@ -10,8 +9,6 @@ import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
 } )
 export class WatchdogDemoComponent {
 	public Editor = AngularEditor;
-
-	@ViewChild( CKEditorComponent ) public ckeditor?: ElementRef<CKEditorComponent>;
 
 	public config: any;
 	public watchdog?: ContextWatchdog;

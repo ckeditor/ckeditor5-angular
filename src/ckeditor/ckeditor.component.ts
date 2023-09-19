@@ -164,7 +164,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	/**
 	 * Fires when the editor component crashes.
 	 */
-	@Output() public error = new EventEmitter<void>();
+	@Output() public error = new EventEmitter<unknown>();
 
 	/**
 	 * The instance of the editor created by this component.
@@ -367,16 +367,15 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			this.elementRef.nativeElement.removeChild( this.editorElement! );
 		};
 
-		const emitError = () => {
+		const emitError = ( e?: unknown ) => {
 			// Do not run change detection by re-entering the Angular zone if the `error`
 			// emitter doesn't have any subscribers.
 			// Subscribers are pushed onto the list whenever `error` is listened inside the template:
 			// `<ckeditor (error)="onError(...)"></ckeditor>`.
 			if ( hasObservers( this.error ) ) {
-				this.ngZone.run( () => this.error.emit() );
+				this.ngZone.run( () => this.error.emit( e ) );
 			}
 		};
-
 		const element = document.createElement( this.tagName );
 		const config = this.getConfig();
 
@@ -392,6 +391,8 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 				destructor,
 				sourceElementOrData: element,
 				config
+			} ).catch( e => {
+				emitError( e );
 			} );
 
 			this.watchdog.on( 'itemError', ( _, { itemId } ) => {
@@ -410,11 +411,12 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			editorWatchdog.on( 'error', emitError );
 
 			this.editorWatchdog = editorWatchdog;
-
 			this.ngZone.runOutsideAngular( () => {
 				// Note: must be called outside of the Angular zone too because `create` is calling
 				// `_startErrorHandling` within a microtask which sets up `error` listener on the window.
-				editorWatchdog.create( element, config );
+				editorWatchdog.create( element, config ).catch( e => {
+					emitError( e );
+				} );
 			} );
 		}
 	}
