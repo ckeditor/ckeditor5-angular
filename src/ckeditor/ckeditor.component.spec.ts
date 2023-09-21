@@ -491,6 +491,62 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 	} );
+	describe( 'initialization errors are catched', () => {
+		const CrashyEditor = AngularEditor;
+		let originalCreate: any;
+
+		beforeEach( () => {
+			originalCreate = AngularEditor.create;
+			CrashyEditor.create = () => {
+				throw 'init failure';
+			};
+		} );
+
+		afterEach( () => {
+			AngularEditor.create = originalCreate;
+		} );
+
+		it( 'when internal watchgod is created', async () => {
+			fixture.detectChanges();
+			await waitCycle();
+
+			fixture = TestBed.createComponent( CKEditorComponent );
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			component.error.subscribe( errorSpy );
+			component.editor = CrashyEditor;
+			component.ngAfterViewInit();
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+
+			fixture.destroy();
+		} );
+
+		it( 'when external watchdog is provided', async () => {
+			fixture.detectChanges();
+			await waitCycle();
+
+			fixture = TestBed.createComponent( CKEditorComponent );
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			component.error.subscribe( errorSpy );
+			const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+
+			await contextWatchdog.create();
+
+			component.watchdog = contextWatchdog;
+			component.editor = CrashyEditor;
+			component.ngAfterViewInit();
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+
+			fixture.destroy();
+		} );
+	} );
 } );
 
 describe( 'change detection', () => {
