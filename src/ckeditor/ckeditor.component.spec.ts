@@ -507,9 +507,6 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'when internal watchgod is created', async () => {
-			fixture.detectChanges();
-			await waitCycle();
-
 			fixture = TestBed.createComponent( CKEditorComponent );
 			const errorSpy = jasmine.createSpy( 'errorSpy' );
 			component.error.subscribe( errorSpy );
@@ -525,9 +522,6 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'when external watchdog is provided', async () => {
-			fixture.detectChanges();
-			await waitCycle();
-
 			fixture = TestBed.createComponent( CKEditorComponent );
 			const errorSpy = jasmine.createSpy( 'errorSpy' );
 			component.error.subscribe( errorSpy );
