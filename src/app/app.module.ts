@@ -20,7 +20,7 @@ const appRoutes: Routes = [
 	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
 	{ path: 'watchdog', component: WatchdogDemoComponent },
 	{ path: 'simple-usage', component: SimpleUsageComponent },
-	{ path: 'initialization', component: InitializationCrashComponent }
+	{ path: 'init-crash', component: InitializationCrashComponent }
 ];
 
 @NgModule( {
