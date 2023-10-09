@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'src/ckeditor';
 import AngularEditor from 'ckeditor/build/ckeditor';
 import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
+import CKEditorError from '@ckeditor/ckeditor5-utils/src/ckeditorerror';
 
 @Component( {
 	selector: 'app-initialization-crash',
@@ -11,15 +12,6 @@ import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
 export class InitializationCrashComponent {
 	public Editor = AngularEditor;
 	public EditorWatchdog = AngularEditor;
-
-	public constructor() {
-		( this.Editor as any ).create = () => {
-			throw 'init failure';
-		};
-		( this.EditorWatchdog as any ).create = () => {
-			throw 'init failure';
-		};
-	}
 
 	@ViewChild( CKEditorComponent ) public ckeditor?: CKEditorComponent;
 
@@ -37,6 +29,14 @@ export class InitializationCrashComponent {
 		};
 
 		this.config = {
+			extraPlugins: [
+				function( editor: any ) {
+					editor.data.on( 'init', () => {
+						// eslint-disable-next-line
+						throw new CKEditorError( 'example-error', editor );
+					} );
+				}
+			],
 			collaboration: {
 				channelId: 'foobar-baz'
 			}
@@ -51,12 +51,12 @@ export class InitializationCrashComponent {
 	}
 
 	public onError( error: any ): void {
-		console.error( 'Editor without watchdog crashed - catched', error );
+		console.error( 'Editor without watchdog threw an error which was caught', error );
 		this.errorOccurred = true;
 	}
 
 	public onErrorWatchdog( error: any ): void {
-		console.error( 'Editor with watchdog crashed - catched', error );
+		console.error( 'Editor with watchdog threw an error which was caught', error );
 		this.errorOccurredWatchdog = true;
 	}
 }
