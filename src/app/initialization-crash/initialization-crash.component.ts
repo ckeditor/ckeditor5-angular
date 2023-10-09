@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { CKEditorComponent } from 'src/ckeditor';
 import AngularEditor from 'ckeditor/build/ckeditor';
 import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
-import CKEditorError from '@ckeditor/ckeditor5-utils/src/ckeditorerror';
 
 @Component( {
 	selector: 'app-initialization-crash',
@@ -32,8 +31,11 @@ export class InitializationCrashComponent {
 			extraPlugins: [
 				function( editor: any ) {
 					editor.data.on( 'init', () => {
-						// eslint-disable-next-line
-						throw new CKEditorError( 'example-error', editor );
+						// Simulate an error.
+						// Create a non-existing position, then try to get its parent.
+						const position = editor.model.createPositionFromPath( editor.model.document.getRoot(), [ 1, 2, 3 ] );
+
+						return position.parent;
 					} );
 				}
 			],
