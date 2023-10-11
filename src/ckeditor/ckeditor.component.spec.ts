@@ -491,6 +491,66 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 	} );
+
+	describe( 'initialization errors are catched', () => {
+		let config: any;
+
+		beforeEach( () => {
+			config = {
+				extraPlugins: [
+					function( editor: any ) {
+						editor.data.on( 'init', () => {
+							// Simulate an error.
+							// Create a non-existing position, then try to get its parent.
+							const position = editor.model.createPositionFromPath( editor.model.document.getRoot(), [ 1, 2, 3 ] );
+
+							return position.parent;
+						} );
+					}
+				],
+				collaboration: {
+					channelId: 'foobar-baz'
+				}
+			};
+		} );
+
+		it( 'when internal watchdog is created', async () => {
+			fixture = TestBed.createComponent( CKEditorComponent );
+			const component = fixture.componentInstance;
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			component.error.subscribe( errorSpy );
+			component.editor = AngularEditor;
+			component.config = config;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+
+			fixture.destroy();
+		} );
+
+		it( 'when external watchdog is provided', async () => {
+			fixture = TestBed.createComponent( CKEditorComponent );
+			const component = fixture.componentInstance;
+			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			component.error.subscribe( errorSpy );
+			const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+
+			await contextWatchdog.create();
+
+			component.watchdog = contextWatchdog;
+			component.editor = AngularEditor;
+			component.config = config;
+
+			fixture.detectChanges();
+			await waitCycle();
+
+			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+
+			fixture.destroy();
+		} );
+	} );
 } );
 
 describe( 'change detection', () => {

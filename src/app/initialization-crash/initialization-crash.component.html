@@ -1,0 +1,30 @@
+<h2>Initialization crash demo</h2>
+<h3>Without watchdog</h3>
+<ng-container *ngIf="errorOccurred; then errorMessage; else editor">
+
+</ng-container>
+
+<ng-template #editor>
+	<ckeditor data="Crash demo without watchdog" [config]="config" [editor]="Editor"
+		(error)="onError($event)">
+	</ckeditor>
+</ng-template>
+
+<ng-template #errorMessage>
+	<p>An error has occurred, please contact us at: support@company.com to resolve the situation.</p>
+</ng-template>
+
+<h3>With watchdog</h3>
+<ng-container *ngIf="errorOccurredWatchdog; then errorMessageWatchdog; else editorWatchdog">
+
+</ng-container>
+
+<ng-template #editorWatchdog>
+	<ckeditor data="Crash demo with watchdog" [config]="config" [editor]="EditorWatchdog"
+		[watchdog]="watchdog" (error)="onErrorWatchdog($event)">
+	</ckeditor>
+</ng-template>
+
+<ng-template #errorMessageWatchdog>
+	<p>An error has occurred, please contact us at: support@company.com to resolve the situation.</p>
+</ng-template>

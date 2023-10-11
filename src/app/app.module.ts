@@ -11,6 +11,7 @@ import { DemoFormComponent } from './demo-form/demo-form.component';
 import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-form.component';
 import { ContextDemoComponent } from './context-demo/context-demo';
 import { WatchdogDemoComponent } from './watchdog-demo/watchdog-demo';
+import { InitializationCrashComponent } from './initialization-crash/initialization-crash.component';
 
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/simple-usage', pathMatch: 'full' },
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
 	{ path: 'forms', component: DemoFormComponent },
 	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
 	{ path: 'watchdog', component: WatchdogDemoComponent },
-	{ path: 'simple-usage', component: SimpleUsageComponent }
+	{ path: 'simple-usage', component: SimpleUsageComponent },
+	{ path: 'init-crash', component: InitializationCrashComponent }
 ];
 
 @NgModule( {
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
 		DemoFormComponent,
 		DemoReactiveFormComponent,
 		SimpleUsageComponent,
-		WatchdogDemoComponent
+		WatchdogDemoComponent,
+		InitializationCrashComponent
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

@@ -1,5 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
+import { Component } from '@angular/core';
 import AngularEditor from '../../../ckeditor/build/ckeditor';
 import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
 
@@ -11,16 +10,31 @@ import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
 export class WatchdogDemoComponent {
 	public Editor = AngularEditor;
 
-	@ViewChild( CKEditorComponent ) public ckeditor?: ElementRef<CKEditorComponent>;
-
 	public config: any;
 	public watchdog?: ContextWatchdog;
 	public ready = false;
 
 	public isDisabled = false;
+	public errorOccurred = false;
 
 	public onReady( editor: AngularEditor ): void {
 		console.log( editor );
+
+		const inputCommand = editor.commands.get( 'input' )!;
+
+		inputCommand.on( 'execute', ( evt, data ) => {
+			const commandArgs = data[ 0 ];
+
+			if ( commandArgs.text === '1' ) {
+				// Simulate an error.
+				throw new Error( 'a-custom-editor-error' );
+			}
+
+			if ( commandArgs.text === '2' ) {
+				// Simulate an error.
+				throw 'foobar';
+			}
+		} );
 	}
 
 	public ngOnInit(): void {
@@ -44,5 +58,9 @@ export class WatchdogDemoComponent {
 
 	public toggle(): void {
 		this.isDisabled = !this.isDisabled;
+	}
+
+	public onError(): void {
+		this.errorOccurred = true;
 	}
 }
