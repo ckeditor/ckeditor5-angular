@@ -1,6 +1,14 @@
 Changelog
 =========
 
+## [7.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v7.0.0...v7.0.1) (2023-10-12)
+
+### Other changes
+
+* Added catching and emitting errors that happen during editor initialization. Closes [#392](https://github.com/ckeditor/ckeditor5-angular/issues/392). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/eb8c355c73a11f6759a69e0757c8f3494625dbba))
+* Updated the required version of Node.js to 18 when developing the repository. See [ckeditor/ckeditor5#14924](https://github.com/ckeditor/ckeditor5/issues/14924). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/693e01c278b79944e6a7dfcfd4ce47e1a0f74c3c))
+
+
 ## [7.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v6.0.1...v7.0.0) (2023-07-10)
 
 ### BREAKING CHANGES
