@@ -463,9 +463,12 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		} );
 
 		viewDocument.on<ViewDocumentFocusEvent>( 'focus', evt => {
-			this.ngZone.run( () => {
-				this.focus.emit( { event: evt, editor } );
-			} );
+			if ( hasObservers( this.focus ) ) {
+				this.ngZone.run( () => {
+					// Do not run change detection if there're no `focus` listeners outside of the component.
+					this.focus.emit( { event: evt, editor } );
+				} );
+			}
 		} );
 
 		viewDocument.on<ViewDocumentBlurEvent>( 'blur', evt => {
