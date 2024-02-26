@@ -18,6 +18,7 @@ module.exports = {
 		'@typescript-eslint/eslint-plugin'
 	],
 	rules: {
+		'ckeditor5-rules/allow-imports-only-from-main-package-entry-point': 'off',
 		'@typescript-eslint/explicit-function-return-type': 'off',
 		'@typescript-eslint/indent': [ 'error', 'tab' ],
 		'@typescript-eslint/no-explicit-any': 'off',
