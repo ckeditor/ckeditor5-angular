@@ -3,6 +3,8 @@
  * For licensing, see LICENSE.md.
  */
 
+/* eslint-disable ckeditor5-rules/allow-imports-only-from-main-package-entry-point */
+
 import type {
 	AfterViewInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import {
