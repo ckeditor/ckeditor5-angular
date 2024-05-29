@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "ckeditor5/index.css",
               "src/styles.css"
             ],
             "scripts": [],

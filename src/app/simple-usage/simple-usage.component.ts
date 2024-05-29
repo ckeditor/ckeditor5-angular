@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import AngularEditor from '../../../ckeditor/build/ckeditor';
+import AngularEditor from '../ckeditor/ckeditor';
 
 @Component( {
 	selector: 'app-simple-usage',

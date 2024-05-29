@@ -4,7 +4,11 @@
  */
 
 import type {
-	AfterViewInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+	AfterViewInit,
+	OnChanges,
+	OnDestroy,
+	SimpleChanges
+} from '@angular/core';
 import {
 	Component,
 	Input,
@@ -14,22 +18,30 @@ import {
 	forwardRef,
 	ElementRef
 } from '@angular/core';
-
-import { ContextWatchdog, EditorWatchdog } from '@ckeditor/ckeditor5-watchdog';
-import { WatchdogConfig } from '@ckeditor/ckeditor5-watchdog/src/watchdog';
-import { type Editor, EditorConfig } from '@ckeditor/ckeditor5-core';
-import type { GetEventInfo } from '@ckeditor/ckeditor5-utils';
-import type { DocumentChangeEvent } from '@ckeditor/ckeditor5-engine';
-import type { ViewDocumentBlurEvent, ViewDocumentFocusEvent } from '@ckeditor/ckeditor5-engine/src/view/observer/focusobserver';
 import { first } from 'rxjs/operators';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+
+// import type { ViewDocumentBlurEvent, ViewDocumentFocusEvent } from '@ckeditor/ckeditor5-engine/src/view/observer/focusobserver';
+
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type {
+	ContextWatchdog,
+	EditorWatchdog,
+	WatchdogConfig,
+	Editor,
+	EditorConfig,
+	GetEventInfo,
+	DocumentChangeEvent,
+	EditorCreatorFunction
+	// ViewDocumentBlurEvent,
+	// ViewDocumentFocusEvent
+} from 'ckeditor5';
+import type { ControlValueAccessor } from '@angular/forms';
 
 import uid from './uid';
 
-import type {
-	ControlValueAccessor } from '@angular/forms';
-import {
-	NG_VALUE_ACCESSOR
-} from '@angular/forms';
+type ViewDocumentBlurEvent = any; // TODO
+type ViewDocumentFocusEvent = any; // TODO
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -72,7 +84,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: { create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<TEditor> };
+	@Input() public editor?: {
+		create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<TEditor>;
+		EditorWatchdog: typeof EditorWatchdog;
+	};
 
 	/**
 	 * The configuration of the editor.
@@ -341,7 +356,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 */
 	private attachToWatchdog() {
 		// TODO: elementOrData parameter type can be simplified to HTMLElemen after templated Watchdog will be released.
-		const creator = ( ( elementOrData: HTMLElement | string | Record<string, string>, config: EditorConfig ) => {
+		const creator: EditorCreatorFunction<TEditor> = ( ( elementOrData, config ) => {
 			return this.ngZone.runOutsideAngular( async () => {
 				this.elementRef.nativeElement.appendChild( elementOrData as HTMLElement );
 
@@ -402,9 +417,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			} );
 		} else {
 			// In the other case create the watchdog by hand to keep the editor running.
-			const editorWatchdog = new EditorWatchdog(
+			const editorWatchdog = new this.editor!.EditorWatchdog(
 				this.editor!,
-				this.editorWatchdogConfig );
+				this.editorWatchdogConfig
+			);
 
 			editorWatchdog.setCreator( creator );
 			editorWatchdog.setDestructor( destructor );

@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
-import AngularEditor from '../../../ckeditor/build/ckeditor';
+import AngularEditor from '../ckeditor/ckeditor';
 
 @Component( {
 	selector: 'context-demo',
