@@ -1,14 +1,7 @@
-import type {
-	AfterViewInit
-} from '@angular/core';
-import {
-	Component
-} from '@angular/core';
+import { Component, type AfterViewInit } from '@angular/core';
+import { FormGroup, FormControl, type AbstractControl } from '@angular/forms';
 
-import type { AbstractControl } from '@angular/forms';
-import { FormGroup, FormControl } from '@angular/forms';
-
-import AngularEditor from '../ckeditor/ckeditor';
+import { AngularEditor } from 'src/editor/editor';
 
 @Component( {
 	selector: 'app-demo-reactive-form',

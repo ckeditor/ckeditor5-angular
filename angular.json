@@ -83,6 +83,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "styles": [
+              "ckeditor5/index.css",
               "src/styles.css"
             ],
             "scripts": [],

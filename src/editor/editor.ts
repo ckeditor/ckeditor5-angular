@@ -3,7 +3,6 @@
  * For licensing, see LICENSE.md.
  */
 
-// The editor creator to use.
 import {
 	ClassicEditor,
 	Essentials,
@@ -31,8 +30,7 @@ import {
 	CloudServices
 } from 'ckeditor5';
 
-export default class AngularEditor extends ClassicEditor {
-	// Plugins to include in the build.
+export class AngularEditor extends ClassicEditor {
 	public static override builtinPlugins = [
 		Autoformat,
 		BlockQuote,
@@ -59,7 +57,6 @@ export default class AngularEditor extends ClassicEditor {
 		CKFinderUploadAdapter
 	];
 
-	// Editor configuration.
 	public static override defaultConfig = {
 		toolbar: {
 			items: [
@@ -97,7 +94,6 @@ export default class AngularEditor extends ClassicEditor {
 				'mergeTableCells'
 			]
 		},
-		// This value must be kept in sync with the language defined in webpack.config.js.
 		language: 'en'
 	};
 }

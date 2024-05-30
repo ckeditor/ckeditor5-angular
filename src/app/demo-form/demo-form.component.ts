@@ -1,14 +1,8 @@
-import type {
-	AfterViewInit
-} from '@angular/core';
-import {
-	Component,
-	ViewChild
-} from '@angular/core';
-
-import type { AbstractControl } from '@angular/forms';
+import { Component, ViewChild, type AfterViewInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import AngularEditor from '../ckeditor/ckeditor';
+import type { AbstractControl } from '@angular/forms';
+
+import { AngularEditor } from 'src/editor/editor';
 
 @Component( {
 	selector: 'app-demo-form',

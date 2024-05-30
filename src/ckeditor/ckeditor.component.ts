@@ -256,18 +256,24 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
 
+		this.checkVersion();
+	}
+
+	private checkVersion() {
 		// To avoid issues with the community typings and CKEditor 5, let's treat window as any. See #342.
 		const { CKEDITOR_VERSION } = ( window as any );
 
-		if ( CKEDITOR_VERSION ) {
-			const [ major ] = CKEDITOR_VERSION.split( '.' ).map( Number );
-
-			if ( major < 37 ) {
-				console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 37 or higher.' );
-			}
-		} else {
-			console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
+		if ( !CKEDITOR_VERSION ) {
+			return console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
 		}
+
+		const [ major ] = CKEDITOR_VERSION.split( '.' ).map( Number );
+
+		if ( major >= 42 || CKEDITOR_VERSION.startsWith( '0.0.0' ) ) {
+			return;
+		}
+
+		console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 42+ or nightly build.' );
 	}
 
 	// Implementing the OnChanges interface. Whenever the `data` property is changed, update the editor content.
