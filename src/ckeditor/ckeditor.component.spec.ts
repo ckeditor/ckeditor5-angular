@@ -362,8 +362,6 @@ describe( 'CKEditorComponent', () => {
 				expect( spy ).toHaveBeenCalledWith( component.editorInstance );
 			} );
 
-			// TODO: https://github.com/ckeditor/ckeditor5-angular/issues/420
-			/*
 			it( 'should fire the `error` event when an error occurs and the `ready` event afterwards #2', async () => {
 				// Create a second component to test whether the `error` event will be fired only
 				// on the proper component.
@@ -410,11 +408,11 @@ describe( 'CKEditorComponent', () => {
 				expect( errorSpy ).toHaveBeenCalledTimes( 1 );
 				expect( readySpy ).toHaveBeenCalledTimes( 1 );
 
-				expect( error2Spy ).toHaveBeenCalledTimes( 0 );
+				// TODO: https://github.com/ckeditor/ckeditor5-angular/issues/420
+				// expect( error2Spy ).toHaveBeenCalledTimes( 0 );
 
 				fixture2.destroy();
 			} );
-			*/
 
 			it( 'should update the editor once the editor is ready', async () => {
 				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
