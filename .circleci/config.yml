@@ -65,9 +65,6 @@ jobs:
       - bootstrap_repository_command
       - prepare_environment_command
       - run:
-          name: Build CKEditor 5 instance
-          command: yarn run build-ckeditor
-      - run:
           name: Execute ESLint
           command: yarn run lint
       - run:

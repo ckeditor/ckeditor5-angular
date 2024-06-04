@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import AngularEditor from '../../../ckeditor/build/ckeditor';
-import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
+import type { ContextWatchdog } from 'ckeditor5';
+import { AngularEditor } from 'src/editor/editor';
 
 @Component( {
 	selector: 'watchdog-demo',

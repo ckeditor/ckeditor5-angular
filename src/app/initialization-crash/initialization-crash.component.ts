@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
+import type { ContextWatchdog } from 'ckeditor5';
 import { CKEditorComponent } from 'src/ckeditor';
-import AngularEditor from 'ckeditor/build/ckeditor';
-import type { ContextWatchdog } from '@ckeditor/ckeditor5-watchdog';
+import { AngularEditor } from 'src/editor/editor';
 
 @Component( {
 	selector: 'app-initialization-crash',

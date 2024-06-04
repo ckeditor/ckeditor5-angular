@@ -22,10 +22,7 @@
     "@angular/core": ">=13.0.0",
     "@angular/common": ">=13.0.0",
     "@angular/forms": ">=13.0.0",
-    "@ckeditor/ckeditor5-core": ">=37.0.0",
-    "@ckeditor/ckeditor5-engine": ">=37.0.0",
-    "@ckeditor/ckeditor5-utils": ">=37.0.0",
-    "@ckeditor/ckeditor5-watchdog": ">=37.0.0",
+    "ckeditor5": ">=42.0.0 || ^0.0.0-nightly",
     "rxjs": ">=6.0.0"
   },
   "author": "CKSource (http://cksource.com/)",

@@ -45,7 +45,7 @@ Because of the breaking changes in the Angular library output format, the `@cked
     <tr>
       <td><code>^6</code></td>
       <td><code>13+</code></td>
-      <td>Requires CKEditor&nbsp;5 at least in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v37.0.0">37</a>.</td>
+      <td>Requires CKEditor&nbsp;5 at least in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v42.0.0">42</a>.</td>
     </tr>
     <tr>
       <td><code>^5</code></td>
@@ -95,12 +95,6 @@ This repository contains the following code:
 **Note:** The [npm package](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular) contains a [packaged component](#packaging-the-component) only.
 
 ### Testing the component (demo)
-
-First, the CKEditor 5 build should be created out of source files:
-
-```bash
-npm run build-ckeditor
-```
 
 To open the demo application using the component, run:
 

@@ -5,8 +5,8 @@
 
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
-import type { Editor } from '@ckeditor/ckeditor5-core';
-import AngularEditor from '../../ckeditor/build/ckeditor';
+import type { Editor } from 'ckeditor5';
+import { AngularEditor } from 'src/editor/editor';
 
 import {
 	CKEditorComponent,
