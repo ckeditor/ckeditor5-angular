@@ -21,8 +21,6 @@ import {
 import { first } from 'rxjs/operators';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-// import type { ViewDocumentBlurEvent, ViewDocumentFocusEvent } from '@ckeditor/ckeditor5-engine/src/view/observer/focusobserver';
-
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type {
 	ContextWatchdog,
@@ -32,16 +30,13 @@ import type {
 	EditorConfig,
 	GetEventInfo,
 	DocumentChangeEvent,
-	EditorCreatorFunction
-	// ViewDocumentBlurEvent,
-	// ViewDocumentFocusEvent
+	EditorCreatorFunction,
+	ViewDocumentBlurEvent,
+	ViewDocumentFocusEvent
 } from 'ckeditor5';
 import type { ControlValueAccessor } from '@angular/forms';
 
 import uid from './uid';
-
-type ViewDocumentBlurEvent = any; // TODO
-type ViewDocumentFocusEvent = any; // TODO
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
