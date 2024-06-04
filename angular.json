@@ -27,7 +27,7 @@
               "src/assets"
             ],
             "styles": [
-              "ckeditor5/index.css",
+              "ckeditor5/ckeditor5.css",
               "src/styles.css"
             ],
             "scripts": [],
@@ -83,7 +83,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "styles": [
-              "ckeditor5/index.css",
+              "ckeditor5/ckeditor5.css",
               "src/styles.css"
             ],
             "scripts": [],
