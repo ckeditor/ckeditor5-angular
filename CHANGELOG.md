@@ -3,9 +3,15 @@ Changelog
 
 ## [8.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v7.0.1...v8.0.0-alpha.0) (2024-06-05)
 
+We are happy to announce the alpha release of the next major version of the React integration.
+
+This release is intended to allow the integration to work with existing and new installation methods [announced in this post](https://github.com/ckeditor/ckeditor5/issues/15502).
+
+Please refer to [our nightly documentation build](https://ckeditor5.github.io/docs/nightly/ckeditor5/latest/index.html) for the installation instructions.
+
 ### Features
 
-* Change the implementation to only depend on types from the CKEditor packages and not runtime code to make the integration work with existing and new installation methods. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/711aae3cddc57a78255bba69fbf711cda0ec6b78))
+* Change the implementation to only depend on types from the `ckeditor5` package and not runtime code to make the integration work with existing and new installation methods. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/711aae3cddc57a78255bba69fbf711cda0ec6b78))
 
 
 ## [7.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v7.0.0...v7.0.1) (2023-10-12)
@@ -167,7 +173,7 @@ Internal changes only (updated dependencies, documentation, etc.).
 
 ### BREAKING CHANGES
 
-* Angular<9 will not work with the new `ckeditor5-angular` library anymore (it's mostly connected with an update of TypeScript to version TS 4.0, which produces declaration files incompatible with the previous TypeScript versions used by older versions of Angular). 
+* Angular<9 will not work with the new `ckeditor5-angular` library anymore (it's mostly connected with an update of TypeScript to version TS 4.0, which produces declaration files incompatible with the previous TypeScript versions used by older versions of Angular).
 
 ### Other changes
 
