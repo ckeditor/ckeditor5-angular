@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [8.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v7.0.1...v8.0.0-alpha.0) (2024-06-05)
+
+### Features
+
+* Change the implementation to only depend on types from the CKEditor packages and not runtime code to make the integration work with existing and new installation methods. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/711aae3cddc57a78255bba69fbf711cda0ec6b78))
+
+
 ## [7.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v7.0.0...v7.0.1) (2023-10-12)
 
 ### Other changes
