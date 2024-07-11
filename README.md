@@ -133,15 +133,11 @@ Play with the application and make sure the component works properly.
 
 ### Releasing
 
-#### Generating the changelog
+This package's release process is automated via CircleCI. Before you start a new release, you'll need to test the package and then prepare the changelog entries.
 
-```bash
-npm run changelog
-```
+#### Testing the package before releasing
 
-#### Packaging the component
-
-**Note** This step is required to test the package used as an npm dependency.
+To test the package used as an npm dependency, first you need to build it.
 
 This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create the package meeting the Angular Package Format specification.
 
@@ -151,11 +147,9 @@ Calling:
 npm run build-package
 ```
 
-creates a package in the `./dist` directory, which can be then published in the npm registry.
+creates a package in the `./dist` directory.
 
-#### Testing the package before releasing
-
-To test the `ckeditor5-angular` package, first bootstrap an empty Angular package using [`ng new`](https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
+Next, to verify the generated `ckeditor5-angular` package, bootstrap an empty Angular package using [`ng new`](https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
 
 Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` component via this repository.
 
@@ -181,19 +175,18 @@ Make sure that the `preserveSymlinks` option is set to `true` for the `build` ar
 
 Make sure to test the package with the production setup (`ng build --configuration production`) and with older Angular versions (at least with the 9.1).
 
-#### Publishing the package
+#### Generating the changelog
 
-To create the release directory, run:
+1. Make sure the `#master` branch is up-to-date: `git fetch && git checkout master && git pull`.
+1. Prepare a release branch: `git checkout -b release-[YYYY-MM-DD]` where `YYYY-MM-DD` is the current day.
+1. Generate the changelog entries: `yarn run changelog --branch release-[YYYY-MM-DD]`.
+    * This task checks what changed in each package and bumps the version accordingly. If nothing changes at all, it won't create a new changelog entry. If changes were irrelevant (e.g., only dependencies), it would make an "internal changes" entry.
+    * Scan the logs printed by the tool to search for errors (incorrect changelog entries). Incorrect entries (e.g., ones without the type) should be addressed. You may need to create entries for them manually. This is done directly in CHANGELOG.md (in the root directory). Make sure to verify the proposed version after you modify the changelog.
+1. Commit all changes and prepare a new pull request targeting the `#master` branch.
 
-```bash
-npm run release:prepare-packages
-```
+#### Release the package
 
-Then, to publish the new package in the npm registry, run:
-
-```bash
-npm run release:publish-packages
-```
+Once the package is successfully tested and the pull request with changelog is ready, ping the @ckeditor/ckeditor-5-devops team to review the pull request and trigger the release process.
 
 ## License
 

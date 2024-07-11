@@ -66,6 +66,7 @@
     "ng-packagr": "^13.3.1",
     "postcss-loader": "^4.3.0",
     "raw-loader": "^4.0.1",
+    "semver": "^7.6.2",
     "start-server-and-test": "^2.0.3",
     "style-loader": "^2.0.0",
     "ts-loader": "^9.4.3",
