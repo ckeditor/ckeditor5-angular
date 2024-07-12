@@ -15,19 +15,37 @@ const minimist = require( 'minimist' );
  */
 module.exports = function parseArguments( cliArguments ) {
 	const config = {
+		boolean: [
+			'verbose',
+			'compile-only',
+			'ci'
+		],
+
 		string: [
+			'branch',
 			'npm-tag'
 		],
 
 		default: {
-			'npm-tag': 'latest'
+			branch: 'master',
+			ci: false,
+			'compile-only': false,
+			'npm-tag': 'latest',
+			verbose: false
 		}
 	};
 
 	const options = minimist( cliArguments, config );
 
+	options.compileOnly = options[ 'compile-only' ];
+	delete options[ 'compile-only' ];
+
 	options.npmTag = options[ 'npm-tag' ];
 	delete options[ 'npm-tag' ];
+
+	if ( process.env.CI ) {
+		options.ci = true;
+	}
 
 	return options;
 };
@@ -35,5 +53,13 @@ module.exports = function parseArguments( cliArguments ) {
 /**
  * @typedef {Object} ReleaseOptions
  *
- * @property {Array.<String>|null} packages
+ * @property {String} [branch='master']
+ *
+ * @property {String} [npmTag='latest']
+ *
+ * @property {Boolean} [compileOnly=false]
+ *
+ * @property {Boolean} [verbose=false]
+ *
+ * @property {Boolean} [ci=false]
  */

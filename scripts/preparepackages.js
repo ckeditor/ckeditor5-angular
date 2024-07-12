@@ -14,12 +14,16 @@ const releaseTools = require( '@ckeditor/ckeditor5-dev-release-tools' );
 const { tools } = require( '@ckeditor/ckeditor5-dev-utils' );
 const upath = require( 'upath' );
 const fs = require( 'fs-extra' );
+const parseArguments = require( './utils/parsearguments' );
+const getListrOptions = require( './utils/getlistroptions' );
 
 const latestVersion = releaseTools.getLastFromChangelog();
 const versionChangelog = releaseTools.getChangesForVersion( latestVersion );
 const CKEDITOR5_ANGULAR_ROOT_DIR = upath.join( __dirname, '..' );
 const DIST_DIR = upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, 'dist' );
 const RELEASE_ANGULAR_DIR = upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, 'release', 'ckeditor5-angular' );
+
+const cliArguments = parseArguments( process.argv.slice( 2 ) );
 
 const tasks = new Listr( [
 	{
@@ -36,6 +40,14 @@ const tasks = new Listr( [
 			}
 
 			return Promise.reject( 'Aborted due to errors.\n' + errors.map( message => `* ${ message }` ).join( '\n' ) );
+		},
+		skip: () => {
+			// When compiling the packages only, do not validate the release.
+			if ( cliArguments.compileOnly ) {
+				return true;
+			}
+
+			return false;
 		}
 	},
 	{
@@ -44,6 +56,14 @@ const tasks = new Listr( [
 			return releaseTools.updateVersions( {
 				version: latestVersion
 			} );
+		},
+		skip: () => {
+			// When compiling the packages only, do not update any values.
+			if ( cliArguments.compileOnly ) {
+				return true;
+			}
+
+			return false;
 		}
 	},
 	{
@@ -68,6 +88,14 @@ const tasks = new Listr( [
 
 					return packageJson;
 				} );
+		},
+		skip: () => {
+			// When compiling the packages only, do not update any values.
+			if ( cliArguments.compileOnly ) {
+				return true;
+			}
+
+			return false;
 		}
 	},
 	{
@@ -92,9 +120,17 @@ const tasks = new Listr( [
 					'package.json'
 				]
 			} );
+		},
+		skip: () => {
+			// When compiling the packages only, do not update any values.
+			if ( cliArguments.compileOnly ) {
+				return true;
+			}
+
+			return false;
 		}
 	}
-] );
+], getListrOptions( cliArguments ) );
 
 tasks.run()
 	.catch( err => {
