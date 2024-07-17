@@ -131,50 +131,6 @@ npm run coverage
 
 Play with the application and make sure the component works properly.
 
-### Releasing
-
-This package's release process is automated via CircleCI. Before you start a new release, you'll need to test the package and then prepare the changelog entries.
-
-#### Testing the package before releasing
-
-To test the package used as an npm dependency, first you need to build it.
-
-This project uses [ng-packagr](https://www.npmjs.com/package/ng-packagr) to create the package meeting the Angular Package Format specification.
-
-Calling:
-
-```bash
-npm run build-package
-```
-
-creates a package in the `./dist` directory.
-
-Next, to verify the generated `ckeditor5-angular` package, bootstrap an empty Angular package using [`ng new`](https://angular.io/cli/new) and add the `<ckeditor>` component by following the [guide](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html).
-
-Then, create a symlink to the `ckeditor5-angular/dist` package directory to test the `ckeditor5-angular` component via this repository.
-
-```bash
-ln -s path/to/ckeditor5-angular/dist node_modules/\@ckeditor/ckeditor5-angular
-```
-
-Make sure that the `preserveSymlinks` option is set to `true` for the `build` architect in `angular.json`:
-
-```json
-{
-	"project-name": {
-		"architect": {
-			"build": {
-				"options": {
-					"preserveSymlinks": true
-				}
-			}
-		}
-	}
-}
-```
-
-Make sure to test the package with the production setup (`ng build --configuration production`) and with older Angular versions (at least with the 9.1).
-
 ## Releasing package
 
 CircleCI automates the release process and can release both channels: stable (`X.Y.Z`) and pre-releases (`X.Y.Z-alpha.X`, etc.).
