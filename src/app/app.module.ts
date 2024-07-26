@@ -6,23 +6,26 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { CKEditorModule } from '../ckeditor/ckeditor.module';
-import { SimpleUsageComponent } from './simple-usage/simple-usage.component';
-import { DemoFormComponent } from './demo-form/demo-form.component';
-import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-form.component';
-import { ContextDemoComponent } from './context-demo/context-demo';
-import { WatchdogDemoComponent } from './watchdog-demo/watchdog-demo';
-import { SimpleCdnUsageComponent } from './simple-cdn-usage/simple-cdn-usage.component';
-import { InitializationCrashComponent } from './initialization-crash/initialization-crash.component';
+// import { SimpleUsageComponent } from './simple-usage/simple-usage.component';
+// import { DemoFormComponent } from './demo-form/demo-form.component';
+// import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-form.component';
+// import { ContextDemoComponent } from './context-demo/context-demo';
+// import { WatchdogDemoComponent } from './watchdog-demo/watchdog-demo';
+// import { SimpleCdnUsageComponent } from './simple-cdn-usage/simple-cdn-usage.component';
+// import { InitializationCrashComponent } from './initialization-crash/initialization-crash.component';
 
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/simple-usage', pathMatch: 'full' },
-	{ path: 'context', component: ContextDemoComponent },
-	{ path: 'forms', component: DemoFormComponent },
-	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
-	{ path: 'watchdog', component: WatchdogDemoComponent },
-	{ path: 'simple-usage', component: SimpleUsageComponent },
-	{ path: 'simple-cdn-usage', component: SimpleCdnUsageComponent },
-	{ path: 'init-crash', component: InitializationCrashComponent }
+	// { path: 'context', component: ContextDemoComponent },
+	// { path: 'forms', component: DemoFormComponent },
+	// { path: 'reactive-forms', component: DemoReactiveFormComponent },
+	// { path: 'watchdog', component: WatchdogDemoComponent },
+	// { path: 'simple-usage', component: SimpleUsageComponent },
+	{
+		path: 'simple-cdn-usage',
+		loadChildren: () => import( './simple-cdn-usage/simple-cdn-usage.module' ).then( m => m.SimpleCdnUsageModule )
+	}
+	// { path: 'init-crash', component: InitializationCrashComponent }
 ];
 
 @NgModule( {
@@ -31,17 +34,19 @@ const appRoutes: Routes = [
 		FormsModule,
 		ReactiveFormsModule,
 		CKEditorModule,
-		RouterModule.forRoot( appRoutes )
+		RouterModule.forRoot( appRoutes, {
+			onSameUrlNavigation: 'reload'
+		} )
 	],
 	declarations: [
-		AppComponent,
-		ContextDemoComponent,
-		DemoFormComponent,
-		DemoReactiveFormComponent,
-		SimpleUsageComponent,
-		SimpleCdnUsageComponent,
-		WatchdogDemoComponent,
-		InitializationCrashComponent
+		AppComponent
+		// ContextDemoComponent,
+		// DemoFormComponent,
+		// DemoReactiveFormComponent,
+		// SimpleUsageComponent,
+		// SimpleCdnUsageComponent,
+		// WatchdogDemoComponent,
+		// InitializationCrashComponent
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]
