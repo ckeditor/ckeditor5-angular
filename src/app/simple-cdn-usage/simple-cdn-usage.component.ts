@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, type OnInit } from '@angular/core';
 
 import { createCdnEditor } from 'src/editor/create-cdn-editor';
 import loadCKEditorCloud from 'src/ckeditor/cloud/load-ckeditor-cloud';
 
 @Component( {
-	selector: 'app-simple-usage',
-	templateUrl: './simple-usage.component.html',
-	styleUrls: [ './simple-usage.component.css' ]
+	selector: 'app-simple-cdn-usage',
+	templateUrl: './simple-cdn-usage.component.html',
+	styleUrls: [ './simple-cdn-usage.component.css' ]
 } )
-export class SimpleUsageComponent {
-	public Editor: Window['CKEDITOR'][ 'ClassicEditor' ] | null = null;
+export class SimpleCdnUsageComponent implements OnInit {
+	public Editor: Window['CKEDITOR']['ClassicEditor'] | null = null;
 
 	public isDisabled = false;
 	public editorData =
@@ -23,14 +23,15 @@ You learn to appreciate each and every single one of the differences while you b
 		this.isDisabled = !this.isDisabled;
 	}
 
-	public async onInit(): Promise<void> {
-		const cloud = await loadCKEditorCloud( {
+	public ngOnInit(): void {
+		loadCKEditorCloud( {
 			version: '42.0.2'
-		} );
-
-		this.Editor = createCdnEditor( {
-			cloud
-		} );
+		} )
+			.then( cloud => {
+				this.Editor = createCdnEditor( {
+					cloud
+				} );
+			} );
 	}
 
 	public onReady(): void {

@@ -11,6 +11,7 @@ import { DemoFormComponent } from './demo-form/demo-form.component';
 import { DemoReactiveFormComponent } from './demo-reactive-form/demo-reactive-form.component';
 import { ContextDemoComponent } from './context-demo/context-demo';
 import { WatchdogDemoComponent } from './watchdog-demo/watchdog-demo';
+import { SimpleCdnUsageComponent } from './simple-cdn-usage/simple-cdn-usage.component';
 import { InitializationCrashComponent } from './initialization-crash/initialization-crash.component';
 
 const appRoutes: Routes = [
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
 	{ path: 'reactive-forms', component: DemoReactiveFormComponent },
 	{ path: 'watchdog', component: WatchdogDemoComponent },
 	{ path: 'simple-usage', component: SimpleUsageComponent },
+	{ path: 'simple-cdn-usage', component: SimpleCdnUsageComponent },
 	{ path: 'init-crash', component: InitializationCrashComponent }
 ];
 
@@ -37,6 +39,7 @@ const appRoutes: Routes = [
 		DemoFormComponent,
 		DemoReactiveFormComponent,
 		SimpleUsageComponent,
+		SimpleCdnUsageComponent,
 		WatchdogDemoComponent,
 		InitializationCrashComponent
 	],
