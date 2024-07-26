@@ -3,8 +3,8 @@
  * For licensing, see LICENSE.md.
  */
 
-export * from './combineCKCdnBundlesPacks';
-export * from './createCKCdnBaseBundlePack';
-export * from './createCKCdnPremiumBundlePack';
-export * from './createCKCdnUrl';
-export * from './loadCKCdnResourcesPack';
+export * from './combine-ck-cdn-bundles-packs';
+export * from './create-ck-cdn-base-bundle-pack';
+export * from './create-ck-cdn-premium-bundle-pack';
+export * from './create-ck-cdn-url';
+export * from './load-ck-cdn-resources-pack';

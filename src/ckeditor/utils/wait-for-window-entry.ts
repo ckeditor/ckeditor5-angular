@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md.
  */
 
-import { waitFor, type WaitForConfig } from './waitFor';
+import { waitFor, type WaitForConfig } from './wait-for';
 
 /**
  * Waits for the provided window entry to be available. It's used mostly for waiting for the CKEditor 5 window object to be available.

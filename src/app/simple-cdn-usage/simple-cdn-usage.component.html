@@ -1,0 +1,29 @@
+<h2>Simple usage</h2>
+
+<p><strong>Note:</strong> Open the console for additional logs.</p>
+
+<p>
+	<button (click)="toggleDisableEditors()">{{ isDisabled ? 'Enable editors' : 'Disable editors' }}</button>
+</p>
+
+<h3>Classic build</h3>
+<ckeditor
+	[data]="editorData"
+	[editor]="Editor"
+	[disabled]="isDisabled"
+	id="classic-editor"
+	name="classic-editor"
+
+	(ready)="onReady()"
+	(change)="onChange()"
+	(focus)="onFocus()"
+	(error)="onError()"
+	(blur)="onBlur()">
+</ckeditor>
+
+<h4>Component events:</h4>
+<ul>
+	<li *ngFor="let eventInfo of componentEvents">
+		<span>{{ eventInfo }}</span>
+	</li>
+</ul>

@@ -5,9 +5,9 @@
 
 import type { Awaitable } from '../../types';
 
-import { injectScript } from '../../utils/injectScript';
-import { injectStylesheet } from '../../utils/injectStylesheet';
-import { preloadResource } from '../../utils/preloadResource';
+import { injectScript } from '../../utils/inject-script';
+import { injectStylesheet } from '../../utils/inject-stylesheet';
+import { preloadResource } from '../../utils/preload-resource';
 
 /**
  * A pack of resources to load (scripts and stylesheets) and the exported global variables.

@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md.
  */
 
-import type { CKCdnResourcesPack, InferCKCdnResourcesPackExportsType } from './loadCKCdnResourcesPack';
+import type { CKCdnResourcesPack, InferCKCdnResourcesPackExportsType } from './load-ck-cdn-resources-pack';
 
 /**
  * Combines multiple CKEditor CDN bundles packs into a single pack.

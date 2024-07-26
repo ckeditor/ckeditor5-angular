@@ -7,11 +7,11 @@ import type * as CKEditor from 'ckeditor5';
 import type { EventInfo } from 'ckeditor5';
 
 import type { Overwrite } from '../../types';
-import type { CKCdnResourcesPack } from './loadCKCdnResourcesPack';
+import type { CKCdnResourcesPack } from './load-ck-cdn-resources-pack';
 
-import { createCKCdnUrl, type CKCdnVersion } from './createCKCdnUrl';
-import { waitForWindowEntry } from '../../utils/waitForWindowEntry';
-import { injectScriptsInParallel } from '../../utils/injectScript';
+import { createCKCdnUrl, type CKCdnVersion } from './create-ck-cdn-url';
+import { waitForWindowEntry } from '../../utils/wait-for-window-entry';
+import { injectScriptsInParallel } from '../../utils/inject-script';
 
 /**
  * Type of the exported global variables of the base CKEditor bundle.
