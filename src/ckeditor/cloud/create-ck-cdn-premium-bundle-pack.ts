@@ -9,8 +9,8 @@ import type { CKCdnResourcesPack } from './load-ck-cdn-resources-pack';
 import type { CKCdnBaseBundlePackConfig } from './create-ck-cdn-base-bundle-pack';
 
 import { createCKCdnUrl } from './create-ck-cdn-url';
-import { waitForWindowEntry } from '../../utils/wait-for-window-entry';
-import { injectScriptsInParallel } from '../../utils/inject-script';
+import { waitForWindowEntry } from '../utils/wait-for-window-entry';
+import { injectScriptsInParallel } from '../utils/inject-script';
 
 /**
  * Type of the exported global variables of the CKEditor Premium Features.
@@ -18,7 +18,7 @@ import { injectScriptsInParallel } from '../../utils/inject-script';
 declare global {
 	interface Window {
 		CKEDITOR_PREMIUM_FEATURES: typeof CKEditorPremiumFeatures;
-		'ckeditor5-premium-features': Window[ 'CKEDITOR_PREMIUM_FEATURES' ];
+		'ckeditor5-premium-features': Window['CKEDITOR_PREMIUM_FEATURES'];
 	}
 }
 
@@ -41,13 +41,11 @@ declare global {
 export const createCKCdnPremiumBundlePack = (
 	{
 		version,
-		languages,
-		withScripts = true,
-		withStylesheets = true
+		languages
 	}: CKCdnPremiumBundlePackConfig
 ): CKCdnResourcesPack<Window['CKEDITOR_PREMIUM_FEATURES']> => {
 	const urls = {
-		scripts: withScripts ? [
+		scripts: [
 			// Load the main script of the premium features.
 			createCKCdnUrl( 'ckeditor5-premium-features', 'ckeditor5-premium-features.umd.js' )( version ),
 
@@ -55,11 +53,11 @@ export const createCKCdnPremiumBundlePack = (
 			...( languages || [] ).map( language =>
 				createCKCdnUrl( 'ckeditor5-premium-features', `translations/${ language }.umd.js` )( version )
 			)
-		] : [],
+		],
 
-		stylesheets: withStylesheets ? [
+		stylesheets: [
 			createCKCdnUrl( 'ckeditor5-premium-features', 'ckeditor5-premium-features.css' )( version )
-		] : []
+		]
 	};
 
 	return {
@@ -86,4 +84,4 @@ export const createCKCdnPremiumBundlePack = (
 /**
  * Configuration of the CKEditor Premium Features pack.
  */
-export type CKCdnPremiumBundlePackConfig = Pick<CKCdnBaseBundlePackConfig, 'languages' | 'version' | 'withScripts' | 'withStylesheets'>;
+export type CKCdnPremiumBundlePackConfig = Pick<CKCdnBaseBundlePackConfig, 'languages' | 'version'>;

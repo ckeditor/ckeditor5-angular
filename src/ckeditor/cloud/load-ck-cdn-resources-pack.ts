@@ -3,11 +3,11 @@
  * For licensing, see LICENSE.md.
  */
 
-import type { Awaitable } from '../../types';
+import type { Awaitable } from '../types';
 
-import { injectScript } from '../../utils/inject-script';
-import { injectStylesheet } from '../../utils/inject-stylesheet';
-import { preloadResource } from '../../utils/preload-resource';
+import { injectScript } from '../utils/inject-script';
+import { injectStylesheet } from '../utils/inject-stylesheet';
+import { preloadResource } from '../utils/preload-resource';
 
 /**
  * A pack of resources to load (scripts and stylesheets) and the exported global variables.
@@ -69,7 +69,7 @@ export const loadCKCdnResourcesPack = async <P extends CKCdnResourcesPack<any>>(
 		preload = [
 			...stylesheets.filter( item => typeof item === 'string' ),
 			...scripts.filter( item => typeof item === 'string' )
-		] as Array<string>;
+		];
 	}
 
 	// Preload resources specified in the pack.
