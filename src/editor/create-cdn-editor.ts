@@ -4,16 +4,17 @@
  */
 
 import type { CKEditorCloudResult } from 'src/ckeditor/cloud/load-ckeditor-cloud';
+import type { ClassicEditor, Plugin } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
 
 type ClassicEditorCreatorConfig = {
 	cloud: CKEditorCloudResult;
-	additionalPlugins?: Array<Window['CKEDITOR']['Plugin' ]>;
+	additionalPlugins?: Array<typeof Plugin>;
 	overrideConfig?: object;
 };
 
 export const createCdnEditor = ( {
 	cloud, additionalPlugins, overrideConfig
-}: ClassicEditorCreatorConfig ): Window['CKEDITOR'][ 'ClassicEditor' ] => {
+}: ClassicEditorCreatorConfig ): typeof ClassicEditor => {
 	const {
 		ClassicEditor: ClassicEditorBase,
 		Essentials,

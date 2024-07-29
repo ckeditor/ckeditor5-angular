@@ -64,7 +64,7 @@
     "karma-jasmine-html-reporter": "^1.7.0",
     "lint-staged": "^10.4.0",
     "minimist": "^1.2.8",
-    "ng-packagr": "^13.3.1",
+    "ng-packagr": "^16",
     "postcss-loader": "^4.3.0",
     "raw-loader": "^4.0.1",
     "semver": "^7.0.0",

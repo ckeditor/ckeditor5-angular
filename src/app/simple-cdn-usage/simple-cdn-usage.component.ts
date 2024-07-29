@@ -1,4 +1,5 @@
 import { Component, type OnInit } from '@angular/core';
+import type { ClassicEditor } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
 
 import { createCdnEditor } from 'src/editor/create-cdn-editor';
 import loadCKEditorCloud from 'src/ckeditor/cloud/load-ckeditor-cloud';
@@ -9,7 +10,7 @@ import loadCKEditorCloud from 'src/ckeditor/cloud/load-ckeditor-cloud';
 	styleUrls: [ './simple-cdn-usage.component.css' ]
 } )
 export class SimpleCdnUsageComponent implements OnInit {
-	public Editor: Window['CKEDITOR']['ClassicEditor'] | null = null;
+	public Editor: typeof ClassicEditor | null = null;
 
 	public isDisabled = false;
 	public editorData =
