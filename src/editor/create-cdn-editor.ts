@@ -1,0 +1,112 @@
+/**
+ * @license Copyright (c) 2003-2024, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+import type { CKEditorCloudResult } from 'src/ckeditor/cloud/load-ckeditor-cloud';
+import type { ClassicEditor, Plugin } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
+
+type ClassicEditorCreatorConfig = {
+	cloud: CKEditorCloudResult;
+	additionalPlugins?: Array<typeof Plugin>;
+	overrideConfig?: object;
+};
+
+export const createCdnEditor = ( {
+	cloud, additionalPlugins, overrideConfig
+}: ClassicEditorCreatorConfig ): typeof ClassicEditor => {
+	const {
+		ClassicEditor: ClassicEditorBase,
+		Essentials,
+		CKFinderUploadAdapter,
+		Autoformat,
+		Bold,
+		Italic,
+		BlockQuote,
+		CKBox,
+		CKFinder,
+		CloudServices,
+		EasyImage,
+		Heading,
+		Image,
+		ImageCaption,
+		ImageStyle,
+		ImageToolbar,
+		ImageUpload,
+		Indent,
+		Link,
+		List,
+		MediaEmbed,
+		Paragraph,
+		PasteFromOffice,
+		PictureEditing,
+		Table,
+		TableToolbar,
+		TextTransformation
+	} = cloud.CKEditor;
+
+	class ClassicEditor extends ClassicEditorBase {
+		public static override builtinPlugins = [
+			Essentials,
+			CKFinderUploadAdapter,
+			Autoformat,
+			Bold,
+			Italic,
+			BlockQuote,
+			CKBox,
+			CKFinder,
+			CloudServices,
+			EasyImage,
+			Heading,
+			Image,
+			ImageCaption,
+			ImageStyle,
+			ImageToolbar,
+			ImageUpload,
+			Indent,
+			Link,
+			List,
+			MediaEmbed,
+			Paragraph,
+			PasteFromOffice,
+			PictureEditing,
+			Table,
+			TableToolbar,
+			TextTransformation,
+			...additionalPlugins || []
+		];
+
+		public static override defaultConfig = {
+			toolbar: {
+				items: [
+					'undo', 'redo',
+					'|', 'heading',
+					'|', 'bold', 'italic',
+					'|', 'link', 'uploadImage', 'insertTable', 'blockQuote', 'mediaEmbed',
+					'|', 'bulletedList', 'numberedList', 'outdent', 'indent'
+				]
+			},
+			image: {
+				toolbar: [
+					'imageStyle:inline',
+					'imageStyle:block',
+					'imageStyle:side',
+					'|',
+					'toggleImageCaption',
+					'imageTextAlternative'
+				]
+			},
+			table: {
+				contentToolbar: [
+					'tableColumn',
+					'tableRow',
+					'mergeTableCells'
+				]
+			},
+			language: 'en',
+			...overrideConfig
+		};
+	}
+
+	return ClassicEditor;
+};

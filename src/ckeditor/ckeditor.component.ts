@@ -36,7 +36,7 @@ import type {
 } from 'ckeditor5';
 import type { ControlValueAccessor } from '@angular/forms';
 
-import uid from './uid';
+import uid from './utils/uid';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
