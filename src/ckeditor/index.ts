@@ -5,3 +5,9 @@
 
 export * from './ckeditor.component';
 export * from './ckeditor.module';
+
+export {
+	loadCKEditorCloud,
+	type CKEditorCloudResult,
+	type CKEditorCloudConfig
+} from '@ckeditor/ckeditor5-integrations-common';
