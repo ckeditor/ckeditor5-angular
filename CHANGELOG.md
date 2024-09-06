@@ -1,6 +1,22 @@
 Changelog
 =========
 
+## [9.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v8.0.0...v9.0.0-alpha.0) (2024-09-06)
+
+### BREAKING CHANGES
+
+* Changed minimum supported version of Angular to the oldest supported LTS: `>=16.x`.
+* Switched compiler from TypeScript `4.x` to `5.x` to ensure compatibility with the newest CKEditor 5 packages.
+
+### Features
+
+* Add cloud CDN support. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/9c62280f4bdc487ccc258437ee7b6b7cbfa8cbf0))
+
+### Other changes
+
+* Updated yarn.lock to fix dependabot alert. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/e11295591584f43be9aace89f62fdb4c0d449ea2))
+
+
 ## [8.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v8.0.0-alpha.0...v8.0.0) (2024-06-26)
 
 We are excited to announce the next major version of the Angular integration.
