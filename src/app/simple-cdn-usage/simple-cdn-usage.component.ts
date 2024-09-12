@@ -1,7 +1,10 @@
 import { Component, type OnInit } from '@angular/core';
 import type { ClassicEditor, EditorConfig } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
 
-import { loadCKEditorCloud, type CKEditorCloudResult } from '@ckeditor/ckeditor5-integrations-common';
+import {
+	loadCKEditorCloud,
+	type CKEditorCloudResult
+} from '@ckeditor/ckeditor5-integrations-common';
 
 @Component( {
 	selector: 'app-simple-cdn-usage',
@@ -32,7 +35,7 @@ You learn to appreciate each and every single one of the differences while you b
 			.then( this._setupEditor.bind( this ) );
 	}
 
-	private _setupEditor( cloud: CKEditorCloudResult ) {
+	private _setupEditor( cloud: CKEditorCloudResult<{ version: '43.0.0' }> ) {
 		const {
 			ClassicEditor,
 			Essentials,
