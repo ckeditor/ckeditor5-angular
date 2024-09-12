@@ -31,7 +31,7 @@
     "rxjs": "^6.5.5",
     "tslib": "^2.0.3",
     "zone.js": "~0.13.0",
-    "@ckeditor/ckeditor5-integrations-common": "^1.0.0"
+    "@ckeditor/ckeditor5-integrations-common": "^2.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16",
