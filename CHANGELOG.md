@@ -3,14 +3,14 @@ Changelog
 
 ## [9.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.0.0-alpha.0...v9.0.0) (2024-09-17)
 
+### BREAKING CHANGES
+
+* Changed minimum supported version of Angular to the oldest supported LTS: `>=16.x`.
+* Switched compiler from TypeScript `4.x` to `5.x` to ensure compatibility with the newest CKEditor 5 packages.
+
 ### Features
 
-* Improve result type of `useCKEditorCloud` to make `CKEditorPremiumFeatures` and `CKBox` non-nullable when proper configuration is passed. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/cdea768f960f5c31394889d15a1885ca7c3ca96f))
-
-### Bug fixes
-
-* Add missing `@ckeditor/ckeditor5-integrations-common` dependency. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/af9077cc0dd9688bcf38e136419ddd9be5c63bf0))
-* Rename the `languages` configuration property to translations in `loadCKEditorCloud`. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/cdea768f960f5c31394889d15a1885ca7c3ca96f))
+* Add cloud CDN support. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/9c62280f4bdc487ccc258437ee7b6b7cbfa8cbf0))
 
 
 ## [9.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v8.0.0...v9.0.0-alpha.0) (2024-09-06)
