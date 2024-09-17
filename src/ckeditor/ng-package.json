@@ -2,5 +2,6 @@
   "lib": {
     "entryFile": "./index.ts"
   },
-  "dest": "../../dist"
+  "dest": "../../dist",
+  "allowedNonPeerDependencies": ["@ckeditor/ckeditor5-integrations-common"]
 }
