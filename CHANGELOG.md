@@ -1,6 +1,18 @@
 Changelog
 =========
 
+## [9.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.0.0-alpha.0...v9.0.0) (2024-09-17)
+
+### Features
+
+* Improve result type of `useCKEditorCloud` to make `CKEditorPremiumFeatures` and `CKBox` non-nullable when proper configuration is passed. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/cdea768f960f5c31394889d15a1885ca7c3ca96f))
+
+### Bug fixes
+
+* Add missing `@ckeditor/ckeditor5-integrations-common` dependency. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/af9077cc0dd9688bcf38e136419ddd9be5c63bf0))
+* Rename the `languages` configuration property to translations in `loadCKEditorCloud`. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/cdea768f960f5c31394889d15a1885ca7c3ca96f))
+
+
 ## [9.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v8.0.0...v9.0.0-alpha.0) (2024-09-06)
 
 ### BREAKING CHANGES
