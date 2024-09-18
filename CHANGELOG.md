@@ -1,7 +1,7 @@
 Changelog
 =========
 
-## [9.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.0.0-alpha.0...v9.0.0) (2024-09-17)
+## [9.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.0.0-alpha.0...v9.0.0) (2024-09-19)
 
 ### BREAKING CHANGES
 
