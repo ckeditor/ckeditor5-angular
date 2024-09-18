@@ -10,7 +10,7 @@ Changelog
 
 ### Features
 
-* Add cloud CDN support. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/9c62280f4bdc487ccc258437ee7b6b7cbfa8cbf0))
+* **Experimental:** Add cloud CDN support. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/9c62280f4bdc487ccc258437ee7b6b7cbfa8cbf0))
 
 
 ## [9.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v8.0.0...v9.0.0-alpha.0) (2024-09-06)
