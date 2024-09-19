@@ -7,9 +7,10 @@
 
 /* eslint-env node */
 
-'use strict';
+import { createRequire } from 'module';
+import * as releaseTools from '@ckeditor/ckeditor5-dev-release-tools';
 
-const releaseTools = require( '@ckeditor/ckeditor5-dev-release-tools' );
+const require = createRequire( import.meta.url );
 const { name: packageName } = require( '../../package.json' );
 
 const changelogVersion = releaseTools.getLastFromChangelog();

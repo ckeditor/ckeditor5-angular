@@ -171,7 +171,7 @@ jobs:
             # Do not fail if the Node script ends with non-zero exit code.
             set +e
 
-            node scripts/ci/is-project-ready-to-release.js
+            node scripts/ci/is-project-ready-to-release.mjs
             EXIT_CODE=$( echo $? )
 
             if [ ${EXIT_CODE} -eq 1 ];
