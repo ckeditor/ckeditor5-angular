@@ -37,17 +37,17 @@ Because of the breaking changes in the Angular library output format, the `@cked
     <tr>
       <td><code>^9</code></td>
       <td><code>16+</code></td>
-      <td>Requires CKEditor&nbsp;5 at least in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v43.0.0">43</a>.</td>
+      <td>Migration to TypeScript&nbsp;5. Declaration files are not backward compatible. Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v43.0.0">43</a> or higher.</td>
     </tr>
     <tr>
       <td colspan="3">Past releases (no longer maintained)</td>
     </tr>
-	<tr>
+    <tr>
       <td><code>^8</code></td>
       <td><code>13+</code></td>
       <td>Requires CKEditor&nbsp;5 at least in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v42.0.0">42</a>.</td>
     </tr>
-	<tr>
+    <tr>
       <td><code>^7</code></td>
       <td><code>13+</code></td>
       <td>Changes in peer dependencies. (<a href="https://github.com/ckeditor/ckeditor5-angular/issues/376">issue</a>)</td>
