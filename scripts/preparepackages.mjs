@@ -10,10 +10,14 @@
 import fs from 'fs-extra';
 import upath from 'upath';
 import { Listr } from 'listr2';
+import { fileURLToPath } from 'url';
 import * as releaseTools from '@ckeditor/ckeditor5-dev-release-tools';
 import * as devUtils from '@ckeditor/ckeditor5-dev-utils';
 import parseArguments from './utils/parsearguments.mjs';
 import getListrOptions from './utils/getlistroptions.mjs';
+
+const __filename = fileURLToPath( import.meta.url );
+const __dirname = upath.dirname( __filename );
 
 const latestVersion = releaseTools.getLastFromChangelog();
 const versionChangelog = releaseTools.getChangesForVersion( latestVersion );
