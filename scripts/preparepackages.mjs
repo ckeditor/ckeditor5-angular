@@ -7,15 +7,17 @@
 
 /* eslint-env node */
 
-'use strict';
+import fs from 'fs-extra';
+import upath from 'upath';
+import { Listr } from 'listr2';
+import { fileURLToPath } from 'url';
+import * as releaseTools from '@ckeditor/ckeditor5-dev-release-tools';
+import * as devUtils from '@ckeditor/ckeditor5-dev-utils';
+import parseArguments from './utils/parsearguments.mjs';
+import getListrOptions from './utils/getlistroptions.mjs';
 
-const { Listr } = require( 'listr2' );
-const releaseTools = require( '@ckeditor/ckeditor5-dev-release-tools' );
-const { tools } = require( '@ckeditor/ckeditor5-dev-utils' );
-const upath = require( 'upath' );
-const fs = require( 'fs-extra' );
-const parseArguments = require( './utils/parsearguments' );
-const getListrOptions = require( './utils/getlistroptions' );
+const __filename = fileURLToPath( import.meta.url );
+const __dirname = upath.dirname( __filename );
 
 const latestVersion = releaseTools.getLastFromChangelog();
 const versionChangelog = releaseTools.getChangesForVersion( latestVersion );
@@ -69,7 +71,7 @@ const tasks = new Listr( [
 	{
 		title: 'Generating the `dist` directory.',
 		task: () => {
-			return tools.shExec( 'yarn run build-package', { async: true, verbosity: 'silent' } );
+			return devUtils.tools.shExec( 'yarn run build-package', { async: true, verbosity: 'silent' } );
 		}
 	},
 	{
@@ -81,7 +83,7 @@ const tasks = new Listr( [
 	{
 		title: 'Updating the `#version` field in the `package.json` in the release directory',
 		task: () => {
-			return tools.updateJSONFile(
+			return devUtils.tools.updateJSONFile(
 				upath.join( RELEASE_ANGULAR_DIR, 'package.json' ),
 				packageJson => {
 					packageJson.version = latestVersion;

@@ -12,11 +12,11 @@
     "test:e2e": "cypress run",
     "test:e2e:ci": "start-server-and-test 'yarn run start' http://localhost:4200/ 'yarn run test:e2e --quiet'",
     "coverage": "ng test --watch=false --code-coverage",
-    "lint": "eslint \"*/**/*.+(js|ts)\"",
-    "changelog": "node ./scripts/changelog.js",
+    "lint": "eslint \"*/**/*.+(js|mjs|ts)\"",
+    "changelog": "node ./scripts/changelog.mjs",
     "build-package": "ng-packagr -p src/ckeditor/ng-package.json",
-    "release:prepare-packages": "node scripts/preparepackages.js",
-    "release:publish-packages": "node scripts/publishpackages.js"
+    "release:prepare-packages": "node scripts/preparepackages.mjs",
+    "release:publish-packages": "node scripts/publishpackages.mjs"
   },
   "dependencies": {
     "@angular/animations": "^16",
@@ -38,10 +38,10 @@
     "@angular/cli": "^16",
     "@angular/compiler-cli": "^16",
     "@angular/language-service": "^16",
-    "@ckeditor/ckeditor5-dev-bump-year": "^40.2.0",
-    "@ckeditor/ckeditor5-dev-ci": "^40.2.0",
-    "@ckeditor/ckeditor5-dev-release-tools": "^40.2.0",
-    "@ckeditor/ckeditor5-dev-utils": "^40.2.0",
+    "@ckeditor/ckeditor5-dev-bump-year": "^44.0.0",
+    "@ckeditor/ckeditor5-dev-ci": "^44.0.0",
+    "@ckeditor/ckeditor5-dev-release-tools": "^44.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "^44.0.0",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^14.11.8",
     "@typescript-eslint/eslint-plugin": "~5.43.0",
@@ -94,7 +94,7 @@
     "url": "https://github.com/ckeditor/ckeditor5-angular.git"
   },
   "lint-staged": {
-    "**/*.+(js|ts)": [
+    "**/*.+(js|mjs|ts)": [
       "eslint --quiet"
     ]
   },
