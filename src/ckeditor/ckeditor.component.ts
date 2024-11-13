@@ -37,6 +37,7 @@ import type {
 import type { ControlValueAccessor } from '@angular/forms';
 
 import { uid } from '@ckeditor/ckeditor5-integrations-common';
+import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -453,7 +454,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			config.initialData = initialData;
 		}
 
-		return config;
+		return appendAllIntegrationPluginsToConfig( config );
 	}
 
 	/**

@@ -8,6 +8,7 @@ import { TestBed, type ComponentFixture } from '@angular/core/testing';
 
 import { AngularEditor } from 'src/editor/editor';
 import { CKEditorComponent } from './ckeditor.component';
+import { AngularIntegrationUsageDataPlugin } from './plugins/angular-integration-usage-data.plugin';
 
 describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
@@ -125,6 +126,21 @@ describe( 'CKEditorComponent', () => {
 				await waitCycle();
 
 				expect( fixture.nativeElement.querySelector( 'textarea' ) ).toBeDefined();
+			} );
+		} );
+
+		describe( 'getConfig', () => {
+			it( 'should return config with AngularIntegrationUsageDataPlugin if non-free license passed', async () => {
+				( window as any ).CKEDITOR_VERSION = '44.0.0';
+				component.config.licenseKey = 'foo';
+
+				fixture.detectChanges();
+
+				await waitCycle();
+
+				const config = ( component as any ).getConfig();
+
+				expect( config.extraPlugins ).toContain( AngularIntegrationUsageDataPlugin );
 			} );
 		} );
 
