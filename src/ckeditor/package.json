@@ -19,7 +19,7 @@
     "ckeditor 5"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-integrations-common": "^2.0.0"
+    "@ckeditor/ckeditor5-integrations-common": "^2.2.1"
   },
   "peerDependencies": {
     "@angular/core": ">=16.0.0",
