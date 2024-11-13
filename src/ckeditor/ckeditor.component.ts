@@ -390,6 +390,9 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			// `<ckeditor (error)="onError(...)"></ckeditor>`.
 			if ( hasObservers( this.error ) ) {
 				this.ngZone.run( () => this.error.emit( e ) );
+			} else {
+				// Print error to the console when there are no subscribers to the `error` event.
+				console.error( e );
 			}
 		};
 		const element = document.createElement( this.tagName );
