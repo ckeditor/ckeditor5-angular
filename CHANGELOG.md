@@ -5,7 +5,7 @@ Changelog
 
 ### Features
 
-* Align integration to work with self-service premium features. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/2833d50a39ed968b58c2f040a5c5f1d6f1d91dc5))
+* Align integration to work with the future self-service plan. Read more in the [CKEditor 5 repository](https://github.com/ckeditor/ckeditor5/issues/17317). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/2833d50a39ed968b58c2f040a5c5f1d6f1d91dc5))
 * Print editor errors in console if there is no (error) observer. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/ac9338787d696b87442ba861bb9cc0bceef6e808))
 
 
