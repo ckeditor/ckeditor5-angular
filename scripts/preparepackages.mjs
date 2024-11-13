@@ -22,6 +22,7 @@ const __dirname = upath.dirname( __filename );
 const latestVersion = releaseTools.getLastFromChangelog();
 const versionChangelog = releaseTools.getChangesForVersion( latestVersion );
 const CKEDITOR5_ANGULAR_ROOT_DIR = upath.join( __dirname, '..' );
+const SOURCE_DIR = upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, 'src', 'ckeditor' );
 const DIST_DIR = upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, 'dist' );
 const RELEASE_ANGULAR_DIR = upath.join( CKEDITOR5_ANGULAR_ROOT_DIR, 'release', 'ckeditor5-angular' );
 
@@ -66,6 +67,19 @@ const tasks = new Listr( [
 			}
 
 			return false;
+		}
+	},
+	{
+		title: 'Updating version in usage data plugin.',
+		task: async () => {
+			const pluginPath = upath.join( SOURCE_DIR, 'plugins', 'angular-integration-usage-data.plugin.ts' );
+			const content = await fs.readFile( pluginPath, 'utf8' );
+			const updated = content.replace(
+				/(?<=\/\* replace-version:start \*\/).*?(?=\/\* replace-version:end \*\/)/,
+				` '${ latestVersion }' `
+			);
+
+			await fs.writeFile( pluginPath, updated );
 		}
 	},
 	{
@@ -119,7 +133,8 @@ const tasks = new Listr( [
 			return releaseTools.commitAndTag( {
 				version: latestVersion,
 				files: [
-					'package.json'
+					'package.json',
+					'src/ckeditor/plugins/angular-integration-usage-data.plugin.ts'
 				]
 			} );
 		},
