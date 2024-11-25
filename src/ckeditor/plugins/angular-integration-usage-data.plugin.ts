@@ -14,7 +14,7 @@ import { createIntegrationUsageDataPlugin } from '@ckeditor/ckeditor5-integratio
 export const AngularIntegrationUsageDataPlugin = createIntegrationUsageDataPlugin(
 	'angular',
 	{
-		version: /* replace-version:start */ '9.1.0-alpha.0' /* replace-version:end */,
+		version: /* replace-version:start */ '9.1.0' /* replace-version:end */,
 		frameworkVersion: VERSION.full
 	}
 );
