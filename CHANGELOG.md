@@ -3,7 +3,10 @@ Changelog
 
 ## [9.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.1.0-alpha.0...v9.1.0) (2024-11-25)
 
-Internal changes only (updated dependencies, documentation, etc.).
+### Features
+
+* Align integration to work with the future self-service plan. Read more in the [CKEditor 5 repository](https://github.com/ckeditor/ckeditor5/issues/17317). ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/2833d50a39ed968b58c2f040a5c5f1d6f1d91dc5))
+* Print editor errors in console if there is no (error) observer. ([commit](https://github.com/ckeditor/ckeditor5-angular/commit/ac9338787d696b87442ba861bb9cc0bceef6e808))
 
 
 ## [9.1.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.0.0...v9.1.0-alpha.0) (2024-11-13)
