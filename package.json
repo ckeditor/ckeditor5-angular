@@ -47,7 +47,7 @@
     "@typescript-eslint/eslint-plugin": "~5.43.0",
     "@typescript-eslint/parser": "^5.31.0",
     "ckeditor5": "^43.1.0",
-    "ckeditor5-premium-features": "^43.1.0",
+    "ckeditor5-premium-features": "^44.2.0",
     "coveralls": "^3.1.1",
     "css-loader": "^5.2.7",
     "cypress": "^12.17.4",
