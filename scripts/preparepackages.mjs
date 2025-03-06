@@ -132,19 +132,12 @@ const tasks = new Listr( [
 		task: () => {
 			return releaseTools.commitAndTag( {
 				version: latestVersion,
+				dryRun: cliArguments.compileOnly,
 				files: [
 					'package.json',
 					'src/ckeditor/plugins/angular-integration-usage-data.plugin.ts'
 				]
 			} );
-		},
-		skip: () => {
-			// When compiling the packages only, do not update any values.
-			if ( cliArguments.compileOnly ) {
-				return true;
-			}
-
-			return false;
 		}
 	}
 ], getListrOptions( cliArguments ) );
