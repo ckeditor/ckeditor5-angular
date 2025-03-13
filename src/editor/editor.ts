@@ -58,6 +58,7 @@ export class AngularEditor extends ClassicEditor {
 	];
 
 	public static override defaultConfig = {
+		licenseKey: 'GPL',
 		toolbar: {
 			items: [
 				'heading',
