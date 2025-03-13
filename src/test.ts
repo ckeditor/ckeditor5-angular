@@ -7,6 +7,10 @@ import {
 	platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+window.CKEDITOR_GLOBAL_LICENSE_KEY = 'GPL';
+
 // First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
 	BrowserDynamicTestingModule,
