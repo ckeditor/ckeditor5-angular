@@ -90,7 +90,9 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * See https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html
 	 * to learn more.
 	 */
-	@Input() public config: EditorConfig = {};
+	@Input() public config: EditorConfig = {
+		licenseKey: 'GPL'
+	};
 
 	/**
 	 * The initial data of the editor. Useful when not using the ngModel.
