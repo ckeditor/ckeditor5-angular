@@ -7,6 +7,8 @@ import { ApplicationRef, Component, SimpleChange, ViewChild } from '@angular/cor
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
 
 import { AngularEditor } from 'src/editor/editor';
+import { MockEditor } from 'src/editor/mock-editor';
+
 import { CKEditorComponent } from './ckeditor.component';
 import { AngularIntegrationUsageDataPlugin } from './plugins/angular-integration-usage-data.plugin';
 
@@ -131,16 +133,22 @@ describe( 'CKEditorComponent', () => {
 
 		describe( 'getConfig', () => {
 			it( 'should return config with AngularIntegrationUsageDataPlugin if non-free license passed', async () => {
-				( window as any ).CKEDITOR_VERSION = '44.0.0';
-				component.config.licenseKey = 'foo';
+				const commercialFixture = TestBed.createComponent( CKEditorComponent );
 
-				fixture.detectChanges();
+				component = commercialFixture.componentInstance;
+				component.editor = MockEditor as any;
+
+				( window as any ).CKEDITOR_VERSION = '44.0.0';
+
+				component.config.licenseKey = 'foo';
+				commercialFixture.detectChanges();
 
 				await waitCycle();
 
 				const config = ( component as any ).getConfig();
 
 				expect( config.extraPlugins ).toContain( AngularIntegrationUsageDataPlugin );
+				commercialFixture.destroy();
 			} );
 		} );
 
