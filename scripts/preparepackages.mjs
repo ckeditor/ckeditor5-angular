@@ -5,8 +5,6 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-/* eslint-env node */
-
 import fs from 'fs-extra';
 import upath from 'upath';
 import { Listr } from 'listr2';
@@ -101,6 +99,10 @@ const tasks = new Listr( [
 				upath.join( RELEASE_ANGULAR_DIR, 'package.json' ),
 				packageJson => {
 					packageJson.version = latestVersion;
+
+					if ( packageJson.engines ) {
+						delete packageJson.engines;
+					}
 
 					return packageJson;
 				} );

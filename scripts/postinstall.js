@@ -5,8 +5,6 @@
 
 'use strict';
 
-/* eslint-env node */
-
 const path = require( 'path' );
 const fs = require( 'fs' );
 const ROOT_DIRECTORY = path.join( __dirname, '..' );

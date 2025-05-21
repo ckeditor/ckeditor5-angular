@@ -1,6 +1,5 @@
 import { Component, ViewChild, type AfterViewInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import type { AbstractControl } from '@angular/forms';
+import type { AbstractControl, NgForm } from '@angular/forms';
 
 import { AngularEditor } from 'src/editor/editor';
 

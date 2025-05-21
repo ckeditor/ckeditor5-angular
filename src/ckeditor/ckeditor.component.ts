@@ -3,25 +3,24 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-import type {
-	AfterViewInit,
-	OnChanges,
-	OnDestroy,
-	SimpleChanges
-} from '@angular/core';
 import {
 	Component,
-	Input,
-	Output,
-	NgZone,
+	ElementRef,
 	EventEmitter,
 	forwardRef,
-	ElementRef
+	Inject,
+	Input,
+	NgZone,
+	Output,
+	type AfterViewInit,
+	type OnChanges,
+	type OnDestroy,
+	type SimpleChanges
 } from '@angular/core';
+
 import { first } from 'rxjs/operators';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type {
 	ContextWatchdog,
 	EditorWatchdog,
@@ -64,7 +63,6 @@ export interface ChangeEvent<TEditor extends Editor = Editor> {
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			// eslint-disable-next-line @typescript-eslint/no-use-before-define
 			useExisting: forwardRef( () => CKEditorComponent ),
 			multi: true
 		}
@@ -250,7 +248,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		return this.id;
 	}
 
-	public constructor( elementRef: ElementRef, ngZone: NgZone ) {
+	public constructor( @Inject( ElementRef ) elementRef: ElementRef, @Inject( NgZone ) ngZone: NgZone ) {
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
 

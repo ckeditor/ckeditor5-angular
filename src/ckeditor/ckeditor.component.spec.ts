@@ -631,7 +631,6 @@ describe( 'change detection', () => {
 
 			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
 
-			// eslint-disable-next-line @typescript-eslint/no-empty-function
 			public onError(): void {}
 		}
 
