@@ -3,9 +3,6 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-/* eslint-disable @typescript-eslint/no-empty-function */
-/* globals document */
-
 import { EditorWatchdog, ContextWatchdog } from 'ckeditor5';
 
 /**
