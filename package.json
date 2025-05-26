@@ -96,7 +96,7 @@
   },
   "lint-staged": {
     "**/*": [
-      "eslint"
+      "eslint --quiet"
     ]
   }
 }
