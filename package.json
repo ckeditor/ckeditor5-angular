@@ -38,10 +38,10 @@
     "@angular/cli": "^16",
     "@angular/compiler-cli": "^16",
     "@angular/language-service": "^16",
-    "@ckeditor/ckeditor5-dev-bump-year": "^44.0.0",
-    "@ckeditor/ckeditor5-dev-ci": "^44.0.0",
-    "@ckeditor/ckeditor5-dev-release-tools": "^44.0.0",
-    "@ckeditor/ckeditor5-dev-utils": "^44.0.0",
+    "@ckeditor/ckeditor5-dev-bump-year": "^49.0.0",
+    "@ckeditor/ckeditor5-dev-ci": "^49.0.0",
+    "@ckeditor/ckeditor5-dev-release-tools": "^49.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "^49.0.0",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^14.11.8",
     "ckeditor5": "^44.3.0",
@@ -50,8 +50,8 @@
     "css-loader": "^5.2.7",
     "cypress": "^12.17.4",
     "eslint": "^9.26.0",
-    "eslint-config-ckeditor5": "^10.0.0-alpha.0",
-    "eslint-plugin-ckeditor5-rules": "^10.0.0-alpha.0",
+    "eslint-config-ckeditor5": "^10.0.0",
+    "eslint-plugin-ckeditor5-rules": "^10.0.0",
     "fs-extra": "^10.0.1",
     "globals": "^16.1.0",
     "husky": "^8.0.2",
@@ -96,7 +96,7 @@
   },
   "lint-staged": {
     "**/*": [
-      "eslint --quiet"
+      "eslint"
     ]
   }
 }
