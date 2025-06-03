@@ -81,6 +81,7 @@
   },
   "resolutions": {
     "semver": "^7",
+    "vite": "^4.5.14",
     "webpack-dev-middleware": "5.3.4"
   },
   "engines": {
