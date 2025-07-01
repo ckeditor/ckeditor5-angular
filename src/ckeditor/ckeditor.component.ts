@@ -28,8 +28,8 @@ import type {
 	Editor,
 	EditorConfig,
 	GetEventInfo,
-	DocumentChangeEvent,
-	EditorCreatorFunction,
+	ModelDocumentChangeEvent,
+	EditorWatchdogCreatorFunction,
 	ViewDocumentBlurEvent,
 	ViewDocumentFocusEvent
 } from 'ckeditor5';
@@ -51,7 +51,7 @@ export interface FocusEvent<TEditor extends Editor = Editor> {
 }
 
 export interface ChangeEvent<TEditor extends Editor = Editor> {
-	event: GetEventInfo<DocumentChangeEvent>;
+	event: GetEventInfo<ModelDocumentChangeEvent>;
 	editor: TEditor;
 }
 
@@ -358,7 +358,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 */
 	private attachToWatchdog() {
 		// TODO: elementOrData parameter type can be simplified to HTMLElemen after templated Watchdog will be released.
-		const creator: EditorCreatorFunction<TEditor> = ( ( elementOrData, config ) => {
+		const creator: EditorWatchdogCreatorFunction<TEditor> = ( ( elementOrData, config ) => {
 			return this.ngZone.runOutsideAngular( async () => {
 				this.elementRef.nativeElement.appendChild( elementOrData as HTMLElement );
 
@@ -467,7 +467,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on<DocumentChangeEvent>( 'change:data', evt => {
+		modelDocument.on<ModelDocumentChangeEvent>( 'change:data', evt => {
 			this.ngZone.run( () => {
 				if ( this.disableTwoWayDataBinding ) {
 					return;
