@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [10.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.1.0...v10.0.0) (July 9, 2025)
+
+### BREAKING CHANGES
+
+* Aligned the component with the latest CKEditor 5 release (`v46.0.0`), adopting the type import names. Starting from this version, previous CKEditor 5 releases are no longer compatible due to breaking changes in definitions and package structure. See [ckeditor/ckeditor5#18583](https://github.com/ckeditor/ckeditor5/issues/18583)
+
+
 ## [10.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.1.0...v10.0.0-alpha.0) (July 2, 2025)
 
 ### BREAKING CHANGES
