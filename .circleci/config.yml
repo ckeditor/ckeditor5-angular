@@ -119,6 +119,7 @@ jobs:
       - checkout
       - bootstrap_repository_command
       - browser-tools/install_chrome
+      - browser-tools/install_firefox
       - run:
           name: Execute ESLint
           command: yarn run lint
