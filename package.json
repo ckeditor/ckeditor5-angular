@@ -82,6 +82,7 @@
     "webpack-cli": "^4.10.0"
   },
   "resolutions": {
+    "form-data": "^4.0.0",
     "semver": "^7",
     "vite": "^4.5.14",
     "webpack-dev-middleware": "5.3.4"
