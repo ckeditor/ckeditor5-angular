@@ -82,6 +82,7 @@
     "webpack-cli": "^4.10.0"
   },
   "resolutions": {
+    "tmp": "^0.2.5",
     "form-data": "^4.0.4",
     "semver": "^7",
     "vite": "^4.5.14",
