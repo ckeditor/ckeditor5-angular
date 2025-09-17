@@ -1,0 +1,11 @@
+shellEmulator: true
+shamefullyHoist: true
+preferFrozenLockfile: true
+
+onlyBuiltDependencies:
+  - "@parcel/watcher"
+  - core-js
+  - cypress
+  - esbuild
+  - nice-napi
+  - protobufjs
