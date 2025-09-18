@@ -123,7 +123,7 @@ pnpm run start
 To test it in production, use:
 
 ```bash
-pnpm run start -- --configuration production
+pnpm run start --configuration production
 ```
 
 To run unit tests, use:
