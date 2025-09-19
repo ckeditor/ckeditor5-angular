@@ -83,7 +83,7 @@ const tasks = new Listr( [
 	{
 		title: 'Generating the `dist` directory.',
 		task: () => {
-			return devUtils.tools.shExec( 'yarn run build-package', { async: true, verbosity: 'silent' } );
+			return devUtils.tools.shExec( 'pnpm run build-package', { async: true, verbosity: 'silent' } );
 		}
 	},
 	{
