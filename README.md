@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg)](https://www.npmjs.com/package/@ckeditor/ckeditor5-angular)
 [![CircleCI](https://circleci.com/gh/ckeditor/ckeditor5-angular.svg?style=shield)](https://app.circleci.com/pipelines/github/ckeditor/ckeditor5-angular?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/ckeditor/ckeditor5-angular/badge.svg?branch=master)](https://coveralls.io/github/ckeditor/ckeditor5-angular?branch=master)
+[![Coverage Status](https://codecov.io/github/ckeditor/ckeditor5-angular/graph/badge.svg)](https://codecov.io/github/ckeditor/ckeditor5-angular)
 ![Dependency Status](https://img.shields.io/librariesio/release/npm/@ckeditor/ckeditor5-angular)
 
 Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 13+.
