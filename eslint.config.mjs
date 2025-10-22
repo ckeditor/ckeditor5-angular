@@ -35,6 +35,8 @@ export default defineConfig( [
 			'@typescript-eslint': tsPlugin.plugin
 		},
 
+		files: [ '**/*.ts' ],
+
 		rules: {
 			'new-cap': 'off',
 			'no-duplicate-imports': 'off',
@@ -76,6 +78,23 @@ export default defineConfig( [
 			globals: {
 				...globals.node
 			}
+		}
+	},
+
+	// Rules specific to changelog files.
+	{
+		extends: ckeditor5Config,
+
+		files: [ '.changelog/**/*.md' ],
+
+		plugins: {
+			'ckeditor5-rules': ckeditor5Rules
+		},
+
+		rules: {
+			'ckeditor5-rules/validate-changelog-entry': [ 'error', {
+				repositoryType: 'single'
+			} ]
 		}
 	}
 ] );
