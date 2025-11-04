@@ -1,7 +1,3 @@
-shellEmulator: true
-shamefullyHoist: true
-preferFrozenLockfile: true
-
 onlyBuiltDependencies:
   - "@parcel/watcher"
   - core-js
@@ -9,3 +5,13 @@ onlyBuiltDependencies:
   - esbuild
   - nice-napi
   - protobufjs
+
+minimumReleaseAge: 4320 # 3 days
+minimumReleaseAgeExclude:
+  - '@ckeditor/*'
+  - '@cksource/*'
+  - '*ckeditor5*'
+
+shellEmulator: true
+shamefullyHoist: true
+preferFrozenLockfile: true
