@@ -5,7 +5,8 @@ import { AngularEditor } from 'src/editor/editor';
 @Component( {
 	selector: 'watchdog-demo',
 	templateUrl: './watchdog-demo.html',
-	styleUrls: [ './watchdog-demo.css' ]
+	styleUrls: [ './watchdog-demo.css' ],
+	standalone: false
 } )
 export class WatchdogDemoComponent {
 	public Editor = AngularEditor;

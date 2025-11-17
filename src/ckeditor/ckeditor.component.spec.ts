@@ -585,7 +585,8 @@ describe( 'change detection', () => {
 		window.onerror = null;
 
 		@Component( {
-			template: '<ckeditor [editor]="editor"></ckeditor>'
+			template: '<ckeditor [editor]="editor"></ckeditor>',
+			standalone: false
 		} )
 		class TestComponent {
 			public editor = AngularEditor;
@@ -624,7 +625,8 @@ describe( 'change detection', () => {
 		window.onerror = null;
 
 		@Component( {
-			template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>'
+			template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>',
+			standalone: false
 		} )
 		class TestComponent {
 			public editor = AngularEditor;
