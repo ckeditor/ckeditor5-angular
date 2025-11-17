@@ -96,6 +96,5 @@
         }
       }
     }
-  },
-  "defaultProject": "ckeditor5-angular"
+  }
 }
