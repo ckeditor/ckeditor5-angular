@@ -35,7 +35,11 @@ export default defineConfig( [
 			'@typescript-eslint': tsPlugin.plugin
 		},
 
-		files: [ '**/*.ts' ],
+		files: [
+			'**/*.ts',
+			'**/*.mjs',
+			'**/*.js'
+		],
 
 		rules: {
 			'new-cap': 'off',

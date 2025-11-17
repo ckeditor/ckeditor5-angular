@@ -66,6 +66,17 @@ module.exports = function( config ) {
 			CHROME_LOCAL: {
 				base: 'Chrome',
 				flags: [ '--disable-background-timer-throttling' ]
+			},
+			CHROME_HEADLESS_WSL: {
+				base: 'ChromeHeadless',
+				flags: [
+					'--no-sandbox',
+					'--disable-gpu',
+					'--disable-dev-shm-usage',
+					'--disable-software-rasterizer',
+					'--disable-features=TranslateUI',
+					'--remote-debugging-port=9223'
+				]
 			}
 		},
 		singleRun: false
@@ -82,5 +93,25 @@ function getBrowsers() {
 		];
 	}
 
+	if ( isWsl() ) {
+		return [ 'CHROME_HEADLESS_WSL' ];
+	}
+
 	return [ 'CHROME_LOCAL' ];
+}
+
+function isWsl() {
+	if ( process.platform !== 'linux' ) {
+		return false;
+	}
+
+	if ( process.env.WSL_DISTRO_NAME ) {
+		return true;
+	}
+
+	if ( process.env.WSL_INTEROP ) {
+		return true;
+	}
+
+	return false;
 }
