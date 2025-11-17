@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ckeditor5-angular:build"
+            "buildTarget": "ckeditor5-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ckeditor5-angular:build:production"
+              "buildTarget": "ckeditor5-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ckeditor5-angular:build"
+            "buildTarget": "ckeditor5-angular:build"
           }
         },
         "test": {
