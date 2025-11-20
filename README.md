@@ -35,12 +35,19 @@ Because of the breaking changes in the Angular library output format, the `@cked
       <td colspan="3">Actively supported versions</td>
     </tr>
     <tr>
+      <td><code>^11</code></td>
+      <td><code>19+</code></td>
+      <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v47.0.0">47</a> or higher.</td>
+    </tr>
+    <tr>
+    <tr>
+      <td colspan="3">Past releases (no longer maintained)</td>
+    </tr>
+    </tr>
+    <tr>
       <td><code>^10</code></td>
       <td><code>16+</code></td>
       <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v46.0.0">46</a> or higher.</td>
-    </tr>
-    <tr>
-      <td colspan="3">Past releases (no longer maintained)</td>
     </tr>
 	<tr>
       <td><code>^9</code></td>
