@@ -4655,12 +4655,12 @@ packages:
   glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
-  glob@10.4.5:
-    resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+  glob@10.5.0:
+    resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
     hasBin: true
 
-  glob@11.0.3:
-    resolution: {integrity: sha512-2Nim7dha1KVkaiF4q6Dj+ngPPMdfvLJEOpZk/jKiUAkqKebpGAWQXAq9z1xu9HKu5lWfqw/FASuccEjyznjPaA==}
+  glob@11.1.0:
+    resolution: {integrity: sha512-vuNwKSaKiqm7g0THUBu2x7ckSs3XJLXE+2ssL7/MfTGPLLcrJQ/4Uq1CjPTtO5cCIiRxqvN6Twy1qOwhL0Xjcw==}
     engines: {node: 20 || >=22}
     hasBin: true
 
@@ -5667,6 +5667,10 @@ packages:
 
   minimatch@10.0.3:
     resolution: {integrity: sha512-IPZ167aShDZZUMdRk66cyQAW3qr0WzbHkPdMYa8bzZhlHhO3jALbKdxcaak7W9FfT2rZNpQuUu4Od7ILEpXSaw==}
+    engines: {node: 20 || >=22}
+
+  minimatch@10.1.1:
+    resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
     engines: {node: 20 || >=22}
 
   minimatch@3.1.2:
@@ -9312,7 +9316,7 @@ snapshots:
   '@ckeditor/ckeditor5-dev-bump-year@54.0.0':
     dependencies:
       chalk: 5.6.2
-      glob: 11.0.3
+      glob: 11.1.0
 
   '@ckeditor/ckeditor5-dev-changelog@54.0.0(@babel/core@7.28.4)(@types/node@14.18.63)(typescript@5.8.3)(webpack@5.102.1)':
     dependencies:
@@ -9320,7 +9324,7 @@ snapshots:
       chalk: 5.6.2
       date-fns: 4.1.0
       fs-extra: 11.3.2
-      glob: 11.0.3
+      glob: 11.1.0
       gray-matter: 4.0.3
       inquirer: 12.10.0(@types/node@14.18.63)
       semver: 7.7.3
@@ -9348,7 +9352,7 @@ snapshots:
       chalk: 5.6.2
       cli-columns: 4.0.0
       fs-extra: 11.3.2
-      glob: 11.0.3
+      glob: 11.1.0
       inquirer: 12.10.0(@types/node@14.18.63)
       semver: 7.7.3
       shell-escape: 0.2.0
@@ -9372,7 +9376,7 @@ snapshots:
       '@ckeditor/ckeditor5-dev-utils': 54.0.0(@babel/core@7.28.4)(typescript@5.8.3)(webpack@5.102.1)
       chalk: 5.6.2
       fs-extra: 11.3.2
-      glob: 11.0.3
+      glob: 11.1.0
       plural-forms: 0.5.5
       pofile: 1.1.4
       rimraf: 6.0.1
@@ -9401,7 +9405,7 @@ snapshots:
       cssnano: 7.1.1(postcss@8.5.6)
       esbuild-loader: 4.4.0(webpack@5.102.1)
       fs-extra: 11.3.2
-      glob: 11.0.3
+      glob: 11.1.0
       is-interactive: 2.0.0
       mini-css-extract-plugin: 2.9.4(webpack@5.102.1)
       mocha: 11.7.4
@@ -11042,7 +11046,7 @@ snapshots:
   '@npmcli/package-json@6.2.0':
     dependencies:
       '@npmcli/git': 6.0.3
-      glob: 10.4.5
+      glob: 10.5.0
       hosted-git-info: 8.1.0
       json-parse-even-better-errors: 4.0.0
       proc-log: 5.0.0
@@ -11052,7 +11056,7 @@ snapshots:
   '@npmcli/package-json@7.0.1':
     dependencies:
       '@npmcli/git': 7.0.0
-      glob: 11.0.3
+      glob: 11.1.0
       hosted-git-info: 9.0.2
       json-parse-even-better-errors: 4.0.0
       proc-log: 5.0.0
@@ -12459,7 +12463,7 @@ snapshots:
     dependencies:
       '@npmcli/fs': 4.0.0
       fs-minipass: 3.0.3
-      glob: 10.4.5
+      glob: 10.5.0
       lru-cache: 10.4.3
       minipass: 7.1.2
       minipass-collect: 2.0.1
@@ -12474,7 +12478,7 @@ snapshots:
     dependencies:
       '@npmcli/fs': 4.0.0
       fs-minipass: 3.0.3
-      glob: 11.0.3
+      glob: 11.1.0
       lru-cache: 11.2.2
       minipass: 7.1.2
       minipass-collect: 2.0.1
@@ -13800,7 +13804,7 @@ snapshots:
 
   glob-to-regexp@0.4.1: {}
 
-  glob@10.4.5:
+  glob@10.5.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
@@ -13809,11 +13813,11 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@11.0.3:
+  glob@11.1.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 4.1.1
-      minimatch: 10.0.3
+      minimatch: 10.1.1
       minipass: 7.1.2
       package-json-from-dist: 1.0.1
       path-scurry: 2.0.0
@@ -15115,6 +15119,10 @@ snapshots:
     dependencies:
       '@isaacs/brace-expansion': 5.0.0
 
+  minimatch@10.1.1:
+    dependencies:
+      '@isaacs/brace-expansion': 5.0.0
+
   minimatch@3.1.2:
     dependencies:
       brace-expansion: 1.1.12
@@ -15180,7 +15188,7 @@ snapshots:
       diff: 7.0.0
       escape-string-regexp: 4.0.0
       find-up: 5.0.0
-      glob: 10.4.5
+      glob: 10.5.0
       he: 1.2.0
       is-path-inside: 3.0.3
       js-yaml: 4.1.1
@@ -16164,7 +16172,7 @@ snapshots:
 
   rimraf@6.0.1:
     dependencies:
-      glob: 11.0.3
+      glob: 11.1.0
       package-json-from-dist: 1.0.1
 
   rollup@4.34.8:
