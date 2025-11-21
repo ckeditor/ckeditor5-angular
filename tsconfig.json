@@ -5,6 +5,7 @@
     "module": "ES2022",
     "outDir": "./dist/out-tsc",
     "allowJs": true,
+    "esModuleInterop": true,
     "strict": true,
     "sourceMap": true,
     "declaration": false,

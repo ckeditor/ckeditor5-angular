@@ -6,7 +6,8 @@ import { AngularEditor } from 'src/editor/editor';
 @Component( {
 	selector: 'app-demo-form',
 	templateUrl: './demo-form.component.html',
-	styleUrls: [ './demo-form.component.css' ]
+	styleUrls: [ './demo-form.component.css' ],
+	standalone: false
 } )
 export class DemoFormComponent implements AfterViewInit {
 	@ViewChild( 'demoForm', { static: true } ) public demoForm?: NgForm;

@@ -6,7 +6,8 @@ import { AngularEditor } from 'src/editor/editor';
 @Component( {
 	selector: 'app-initialization-crash',
 	templateUrl: './initialization-crash.component.html',
-	styleUrls: [ './initialization-crash.component.css' ]
+	styleUrls: [ './initialization-crash.component.css' ],
+	standalone: false
 } )
 export class InitializationCrashComponent {
 	public Editor = AngularEditor;

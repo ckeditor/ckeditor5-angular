@@ -4,7 +4,8 @@ import { AngularEditor } from 'src/editor/editor';
 @Component( {
 	selector: 'app-simple-usage',
 	templateUrl: './simple-usage.component.html',
-	styleUrls: [ './simple-usage.component.css' ]
+	styleUrls: [ './simple-usage.component.css' ],
+	standalone: false
 } )
 export class SimpleUsageComponent {
 	public Editor = AngularEditor;

@@ -9,7 +9,8 @@ import {
 @Component( {
 	selector: 'app-simple-cdn-usage',
 	templateUrl: './simple-cdn-usage.component.html',
-	styleUrls: [ './simple-cdn-usage.component.css' ]
+	styleUrls: [ './simple-cdn-usage.component.css' ],
+	standalone: false
 } )
 export class SimpleCdnUsageComponent implements OnInit {
 	public Editor: typeof ClassicEditor | null = null;
