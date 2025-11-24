@@ -1,7 +1,9 @@
 <h2>Watchdog demo</h2>
 
-<p>Type '1' or '2' to crash the editor.</p>
-<button (click)="toggle()">Toggle disabled mode</button>
+<div class="test-toolbar">
+	<button (click)="toggle()">Toggle disabled mode</button>
+	<button (click)="simulateError()">Simulate Error</button>
+</div>
 
 <ckeditor data="Watchdog demo" [config]="config" [editor]="Editor" (ready)="onReady($event)" [watchdog]="watchdog"
 	[disabled]="isDisabled" (error)="onError($event)">

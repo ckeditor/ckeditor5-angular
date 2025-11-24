@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject, NgZone } from '@angular/core';
 import type { ContextWatchdog } from 'ckeditor5';
 import { AngularEditor } from 'src/editor/editor';
 
@@ -16,25 +16,16 @@ export class WatchdogDemoComponent {
 
 	public isDisabled = false;
 	public errors: Array<{ timestamp: Date; message: string }> = [];
+	private editor?: AngularEditor;
+	private ngZone: NgZone;
+
+	constructor( @Inject( NgZone ) ngZone: NgZone ) {
+		this.ngZone = ngZone;
+	}
 
 	public onReady( editor: AngularEditor ): void {
-		console.log( editor );
-
-		const inputCommand = editor.commands.get( 'input' )!;
-
-		inputCommand.on( 'execute', ( evt, data ) => {
-			const commandArgs = data[ 0 ];
-
-			if ( commandArgs.text === '1' ) {
-				// Simulate an error.
-				throw new Error( 'a-custom-editor-error' );
-			}
-
-			if ( commandArgs.text === '2' ) {
-				// Simulate an error.
-				throw 'foobar';
-			}
-		} );
+		console.log( 'Editor initialized', editor );
+		this.editor = editor;
 	}
 
 	public ngOnInit(): void {
@@ -58,6 +49,23 @@ export class WatchdogDemoComponent {
 
 	public toggle(): void {
 		this.isDisabled = !this.isDisabled;
+	}
+
+	public simulateError(): void {
+		if ( !this.editor ) {
+			return;
+		}
+
+		this.ngZone.runOutsideAngular( () => {
+			setTimeout( () => {
+				const err: any = new Error( 'foo' );
+
+				err.context = this.editor;
+				err.is = () => true;
+
+				throw err;
+			} );
+		} );
 	}
 
 	public onError( error: any ): void {
