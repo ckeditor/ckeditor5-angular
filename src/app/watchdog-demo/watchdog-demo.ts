@@ -15,7 +15,7 @@ export class WatchdogDemoComponent {
 	public ready = false;
 
 	public isDisabled = false;
-	public errorOccurred = false;
+	public errors: Array<{ timestamp: Date; message: string }> = [];
 
 	public onReady( editor: AngularEditor ): void {
 		console.log( editor );
@@ -60,7 +60,11 @@ export class WatchdogDemoComponent {
 		this.isDisabled = !this.isDisabled;
 	}
 
-	public onError(): void {
-		this.errorOccurred = true;
+	public onError( error: any ): void {
+		// Watchdog should return undefined error when it restarts the editor.
+		this.errors.unshift( {
+			timestamp: new Date(),
+			message: error?.toString() ?? 'Watchdog restarted editor.'
+		} );
 	}
 }
