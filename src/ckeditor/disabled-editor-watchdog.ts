@@ -58,6 +58,7 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 	/**
 	 * A dummy implementation of the `on` method.
 	 */
+	/* istanbul ignore next */
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public on( _event: string, _callback: ( ...args: Array<any> ) => void ): void {
 	}
@@ -66,7 +67,7 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 	 * Creates the editor instance.
 	 */
 	public async create( elementOrData: HTMLElement | string, config?: EditorConfig ): Promise<void> {
-		this.editor = await this._creator!( elementOrData, config || ( {} as any ) );
+		this.editor = await this._creator!( elementOrData, config || /* istanbul ignore next */ ( {} as any ) );
 	}
 
 	/**
