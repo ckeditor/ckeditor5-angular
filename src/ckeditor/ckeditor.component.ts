@@ -357,7 +357,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
-		// TODO: elementOrData parameter type can be simplified to HTMLElemen after templated Watchdog will be released.
 		const creator: EditorWatchdogCreatorFunction<TEditor> = ( ( elementOrData, config ) => {
 			return this.ngZone.runOutsideAngular( async () => {
 				this.elementRef.nativeElement.appendChild( elementOrData as HTMLElement );
