@@ -663,7 +663,8 @@ describe( 'CKEditorComponent', () => {
 			window.onerror = null;
 
 			@Component( {
-				template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>'
+				template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>',
+				standalone: false
 			} )
 			class TestComponent {
 				public editor = AngularEditor;
