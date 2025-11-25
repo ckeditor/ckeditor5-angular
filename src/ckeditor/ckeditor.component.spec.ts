@@ -517,6 +517,45 @@ describe( 'CKEditorComponent', () => {
 				expect( readySpy ).toHaveBeenCalledTimes( 1 );
 			} );
 		} );
+
+		describe( 'disableWatchdog', () => {
+			it( 'should allow toggling the watchdog', async () => {
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+				await contextWatchdog.create();
+				const watchdogAddSpy = spyOn( contextWatchdog, 'add' ).and.callThrough();
+				const watchdogRemoveSpy = spyOn( contextWatchdog, 'remove' ).and.callThrough();
+
+				component.watchdog = contextWatchdog;
+				component.disableWatchdog = false;
+				fixture.detectChanges();
+				await waitCycle();
+
+				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 1 );
+				expect( component.editorInstance ).toBeTruthy();
+
+				// Disable watchdog
+				component.disableWatchdog = true;
+				component.ngOnChanges( {
+					disableWatchdog: new SimpleChange( false, true, false )
+				} );
+				await waitCycle();
+
+				expect( watchdogRemoveSpy ).toHaveBeenCalledTimes( 1 );
+				expect( component.editorInstance ).toBeTruthy();
+				// Should be using DisabledEditorWatchdog internally, so not added to context watchdog again.
+				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 1 );
+
+				// Enable watchdog again
+				component.disableWatchdog = false;
+				component.ngOnChanges( {
+					disableWatchdog: new SimpleChange( true, false, false )
+				} );
+				await waitCycle();
+
+				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 2 );
+				expect( component.editorInstance ).toBeTruthy();
+			} );
+		} );
 	} );
 
 	describe( 'initialization errors are catched', () => {
@@ -578,89 +617,88 @@ describe( 'CKEditorComponent', () => {
 			fixture.destroy();
 		} );
 	} );
-} );
 
-describe( 'change detection', () => {
-	it( 'should NOT run change detection if `error` does not have listeners', async () => {
-		window.onerror = null;
+	describe( 'change detection', () => {
+		it( 'should NOT run change detection if `error` does not have listeners', async () => {
+			window.onerror = null;
 
-		@Component( {
-			template: '<ckeditor [editor]="editor"></ckeditor>',
-			standalone: false
-		} )
-		class TestComponent {
-			public editor = AngularEditor;
+			@Component( {
+				template: '<ckeditor [editor]="editor"></ckeditor>',
+				standalone: false
+			} )
+			class TestComponent {
+				public editor = AngularEditor;
 
-			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
-		}
+				@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
+			}
 
-		TestBed.configureTestingModule( {
-			declarations: [ TestComponent, CKEditorComponent ]
+			TestBed.configureTestingModule( {
+				declarations: [ TestComponent, CKEditorComponent ]
+			} );
+
+			const appRef = TestBed.inject( ApplicationRef );
+
+			const fixture = TestBed.createComponent( TestComponent );
+			fixture.detectChanges();
+
+			await waitCycle();
+
+			spyOn( appRef, 'tick' );
+
+			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+
+			const error: any = new Error( 'foo' );
+			error.is = () => true;
+			error.context = oldEditor;
+			Promise.resolve().then( () => {
+				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			} );
+
+			await waitCycle();
+
+			expect( appRef.tick ).toHaveBeenCalledTimes( 1 );
 		} );
 
-		const appRef = TestBed.inject( ApplicationRef );
+		it( 'should run change detection if `error` has listeners', async () => {
+			window.onerror = null;
 
-		const fixture = TestBed.createComponent( TestComponent );
-		fixture.detectChanges();
+			@Component( {
+				template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>'
+			} )
+			class TestComponent {
+				public editor = AngularEditor;
 
-		await waitCycle();
+				@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
 
-		spyOn( appRef, 'tick' );
+				public onError(): void {}
+			}
 
-		const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+			TestBed.configureTestingModule( {
+				declarations: [ TestComponent, CKEditorComponent ]
+			} );
 
-		const error: any = new Error( 'foo' );
-		error.is = () => true;
-		error.context = oldEditor;
-		Promise.resolve().then( () => {
-			window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			const appRef = TestBed.inject( ApplicationRef );
+
+			const fixture = TestBed.createComponent( TestComponent );
+			fixture.detectChanges();
+
+			await waitCycle();
+
+			spyOn( appRef, 'tick' );
+
+			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+
+			const error: any = new Error( 'foo' );
+			error.is = () => true;
+			error.context = oldEditor;
+			Promise.resolve().then( () => {
+				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			} );
+
+			await waitCycle();
+
+			expect( appRef.tick ).toHaveBeenCalledTimes( 2 );
 		} );
-
-		await waitCycle();
-
-		expect( appRef.tick ).toHaveBeenCalledTimes( 1 );
-	} );
-
-	it( 'should run change detection if `error` has listeners', async () => {
-		window.onerror = null;
-
-		@Component( {
-			template: '<ckeditor [editor]="editor" (error)="onError()"></ckeditor>',
-			standalone: false
-		} )
-		class TestComponent {
-			public editor = AngularEditor;
-
-			@ViewChild( CKEditorComponent, { static: true } ) public ckEditorComponent!: CKEditorComponent;
-
-			public onError(): void {}
-		}
-
-		TestBed.configureTestingModule( {
-			declarations: [ TestComponent, CKEditorComponent ]
-		} );
-
-		const appRef = TestBed.inject( ApplicationRef );
-
-		const fixture = TestBed.createComponent( TestComponent );
-		fixture.detectChanges();
-
-		await waitCycle();
-
-		spyOn( appRef, 'tick' );
-
-		const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
-
-		const error: any = new Error( 'foo' );
-		error.is = () => true;
-		error.context = oldEditor;
-		Promise.resolve().then( () => {
-			window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
-		} );
-
-		await waitCycle();
-
-		expect( appRef.tick ).toHaveBeenCalledTimes( 2 );
 	} );
 } );
 

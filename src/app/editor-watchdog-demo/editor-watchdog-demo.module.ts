@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { CKEditorModule } from 'src/ckeditor';
-import { WatchdogDemoComponent } from './watchdog-demo';
+import { EditorWatchdogDemoComponent } from './editor-watchdog-demo';
 
 @NgModule( {
 	declarations: [
-		WatchdogDemoComponent
+		EditorWatchdogDemoComponent
 	],
 	imports: [
 		BrowserModule,
@@ -14,9 +14,9 @@ import { WatchdogDemoComponent } from './watchdog-demo';
 		RouterModule.forChild( [
 			{
 				path: '',
-				component: WatchdogDemoComponent
+				component: EditorWatchdogDemoComponent
 			}
 		] )
 	]
 } )
-export class WatchdogDemoModule {}
+export class EditorWatchdogDemoModule {}

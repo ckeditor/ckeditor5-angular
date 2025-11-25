@@ -20,8 +20,12 @@ const appRoutes: Routes = [
 		loadChildren: () => import( './demo-reactive-form/demo-reactive-form.module' ).then( m => m.DemoReactiveFormModule )
 	},
 	{
-		path: 'watchdog',
-		loadChildren: () => import( './watchdog-demo/watchdog-demo.module' ).then( m => m.WatchdogDemoModule )
+		path: 'reuse-watchdog',
+		loadChildren: () => import( './reuse-watchdog-demo/reuse-watchdog-demo.module' ).then( m => m.ReuseWatchdogDemoModule )
+	},
+	{
+		path: 'editor-watchdog',
+		loadChildren: () => import( './editor-watchdog-demo/editor-watchdog-demo.module' ).then( m => m.EditorWatchdogDemoModule )
 	},
 	{
 		path: 'simple-usage',
