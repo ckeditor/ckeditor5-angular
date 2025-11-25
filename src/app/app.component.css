@@ -17,3 +17,13 @@ nav a.active {
 :host ::ng-deep h4 {
 	border-bottom: 1px solid #ddd;
 }
+
+:host ::ng-deep .alert-box {
+	padding: 15px;
+	margin-top: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	color: #856404;
+	background-color: #fff3cd;
+	border-color: #ffeeba;
+}
