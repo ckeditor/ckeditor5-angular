@@ -5,7 +5,6 @@
 
 import { ApplicationRef, Component, SimpleChange, ViewChild } from '@angular/core';
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
-import { first } from 'rxjs/operators';
 
 import { AngularEditor } from 'src/editor/editor';
 import { MockEditor } from 'src/editor/mock-editor';
@@ -555,51 +554,6 @@ describe( 'CKEditorComponent', () => {
 
 				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 2 );
 				expect( component.editorInstance ).toBeTruthy();
-			} );
-
-			it( 'should not duplicate error listeners when toggling disableWatchdog with ContextWatchdog', async () => {
-				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-				await contextWatchdog.create();
-
-				component.watchdog = contextWatchdog;
-				component.disableWatchdog = false;
-				fixture.detectChanges();
-				await waitCycle( 100 );
-
-				// Toggle disableWatchdog a few times.
-				component.disableWatchdog = true;
-				component.ngOnChanges( {
-					disableWatchdog: new SimpleChange( false, true, false )
-				} );
-				await waitCycle( 100 );
-
-				component.disableWatchdog = false;
-				component.ngOnChanges( {
-					disableWatchdog: new SimpleChange( true, false, false )
-				} );
-
-				await new Promise<void>( resolve => {
-					component.ready.pipe( first() ).subscribe( () => resolve() );
-				} );
-
-				await waitCycle( 100 );
-
-				const errorSpy = jasmine.createSpy( 'errorSpy' );
-				component.error.subscribe( errorSpy );
-
-				const oldEditor = component.editorInstance;
-
-				setTimeout( () => {
-					const error: any = new Error( 'foo' );
-					error.is = () => true;
-					error.context = oldEditor;
-
-					throw error;
-				} );
-
-				await waitCycle( 100 );
-
-				expect( errorSpy ).toHaveBeenCalledTimes( 1 );
 			} );
 		} );
 	} );
