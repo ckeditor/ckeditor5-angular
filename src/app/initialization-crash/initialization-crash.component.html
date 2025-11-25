@@ -28,3 +28,12 @@
 <ng-template #errorMessageWatchdog>
 	<p>An error has occurred, please contact us at: support@company.com to resolve the situation.</p>
 </ng-template>
+
+<div *ngIf="errors.length > 0" style="margin-top: 20px;">
+	<h3>Errors:</h3>
+	<ul>
+		<li *ngFor="let error of errors">
+			<strong>{{ error.timestamp | date:'medium' }}:</strong> {{ error.message }}
+		</li>
+	</ul>
+</div>

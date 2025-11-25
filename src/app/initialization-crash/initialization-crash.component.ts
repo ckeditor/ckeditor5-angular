@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, NgZone, ViewChild } from '@angular/core';
 import type { ContextWatchdog } from 'ckeditor5';
 import { CKEditorComponent } from 'src/ckeditor';
 import { AngularEditor } from 'src/editor/editor';
@@ -20,9 +20,17 @@ export class InitializationCrashComponent {
 	public errorOccurred = false;
 	public errorOccurredWatchdog = false;
 
+	public errors: Array<{ timestamp: Date; message: string }> = [];
+
 	public watchdog?: ContextWatchdog;
+	private ngZone: NgZone;
+
+	constructor( @Inject( NgZone ) ngZone: NgZone ) {
+		this.ngZone = ngZone;
+	}
 
 	public ngOnInit(): void {
+		const { ngZone } = this;
 		const contextConfig: any = {
 			foo: 'bar'
 		};
@@ -30,12 +38,14 @@ export class InitializationCrashComponent {
 		this.config = {
 			extraPlugins: [
 				function( editor: any ) {
-					editor.data.on( 'init', () => {
-						// Simulate an error.
-						// Create a non-existing position, then try to get its parent.
-						const position = editor.model.createPositionFromPath( editor.model.document.getRoot(), [ 1, 2, 3 ] );
+					ngZone.runOutsideAngular( () => {
+						editor.data.on( 'init', () => {
+							// Simulate an error.
+							// Create a non-existing position, then try to get its parent.
+							const position = editor.model.createPositionFromPath( editor.model.document.getRoot(), [ 1, 2, 3 ] );
 
-						return position.parent;
+							return position.parent;
+						} );
 					} );
 				}
 			],
@@ -58,7 +68,12 @@ export class InitializationCrashComponent {
 	}
 
 	public onErrorWatchdog( error: any ): void {
+		console.info( 'exec' );
 		console.error( 'Editor with watchdog threw an error which was caught', error );
-		this.errorOccurredWatchdog = true;
+
+		this.errors.unshift( {
+			timestamp: new Date(),
+			message: error?.toString() ?? 'Watchdog restarted editor.'
+		} );
 	}
 }

@@ -1,12 +1,19 @@
-<h2>Watchdog demo</h2>
+<h2>Watchdog demo (via watchdog prop)</h2>
 
 <div class="test-toolbar">
 	<button (click)="toggle()">Toggle disabled mode</button>
 	<button (click)="simulateError()">Simulate Error</button>
 </div>
 
-<ckeditor data="Watchdog demo" [config]="config" [editor]="Editor" (ready)="onReady($event)" [watchdog]="watchdog"
-	[disabled]="isDisabled" (error)="onError($event)">
+<ckeditor
+	data="Watchdog demo"
+	[config]="config"
+	[editor]="Editor"
+	(ready)="onReady($event)"
+	[watchdog]="watchdog"
+	[disabled]="isDisabled"
+	(error)="onError($event)"
+>
 </ckeditor>
 
 <div *ngIf="errors.length > 0" style="margin-top: 20px;">

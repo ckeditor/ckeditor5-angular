@@ -1,16 +1,16 @@
 import { Component, Inject, NgZone } from '@angular/core';
-import type { ContextWatchdog } from 'ckeditor5';
+import type { ContextWatchdog, EditorConfig } from 'ckeditor5';
 import { AngularEditor } from 'src/editor/editor';
 
 @Component( {
 	selector: 'watchdog-demo',
-	templateUrl: './watchdog-demo.html',
-	styleUrls: [ './watchdog-demo.css' ]
+	templateUrl: './reuse-watchdog-demo.html',
+	styleUrls: [ './reuse-watchdog-demo.css' ]
 } )
-export class WatchdogDemoComponent {
+export class ReuseWatchdogDemoComponent {
 	public Editor = AngularEditor;
 
-	public config: any;
+	public config?: EditorConfig;
 	public watchdog?: ContextWatchdog;
 	public ready = false;
 
@@ -29,22 +29,21 @@ export class WatchdogDemoComponent {
 	}
 
 	public ngOnInit(): void {
-		const contextConfig: any = {
-			foo: 'bar'
-		};
-
 		this.config = {
 			collaboration: {
 				channelId: 'foobar-baz'
 			}
 		};
 
-		this.watchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+		this.watchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context, {
+			crashNumberLimit: 500,
+			minimumNonErrorTimePeriod: 1000,
+			saveInterval: 1200
+		} );
 
-		this.watchdog.create( contextConfig )
-			.then( () => {
-				this.ready = true;
-			} );
+		this.watchdog.create().then( () => {
+			this.ready = true;
+		} );
 	}
 
 	public toggle(): void {
