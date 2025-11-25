@@ -2,6 +2,7 @@
 
 <div class="test-toolbar">
 	<button (click)="toggle()">Toggle disabled mode</button>
+	<label><input type="checkbox" [checked]="isWatchdogDisabled" (change)="toggleWatchdog()"> Disable watchdog</label>
 	<button (click)="simulateError()">Simulate Error</button>
 </div>
 
@@ -11,6 +12,7 @@
 	[editorWatchdogConfig]="editorWatchdogConfig"
 	(ready)="onReady($event)"
 	[disabled]="isDisabled"
+	[disableWatchdog]="isWatchdogDisabled"
 	(error)="onError($event)"
 >
 </ckeditor>

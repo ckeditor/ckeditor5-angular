@@ -13,6 +13,7 @@ export class ReuseWatchdogDemoComponent {
 	public watchdog?: ContextWatchdog;
 	public ready = false;
 	public isDisabled = false;
+	public isWatchdogDisabled = false;
 	public errors: Array<{ timestamp: Date; message: string }> = [];
 
 	private editor?: AngularEditor;
@@ -41,6 +42,10 @@ export class ReuseWatchdogDemoComponent {
 
 	public toggle(): void {
 		this.isDisabled = !this.isDisabled;
+	}
+
+	public toggleWatchdog(): void {
+		this.isWatchdogDisabled = !this.isWatchdogDisabled;
 	}
 
 	public simulateError(): void {

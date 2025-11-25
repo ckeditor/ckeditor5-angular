@@ -12,6 +12,7 @@ export class EditorWatchdogDemoComponent {
 
 	public ready = false;
 	public isDisabled = false;
+	public isWatchdogDisabled = false;
 	public errors: Array<{ timestamp: Date; message: string }> = [];
 	public editorWatchdogConfig: WatchdogConfig = {
 		crashNumberLimit: 500,
@@ -33,6 +34,10 @@ export class EditorWatchdogDemoComponent {
 
 	public toggle(): void {
 		this.isDisabled = !this.isDisabled;
+	}
+
+	public toggleWatchdog(): void {
+		this.isWatchdogDisabled = !this.isWatchdogDisabled;
 	}
 
 	public simulateError(): void {

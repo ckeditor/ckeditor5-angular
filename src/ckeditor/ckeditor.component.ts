@@ -37,6 +37,7 @@ import type { ControlValueAccessor } from '@angular/forms';
 
 import { uid } from '@ckeditor/ckeditor5-integrations-common';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
+import { DisabledEditorWatchdog } from './disabled-editor-watchdog';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -105,7 +106,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 */
 	@Input() public tagName = 'div';
 
-	// TODO Change to ContextWatchdog<Editor, HTMLElement> after new ckeditor5 alpha release
 	/**
 	 * The context watchdog.
 	 */
@@ -115,6 +115,11 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * Config for the EditorWatchdog.
 	 */
 	@Input() public editorWatchdogConfig?: WatchdogConfig;
+
+	/**
+	 * When set `true`, the editor watchdog is disabled and a fake watchdog is used.
+	 */
+	@Input() public disableWatchdog = false;
 
 	/**
 	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
@@ -183,12 +188,8 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	public get editorInstance(): TEditor | null {
 		let editorWatchdog = this.editorWatchdog;
 
-		if ( this.watchdog ) {
-			// Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
-			// an error when the item is not registered yet.
-			// See https://github.com/ckeditor/ckeditor5-angular/issues/177.
-			// TODO should be able to change when new chages in Watcdog are released.
-			editorWatchdog = ( this.watchdog as any )._watchdogs.get( this.id );
+		if ( this.watchdog && !this.disableWatchdog ) {
+			editorWatchdog = getEditorFromWatchdogOrNull( this.watchdog, this.id );
 		}
 
 		if ( editorWatchdog ) {
@@ -202,7 +203,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * The editor watchdog. It is created when the context watchdog is not passed to the component.
 	 * It keeps the editor running.
 	 */
-	private editorWatchdog?: EditorWatchdog<TEditor>;
+	private editorWatchdog?: EditorWatchdog<TEditor> | DisabledEditorWatchdog<TEditor>;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -242,6 +243,14 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 */
 	private isEditorSettingData = false;
 
+	/**
+	 * Listener bound to the watchdog `itemError` event.
+	 */
+	private watchdogItemErrorListener?: ( evt: unknown, { itemId }: { itemId: string } ) => void;
+
+	/**
+	 * The unique ID of the editor instance.
+	 */
 	private id = uid();
 
 	public getId(): string {
@@ -277,6 +286,12 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		if ( Object.prototype.hasOwnProperty.call( changes, 'data' ) && changes.data && !changes.data.isFirstChange() ) {
 			this.writeValue( changes.data.currentValue );
 		}
+
+		if ( Object.prototype.hasOwnProperty.call( changes, 'disableWatchdog' ) && !changes.disableWatchdog.isFirstChange() ) {
+			this.destroyEditor().then( () => {
+				this.attachToWatchdog();
+			} );
+		}
 	}
 
 	// Implementing the AfterViewInit interface.
@@ -286,8 +301,16 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 	// Implementing the OnDestroy interface.
 	public async ngOnDestroy(): Promise<void> {
-		if ( this.watchdog ) {
+		await this.destroyEditor();
+	}
+
+	private async destroyEditor(): Promise<void> {
+		if ( this.watchdog && getEditorFromWatchdogOrNull( this.watchdog, this.id ) ) {
 			await this.watchdog.remove( this.id );
+
+			if ( this.watchdogItemErrorListener ) {
+				this.watchdog.off( 'itemError', this.watchdogItemErrorListener );
+			}
 		} else if ( this.editorWatchdog && this.editorWatchdog.editor ) {
 			await this.editorWatchdog.destroy();
 
@@ -401,7 +424,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		this.editorElement = element;
 
 		// Based on the presence of the watchdog decide how to initialize the editor.
-		if ( this.watchdog ) {
+		if ( this.watchdog && !this.disableWatchdog ) {
 			// When the context watchdog is passed add the new item to it based on the passed configuration.
 			this.watchdog.add( {
 				id: this.id,
@@ -414,21 +437,28 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 				emitError( e );
 			} );
 
-			this.watchdog.on( 'itemError', ( _, { itemId } ) => {
+			this.watchdogItemErrorListener = ( _, { itemId } ) => {
 				if ( itemId === this.id ) {
 					emitError();
 				}
-			} );
+			};
+
+			this.watchdog.on( 'itemError', this.watchdogItemErrorListener );
 		} else {
 			// In the other case create the watchdog by hand to keep the editor running.
-			const editorWatchdog = new this.editor!.EditorWatchdog(
+			const WatchdogClass = this.disableWatchdog ? DisabledEditorWatchdog : this.editor!.EditorWatchdog;
+
+			const editorWatchdog = new WatchdogClass(
 				this.editor!,
 				this.editorWatchdogConfig
 			);
 
 			editorWatchdog.setCreator( creator );
 			editorWatchdog.setDestructor( destructor );
-			editorWatchdog.on( 'error', emitError );
+
+			if ( !this.disableWatchdog ) {
+				editorWatchdog.on( 'error', emitError );
+			}
 
 			this.editorWatchdog = editorWatchdog;
 			this.ngZone.runOutsideAngular( () => {
@@ -504,4 +534,14 @@ function hasObservers<T>( emitter: EventEmitter<T> ): boolean {
 	// Cast to `any` because `observed` property is available in RxJS >= 7.2.0.
 	// Fallback to checking `observers` list if this property is not defined.
 	return ( emitter as any ).observed || emitter.observers.length > 0;
+}
+
+/**
+ * Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
+ * an error when the item is not registered yet.
+ *
+ * See https://github.com/ckeditor/ckeditor5-angular/issues/177
+ */
+function getEditorFromWatchdogOrNull( watchdog: EditorWatchdog | ContextWatchdog, id: string ) {
+	return ( watchdog as any )._watchdogs.get( id );
 }
