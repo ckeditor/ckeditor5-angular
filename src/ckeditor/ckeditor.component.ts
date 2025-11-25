@@ -117,14 +117,14 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	@Input() public editorWatchdogConfig?: WatchdogConfig;
 
 	/**
-	 * When set `true`, the editor watchdog is disabled and a fake watchdog is used.
+	 * When set to `true`, the editor watchdog is disabled, and a fake watchdog is used.
 	 */
 	@Input() public disableWatchdog = false;
 
 	/**
 	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
 	 *
-	 * When a component is connected using the [(ngModel)] or [formControl] directives and this value is set to true then none of the data
+	 * When a component is connected using the [(ngModel)] or [formControl] directives, and this value is set to true, then none of the data
 	 * will ever be synchronized.
 	 *
 	 * An integrator must call `editor.data.get()` manually once the application needs the editor's data.
@@ -375,7 +375,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	}
 
 	/**
-	 * Creates the editor instance, sets initial editor data, then integrates
+	 * Creates the editor instance, sets the initial editor data, then integrates
 	 * the editor with the Angular component. This method does not use the `editor.data.set()`
 	 * because of the issue in the collaboration mode (#6).
 	 */
@@ -463,7 +463,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			this.editorWatchdog = editorWatchdog;
 			this.ngZone.runOutsideAngular( () => {
 				// Note: must be called outside of the Angular zone too because `create` is calling
-				// `_startErrorHandling` within a microtask which sets up `error` listener on the window.
+				// `_startErrorHandling` within a microtask, which sets up `error` listener on the window.
 				editorWatchdog.create( element, config ).catch( e => {
 					emitError( e );
 				} );
