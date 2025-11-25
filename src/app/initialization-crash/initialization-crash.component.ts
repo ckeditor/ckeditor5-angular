@@ -1,12 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import type { ContextWatchdog } from 'ckeditor5';
+import type { EditorConfig, WatchdogConfig } from 'ckeditor5';
 import { CKEditorComponent } from 'src/ckeditor';
 import { AngularEditor } from 'src/editor/editor';
 
 @Component( {
 	selector: 'app-initialization-crash',
-	templateUrl: './initialization-crash.component.html',
-	styleUrls: [ './initialization-crash.component.css' ]
+	templateUrl: './initialization-crash.component.html'
 } )
 export class InitializationCrashComponent {
 	public Editor = AngularEditor;
@@ -14,19 +13,18 @@ export class InitializationCrashComponent {
 
 	@ViewChild( CKEditorComponent ) public ckeditor?: CKEditorComponent;
 
-	public config: any;
+	public config?: EditorConfig;
 	public ready = false;
 
 	public errorOccurred = false;
 	public errorOccurredWatchdog = false;
-
-	public watchdog?: ContextWatchdog;
+	public editorWatchdogConfig: WatchdogConfig = {
+		crashNumberLimit: 5,
+		minimumNonErrorTimePeriod: 1000,
+		saveInterval: 1200
+	};
 
 	public ngOnInit(): void {
-		const contextConfig: any = {
-			foo: 'bar'
-		};
-
 		this.config = {
 			extraPlugins: [
 				function( editor: any ) {
@@ -38,18 +36,8 @@ export class InitializationCrashComponent {
 						return position.parent;
 					} );
 				}
-			],
-			collaboration: {
-				channelId: 'foobar-baz'
-			}
+			]
 		};
-
-		this.watchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-
-		this.watchdog.create( contextConfig )
-			.then( () => {
-				this.ready = true;
-			} );
 	}
 
 	public onError( error: any ): void {

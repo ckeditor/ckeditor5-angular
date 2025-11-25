@@ -2,3 +2,10 @@
 	background: #fafafa;
 	color: #888;
 }
+
+.test-toolbar {
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	margin-bottom: 15px;
+}

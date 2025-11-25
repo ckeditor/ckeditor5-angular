@@ -5,8 +5,7 @@
 </ng-container>
 
 <ng-template #editor>
-	<ckeditor data="Crash demo without watchdog" [config]="config" [editor]="Editor"
-		(error)="onError($event)">
+	<ckeditor data="Crash demo without watchdog" [config]="config" [editor]="Editor" (error)="onError($event)">
 	</ckeditor>
 </ng-template>
 
@@ -20,11 +19,17 @@
 </ng-container>
 
 <ng-template #editorWatchdog>
-	<ckeditor data="Crash demo with watchdog" [config]="config" [editor]="EditorWatchdog"
-		[watchdog]="watchdog" (error)="onErrorWatchdog($event)">
+	<ckeditor data="Crash demo with watchdog" [config]="config" [editor]="EditorWatchdog" [watchdog]="watchdog"
+		[editorWatchdogConfig]="editorWatchdogConfig" (error)="onErrorWatchdog($event)">
 	</ckeditor>
 </ng-template>
 
 <ng-template #errorMessageWatchdog>
 	<p>An error has occurred, please contact us at: support@company.com to resolve the situation.</p>
 </ng-template>
+
+<div class="alert-box">
+	The watchdog should not restart the editor during an exception and should emit an <code>error</code> only once, just
+	like the editor without the watchdog. It is because the watchdog does not handle errors during initialization and
+	does not restart the editor.
+</div>
