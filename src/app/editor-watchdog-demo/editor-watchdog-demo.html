@@ -1,4 +1,4 @@
-<h2>Watchdog demo (via watchdog prop)</h2>
+<h2>Watchdog demo (via editorWatchdogConfig prop)</h2>
 
 <div class="test-toolbar">
 	<button (click)="toggle()">Toggle disabled mode</button>
@@ -8,8 +8,8 @@
 <ckeditor
 	data="Watchdog demo"
 	[editor]="Editor"
+	[editorWatchdogConfig]="editorWatchdogConfig"
 	(ready)="onReady($event)"
-	[watchdog]="watchdog"
 	[disabled]="isDisabled"
 	(error)="onError($event)"
 >

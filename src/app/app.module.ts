@@ -24,6 +24,10 @@ const appRoutes: Routes = [
 		loadChildren: () => import( './reuse-watchdog-demo/reuse-watchdog-demo.module' ).then( m => m.ReuseWatchdogDemoModule )
 	},
 	{
+		path: 'editor-watchdog',
+		loadChildren: () => import( './editor-watchdog-demo/editor-watchdog-demo.module' ).then( m => m.EditorWatchdogDemoModule )
+	},
+	{
 		path: 'simple-usage',
 		loadChildren: () => import( './simple-usage/simple-usage.module' ).then( m => m.SimpleUsageModule )
 	},
