@@ -11,7 +11,7 @@ import type {
 } from 'ckeditor5';
 
 /**
- * A dummy watchdog class used when the watchdog is disabled.
+ * A dummy watchdog class is used when the watchdog is disabled.
  *
  * It provides a compatible API but does not perform any monitoring or restarting.
  */
