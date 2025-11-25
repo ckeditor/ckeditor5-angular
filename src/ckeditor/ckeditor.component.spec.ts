@@ -564,14 +564,14 @@ describe( 'CKEditorComponent', () => {
 				component.watchdog = contextWatchdog;
 				component.disableWatchdog = false;
 				fixture.detectChanges();
-				await waitCycle();
+				await waitCycle( 100 );
 
 				// Toggle disableWatchdog a few times.
 				component.disableWatchdog = true;
 				component.ngOnChanges( {
 					disableWatchdog: new SimpleChange( false, true, false )
 				} );
-				await waitCycle();
+				await waitCycle( 100 );
 
 				component.disableWatchdog = false;
 				component.ngOnChanges( {
@@ -582,7 +582,7 @@ describe( 'CKEditorComponent', () => {
 					component.ready.pipe( first() ).subscribe( () => resolve() );
 				} );
 
-				await waitCycle();
+				await waitCycle( 100 );
 
 				const errorSpy = jasmine.createSpy( 'errorSpy' );
 				component.error.subscribe( errorSpy );
@@ -597,7 +597,7 @@ describe( 'CKEditorComponent', () => {
 					throw error;
 				} );
 
-				await waitCycle();
+				await waitCycle( 100 );
 
 				expect( errorSpy ).toHaveBeenCalledTimes( 1 );
 			} );
