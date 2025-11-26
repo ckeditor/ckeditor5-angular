@@ -59,7 +59,6 @@ export interface ChangeEvent<TEditor extends Editor = Editor> {
 @Component( {
 	selector: 'ckeditor',
 	template: '<ng-template></ng-template>',
-
 	// Integration with @angular/forms.
 	providers: [
 		{
@@ -67,7 +66,8 @@ export interface ChangeEvent<TEditor extends Editor = Editor> {
 			useExisting: forwardRef( () => CKEditorComponent ),
 			multi: true
 		}
-	]
+	],
+	standalone: false
 } )
 export class CKEditorComponent<TEditor extends Editor = Editor> implements AfterViewInit, OnDestroy, OnChanges, ControlValueAccessor {
 	/**

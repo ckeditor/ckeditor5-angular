@@ -6,7 +6,8 @@ import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
 @Component( {
 	selector: 'context-demo',
 	templateUrl: './context-demo.html',
-	styleUrls: [ './context-demo.css' ]
+	styleUrls: [ './context-demo.css' ],
+	standalone: false
 } )
 export class ContextDemoComponent {
 	public Editor = AngularEditor;

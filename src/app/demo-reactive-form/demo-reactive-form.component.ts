@@ -6,7 +6,8 @@ import { AngularEditor } from 'src/editor/editor';
 @Component( {
 	selector: 'app-demo-reactive-form',
 	templateUrl: './demo-reactive-form.component.html',
-	styleUrls: [ './demo-reactive-form.component.css' ]
+	styleUrls: [ './demo-reactive-form.component.css' ],
+	standalone: false
 } )
 export class DemoReactiveFormComponent implements AfterViewInit {
 	public Editor = AngularEditor;
