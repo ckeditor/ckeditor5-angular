@@ -5,7 +5,7 @@ Changelog
 
 ### BREAKING CHANGES
 
-* Changed minimum supported version of Angular to `>=19.x`. Closes [#514](https://github.com/ckeditor/ckeditor5-angular/issues/514).
+* Dropped support for Angular v18. The minimum supported Angular version is now **v19**. Closes [#514](https://github.com/ckeditor/ckeditor5-angular/issues/514).
 
 
 ## [10.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v10.0.0...v10.1.0) (November 26, 2025)
