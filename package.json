@@ -12,6 +12,7 @@
     "test": "ng test",
     "test:e2e": "cypress run",
     "test:e2e:ci": "start-server-and-test 'pnpm run start' http://localhost:4200/ 'pnpm run test:e2e --quiet'",
+    "test:scripts": "vitest --config ./scripts-tests/vitest.config.mjs --run",
     "coverage": "ng test --watch=false --code-coverage",
     "lint": "eslint",
     "build-package": "ng-packagr -p src/ckeditor/ng-package.json",
@@ -77,6 +78,7 @@
     "typescript": "~5.5.0",
     "typescript-eslint": "^8.32.0",
     "upath": "^2.0.1",
+    "vitest": "^4.0.14",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   },
