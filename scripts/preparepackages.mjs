@@ -130,6 +130,18 @@ const tasks = new Listr( [
 		}
 	},
 	{
+		title: 'Verify release directory.',
+		task: async () => {
+			const isEmpty = ( await fs.readdir( RELEASE_ANGULAR_DIR ) ).length === 0;
+
+			if ( !isEmpty ) {
+				return;
+			}
+
+			return Promise.reject( 'Release directory is empty, aborting.' );
+		}
+	},
+	{
 		title: 'Commit & tag.',
 		task: () => {
 			return releaseTools.commitAndTag( {
