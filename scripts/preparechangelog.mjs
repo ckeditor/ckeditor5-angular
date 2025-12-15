@@ -4,7 +4,7 @@
  */
 
 import upath from 'upath';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import { generateChangelogForSingleRepository } from '@ckeditor/ckeditor5-dev-changelog';
 import parseArguments from './utils/parsearguments.mjs';
 
