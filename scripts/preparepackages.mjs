@@ -8,7 +8,7 @@
 import fs from 'fs-extra';
 import upath from 'upath';
 import { Listr } from 'listr2';
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from 'node:url';
 import * as releaseTools from '@ckeditor/ckeditor5-dev-release-tools';
 import * as devUtils from '@ckeditor/ckeditor5-dev-utils';
 import parseArguments from './utils/parsearguments.mjs';
