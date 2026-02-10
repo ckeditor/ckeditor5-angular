@@ -4,6 +4,7 @@
  */
 
 import { DisabledEditorWatchdog } from './disabled-editor-watchdog';
+import { describe, expect, it, vi } from 'vitest';
 
 describe( 'DisabledEditorWatchdog', () => {
 	const editorConstructor = {

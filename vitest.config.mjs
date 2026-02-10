@@ -19,8 +19,16 @@ export default defineConfig( {
 	plugins: [
 		angular()
 	],
+	optimizeDeps: {
+		include: [
+			'zone.js',
+			'zone.js/plugins/sync-test',
+			'zone.js/plugins/proxy',
+			'zone.js/testing'
+		]
+	},
 	test: {
-		globals: true,
+		globals: false,
 		mockReset: true,
 		restoreMocks: true,
 		setupFiles: [
@@ -28,9 +36,6 @@ export default defineConfig( {
 		],
 		include: [
 			'src/**/*.spec.ts'
-		],
-		exclude: [
-			'scripts-tests/**'
 		],
 		browser: {
 			enabled: true,

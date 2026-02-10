@@ -1,5 +1,8 @@
 import '@angular/compiler';
-import '@analogjs/vitest-angular/setup-zone';
+import 'zone.js';
+import 'zone.js/plugins/sync-test';
+import 'zone.js/plugins/proxy';
+import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
 import {
 	BrowserDynamicTestingModule,

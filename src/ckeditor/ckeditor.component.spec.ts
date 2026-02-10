@@ -5,6 +5,7 @@
 
 import { ApplicationRef, Component, SimpleChange, ViewChild } from '@angular/core';
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AngularEditor } from 'src/editor/editor';
 import { MockEditor } from 'src/editor/mock-editor';
