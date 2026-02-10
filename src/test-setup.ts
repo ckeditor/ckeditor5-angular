@@ -5,6 +5,7 @@ import {
 	BrowserDynamicTestingModule,
 	platformBrowserDynamicTesting
 } from '@angular/platform-browser-dynamic/testing';
+import { beforeEach } from 'vitest';
 
 window.CKEDITOR_GLOBAL_LICENSE_KEY = 'GPL';
 
@@ -20,3 +21,7 @@ if ( !globalState.ckeditorTestBedInitialized ) {
 
 	globalState.ckeditorTestBedInitialized = true;
 }
+
+beforeEach( () => {
+	getTestBed().resetTestingModule();
+} );
