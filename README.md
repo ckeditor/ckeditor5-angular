@@ -133,7 +133,7 @@ To test it in production, use:
 pnpm run start --configuration production
 ```
 
-To run unit tests in watch mode (Vitest + Chrome), use:
+To run unit tests once (without watch, Vitest + Chrome), use:
 
 ```bash
 pnpm run test
@@ -141,10 +141,10 @@ pnpm run test
 
 The unit test suite runs in a real browser (Chrome) using Vitest browser mode.
 
-To run unit tests once (without watch), use:
+To run unit tests in watch mode, use:
 
 ```bash
-pnpm run test:run
+pnpm run test:dev
 ```
 
 To run e2e tests, run:
