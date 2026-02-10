@@ -1,6 +1,5 @@
-// This file is required by karma.conf.js and loads recursively all the .spec and framework files
-
-import 'zone.js/testing';
+import '@angular/compiler';
+import '@analogjs/vitest-angular/setup-zone';
 import { getTestBed } from '@angular/core/testing';
 import {
 	BrowserDynamicTestingModule,
@@ -9,7 +8,6 @@ import {
 
 window.CKEDITOR_GLOBAL_LICENSE_KEY = 'GPL';
 
-// First, initialize the Angular testing environment.
 getTestBed().initTestEnvironment(
 	BrowserDynamicTestingModule,
 	platformBrowserDynamicTesting()

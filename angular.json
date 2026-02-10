@@ -78,22 +78,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@analogjs/vitest-angular:test",
           "options": {
-            "main": "src/test.ts",
-            "codeCoverageExclude": ["src/editor/**"],
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "styles": [
-              "ckeditor5/ckeditor5.css",
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "configFile": "vitest.config.mjs",
+            "watch": true
           }
         }
       }
