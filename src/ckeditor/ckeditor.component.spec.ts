@@ -90,6 +90,14 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		describe( 'disabled state', () => {
+			it( 'uses the initial disabled state before editor initialization', () => {
+				component.setDisabledState( true );
+				expect( component.disabled ).toBeTruthy();
+
+				component.setDisabledState( false );
+				expect( component.disabled ).toBeFalsy();
+			} );
+
 			it( 'simple usage', () => {
 				fixture.detectChanges();
 
@@ -451,6 +459,26 @@ describe( 'CKEditorComponent', () => {
 
 				expect( component.editorInstance ).toBeTruthy();
 				expect( component.editorInstance!.isReadOnly ).toEqual( true );
+			} );
+
+			it( 'should destroy editor when item error listener is missing', async () => {
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+
+				await contextWatchdog.create();
+
+				component.watchdog = contextWatchdog;
+				fixture.detectChanges();
+				await waitCycle();
+
+				const removeSpy = vi.spyOn( contextWatchdog, 'remove' );
+				const offSpy = vi.spyOn( contextWatchdog, 'off' );
+
+				( component as any ).watchdogItemErrorListener = undefined;
+
+				await component.ngOnDestroy();
+
+				expect( removeSpy ).toHaveBeenCalledTimes( 1 );
+				expect( offSpy ).not.toHaveBeenCalled();
 			} );
 		} );
 

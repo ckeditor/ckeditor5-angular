@@ -66,7 +66,13 @@ export default defineConfig( {
 				'src/main.ts',
 				'src/polyfills.ts',
 				'src/test-setup.ts'
-			]
+			],
+			thresholds: {
+				statements: 100,
+				branches: 100,
+				functions: 100,
+				lines: 100
+			}
 		}
 	}
 } );

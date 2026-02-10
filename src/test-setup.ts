@@ -8,7 +8,15 @@ import {
 
 window.CKEDITOR_GLOBAL_LICENSE_KEY = 'GPL';
 
-getTestBed().initTestEnvironment(
-	BrowserDynamicTestingModule,
-	platformBrowserDynamicTesting()
-);
+const globalState = globalThis as typeof globalThis & {
+	ckeditorTestBedInitialized?: boolean;
+};
+
+if ( !globalState.ckeditorTestBedInitialized ) {
+	getTestBed().initTestEnvironment(
+		BrowserDynamicTestingModule,
+		platformBrowserDynamicTesting()
+	);
+
+	globalState.ckeditorTestBedInitialized = true;
+}
