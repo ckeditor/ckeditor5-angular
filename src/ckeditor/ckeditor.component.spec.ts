@@ -5,6 +5,7 @@
 
 import { ApplicationRef, Component, SimpleChange, ViewChild } from '@angular/core';
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AngularEditor } from 'src/editor/editor';
 import { MockEditor } from 'src/editor/mock-editor';
@@ -26,7 +27,7 @@ describe( 'CKEditorComponent', () => {
 		let CKEDITOR_VERSION: string | undefined;
 
 		beforeEach( () => {
-			spyOn( console, 'warn' );
+			vi.spyOn( console, 'warn' ).mockImplementation( () => {} );
 
 			CKEDITOR_VERSION = ( window as any ).CKEDITOR_VERSION;
 		} );
@@ -90,6 +91,14 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		describe( 'disabled state', () => {
+			it( 'uses the initial disabled state before editor initialization', () => {
+				component.setDisabledState( true );
+				expect( component.disabled ).toBeTruthy();
+
+				component.setDisabledState( false );
+				expect( component.disabled ).toBeFalsy();
+			} );
+
 			it( 'simple usage', () => {
 				fixture.detectChanges();
 
@@ -239,7 +248,7 @@ describe( 'CKEditorComponent', () => {
 		describe( 'emitters', () => {
 			it( 'ready', () => {
 				fixture.detectChanges();
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 				component.ready.subscribe( spy );
 
 				return waitCycle().then( () => {
@@ -250,25 +259,25 @@ describe( 'CKEditorComponent', () => {
 
 			it( 'change', () => {
 				fixture.detectChanges();
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
 					expect( spy ).toHaveBeenCalledTimes( 1 );
-					expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editorInstance );
-					expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
+					expect( spy.mock.calls[ 0 ][ 0 ].editor ).toEqual( component.editorInstance );
+					expect( typeof spy.mock.calls[ 0 ][ 0 ].event ).toEqual( 'object' );
 				} );
 			} );
 
 			it( 'change - should not calculate editor data when the control value ancestor is not specified', () => {
 				fixture.detectChanges();
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
-					spyOn( component.editorInstance!.data, 'get' ).and.callThrough();
+					vi.spyOn( component.editorInstance!.data, 'get' );
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
@@ -282,11 +291,11 @@ describe( 'CKEditorComponent', () => {
 				component.disableTwoWayDataBinding = true;
 
 				fixture.detectChanges();
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 				component.change.subscribe( spy );
 
 				return waitCycle().then( () => {
-					spyOn( component.editorInstance!.data, 'get' ).and.callThrough();
+					vi.spyOn( component.editorInstance!.data, 'get' );
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
 
@@ -296,21 +305,21 @@ describe( 'CKEditorComponent', () => {
 
 			it( 'focus', () => {
 				fixture.detectChanges();
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 				component.focus.subscribe( spy );
 
 				return waitCycle().then( () => {
 					component.editorInstance!.editing.view.document.fire( 'focus' );
 
 					expect( spy ).toHaveBeenCalledTimes( 1 );
-					expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editorInstance );
-					expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
+					expect( spy.mock.calls[ 0 ][ 0 ].editor ).toEqual( component.editorInstance );
+					expect( typeof spy.mock.calls[ 0 ][ 0 ].event ).toEqual( 'object' );
 				} );
 			} );
 
 			it( 'blur', () => {
 				fixture.detectChanges();
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 				component.blur.subscribe( spy );
 
 				return waitCycle().then( () => {
@@ -319,8 +328,8 @@ describe( 'CKEditorComponent', () => {
 					component.editorInstance!.editing.view.document.fire( 'blur', { target: null } );
 
 					expect( spy ).toHaveBeenCalledTimes( 1 );
-					expect( spy.calls.first().args[ 0 ].editor ).toEqual( component.editorInstance );
-					expect( typeof spy.calls.first().args[ 0 ].event ).toEqual( 'object' );
+					expect( spy.mock.calls[ 0 ][ 0 ].editor ).toEqual( component.editorInstance );
+					expect( typeof spy.mock.calls[ 0 ][ 0 ].event ).toEqual( 'object' );
 				} );
 			} );
 		} );
@@ -330,7 +339,7 @@ describe( 'CKEditorComponent', () => {
 				fixture.detectChanges();
 
 				return waitCycle().then( () => {
-					const spy = jasmine.createSpy();
+					const spy = vi.fn();
 
 					component.registerOnTouched( spy );
 					component.editorInstance!.editing.view.focus();
@@ -345,7 +354,7 @@ describe( 'CKEditorComponent', () => {
 				fixture.detectChanges();
 
 				return waitCycle().then( () => {
-					const spy = jasmine.createSpy();
+					const spy = vi.fn();
 					component.registerOnChange( spy );
 
 					component.editorInstance!.execute( 'input', { text: 'foo' } );
@@ -358,7 +367,7 @@ describe( 'CKEditorComponent', () => {
 				fixture.detectChanges();
 
 				return waitCycle().then( () => {
-					const spy = jasmine.createSpy();
+					const spy = vi.fn();
 					component.registerOnChange( spy );
 
 					component.writeValue( 'foo' );
@@ -371,7 +380,7 @@ describe( 'CKEditorComponent', () => {
 		describe( 'in case of the context watchdog integration', () => {
 			it( 'should create an editor internally', async () => {
 				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-				const spy = jasmine.createSpy();
+				const spy = vi.fn();
 
 				await contextWatchdog.create();
 
@@ -407,9 +416,9 @@ describe( 'CKEditorComponent', () => {
 				fixture2.detectChanges();
 				await waitCycle();
 
-				const errorSpy = jasmine.createSpy( 'errorSpy' );
-				const error2Spy = jasmine.createSpy( 'errorSpy' );
-				const readySpy = jasmine.createSpy( 'readySpy' );
+				const errorSpy = vi.fn();
+				const error2Spy = vi.fn();
+				const readySpy = vi.fn();
 
 				component.error.subscribe( errorSpy );
 				component2.error.subscribe( error2Spy );
@@ -452,6 +461,26 @@ describe( 'CKEditorComponent', () => {
 				expect( component.editorInstance ).toBeTruthy();
 				expect( component.editorInstance!.isReadOnly ).toEqual( true );
 			} );
+
+			it( 'should destroy editor when item error listener is missing', async () => {
+				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+
+				await contextWatchdog.create();
+
+				component.watchdog = contextWatchdog;
+				fixture.detectChanges();
+				await waitCycle();
+
+				const removeSpy = vi.spyOn( contextWatchdog, 'remove' );
+				const offSpy = vi.spyOn( contextWatchdog, 'off' );
+
+				( component as any ).watchdogItemErrorListener = undefined;
+
+				await component.ngOnDestroy();
+
+				expect( removeSpy ).toHaveBeenCalledTimes( 1 );
+				expect( offSpy ).not.toHaveBeenCalled();
+			} );
 		} );
 
 		describe( 'in case of the editor watchdog integration', () => {
@@ -493,8 +522,8 @@ describe( 'CKEditorComponent', () => {
 				fixture.detectChanges();
 				await waitCycle();
 
-				const errorSpy = jasmine.createSpy( 'errorSpy' );
-				const readySpy = jasmine.createSpy( 'readySpy' );
+				const errorSpy = vi.fn();
+				const readySpy = vi.fn();
 
 				component.error.subscribe( errorSpy );
 				component.ready.subscribe( readySpy );
@@ -522,8 +551,8 @@ describe( 'CKEditorComponent', () => {
 			it( 'should allow toggling the watchdog', async () => {
 				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 				await contextWatchdog.create();
-				const watchdogAddSpy = spyOn( contextWatchdog, 'add' ).and.callThrough();
-				const watchdogRemoveSpy = spyOn( contextWatchdog, 'remove' ).and.callThrough();
+				const watchdogAddSpy = vi.spyOn( contextWatchdog, 'add' );
+				const watchdogRemoveSpy = vi.spyOn( contextWatchdog, 'remove' );
 
 				component.watchdog = contextWatchdog;
 				component.disableWatchdog = false;
@@ -583,7 +612,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'when internal watchdog is created', async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			const component = fixture.componentInstance;
-			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			const errorSpy = vi.fn();
 			component.error.subscribe( errorSpy );
 			component.editor = AngularEditor;
 			component.config = config;
@@ -599,7 +628,7 @@ describe( 'CKEditorComponent', () => {
 		it( 'when external watchdog is provided', async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			const component = fixture.componentInstance;
-			const errorSpy = jasmine.createSpy( 'errorSpy' );
+			const errorSpy = vi.fn();
 			component.error.subscribe( errorSpy );
 			const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
 
@@ -643,7 +672,7 @@ describe( 'CKEditorComponent', () => {
 
 			await waitCycle();
 
-			spyOn( appRef, 'tick' );
+			vi.spyOn( appRef, 'tick' ).mockImplementation( () => {} );
 
 			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
 
@@ -685,7 +714,7 @@ describe( 'CKEditorComponent', () => {
 
 			await waitCycle();
 
-			spyOn( appRef, 'tick' );
+			vi.spyOn( appRef, 'tick' ).mockImplementation( () => {} );
 
 			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
 

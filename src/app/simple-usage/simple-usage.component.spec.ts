@@ -1,11 +1,12 @@
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
+import type { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { SimpleUsageComponent } from './simple-usage.component';
-import { By } from '@angular/platform-browser';
 import { CKEditorComponent } from '../../ckeditor/ckeditor.component';
-import type { DebugElement } from '@angular/core';
 
 describe( 'SimpleUsageComponent', () => {
 	let component: SimpleUsageComponent;

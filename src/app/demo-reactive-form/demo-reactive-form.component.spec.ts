@@ -1,6 +1,7 @@
 import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { DemoReactiveFormComponent } from './demo-reactive-form.component';
@@ -31,15 +32,15 @@ describe( 'DemoReactiveFormComponent', () => {
 	} );
 
 	it( 'should log the model to the console when user submits the form', () => {
-		const spy = spyOn( console, 'log' );
+		const spy = vi.spyOn( console, 'log' ).mockImplementation( () => {} );
 
 		const submitButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=submit]' ) ).nativeElement;
 		submitButton.click();
 
 		expect( spy ).toHaveBeenCalledTimes( 1 );
-		expect( spy.calls.first().args ).toEqual( jasmine.arrayContaining( [
+		expect( spy.mock.calls[ 0 ] ).toEqual( expect.arrayContaining( [
 			'Form submit, model',
-			jasmine.objectContaining( {
+			expect.objectContaining( {
 				name: 'John',
 				surname: 'Doe',
 				description: '<p>A <b>really</b> nice fellow.</p>'
@@ -47,42 +48,44 @@ describe( 'DemoReactiveFormComponent', () => {
 		] ) );
 	} );
 
-	it( 'should reset form after clicking the reset button', done => {
-		setTimeout( () => {
-			const resetButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=reset]' ) ).nativeElement;
-			resetButton.click();
+	it( 'should reset form after clicking the reset button', async () => {
+		await waitCycle();
 
-			fixture.detectChanges();
+		const resetButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=reset]' ) ).nativeElement;
+		resetButton.click();
 
-			expect( component.formDataPreview ).toEqual( '{"name":null,"surname":null,"description":null}' );
+		fixture.detectChanges();
 
-			done();
-		} );
+		expect( component.formDataPreview ).toEqual( '{"name":null,"surname":null,"description":null}' );
 	} );
 
-	it( 'should assign editor data to the model description if two way binding is disabled', done => {
-		setTimeout( () => {
-			const spy = spyOn( console, 'log' );
+	it( 'should assign editor data to the model description if two way binding is disabled', async () => {
+		await waitCycle();
 
-			const toggleButton: HTMLButtonElement = fixture.debugElement.query( By.css( '#toggleBinding' ) ).nativeElement;
-			const submitButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=submit]' ) ).nativeElement;
-			const editorDataPreview: HTMLTextAreaElement = fixture.debugElement.query( By.css( 'textarea' ) ).nativeElement;
+		const spy = vi.spyOn( console, 'log' ).mockImplementation( () => {} );
 
-			toggleButton.click();
-			component.editorInstance!.setData( '<p>Foo bar baz.</p>' );
-			submitButton.click();
+		const toggleButton: HTMLButtonElement = fixture.debugElement.query( By.css( '#toggleBinding' ) ).nativeElement;
+		const submitButton: HTMLButtonElement = fixture.debugElement.query( By.css( 'button[type=submit]' ) ).nativeElement;
+		const editorDataPreview: HTMLTextAreaElement = fixture.debugElement.query( By.css( 'textarea' ) ).nativeElement;
 
-			expect( editorDataPreview.value ).toEqual( '<p>A <b>really</b> nice fellow.</p>' );
+		toggleButton.click();
+		component.editorInstance!.setData( '<p>Foo bar baz.</p>' );
+		submitButton.click();
 
-			expect( spy ).toHaveBeenCalledTimes( 1 );
-			expect( spy.calls.first().args[ 0 ] ).toEqual( 'Form submit, model' );
-			expect( spy.calls.first().args[ 1 ] ).toEqual( {
-				name: 'John',
-				surname: 'Doe',
-				description: '<p>Foo bar baz.</p>'
-			} );
+		expect( editorDataPreview.value ).toEqual( '<p>A <b>really</b> nice fellow.</p>' );
 
-			done();
+		expect( spy ).toHaveBeenCalledTimes( 1 );
+		expect( spy.mock.calls[ 0 ][ 0 ] ).toEqual( 'Form submit, model' );
+		expect( spy.mock.calls[ 0 ][ 1 ] ).toEqual( {
+			name: 'John',
+			surname: 'Doe',
+			description: '<p>Foo bar baz.</p>'
 		} );
 	} );
 } );
+
+function waitCycle( time?: number ) {
+	return new Promise<void>( resolve => {
+		setTimeout( resolve, time );
+	} );
+}

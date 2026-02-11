@@ -133,10 +133,18 @@ To test it in production, use:
 pnpm run start --configuration production
 ```
 
-To run unit tests, use:
+To run unit tests once (without watch, Vitest + Chrome), use:
 
 ```bash
 pnpm run test
+```
+
+The unit test suite runs in a real browser (Chrome) using Vitest browser mode.
+
+To run unit tests in watch mode, use:
+
+```bash
+pnpm run test:dev
 ```
 
 To run e2e tests, run:
@@ -153,6 +161,8 @@ To run coverage tests, run:
 ```bash
 pnpm run coverage
 ```
+
+The coverage report is generated in the `./coverage` directory.
 
 Play with the application and make sure the component works properly.
 

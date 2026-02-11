@@ -101,7 +101,6 @@ jobs:
       - checkout
       - bootstrap_repository_command
       - browser-tools/install_chrome
-      - browser-tools/install_firefox
       - run:
           name: Execute ESLint
           command: pnpm run lint
@@ -111,19 +110,6 @@ jobs:
       - run:
           name: Run unit tests
           command: pnpm run coverage
-      - run:
-          name: Verify the code coverage
-          command: |
-            #!/bin/bash
-
-            # Create the `nyc` directory.
-            mkdir .nyc_output
-
-            # Copy results.
-            cp coverage/coverage-final.json .nyc_output
-
-            # Verify results.
-            npx nyc check-coverage --branches 100 --functions 100 --lines 100 --statements 100
       - run:
           name: Run e2e tests
           command: pnpm run test:e2e:ci

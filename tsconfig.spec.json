@@ -2,14 +2,15 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "target": "ES2022",
     "types": [
-      "jasmine",
       "node"
     ]
   },
+  "files": [
+    "src/test-setup.ts"
+  ],
   "include": [
-    "src/test.ts",
-    "src/polyfills.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
   ]
