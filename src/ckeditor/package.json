@@ -29,7 +29,7 @@
     "rxjs": ">=6.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
-  "license": "GPL-2.0-or-later",
+ "license": "SEE LICENSE IN LICENSE.md",
   "homepage": "https://ckeditor.com",
   "bugs": "https://github.com/ckeditor/ckeditor5-angular/issues",
   "repository": {
