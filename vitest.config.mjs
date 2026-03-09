@@ -28,6 +28,9 @@ export default defineConfig( {
 		]
 	},
 	test: {
+		// Angular TestBed keeps global mutable state, so running spec files in parallel
+		// can cause random setup/teardown races in CI.
+		fileParallelism: false,
 		globals: false,
 		mockReset: true,
 		restoreMocks: true,
