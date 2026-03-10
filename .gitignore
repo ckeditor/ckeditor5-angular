@@ -9,6 +9,7 @@ dist.tgz
 
 # dependencies
 /node_modules
+/src/ckeditor/node_modules
 
 # misc
 /.sass-cache
