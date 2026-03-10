@@ -181,30 +181,6 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(webpack-dev-server@5.2.2)(webpack@5.105.2)
 
-  dist:
-    dependencies:
-      '@angular/common':
-        specifier: '>=19.2.19'
-        version: 19.2.19(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7)
-      '@angular/core':
-        specifier: '>=19.2.19'
-        version: 19.2.19(rxjs@6.6.7)(zone.js@0.15.1)
-      '@angular/forms':
-        specifier: '>=19.2.19'
-        version: 19.2.19(@angular/common@19.2.19(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@19.2.19(@angular/animations@19.2.19(@angular/common@19.2.19(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@19.2.19(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.19(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
-      '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^2.2.2
-        version: 2.2.3(ckeditor5@47.2.0)
-      ckeditor5:
-        specifier: '>=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
-        version: 47.2.0
-      rxjs:
-        specifier: '>=6.0.0'
-        version: 6.6.7
-      tslib:
-        specifier: ^2.3.0
-        version: 2.8.1
-
   src/ckeditor:
     dependencies:
       '@angular/common':
@@ -9438,6 +9414,8 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.2.0
       '@ckeditor/ckeditor5-widget': 47.2.0
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-cloud-services@47.2.0':
     dependencies:
@@ -9766,8 +9744,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.2.0
       '@ckeditor/ckeditor5-utils': 47.2.0
       ckeditor5: 47.2.0
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-export-word@47.2.0':
     dependencies:
@@ -9927,8 +9903,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.2.0
       '@ckeditor/ckeditor5-utils': 47.2.0
       ckeditor5: 47.2.0
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-indent@47.2.0':
     dependencies:
@@ -9940,6 +9914,8 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.2.0
       '@ckeditor/ckeditor5-utils': 47.2.0
       ckeditor5: 47.2.0
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-integrations-common@2.2.3(ckeditor5@47.2.0)':
     dependencies:
@@ -9976,6 +9952,8 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 47.2.0
       ckeditor5: 47.2.0
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-list-multi-level@47.2.0':
     dependencies:
@@ -9999,6 +9977,8 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.2.0
       '@ckeditor/ckeditor5-utils': 47.2.0
       ckeditor5: 47.2.0
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-markdown-gfm@47.2.0':
     dependencies:
@@ -10036,6 +10016,8 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.2.0
       '@ckeditor/ckeditor5-widget': 47.2.0
       ckeditor5: 47.2.0
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-mention@47.2.0':
     dependencies:
@@ -10045,8 +10027,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.2.0
       ckeditor5: 47.2.0
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-merge-fields@47.2.0':
     dependencies:
@@ -10059,8 +10039,6 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 47.2.0
       ckeditor5: 47.2.0
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-minimap@47.2.0':
     dependencies:
@@ -10204,8 +10182,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.2.0
       '@ckeditor/ckeditor5-utils': 47.2.0
       ckeditor5: 47.2.0
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-source-editing-enhanced@47.2.0':
     dependencies:
@@ -12844,6 +12820,8 @@ snapshots:
   ckeditor5-collaboration@47.2.0:
     dependencies:
       '@ckeditor/ckeditor5-collaboration-core': 47.2.0
+    transitivePeerDependencies:
+      - supports-color
 
   ckeditor5-premium-features@47.2.0(ckeditor5@47.2.0):
     dependencies:
