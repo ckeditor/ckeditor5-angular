@@ -34,7 +34,7 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "preserveSymlinks": true,
+            "preserveSymlinks": false,
             "browser": "src/main.ts"
           },
           "configurations": {
