@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
 	assignInitialDataToEditorConfig,
@@ -12,49 +12,43 @@ import {
 } from './assignInitialDataToEditorConfig';
 
 describe( 'assignInitialDataToEditorConfig', () => {
-	let originalCKEditorVersion: string | undefined;
-
-	beforeEach( () => {
-		originalCKEditorVersion = ( window as any ).CKEDITOR_VERSION;
-	} );
-
 	afterEach( () => {
-		( window as any ).CKEDITOR_VERSION = originalCKEditorVersion;
+		vi.unstubAllGlobals();
 	} );
 
 	describe( 'isRootsMapConfigurationSupported()', () => {
 		it( 'should return false when CKEDITOR_VERSION is not set', () => {
-			delete ( window as any ).CKEDITOR_VERSION;
+			vi.stubGlobal( 'CKEDITOR_VERSION', undefined );
 
 			expect( isRootsMapConfigurationSupported() ).toBe( false );
 		} );
 
 		it( 'should return false for version 47.x', () => {
-			( window as any ).CKEDITOR_VERSION = '47.0.0';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '47.0.0' );
 
 			expect( isRootsMapConfigurationSupported() ).toBe( false );
 		} );
 
 		it( 'should return false for version below 48', () => {
-			( window as any ).CKEDITOR_VERSION = '47.9.9';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '47.9.9' );
 
 			expect( isRootsMapConfigurationSupported() ).toBe( false );
 		} );
 
 		it( 'should return true for version 48.0.0', () => {
-			( window as any ).CKEDITOR_VERSION = '48.0.0';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '48.0.0' );
 
 			expect( isRootsMapConfigurationSupported() ).toBe( true );
 		} );
 
 		it( 'should return true for versions above 48', () => {
-			( window as any ).CKEDITOR_VERSION = '50.3.1';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '50.3.1' );
 
 			expect( isRootsMapConfigurationSupported() ).toBe( true );
 		} );
 
 		it( 'should return true for non-semantic (nightly/internal) versions', () => {
-			( window as any ).CKEDITOR_VERSION = 'nightly';
+			vi.stubGlobal( 'CKEDITOR_VERSION', 'nightly' );
 
 			expect( isRootsMapConfigurationSupported() ).toBe( true );
 		} );
@@ -62,7 +56,7 @@ describe( 'assignInitialDataToEditorConfig', () => {
 
 	describe( 'legacy path (CKEditor 47.x)', () => {
 		beforeEach( () => {
-			( window as any ).CKEDITOR_VERSION = '47.0.0';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '47.0.0' );
 		} );
 
 		it( 'should assign data to initialData field', () => {
@@ -106,7 +100,7 @@ describe( 'assignInitialDataToEditorConfig', () => {
 
 	describe( 'roots-map path (CKEditor 48.x+)', () => {
 		beforeEach( () => {
-			( window as any ).CKEDITOR_VERSION = '48.0.0';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '48.0.0' );
 		} );
 
 		it( 'should assign data to roots.main.initialData', () => {
@@ -177,7 +171,7 @@ describe( 'assignInitialDataToEditorConfig', () => {
 	describe( 'getInitialDataFromEditorConfig()', () => {
 		describe( 'legacy path (CKEditor 47.x)', () => {
 			beforeEach( () => {
-				( window as any ).CKEDITOR_VERSION = '47.0.0';
+				vi.stubGlobal( 'CKEDITOR_VERSION', '47.0.0' );
 			} );
 
 			it( 'should return config.initialData', () => {
@@ -191,7 +185,7 @@ describe( 'assignInitialDataToEditorConfig', () => {
 
 		describe( 'roots-map path (CKEditor 48.x+)', () => {
 			beforeEach( () => {
-				( window as any ).CKEDITOR_VERSION = '48.0.0';
+				vi.stubGlobal( 'CKEDITOR_VERSION', '48.0.0' );
 			} );
 
 			it( 'should return roots.main.initialData', () => {

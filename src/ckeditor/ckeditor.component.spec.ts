@@ -24,18 +24,13 @@ describe( 'CKEditorComponent', () => {
 	} );
 
 	describe( 'component initialization', () => {
-		let CKEDITOR_VERSION: string | undefined;
-
 		beforeEach( () => {
 			vi.spyOn( console, 'warn' ).mockImplementation( () => {} );
-
-			CKEDITOR_VERSION = ( window as any ).CKEDITOR_VERSION;
 		} );
 
 		afterEach( () => {
 			fixture.destroy();
-
-			( window as any ).CKEDITOR_VERSION = CKEDITOR_VERSION;
+			vi.unstubAllGlobals();
 		} );
 
 		it( 'should create', () => {
@@ -47,7 +42,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should print a warning if the "window.CKEDITOR_VERSION" variable is not available', () => {
-			delete ( window as any ).CKEDITOR_VERSION;
+			vi.stubGlobal( 'CKEDITOR_VERSION', undefined );
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
@@ -57,7 +52,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should print a warning if using CKEditor 5 in version lower than 37', () => {
-			( window as any ).CKEDITOR_VERSION = '30.0.0';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '30.0.0' );
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
@@ -69,7 +64,7 @@ describe( 'CKEditorComponent', () => {
 		} );
 
 		it( 'should not print any warning if using CKEditor 5 in version 37 or higher', () => {
-			( window as any ).CKEDITOR_VERSION = '42.0.0';
+			vi.stubGlobal( 'CKEDITOR_VERSION', '42.0.0' );
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
@@ -147,7 +142,7 @@ describe( 'CKEditorComponent', () => {
 				component = commercialFixture.componentInstance;
 				component.editor = MockEditor as any;
 
-				( window as any ).CKEDITOR_VERSION = '44.0.0';
+				vi.stubGlobal( 'CKEDITOR_VERSION', '44.0.0' );
 
 				component.config.licenseKey = 'foo';
 				commercialFixture.detectChanges();
