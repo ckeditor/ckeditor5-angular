@@ -22,10 +22,10 @@
     "@ckeditor/ckeditor5-integrations-common": "^2.2.2"
   },
   "peerDependencies": {
-    "@angular/core": ">=19.2.19",
-    "@angular/common": ">=19.2.19",
-    "@angular/forms": ">=19.2.19",
-    "ckeditor5": ">=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal",
+    "@angular/core": ">=19.2.20",
+    "@angular/common": ">=19.2.20",
+    "@angular/forms": ">=19.2.20",
+    "ckeditor5": ">=47.6.0 || ^0.0.0-nightly || ^0.0.0-internal",
     "rxjs": ">=6.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
