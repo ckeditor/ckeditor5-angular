@@ -38,6 +38,7 @@ import type { ControlValueAccessor } from '@angular/forms';
 import { uid } from '@ckeditor/ckeditor5-integrations-common';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 import { DisabledEditorWatchdog } from './disabled-editor-watchdog';
+import { assignInitialDataToEditorConfig } from './utils/assignInitialDataToEditorConfig';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -472,19 +473,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	}
 
 	private getConfig() {
-		if ( this.data && this.config.initialData ) {
-			throw new Error( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
-		}
-
-		const config = { ...this.config };
-
-		// Merge two possible ways of providing data into the `config.initialData` field.
-		const initialData = this.config.initialData || this.data;
-
-		if ( initialData ) {
-			// Define the `config.initialData` only when the initial content is specified.
-			config.initialData = initialData;
-		}
+		const config = assignInitialDataToEditorConfig( this.config, this.data );
 
 		return appendAllIntegrationPluginsToConfig( config );
 	}
