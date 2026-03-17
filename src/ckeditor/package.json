@@ -25,7 +25,7 @@
     "@angular/core": ">=19.2.20",
     "@angular/common": ">=19.2.20",
     "@angular/forms": ">=19.2.20",
-    "ckeditor5": ">=47.6.0 || ^0.0.0-nightly || ^0.0.0-internal",
+    "ckeditor5": ">=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal",
     "rxjs": ">=6.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
