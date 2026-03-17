@@ -23,6 +23,10 @@ describe( 'CKEditorComponent', () => {
 		} ).compileComponents();
 	} );
 
+	afterEach( () => {
+		vi.unstubAllGlobals();
+	} );
+
 	describe( 'component initialization', () => {
 		beforeEach( () => {
 			vi.spyOn( console, 'warn' ).mockImplementation( () => {} );
@@ -175,6 +179,42 @@ describe( 'CKEditorComponent', () => {
 
 				expect( component.data ).toEqual( 'foo' );
 				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
+			} );
+
+			it( 'should pass config with initialData when using CKEditor 5 v47', async () => {
+				vi.stubGlobal( 'CKEDITOR_VERSION', '47.0.0' );
+
+				const localFixture = TestBed.createComponent( CKEditorComponent );
+				const localComponent = localFixture.componentInstance;
+				localComponent.editor = MockEditor as any;
+				localComponent.data = 'foo';
+
+				localFixture.detectChanges();
+
+				await waitCycle();
+
+				expect( ( localComponent.editorInstance as any ).config.initialData ).toBe( 'foo' );
+				expect( ( localComponent.editorInstance as any ).config.roots ).toBeUndefined();
+
+				localFixture.destroy();
+			} );
+
+			it( 'should pass config with roots.main.initialData when using CKEditor 5 v48', async () => {
+				vi.stubGlobal( 'CKEDITOR_VERSION', '48.0.0' );
+
+				const localFixture = TestBed.createComponent( CKEditorComponent );
+				const localComponent = localFixture.componentInstance;
+				localComponent.editor = MockEditor as any;
+				localComponent.data = 'foo';
+
+				localFixture.detectChanges();
+
+				await waitCycle();
+
+				expect( ( localComponent.editorInstance as any ).config.roots?.main?.initialData ).toBe( 'foo' );
+				expect( ( localComponent.editorInstance as any ).config.initialData ).toBeUndefined();
+
+				localFixture.destroy();
 			} );
 
 			it( 'should be configurable at the start of the component using the `config.initialData` property', async () => {
