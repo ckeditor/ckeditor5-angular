@@ -178,6 +178,12 @@ describe( 'assignInitialDataToEditorConfig', () => {
 
 			expect( result.roots.secondary ).toMatchObject( { initialData: 'secondary data' } );
 		} );
+
+		it( 'should set roots.main.initialData to empty string when neither data nor config initialData is provided', () => {
+			const result = assignInitialDataToEditorConfig( {}, '' ) as any;
+
+			expect( result.roots.main.initialData ).toBe( '' );
+		} );
 	} );
 
 	describe( 'getInitialDataFromEditorConfig()', () => {
