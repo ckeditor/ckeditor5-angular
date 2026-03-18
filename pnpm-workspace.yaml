@@ -13,11 +13,9 @@ onlyBuiltDependencies:
 overrides:
   'ajv@^8': '^8.18.0'
   'diff@^7': '^8.0.3'
-  'diff@^8': '^8.0.3'
-  'qs@<6.14.1': '^6.14.2'
-  'rollup@^4': '^4.59.0'
-  'tar@^6': '^7.5.4'
-  'webpack@^5': '^5.104.1'
+  'qs@^6': '^6.14.2'
+  'serialize-javascript@^6': '^7.0.3'
+  'tar@^6': '^7.5.11'
 
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
