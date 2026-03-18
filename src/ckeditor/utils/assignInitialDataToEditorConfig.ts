@@ -27,6 +27,12 @@ import {
  */
 export function assignInitialDataToEditorConfig( config: Record<string, any>, data: string ): EditorConfig {
 	if ( isRootsMapConfigurationSupported() ) {
+		// For >= 48.x versions, the `data` property should be assigned to `root.initialData` field in the configuration object.
+		const configInitialData =
+			config.roots?.main?.initialData ||
+			config.root?.initialData ||
+			/* legacy */ config.initialData;
+
 		const normalizedConfig: any = {
 			...config,
 			roots: {
@@ -34,7 +40,7 @@ export function assignInitialDataToEditorConfig( config: Record<string, any>, da
 				main: {
 					...config.root,
 					...config.roots?.main,
-					initialData: data
+					initialData: configInitialData || data || ''
 				}
 			}
 		};
@@ -45,6 +51,7 @@ export function assignInitialDataToEditorConfig( config: Record<string, any>, da
 		return normalizedConfig as unknown as EditorConfig;
 	}
 
+	// Fallback for <= 47.x versions which do not support per-root configuration and use `initialData` field.
 	const configInitialData = config.initialData;
 
 	if ( data && configInitialData ) {

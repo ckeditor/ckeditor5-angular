@@ -121,7 +121,7 @@ describe( 'assignInitialDataToEditorConfig', () => {
 			} );
 		} );
 
-		it( 'should merge with existing config.roots.main, with data taking precedence', () => {
+		it( 'should merge with existing config.roots.main, with config taking precedence', () => {
 			const result = assignInitialDataToEditorConfig(
 				{ roots: { main: { initialData: 'old', someOption: 42 } } },
 				'new'
@@ -129,7 +129,19 @@ describe( 'assignInitialDataToEditorConfig', () => {
 
 			expect( result.roots.main ).toMatchObject( {
 				someOption: 42,
-				initialData: 'new'
+				initialData: 'old'
+			} );
+		} );
+
+		it( 'should merge with existing config.root, with config taking precedence', () => {
+			const result = assignInitialDataToEditorConfig(
+				{ root: { initialData: 'old', someRootOption: true } },
+				'new'
+			) as any;
+
+			expect( result.roots.main ).toMatchObject( {
+				someRootOption: true,
+				initialData: 'old'
 			} );
 		} );
 
