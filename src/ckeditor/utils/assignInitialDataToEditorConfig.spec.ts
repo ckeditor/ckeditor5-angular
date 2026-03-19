@@ -17,41 +17,30 @@ describe( 'assignInitialDataToEditorConfig', () => {
 	} );
 
 	describe( 'isRootsMapConfigurationSupported()', () => {
-		it( 'should return false when CKEDITOR_VERSION is not set', () => {
+		afterEach( () => {
 			vi.stubGlobal( 'CKEDITOR_VERSION', undefined );
+		} );
 
+		it( 'should return false if window.CKEDITOR_VERSION is not defined', () => {
+			vi.stubGlobal( 'CKEDITOR_VERSION', undefined );
 			expect( isRootsMapConfigurationSupported() ).toBe( false );
 		} );
 
-		it( 'should return false for version 47.x', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', '47.0.0' );
+		it.each( [ 'nightly', '0.0.0-nightly-20260319.0', '48.0.0', '49.0.0' ] )(
+			'should return true if window.CKEDITOR_VERSION is "%s"',
+			version => {
+				vi.stubGlobal( 'CKEDITOR_VERSION', version );
+				expect( isRootsMapConfigurationSupported() ).toBe( true );
+			}
+		);
 
-			expect( isRootsMapConfigurationSupported() ).toBe( false );
-		} );
-
-		it( 'should return false for version below 48', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', '47.9.9' );
-
-			expect( isRootsMapConfigurationSupported() ).toBe( false );
-		} );
-
-		it( 'should return true for version 48.0.0', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', '48.0.0' );
-
-			expect( isRootsMapConfigurationSupported() ).toBe( true );
-		} );
-
-		it( 'should return true for versions above 48', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', '50.3.1' );
-
-			expect( isRootsMapConfigurationSupported() ).toBe( true );
-		} );
-
-		it( 'should return true for non-semantic (nightly/internal) versions', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', 'nightly' );
-
-			expect( isRootsMapConfigurationSupported() ).toBe( true );
-		} );
+		it.each( [ '47.0.0', '46.0.0' ] )(
+			'should return false if window.CKEDITOR_VERSION is "%s"',
+			version => {
+				vi.stubGlobal( 'CKEDITOR_VERSION', version );
+				expect( isRootsMapConfigurationSupported() ).toBe( false );
+			}
+		);
 	} );
 
 	describe( 'legacy path (CKEditor 47.x)', () => {
