@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [11.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v11.0.1...v11.1.0) (March 24, 2026)
+
+### Features
+
+* Added support for CKEditor 5 `48.0.0` and the new `roots` editor configuration. Closes [#547](https://github.com/ckeditor/ckeditor5-angular/issues/547).
+
+
 ## [11.0.1](https://github.com/ckeditor/ckeditor5-angular/compare/v11.0.0...v11.0.1) (March 2, 2026)
 
 ### Other changes
@@ -31,13 +38,6 @@ Changelog
 
 
 ## [10.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.1.0...v10.0.0) (July 9, 2025)
-
-### BREAKING CHANGES
-
-* Aligned the component with the latest CKEditor 5 release (`v46.0.0`), adopting the type import names. Starting from this version, previous CKEditor 5 releases are no longer compatible due to breaking changes in definitions and package structure. See [ckeditor/ckeditor5#18583](https://github.com/ckeditor/ckeditor5/issues/18583)
-
-
-## [10.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v9.1.0...v10.0.0-alpha.0) (July 2, 2025)
 
 ### BREAKING CHANGES
 
