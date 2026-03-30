@@ -2,8 +2,15 @@ packages:
   - .
   - src/ckeditor
 
+minimumReleaseAge: 4320
+
+minimumReleaseAgeExclude:
+  - '@ckeditor/*'
+  - '@cksource/*'
+  - '*ckeditor5*'
+
 onlyBuiltDependencies:
-  - "@parcel/watcher"
+  - '@parcel/watcher'
   - core-js
   - cypress
   - esbuild
@@ -11,18 +18,15 @@ onlyBuiltDependencies:
   - protobufjs
 
 overrides:
-  'ajv@^8': '^8.18.0'
-  'diff@^7': '^8.0.3'
-  'qs@^6': '^6.14.2'
-  'serialize-javascript@^6': '^7.0.3'
-  'tar@^6': '^7.5.11'
+  '@ckeditor/ckeditor5-integrations-common': link:../../../.local/share/pnpm/global/5/node_modules/@ckeditor/ckeditor5-integrations-common
+  ajv@^8: ^8.18.0
+  diff@^7: ^8.0.3
+  qs@^6: ^6.14.2
+  serialize-javascript@^6: ^7.0.3
+  tar@^6: ^7.5.11
 
-minimumReleaseAge: 4320 # 3 days
-minimumReleaseAgeExclude:
-  - '@ckeditor/*'
-  - '@cksource/*'
-  - '*ckeditor5*'
+preferFrozenLockfile: true
+
+shamefullyHoist: true
 
 shellEmulator: true
-shamefullyHoist: true
-preferFrozenLockfile: true

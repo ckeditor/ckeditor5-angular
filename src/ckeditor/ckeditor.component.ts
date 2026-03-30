@@ -36,9 +36,11 @@ import type {
 import type { ControlValueAccessor } from '@angular/forms';
 
 import { uid } from '@ckeditor/ckeditor5-integrations-common';
-import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
-import { DisabledEditorWatchdog } from './disabled-editor-watchdog';
-import { assignInitialDataToEditorConfig } from './utils/assignInitialDataToEditorConfig';
+import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config.js';
+import { DisabledEditorWatchdog } from './disabled-editor-watchdog.js';
+import { assignInitialDataToEditorConfig } from './compatibility/assignInitialDataToEditorConfig.js';
+
+import type { EditorConstructor } from './types.js';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -80,10 +82,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: {
-		create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<TEditor>;
-		EditorWatchdog: typeof EditorWatchdog;
-	};
+	@Input() public editor?: EditorConstructor<TEditor>;
 
 	/**
 	 * The configuration of the editor.

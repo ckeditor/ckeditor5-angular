@@ -5,42 +5,11 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import {
-	assignInitialDataToEditorConfig,
-	getInitialDataFromEditorConfig,
-	isRootsMapConfigurationSupported
-} from './assignInitialDataToEditorConfig';
+import { assignInitialDataToEditorConfig } from './assignInitialDataToEditorConfig';
 
 describe( 'assignInitialDataToEditorConfig', () => {
 	afterEach( () => {
 		vi.unstubAllGlobals();
-	} );
-
-	describe( 'isRootsMapConfigurationSupported()', () => {
-		afterEach( () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', undefined );
-		} );
-
-		it( 'should return false if window.CKEDITOR_VERSION is not defined', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', undefined );
-			expect( isRootsMapConfigurationSupported() ).toBe( false );
-		} );
-
-		it.each( [ 'nightly', '0.0.0-nightly-20260319.0', '48.0.0', '49.0.0' ] )(
-			'should return true if window.CKEDITOR_VERSION is "%s"',
-			version => {
-				vi.stubGlobal( 'CKEDITOR_VERSION', version );
-				expect( isRootsMapConfigurationSupported() ).toBe( true );
-			}
-		);
-
-		it.each( [ '47.0.0', '46.0.0' ] )(
-			'should return false if window.CKEDITOR_VERSION is "%s"',
-			version => {
-				vi.stubGlobal( 'CKEDITOR_VERSION', version );
-				expect( isRootsMapConfigurationSupported() ).toBe( false );
-			}
-		);
 	} );
 
 	describe( 'legacy path (CKEditor 47.x)', () => {
@@ -172,42 +141,6 @@ describe( 'assignInitialDataToEditorConfig', () => {
 			const result = assignInitialDataToEditorConfig( {}, '' ) as any;
 
 			expect( result.roots.main.initialData ).toBe( '' );
-		} );
-	} );
-
-	describe( 'getInitialDataFromEditorConfig()', () => {
-		describe( 'legacy path (CKEditor 47.x)', () => {
-			beforeEach( () => {
-				vi.stubGlobal( 'CKEDITOR_VERSION', '47.0.0' );
-			} );
-
-			it( 'should return config.initialData', () => {
-				expect( getInitialDataFromEditorConfig( { initialData: 'hello' } ) ).toBe( 'hello' );
-			} );
-
-			it( 'should return undefined when config.initialData is absent', () => {
-				expect( getInitialDataFromEditorConfig( {} ) ).toBeUndefined();
-			} );
-		} );
-
-		describe( 'roots-map path (CKEditor 48.x+)', () => {
-			beforeEach( () => {
-				vi.stubGlobal( 'CKEDITOR_VERSION', '48.0.0' );
-			} );
-
-			it( 'should return roots.main.initialData', () => {
-				expect(
-					getInitialDataFromEditorConfig( { roots: { main: { initialData: 'hello' } } } )
-				).toBe( 'hello' );
-			} );
-
-			it( 'should return undefined when roots.main is absent', () => {
-				expect( getInitialDataFromEditorConfig( {} ) ).toBeUndefined();
-			} );
-
-			it( 'should return undefined when roots.main.initialData is absent', () => {
-				expect( getInitialDataFromEditorConfig( { roots: { main: {} } } ) ).toBeUndefined();
-			} );
 		} );
 	} );
 } );

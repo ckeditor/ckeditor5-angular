@@ -10,6 +10,7 @@ overrides:
   qs@^6: ^6.14.2
   serialize-javascript@^6: ^7.0.3
   tar@^6: ^7.5.11
+  '@ckeditor/ckeditor5-integrations-common': link:../../../.local/share/pnpm/global/5/node_modules/@ckeditor/ckeditor5-integrations-common
 
 importers:
 
@@ -40,8 +41,8 @@ importers:
         specifier: ^19.2.19
         version: 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@19.2.20(@angular/animations@19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^2.2.5
-        version: 2.2.5(ckeditor5@47.6.1)
+        specifier: link:../../../.local/share/pnpm/global/5/node_modules/@ckeditor/ckeditor5-integrations-common
+        version: link:../../../.local/share/pnpm/global/5/node_modules/@ckeditor/ckeditor5-integrations-common
       core-js:
         specifier: ^3.21.1
         version: 3.48.0
@@ -191,8 +192,8 @@ importers:
         specifier: '>=19.2.19'
         version: 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@19.2.20(@angular/animations@19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^2.2.5
-        version: 2.2.5(ckeditor5@47.6.1)
+        specifier: link:../../../../../.local/share/pnpm/global/5/node_modules/@ckeditor/ckeditor5-integrations-common
+        version: link:../../../../../.local/share/pnpm/global/5/node_modules/@ckeditor/ckeditor5-integrations-common
       ckeditor5:
         specifier: '>=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
         version: 47.6.1
@@ -1251,11 +1252,6 @@ packages:
 
   '@ckeditor/ckeditor5-indent@47.6.1':
     resolution: {integrity: sha512-SaokgxUJevRrYfu5PKEMvVrUliybmxpb3Cx/f/JtOnPbyJSFrt05+/mt3XsqsSB0g8LaHH2PXQfD4vncGzE6DQ==}
-
-  '@ckeditor/ckeditor5-integrations-common@2.2.5':
-    resolution: {integrity: sha512-CWBlHPfHL+0bfSmdIyfDZ8XLXOar+g55mY74sAFg11twMc5gve4leMHDwDU3My65Wrg7vDj3s35TvYc7sKtnEQ==}
-    peerDependencies:
-      ckeditor5: '>=42.0.0 || ^0.0.0-nightly'
 
   '@ckeditor/ckeditor5-language@47.6.1':
     resolution: {integrity: sha512-YZpySDIa4Y40T9wwKIFsAlDujELkgUtoKw/+4Wl8BHlDnq/40VxXFbOSSXu4TnnVeqVFcnzTjp6Zv8CHtmY3yw==}
@@ -9593,8 +9589,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       '@ckeditor/ckeditor5-widget': 47.6.1
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-cloud-services@47.6.1':
     dependencies:
@@ -10099,10 +10093,6 @@ snapshots:
       ckeditor5: 47.6.1
     transitivePeerDependencies:
       - supports-color
-
-  '@ckeditor/ckeditor5-integrations-common@2.2.5(ckeditor5@47.6.1)':
-    dependencies:
-      ckeditor5: 47.6.1
 
   '@ckeditor/ckeditor5-language@47.6.1':
     dependencies:
