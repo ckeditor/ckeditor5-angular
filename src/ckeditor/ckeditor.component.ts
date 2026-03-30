@@ -35,7 +35,7 @@ import type {
 } from 'ckeditor5';
 import type { ControlValueAccessor } from '@angular/forms';
 
-import { uid } from '@ckeditor/ckeditor5-integrations-common';
+import { compareInstalledCKBaseVersion, uid } from '@ckeditor/ckeditor5-integrations-common';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config.js';
 import { DisabledEditorWatchdog } from './disabled-editor-watchdog.js';
 import { assignInitialDataToEditorConfig } from './compatibility/assignInitialDataToEditorConfig.js';
@@ -261,24 +261,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		this.ngZone = ngZone;
 		this.elementRef = elementRef;
 
-		this.checkVersion();
-	}
-
-	private checkVersion() {
-		// To avoid issues with the community typings and CKEditor 5, let's treat window as any. See #342.
-		const { CKEDITOR_VERSION } = ( window as any );
-
-		if ( !CKEDITOR_VERSION ) {
-			return console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
-		}
-
-		const [ major ] = CKEDITOR_VERSION.split( '.' ).map( Number );
-
-		if ( major >= 42 || CKEDITOR_VERSION.startsWith( '0.0.0' ) ) {
-			return;
-		}
-
-		console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 42+ or nightly build.' );
+		assertMinimumSupportedVersion();
 	}
 
 	// Implementing the OnChanges interface. Whenever the `data` property is changed, update the editor content.
@@ -522,6 +505,21 @@ function hasObservers<T>( emitter: EventEmitter<T> ): boolean {
 	// Cast to `any` because `observed` property is available in RxJS >= 7.2.0.
 	// Fallback to checking `observers` list if this property is not defined.
 	return ( emitter as any ).observed || emitter.observers.length > 0;
+}
+
+/**
+ * Checks if currently installed version of the editor is supported by the integration.
+ */
+function assertMinimumSupportedVersion(): void {
+	switch ( compareInstalledCKBaseVersion( '42.0.0' ) ) {
+		case null:
+			console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
+			break;
+
+		case -1:
+			console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 42+ or nightly build.' );
+			break;
+	}
 }
 
 /**
