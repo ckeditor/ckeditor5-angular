@@ -19,7 +19,7 @@ import {
 } from '@angular/core';
 
 import { first } from 'rxjs/operators';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 
 import type {
 	ContextWatchdog,
@@ -29,16 +29,20 @@ import type {
 	EditorConfig,
 	GetEventInfo,
 	ModelDocumentChangeEvent,
-	EditorWatchdogCreatorFunction,
 	ViewDocumentBlurEvent,
-	ViewDocumentFocusEvent
+	ViewDocumentFocusEvent,
+	ContextWatchdogItemConfiguration
 } from 'ckeditor5';
-import type { ControlValueAccessor } from '@angular/forms';
+
+import {
+	assignElementToEditorConfig,
+	assignInitialDataToEditorConfig,
+	getInstalledCKBaseFeatures
+} from '@ckeditor/ckeditor5-integrations-common';
 
 import { compareInstalledCKBaseVersion, uid } from '@ckeditor/ckeditor5-integrations-common';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config.js';
-import { DisabledEditorWatchdog } from './disabled-editor-watchdog.js';
-import { assignInitialDataToEditorConfig } from './compatibility/assignInitialDataToEditorConfig.js';
+import { DisabledEditorWatchdog, type RelaxedEditorCreatorFunction } from './disabled-editor-watchdog.js';
 
 import type { EditorConstructor } from './types.js';
 
@@ -234,11 +238,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	private cvaOnTouched?: () => void;
 
 	/**
-	 * Reference to the source element used by the editor.
-	 */
-	private editorElement?: HTMLElement;
-
-	/**
 	 * A lock flag preventing from calling the `cvaOnChange()` during setting editor data.
 	 */
 	private isEditorSettingData = false;
@@ -363,11 +362,20 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
-		const creator: EditorWatchdogCreatorFunction<TEditor> = ( ( elementOrData, config ) => {
-			return this.ngZone.runOutsideAngular( async () => {
-				this.elementRef.nativeElement.appendChild( elementOrData as HTMLElement );
+		const Editor = this.editor!;
 
-				const editor = await this.editor!.create( elementOrData as HTMLElement, config );
+		const supports = getInstalledCKBaseFeatures();
+		const element = document.createElement( this.tagName );
+
+		const creator = ( config: EditorConfig ) => {
+			return this.ngZone.runOutsideAngular( async () => {
+				this.elementRef.nativeElement.appendChild( element );
+
+				const editor = await (
+					supports.elementConfigAttachment ?
+						Editor.create( assignElementToEditorConfig( Editor, element, config ) ) :
+						Editor.create( element, config )
+				);
 
 				if ( this.initiallyDisabled ) {
 					editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
@@ -381,12 +389,12 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 				return editor;
 			} );
-		} );
+		};
 
 		const destructor = async ( editor: Editor ) => {
 			await editor.destroy();
 
-			this.elementRef.nativeElement.removeChild( this.editorElement! );
+			this.elementRef.nativeElement.removeChild( element );
 		};
 
 		const emitError = ( e?: unknown ) => {
@@ -401,22 +409,31 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 				console.error( e );
 			}
 		};
-		const element = document.createElement( this.tagName );
-		const config = this.getConfig();
-
-		this.editorElement = element;
 
 		// Based on the presence of the watchdog decide how to initialize the editor.
 		if ( this.watchdog && !this.disableWatchdog ) {
-			// When the context watchdog is passed add the new item to it based on the passed configuration.
-			this.watchdog.add( {
+			let watchdogConfig: Record<string, any> = {
 				id: this.id,
 				type: 'editor',
-				creator,
 				destructor,
-				sourceElementOrData: element,
-				config
-			} ).catch( e => {
+				config: this.getConfig()
+			};
+
+			if ( supports.elementConfigAttachment ) {
+				watchdogConfig = {
+					...watchdogConfig,
+					creator: assignElementToEditorConfig
+				};
+			} else {
+				watchdogConfig = {
+					...watchdogConfig,
+					creator: ( _: HTMLElement, config: EditorConfig ) => creator( config ),
+					sourceElementOrData: element
+				};
+			}
+
+			// When the context watchdog is passed add the new item to it based on the passed configuration.
+			this.watchdog.add( watchdogConfig as ContextWatchdogItemConfiguration ).catch( e => {
 				emitError( e );
 			} );
 
@@ -430,6 +447,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		} else {
 			// In the other case create the watchdog by hand to keep the editor running.
 			const WatchdogClass = this.disableWatchdog ? DisabledEditorWatchdog : this.editor!.EditorWatchdog;
+			const config = this.getConfig();
 
 			const editorWatchdog = new WatchdogClass(
 				this.editor!,
@@ -444,10 +462,19 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			}
 
 			this.editorWatchdog = editorWatchdog;
+
+			// Note: must be called outside of the Angular zone too because `create` is calling
+			// `_startErrorHandling` within a microtask, which sets up `error` listener on the window.
 			this.ngZone.runOutsideAngular( () => {
-				// Note: must be called outside of the Angular zone too because `create` is calling
-				// `_startErrorHandling` within a microtask, which sets up `error` listener on the window.
-				editorWatchdog.create( element, config ).catch( e => {
+				const create = editorWatchdog.create.bind( editorWatchdog ) as RelaxedEditorCreatorFunction;
+
+				const editorPromise = (
+					supports.elementConfigAttachment ?
+						create( assignElementToEditorConfig( Editor, element, config ) ) :
+						create( element, config )
+				);
+
+				editorPromise.catch( e => {
 					emitError( e );
 				} );
 			} );

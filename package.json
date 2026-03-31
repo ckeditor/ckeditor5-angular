@@ -30,7 +30,7 @@
     "@angular/platform-browser": "^19.2.19",
     "@angular/platform-browser-dynamic": "^19.2.19",
     "@angular/router": "^19.2.19",
-    "@ckeditor/ckeditor5-integrations-common": "^2.2.5",
+    "@ckeditor/ckeditor5-integrations-common": "file:../ckeditor5-integrations-common",
     "core-js": "^3.21.1",
     "rxjs": "^6.5.5",
     "tslib": "^2.0.3",

@@ -22,7 +22,7 @@ describe( 'DisabledEditorWatchdog', () => {
 
 		const element = document.createElement( 'div' );
 
-		await watchdog.create( element );
+		await watchdog.create( element, {} );
 
 		expect( creator ).toHaveBeenCalledWith( element, {} );
 		expect( watchdog.editor ).toBe( editor );
