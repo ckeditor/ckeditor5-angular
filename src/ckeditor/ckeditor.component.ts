@@ -422,7 +422,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			if ( supports.elementConfigAttachment ) {
 				watchdogConfig = {
 					...watchdogConfig,
-					creator: assignElementToEditorConfig
+					creator
 				};
 			} else {
 				watchdogConfig = {
@@ -468,13 +468,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			this.ngZone.runOutsideAngular( () => {
 				const create = editorWatchdog.create.bind( editorWatchdog ) as RelaxedEditorCreatorFunction;
 
-				const editorPromise = (
-					supports.elementConfigAttachment ?
-						create( assignElementToEditorConfig( Editor, element, config ) ) :
-						create( element, config )
-				);
-
-				editorPromise.catch( e => {
+				create( config ).catch( e => {
 					emitError( e );
 				} );
 			} );

@@ -31,7 +31,7 @@ You learn to appreciate each and every single one of the differences while you b
 
 	public ngOnInit(): void {
 		loadCKEditorCloud( {
-			version: '43.0.0'
+			version: '47.0.0'
 		} )
 			.then( this._setupEditor.bind( this ) );
 	}
@@ -152,7 +152,8 @@ You learn to appreciate each and every single one of the differences while you b
 		this.componentEvents.push( 'Blurred the editing view.' );
 	}
 
-	public onError(): void {
+	public onError( err: any ): void {
 		this.componentEvents.push( 'The editor crashed.' );
+		console.error( err );
 	}
 }
