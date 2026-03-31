@@ -420,6 +420,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 				config: this.getConfig()
 			};
 
+			/* istanbul ignore next -- @preserve */
 			if ( supports.elementConfigAttachment ) {
 				watchdogConfig = {
 					...watchdogConfig,
