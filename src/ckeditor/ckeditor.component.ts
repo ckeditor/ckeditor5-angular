@@ -37,14 +37,13 @@ import type {
 import {
 	assignElementToEditorConfig,
 	assignInitialDataToEditorConfig,
-	getInstalledCKBaseFeatures
+	getInstalledCKBaseFeatures,
+	type EditorRelaxedConstructor
 } from '@ckeditor/ckeditor5-integrations-common';
 
 import { compareInstalledCKBaseVersion, uid } from '@ckeditor/ckeditor5-integrations-common';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config.js';
-import { DisabledEditorWatchdog, type RelaxedEditorCreatorFunction } from './disabled-editor-watchdog.js';
-
-import type { EditorConstructor } from './types.js';
+import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog.js';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -86,7 +85,9 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: EditorConstructor<TEditor>;
+	@Input() public editor?: EditorRelaxedConstructor<TEditor> & {
+		EditorWatchdog: typeof EditorWatchdog;
+	};
 
 	/**
 	 * The configuration of the editor.
@@ -466,7 +467,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			// Note: must be called outside of the Angular zone too because `create` is calling
 			// `_startErrorHandling` within a microtask, which sets up `error` listener on the window.
 			this.ngZone.runOutsideAngular( () => {
-				const create = editorWatchdog.create.bind( editorWatchdog ) as RelaxedEditorCreatorFunction;
+				const create = editorWatchdog.create.bind( editorWatchdog ) as EditorRelaxedCreatorFunction;
 
 				create( config ).catch( e => {
 					emitError( e );
