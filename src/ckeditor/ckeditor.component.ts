@@ -42,8 +42,8 @@ import {
 } from '@ckeditor/ckeditor5-integrations-common';
 
 import { compareInstalledCKBaseVersion, uid } from '@ckeditor/ckeditor5-integrations-common';
-import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config.js';
-import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog.js';
+import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
+import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
