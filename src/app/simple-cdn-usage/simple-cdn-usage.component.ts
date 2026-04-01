@@ -31,7 +31,7 @@ You learn to appreciate each and every single one of the differences while you b
 
 	public ngOnInit(): void {
 		loadCKEditorCloud( {
-			version: '47.0.0'
+			version: '43.0.0'
 		} )
 			.then( this._setupEditor.bind( this ) );
 	}
