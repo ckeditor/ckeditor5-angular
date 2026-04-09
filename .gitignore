@@ -37,3 +37,8 @@ Thumbs.db
 
 # release
 /release/
+
+# Vitest
+
+.vitest-attachments/
+__screenshots__/
