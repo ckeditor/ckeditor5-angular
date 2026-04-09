@@ -6,11 +6,23 @@ settings:
 
 overrides:
   ajv@^8: ^8.18.0
+  brace-expansion@^1: ^1.1.13
+  brace-expansion@^2: ^2.0.3
+  brace-expansion@^5: ^5.0.5
   diff@^7: ^8.0.3
   fast-xml-parser: ^5.5.7
+  flatted: ^3.4.2
+  lodash: ^4.18.0
+  node-forge: ^1.4.0
+  path-to-regexp@^0.1: 0.1.13
+  picomatch@^2: ^2.3.2
   picomatch@^4: ^4.0.4
   qs@^6: ^6.14.2
-  serialize-javascript@^6: ^7.0.3
+  serialize-javascript@^6: ^7.0.5
+  serialize-javascript@^7: ^7.0.5
+  socket.io-parser: ^4.2.6
+  yaml@^1: 1.10.3
+  yaml@^2: ^2.8.3
   tar@^6: ^7.5.11
   vite: ^6.4.2
 
@@ -43,8 +55,8 @@ importers:
         specifier: ^19.2.19
         version: 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@19.2.20(@angular/animations@19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^2.2.5
-        version: 2.2.5(ckeditor5@47.6.1)
+        specifier: ^2.3.0
+        version: 2.3.0(ckeditor5@47.6.1)
       core-js:
         specifier: ^3.21.1
         version: 3.48.0
@@ -194,8 +206,8 @@ importers:
         specifier: '>=19.2.19'
         version: 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@19.2.20(@angular/animations@19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^2.2.5
-        version: 2.2.5(ckeditor5@47.6.1)
+        specifier: ^2.3.0
+        version: 2.3.0(ckeditor5@47.6.1)
       ckeditor5:
         specifier: '>=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
         version: 47.6.1
@@ -1251,8 +1263,8 @@ packages:
   '@ckeditor/ckeditor5-indent@47.6.1':
     resolution: {integrity: sha512-SaokgxUJevRrYfu5PKEMvVrUliybmxpb3Cx/f/JtOnPbyJSFrt05+/mt3XsqsSB0g8LaHH2PXQfD4vncGzE6DQ==}
 
-  '@ckeditor/ckeditor5-integrations-common@2.2.5':
-    resolution: {integrity: sha512-CWBlHPfHL+0bfSmdIyfDZ8XLXOar+g55mY74sAFg11twMc5gve4leMHDwDU3My65Wrg7vDj3s35TvYc7sKtnEQ==}
+  '@ckeditor/ckeditor5-integrations-common@2.3.0':
+    resolution: {integrity: sha512-g0ezia9TZ534lT3/vB2gJECzMJZju/A6L6Q3EqWf5hz7v8wswxaBgoDCjdHOyPelquPKn/WdlsHvaLSKHYubsA==}
     peerDependencies:
       ckeditor5: '>=42.0.0 || ^0.0.0-nightly'
 
@@ -7467,7 +7479,7 @@ packages:
       sugarss: '*'
       terser: ^5.16.0
       tsx: ^4.8.1
-      yaml: ^2.4.2
+      yaml: ^2.8.3
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -9905,7 +9917,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@ckeditor/ckeditor5-integrations-common@2.2.5(ckeditor5@47.6.1)':
+  '@ckeditor/ckeditor5-integrations-common@2.3.0(ckeditor5@47.6.1)':
     dependencies:
       ckeditor5: 47.6.1
 
@@ -9968,8 +9980,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-markdown-gfm@47.6.1':
     dependencies:
@@ -12790,7 +12800,7 @@ snapshots:
       domhandler: 5.0.3
       htmlparser2: 10.1.0
       picocolors: 1.1.1
-      postcss: 8.5.8
+      postcss: 8.5.2
       postcss-media-query-parser: 0.2.3
 
   before-after-hook@4.0.0: {}

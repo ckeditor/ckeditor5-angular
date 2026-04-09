@@ -42,9 +42,14 @@ export class MockEditor {
 	public declare plugins: Set<any>;
 	public declare _readOnlyLocks: Set<any>;
 
-	constructor( element?: HTMLElement, config?: Record<string, any> ) {
-		this.element = element;
-		this.config = config;
+	constructor( elementOrConfig?: HTMLElement | Record<string, any>, config?: Record<string, any> ) {
+		if ( elementOrConfig instanceof HTMLElement ) {
+			this.element = elementOrConfig;
+			this.config = config;
+		} else {
+			this.element = elementOrConfig!.attachTo;
+			this.config = elementOrConfig;
+		}
 
 		this.initializeProperties();
 	}

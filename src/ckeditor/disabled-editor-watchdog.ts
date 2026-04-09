@@ -3,12 +3,8 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-import type {
-	Editor,
-	EditorConfig,
-	EditorWatchdogCreatorFunction,
-	WatchdogConfig
-} from 'ckeditor5';
+import type { EditorRelaxedConstructor } from '@ckeditor/ckeditor5-integrations-common';
+import type { Editor, EditorConfig, WatchdogConfig } from 'ckeditor5';
 
 /**
  * A dummy watchdog class is used when the watchdog is disabled.
@@ -24,7 +20,7 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 	/**
 	 * The creator function.
 	 */
-	private _creator?: EditorWatchdogCreatorFunction<TEditor>;
+	private _creator?: EditorRelaxedCreatorFunction<TEditor>;
 
 	/**
 	 * The destructor function.
@@ -34,9 +30,7 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 	// eslint-disable-next-line @typescript-eslint/no-useless-constructor
 	constructor(
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		_editorConstructor: {
-			create( sourceElementOrData: HTMLElement | string, config?: EditorConfig ): Promise<TEditor>;
-		},
+		_editorConstructor: EditorRelaxedConstructor<TEditor>,
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		_config?: WatchdogConfig
 	) {}
@@ -44,7 +38,7 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 	/**
 	 * Sets the creator function.
 	 */
-	public setCreator( creator: EditorWatchdogCreatorFunction<TEditor> ): void {
+	public setCreator( creator: EditorRelaxedCreatorFunction<TEditor> ): void {
 		this._creator = creator;
 	}
 
@@ -66,8 +60,12 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 	/**
 	 * Creates the editor instance.
 	 */
-	public async create( elementOrData: HTMLElement | string, config?: EditorConfig ): Promise<void> {
-		this.editor = await this._creator!( elementOrData, config || /* istanbul ignore next */ ( {} as any ) );
+	public async create( sourceElementOrData: HTMLElement | string, config: EditorConfig ): Promise<unknown>;
+
+	public async create( config: EditorConfig ): Promise<unknown>;
+
+	public async create( ...args: Array<any> ): Promise<void> {
+		this.editor = await this._creator!( ...args );
 	}
 
 	/**
@@ -80,3 +78,5 @@ export class DisabledEditorWatchdog<TEditor extends Editor = Editor> {
 		}
 	}
 }
+
+export type EditorRelaxedCreatorFunction<TEditor = Editor> = ( ...args: any ) => Promise<TEditor>;

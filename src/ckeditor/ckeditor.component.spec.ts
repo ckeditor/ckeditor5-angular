@@ -228,13 +228,13 @@ describe( 'CKEditorComponent', () => {
 				expect( component.editorInstance!.data.get() ).toEqual( '<p>foo</p>' );
 			} );
 
-			it( 'should not be provided using both `config.initialData` or `data` properties', async () => {
+			it( 'should be provided using both `config.initialData` or `data` properties', async () => {
 				component.config = { initialData: 'foo' };
 				component.data = 'bar';
 
 				await expect( () => {
 					fixture.detectChanges();
-				} ).toThrowError( 'Editor data should be provided either using `config.initialData` or `data` properties.' );
+				} ).not.to.throw();
 			} );
 
 			it( 'should be writeable by ControlValueAccessor', async () => {
