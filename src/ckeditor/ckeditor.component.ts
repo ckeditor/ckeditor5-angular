@@ -37,11 +37,11 @@ import type {
 import {
 	assignElementToEditorConfig,
 	assignInitialDataToEditorConfig,
+	compareInstalledCKBaseVersion,
 	getInstalledCKBaseFeatures,
+	uid,
 	type EditorRelaxedConstructor
 } from '@ckeditor/ckeditor5-integrations-common';
-
-import { compareInstalledCKBaseVersion, uid } from '@ckeditor/ckeditor5-integrations-common';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog';
 
