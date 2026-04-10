@@ -5,26 +5,13 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  ajv@^8: ^8.18.0
-  brace-expansion@^1: ^1.1.13
-  brace-expansion@^2: ^2.0.3
-  brace-expansion@^5: ^5.0.5
+  axios@^1: ^1.15.0
   diff@^7: ^8.0.3
-  fast-xml-parser: ^5.5.7
-  flatted: ^3.4.2
-  lodash: ^4.18.0
-  node-forge: ^1.4.0
-  path-to-regexp@^0.1: 0.1.13
-  picomatch@^2: ^2.3.2
+  fast-xml-parser@^5: ^5.5.7
   picomatch@^4: ^4.0.4
-  qs@^6: ^6.14.2
   serialize-javascript@^6: ^7.0.5
-  serialize-javascript@^7: ^7.0.5
-  socket.io-parser: ^4.2.6
-  yaml@^1: 1.10.3
-  yaml@^2: ^2.8.3
   tar@^6: ^7.5.11
-  vite: ^6.4.2
+  vite@^6: ^6.4.2
 
 importers:
 
@@ -3626,7 +3613,7 @@ packages:
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
     peerDependencies:
-      ajv: ^8.18.0
+      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -3634,7 +3621,7 @@ packages:
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
     peerDependencies:
-      ajv: ^8.18.0
+      ajv: ^8.0.0
     peerDependenciesMeta:
       ajv:
         optional: true
@@ -3647,7 +3634,7 @@ packages:
   ajv-keywords@5.1.0:
     resolution: {integrity: sha512-YCS/JNFAUyr5vAuhk1DWm1CBxRHW9LbJ2ozWeemrIqpbsqKjHVxYPyi5GC0rjZIT5JxJ3virVTS8wk4i/Z+krw==}
     peerDependencies:
-      ajv: ^8.18.0
+      ajv: ^8.8.2
 
   ajv@6.14.0:
     resolution: {integrity: sha512-IWrosm/yrn43eiKqkfkHis7QioDleaXQHdDVPKg0FSwwd/DuvyX79TZnFOnYpB7dcsFAMmtFztZuXPDvSePkFw==}
@@ -3751,8 +3738,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@1.13.6:
-    resolution: {integrity: sha512-ChTCHMouEe2kn713WHbQGcuYrr6fXTBiu460OTwWrWob16g1bXn4vtz07Ope7ewMozJAnEquLk5lWQWtBig9DQ==}
+  axios@1.15.0:
+    resolution: {integrity: sha512-wWyJDlAatxk30ZJer+GeCWS209sA42X+N5jU2jy6oHTp7ufw8uzUTVFBX9+wTfAlhiJXGS0Bq7X6efruWjuK9Q==}
 
   babel-loader@10.1.1:
     resolution: {integrity: sha512-JwKSzk2kjIe7mgPK+/lyZ2QAaJcpahNAdM+hgR2HI8D0OJVkdj8Rl6J3kaLYki9pwF7P2iWnD8qVv80Lq1ABtg==}
@@ -6515,8 +6502,9 @@ packages:
   proxy-from-env@1.0.0:
     resolution: {integrity: sha512-F2JHgJQ1iqwnHDcQjVBsq3n/uoaFL+iPW/eAeL7kVxy/2RrWaN4WroKjjvbsoRtv0ftelNyC01bjRhn/bhcf4A==}
 
-  proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+  proxy-from-env@2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
 
   prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
@@ -6533,8 +6521,8 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
-  qs@6.15.0:
-    resolution: {integrity: sha512-mAZTtNCeetKMH+pSjrb76NAM8V9a05I9aBZOHztWy/UqcJdQYNsf59vrRKWnojAT9Y+GbIvoTBC++CPHqpDBhQ==}
+  qs@6.14.2:
+    resolution: {integrity: sha512-V/yCWTTF7VJ9hIh18Ugr2zhJMP01MY7c5kh4J870L7imm6/DIzBsNLTXzMwUA3yZ5b/KBqLx8Kp3uRvd7xSe3Q==}
     engines: {node: '>=0.6'}
 
   querystringify@2.2.0:
@@ -7479,7 +7467,7 @@ packages:
       sugarss: '*'
       terser: ^5.16.0
       tsx: ^4.8.1
-      yaml: ^2.8.3
+      yaml: ^2.4.2
     peerDependenciesMeta:
       '@types/node':
         optional: true
@@ -9889,8 +9877,6 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 47.6.1
       ckeditor5: 47.6.1
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-import-word@47.6.1':
     dependencies:
@@ -10017,8 +10003,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       '@ckeditor/ckeditor5-widget': 47.6.1
       ckeditor5: 47.6.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-mention@47.6.1':
     dependencies:
@@ -10476,7 +10460,7 @@ snapshots:
       json-stringify-safe: 5.0.1
       mime-types: 2.1.35
       performance-now: 2.1.0
-      qs: 6.15.0
+      qs: 6.14.2
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
@@ -12730,11 +12714,11 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@1.13.6(debug@4.4.3):
+  axios@1.15.0(debug@4.4.3):
     dependencies:
       follow-redirects: 1.15.11(debug@4.4.3)
       form-data: 4.0.5
-      proxy-from-env: 1.1.0
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
 
@@ -12831,7 +12815,7 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.4.24
       on-finished: 2.4.1
-      qs: 6.15.0
+      qs: 6.14.2
       raw-body: 2.5.3
       type-is: 1.6.18
       unpipe: 1.0.0
@@ -13879,7 +13863,7 @@ snapshots:
       parseurl: 1.3.3
       path-to-regexp: 0.1.13
       proxy-addr: 2.0.7
-      qs: 6.15.0
+      qs: 6.14.2
       range-parser: 1.2.1
       safe-buffer: 5.2.1
       send: 0.19.2
@@ -16107,7 +16091,7 @@ snapshots:
 
   proxy-from-env@1.0.0: {}
 
-  proxy-from-env@1.1.0: {}
+  proxy-from-env@2.1.0: {}
 
   prr@1.0.1:
     optional: true
@@ -16123,7 +16107,7 @@ snapshots:
 
   punycode@2.3.1: {}
 
-  qs@6.15.0:
+  qs@6.14.2:
     dependencies:
       side-channel: 1.1.0
 
@@ -17228,7 +17212,7 @@ snapshots:
 
   wait-on@9.0.4(debug@4.4.3):
     dependencies:
-      axios: 1.13.6(debug@4.4.3)
+      axios: 1.15.0(debug@4.4.3)
       joi: 18.0.2
       lodash: 4.18.1
       minimist: 1.2.8
