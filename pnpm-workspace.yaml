@@ -11,17 +11,21 @@ onlyBuiltDependencies:
   - protobufjs
 
 overrides:
-  'ajv@^8': '^8.18.0'
+  'axios@^1': '^1.15.0'
   'diff@^7': '^8.0.3'
-  'qs@^6': '^6.14.2'
-  'serialize-javascript@^6': '^7.0.3'
+  'fast-xml-parser@^5': '^5.5.7'
+  'picomatch@^4': '^4.0.4'
+  'serialize-javascript@^6': '^7.0.5'
   'tar@^6': '^7.5.11'
+  'vite@^6': '^6.4.2'
 
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
   - '@ckeditor/*'
   - '@cksource/*'
   - '*ckeditor5*'
+  - 'axios'
+  - 'vite'
 
 shellEmulator: true
 shamefullyHoist: true
