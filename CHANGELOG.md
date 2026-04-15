@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [11.1.2](https://github.com/ckeditor/ckeditor5-angular/compare/v11.1.1...v11.1.2) (April 15, 2026)
+
+### Bug fixes
+
+* Fixed an issue where the editor's alpha version was being compared incorrectly.
+
+
 ## [11.1.1](https://github.com/ckeditor/ckeditor5-angular/compare/v11.1.0...v11.1.1) (April 13, 2026)
 
 ### Other changes
@@ -27,21 +34,6 @@ Changelog
 ### BREAKING CHANGES
 
 * Dropped support for Angular v18. The minimum supported Angular version is now **v19**. Closes [#514](https://github.com/ckeditor/ckeditor5-angular/issues/514).
-
-
-## [10.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v10.0.0...v10.1.0) (November 26, 2025)
-
-### Features
-
-* Introduce the `disableWatchdog` input to the `CKEditorComponent` that allows disabling the watchdog functionality even when a watchdog instance is provided via the `watchdog` input. Closes [#469](https://github.com/ckeditor/ckeditor5-angular/issues/469).
-
-### Bug fixes
-
-* Remove `itemError` event listener from the watchdog when the `CKEditorComponent` is destroyed. This prevents potential memory leaks when the component is removed from the DOM.
-
-### Other changes
-
-* Upgrade to Node v24.11.
 
 ---
 
