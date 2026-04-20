@@ -160,12 +160,17 @@ jobs:
             echo "Resolved ckeditor5@${EDITOR_VERSION_TAG} -> ${SELECTED_VERSION}"
             echo "Resolved ckeditor5@latest -> ${LATEST_VERSION}"
 
-            if [[ "${EDITOR_VERSION_TAG}" != "latest" && "${SELECTED_VERSION%%.*}" == "${LATEST_VERSION%%.*}" ]]; then
+            if [[ -z "${SELECTED_VERSION}" || -z "${LATEST_VERSION}" ]]; then
+              echo "Failed to resolve CKEditor package versions for the integration matrix."
+              exit 1
+            fi
+
+            if [[ "${EDITOR_VERSION_TAG}" != "latest" ]] && [[ "${SELECTED_VERSION%%.*}" == "${LATEST_VERSION%%.*}" ]]; then
               echo "Skipping duplicated integration run because ${EDITOR_VERSION_TAG} and latest resolve to the same major version."
               circleci-agent step halt
             fi
 
-            if [[ "${EDITOR_VERSION_TAG}" != "latest" && -z ${CKEDITOR_LICENSE_KEY} ]]; then
+            if [[ "${EDITOR_VERSION_TAG}" != "latest" ]] && [[ -z ${CKEDITOR_LICENSE_KEY} ]]; then
               echo "Skipping the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is not available in this environment."
               circleci-agent step halt
             fi
