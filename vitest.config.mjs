@@ -9,7 +9,19 @@ import angular from '@analogjs/vite-plugin-angular';
 import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
+const DEFAULT_TESTS = [
+	'src/**/*.spec.ts'
+];
+
+const INTEGRATION_TESTS = [
+	'src/app/**/*.spec.ts',
+	'src/ckeditor/**/*.integration.spec.ts',
+	'src/ckeditor/index.spec.ts'
+];
+
 export default defineConfig( {
+	envPrefix: 'CKEDITOR_',
+
 	resolve: {
 		mainFields: [ 'module' ],
 		alias: {
@@ -34,8 +46,23 @@ export default defineConfig( {
 		setupFiles: [
 			'src/test-setup.ts'
 		],
-		include: [
-			'src/**/*.spec.ts'
+		// `integration` is a version-sensitive subset used by the CI matrix.
+		// It intentionally overlaps with the full `all` suite.
+		projects: [
+			{
+				extends: true,
+				test: {
+					name: 'all',
+					include: DEFAULT_TESTS
+				}
+			},
+			{
+				extends: true,
+				test: {
+					name: 'integration',
+					include: INTEGRATION_TESTS
+				}
+			}
 		],
 		browser: {
 			enabled: true,
@@ -64,6 +91,7 @@ export default defineConfig( {
 				'src/**/*.ts'
 			],
 			exclude: [
+				'src/generated/**',
 				'src/**/*.spec.ts',
 				'src/**/*.module.ts',
 				'src/editor/**',
