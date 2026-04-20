@@ -149,7 +149,7 @@ jobs:
       - bootstrap_repository_command
       - browser-tools/install_chrome
       - run:
-          name: Resolve and deduplicate versions
+          name: Run integration checks for << parameters.ckeditorDistTag >>
           command: |
             #!/bin/bash
 
@@ -160,30 +160,19 @@ jobs:
             echo "Resolved ckeditor5@${EDITOR_VERSION_TAG} -> ${SELECTED_VERSION}"
             echo "Resolved ckeditor5@latest -> ${LATEST_VERSION}"
 
-            if [[ "${EDITOR_VERSION_TAG}" != "latest" && "${SELECTED_VERSION%%.*}" == "${LATEST_VERSION%%.*}" ]];
-            then
+            if [[ "${EDITOR_VERSION_TAG}" != "latest" && "${SELECTED_VERSION%%.*}" == "${LATEST_VERSION%%.*}" ]]; then
               echo "Skipping duplicated integration run because ${EDITOR_VERSION_TAG} and latest resolve to the same major version."
-              circleci-agent step halt
+              exit 0
             fi
-      - run:
-          name: Verify license key
-          command: |
-            #!/bin/bash
 
-            if [[ "<< parameters.ckeditorDistTag >>" != "latest" && -z ${CKEDITOR_LICENSE_KEY} ]];
-            then
-              echo "Skipping the << parameters.ckeditorDistTag >> integration run because CKEDITOR_LICENSE_KEY is not available in this environment."
-              circleci-agent step halt
+            if [[ "${EDITOR_VERSION_TAG}" != "latest" && -z ${CKEDITOR_LICENSE_KEY} ]]; then
+              echo "Skipping the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is not available in this environment."
+              exit 0
             fi
-      - run:
-          name: Install CKEditor packages for << parameters.ckeditorDistTag >>
-          command: pnpm add -D ckeditor5@<< parameters.ckeditorDistTag >> ckeditor5-premium-features@<< parameters.ckeditorDistTag >>
-      - run:
-          name: Run integration tests for << parameters.ckeditorDistTag >>
-          command: pnpm exec vitest run --project integration
-      - run:
-          name: Run e2e tests for << parameters.ckeditorDistTag >>
-          command: pnpm run test:e2e:ci
+
+            pnpm add -Dw ckeditor5@${EDITOR_VERSION_TAG} ckeditor5-premium-features@${EDITOR_VERSION_TAG}
+            pnpm exec vitest run --project integration
+            pnpm run test:e2e:ci
 
   release_prepare:
     docker:
