@@ -81,6 +81,8 @@ describe( 'scripts/start', () => {
 	} );
 
 	it( 'prefers .env.local over .env when the environment variable is missing', async () => {
+		vi.stubEnv( 'CKEDITOR_LICENSE_KEY', '' );
+
 		vi.mocked( existsSync ).mockImplementation( filePath => [
 			generatedFilePath,
 			resolve( process.cwd(), '.env.local' ),
