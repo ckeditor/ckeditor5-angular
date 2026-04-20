@@ -42,7 +42,7 @@ import {
 	uid,
 	type EditorRelaxedConstructor
 } from '@ckeditor/ckeditor5-integrations-common';
-import { getGlobalLicenseKey } from 'src/license-key';
+import { getGlobalLicenseKey } from './license-key';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog';
 

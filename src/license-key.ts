@@ -5,16 +5,8 @@
 
 import { GENERATED_CKEDITOR_LICENSE_KEY } from './generated/license-key';
 
-export function getGlobalLicenseKey(): string {
-	if ( typeof window !== 'undefined' && window.CKEDITOR_GLOBAL_LICENSE_KEY ) {
-		return window.CKEDITOR_GLOBAL_LICENSE_KEY;
-	}
-
-	return GENERATED_CKEDITOR_LICENSE_KEY;
-}
-
 export function initializeGlobalLicenseKey(): void {
 	if ( typeof window !== 'undefined' && !window.CKEDITOR_GLOBAL_LICENSE_KEY ) {
-		window.CKEDITOR_GLOBAL_LICENSE_KEY = getGlobalLicenseKey();
+		window.CKEDITOR_GLOBAL_LICENSE_KEY = GENERATED_CKEDITOR_LICENSE_KEY;
 	}
 }
