@@ -110,6 +110,19 @@ describe( 'CKEditorComponent', () => {
 
 				expect( config.extraPlugins ).toContain( AngularIntegrationUsageDataPlugin );
 			} );
+
+			it( 'should not append AngularIntegrationUsageDataPlugin for the GPL license', async () => {
+				vi.stubGlobal( 'CKEDITOR_VERSION', '44.0.0' );
+
+				component.config.licenseKey = 'GPL';
+				fixture.detectChanges();
+
+				await waitCycle();
+
+				const config = ( component as any ).getConfig();
+
+				expect( config.extraPlugins ).not.toContain( AngularIntegrationUsageDataPlugin );
+			} );
 		} );
 
 		describe( 'component data', () => {

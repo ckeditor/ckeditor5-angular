@@ -11,6 +11,7 @@ const licenseKey = process.env.CKEDITOR_LICENSE_KEY || getLicenseKeyFromEnvFile(
 const forwardedArgs = process.argv.slice( 2 );
 const pnpmExecutable = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
 const generatedFilePath = resolve( process.cwd(), 'src/generated/license-key.ts' );
+const originalGeneratedFileContent = existsSync( generatedFilePath ) ? readFileSync( generatedFilePath, 'utf8' ) : null;
 
 mkdirSync( dirname( generatedFilePath ), { recursive: true } );
 writeFileSync( generatedFilePath, createGeneratedLicenseKeyModule( licenseKey ) );
@@ -30,12 +31,14 @@ const child = spawn(
 
 for ( const signal of [ 'SIGINT', 'SIGTERM', 'SIGHUP' ] ) {
 	process.on( signal, () => {
+		restoreGeneratedLicenseKeyModule();
 		child.kill( signal );
 		process.exit( 0 );
 	} );
 }
 
 child.on( 'exit', code => {
+	restoreGeneratedLicenseKeyModule();
 	process.exit( code ?? 0 );
 } );
 
@@ -62,6 +65,12 @@ function getLicenseKeyFromEnvFile() {
 
 function createGeneratedLicenseKeyModule( value ) {
 	return `export const GENERATED_CKEDITOR_LICENSE_KEY = '${ escapeForTypeScriptString( value ) }';\n`;
+}
+
+function restoreGeneratedLicenseKeyModule() {
+	if ( originalGeneratedFileContent !== null ) {
+		writeFileSync( generatedFilePath, originalGeneratedFileContent );
+	}
 }
 
 function escapeForTypeScriptString( value ) {

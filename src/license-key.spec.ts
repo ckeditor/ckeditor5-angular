@@ -1,28 +1,33 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-describe( 'license-key helpers', () => {
+import { getGlobalLicenseKey } from './ckeditor/license-key';
+import { GENERATED_CKEDITOR_LICENSE_KEY } from './generated/license-key';
+
+describe( 'license key initialization', () => {
 	afterEach( () => {
 		vi.unstubAllGlobals();
 	} );
 
-	it( 'uses the global license key when it is available', async () => {
-		vi.stubGlobal( 'CKEDITOR_GLOBAL_LICENSE_KEY', 'foo' );
+	it( 'returns GPL when the global license key is missing', () => {
+		vi.stubGlobal( 'CKEDITOR_GLOBAL_LICENSE_KEY', undefined );
 
-		const { getGlobalLicenseKey } = await import( './license-key' );
+		expect( getGlobalLicenseKey() ).toBe( 'GPL' );
+	} );
+
+	it( 'returns the global license key when it is defined', () => {
+		vi.stubGlobal( 'CKEDITOR_GLOBAL_LICENSE_KEY', 'foo' );
 
 		expect( getGlobalLicenseKey() ).toBe( 'foo' );
 	} );
 
-	it( 'falls back to the generated default license key', async () => {
+	it( 'uses the generated default license key when the global is missing', async () => {
 		vi.stubGlobal( 'CKEDITOR_GLOBAL_LICENSE_KEY', undefined );
 
-		const { getGlobalLicenseKey, initializeGlobalLicenseKey } = await import( './license-key' );
-
-		expect( getGlobalLicenseKey() ).toBe( 'GPL' );
+		const { initializeGlobalLicenseKey } = await import( './license-key' );
 
 		initializeGlobalLicenseKey();
 
-		expect( window.CKEDITOR_GLOBAL_LICENSE_KEY ).toBe( 'GPL' );
+		expect( window.CKEDITOR_GLOBAL_LICENSE_KEY ).toBe( GENERATED_CKEDITOR_LICENSE_KEY );
 	} );
 
 	it( 'does not overwrite an existing global license key during initialization', async () => {
