@@ -70,7 +70,7 @@ describe( 'scripts/start', () => {
 		expect( vi.mocked( mkdirSync ) ).toHaveBeenCalledWith( generatedFileDirectory, { recursive: true } );
 		expect( vi.mocked( writeFileSync ) ).toHaveBeenCalledWith(
 			generatedFilePath,
-			'export const GENERATED_CKEDITOR_LICENSE_KEY = \'foo\\\'bar\\\\baz\';\n'
+			'export const GENERATED_CKEDITOR_LICENSE_KEY = "foo\'bar\\\\baz";\n'
 		);
 		expect( vi.mocked( spawn ) ).toHaveBeenCalledWith(
 			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
@@ -107,7 +107,18 @@ describe( 'scripts/start', () => {
 
 		expect( vi.mocked( writeFileSync ) ).toHaveBeenCalledWith(
 			generatedFilePath,
-			'export const GENERATED_CKEDITOR_LICENSE_KEY = \'local-license-key\';\n'
+			'export const GENERATED_CKEDITOR_LICENSE_KEY = "local-license-key";\n'
+		);
+	} );
+
+	it( 'serializes control characters in the generated module', async () => {
+		vi.stubEnv( 'CKEDITOR_LICENSE_KEY', 'line1\nline2\t\\' );
+
+		await import( '../scripts/start.mjs' );
+
+		expect( vi.mocked( writeFileSync ) ).toHaveBeenCalledWith(
+			generatedFilePath,
+			'export const GENERATED_CKEDITOR_LICENSE_KEY = "line1\\nline2\\t\\\\";\n'
 		);
 	} );
 

@@ -64,7 +64,7 @@ function getLicenseKeyFromEnvFile() {
 }
 
 function createGeneratedLicenseKeyModule( value ) {
-	return `export const GENERATED_CKEDITOR_LICENSE_KEY = '${ escapeForTypeScriptString( value ) }';\n`;
+	return `export const GENERATED_CKEDITOR_LICENSE_KEY = ${ JSON.stringify( value ) };\n`;
 }
 
 function restoreGeneratedLicenseKeyModule() {
@@ -76,8 +76,4 @@ function restoreGeneratedLicenseKeyModule() {
 	if ( existsSync( generatedFilePath ) ) {
 		unlinkSync( generatedFilePath );
 	}
-}
-
-function escapeForTypeScriptString( value ) {
-	return value.replaceAll( '\\', '\\\\' ).replaceAll( '\'', '\\\'' );
 }
