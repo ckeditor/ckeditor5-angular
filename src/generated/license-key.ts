@@ -1,1 +1,0 @@
-export const GENERATED_CKEDITOR_LICENSE_KEY = 'GPL';

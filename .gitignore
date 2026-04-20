@@ -25,6 +25,7 @@ testem.log
 .idea
 .env
 .env.local
+/src/generated/license-key.ts
 
 # e2e
 /cypress/videos

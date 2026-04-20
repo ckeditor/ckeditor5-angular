@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
 
@@ -70,6 +70,11 @@ function createGeneratedLicenseKeyModule( value ) {
 function restoreGeneratedLicenseKeyModule() {
 	if ( originalGeneratedFileContent !== null ) {
 		writeFileSync( generatedFilePath, originalGeneratedFileContent );
+		return;
+	}
+
+	if ( existsSync( generatedFilePath ) ) {
+		unlinkSync( generatedFilePath );
 	}
 }
 

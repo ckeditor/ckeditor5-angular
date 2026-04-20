@@ -5,7 +5,7 @@
 
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { dirname, resolve } from 'node:path';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 
 const mocks = vi.hoisted( () => {
@@ -128,5 +128,16 @@ describe( 'scripts/start', () => {
 		expect( vi.mocked( writeFileSync ) ).toHaveBeenNthCalledWith( 2, generatedFilePath, originalGeneratedFileContent );
 		expect( mocks.child.kill ).toHaveBeenCalledWith( 'SIGTERM' );
 		expect( vi.mocked( process.exit ) ).toHaveBeenCalledWith( 0 );
+	} );
+
+	it( 'deletes the generated license-key file if it did not exist before the script started', async () => {
+		vi.mocked( existsSync ).mockReturnValue( false );
+
+		await import( '../scripts/start.mjs' );
+
+		vi.mocked( existsSync ).mockImplementation( filePath => filePath === generatedFilePath );
+		mocks.childHandlers.get( 'exit' )( 0 );
+
+		expect( vi.mocked( unlinkSync ) ).toHaveBeenCalledWith( generatedFilePath );
 	} );
 } );
