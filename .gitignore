@@ -23,6 +23,8 @@ yarn.lock
 testem.log
 /typings
 .idea
+.env
+.env.local
 
 # e2e
 /cypress/videos

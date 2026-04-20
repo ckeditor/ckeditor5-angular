@@ -14,6 +14,7 @@ export default defineConfig( [
 		ignores: [
 			'dist/**',
 			'coverage/**',
+			'release/**',
 			'src/polyfills.ts'
 		]
 	},

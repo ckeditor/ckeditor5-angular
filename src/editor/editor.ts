@@ -30,6 +30,8 @@ import {
 	CloudServices
 } from 'ckeditor5';
 
+import { getGlobalLicenseKey } from 'src/license-key';
+
 export class AngularEditor extends ClassicEditor {
 	public static override builtinPlugins = [
 		Autoformat,
@@ -58,7 +60,7 @@ export class AngularEditor extends ClassicEditor {
 	];
 
 	public static override defaultConfig = {
-		licenseKey: 'GPL',
+		licenseKey: getGlobalLicenseKey(),
 		toolbar: {
 			items: [
 				'heading',
