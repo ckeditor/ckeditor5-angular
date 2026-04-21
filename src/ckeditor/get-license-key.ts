@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-export function getGlobalLicenseKey(): string {
+export function getLicenseKey(): string {
 	if ( typeof window !== 'undefined' && window.CKEDITOR_GLOBAL_LICENSE_KEY ) {
 		return window.CKEDITOR_GLOBAL_LICENSE_KEY;
 	}

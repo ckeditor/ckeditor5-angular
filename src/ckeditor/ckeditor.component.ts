@@ -42,7 +42,7 @@ import {
 	uid,
 	type EditorRelaxedConstructor
 } from '@ckeditor/ckeditor5-integrations-common';
-import { getGlobalLicenseKey } from './license-key';
+import { getLicenseKey } from './get-license-key';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog';
 
@@ -96,7 +96,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * to learn more.
 	 */
 	@Input() public config: EditorConfig = {
-		licenseKey: getGlobalLicenseKey()
+		licenseKey: getLicenseKey()
 	};
 
 	/**
