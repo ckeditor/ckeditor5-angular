@@ -168,11 +168,18 @@ jobs:
             if [[ "${EDITOR_VERSION_TAG}" != "latest" ]] && [[ "${SELECTED_VERSION%%.*}" == "${LATEST_VERSION%%.*}" ]]; then
               echo "Skipping duplicated integration run because ${EDITOR_VERSION_TAG} and latest resolve to the same major version."
               circleci-agent step halt
+              exit 0
             fi
 
             if [[ "${EDITOR_VERSION_TAG}" != "latest" ]] && [[ -z ${CKEDITOR_LICENSE_KEY} ]]; then
-              echo "Skipping the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is not available in this environment."
-              circleci-agent step halt
+              if [[ -z ${CODECOV_TOKEN} ]]; then
+                echo "Skipping the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is not available in this community environment."
+                circleci-agent step halt
+                exit 0
+              fi
+
+              echo "Failing the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is required in this environment."
+              exit 1
             fi
 
             pnpm add -Dw ckeditor5@${EDITOR_VERSION_TAG} ckeditor5-premium-features@${EDITOR_VERSION_TAG}
