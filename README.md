@@ -168,7 +168,7 @@ To reproduce the LTS integration matrix run locally, install the matching editor
 
 ```bash
 export CKEDITOR_LICENSE_KEY=<your-key>
-pnpm add -D ckeditor5@lts-v47 ckeditor5-premium-features@lts-v47
+pnpm add -Dw ckeditor5@lts-v47 ckeditor5-premium-features@lts-v47
 pnpm exec vitest run --project integration
 pnpm run test:e2e:ci
 ```
