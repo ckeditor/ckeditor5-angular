@@ -23,6 +23,9 @@ yarn.lock
 testem.log
 /typings
 .idea
+.env
+.env.local
+/src/generated/license-key.ts
 
 # e2e
 /cypress/videos

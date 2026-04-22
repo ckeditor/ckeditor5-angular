@@ -10,7 +10,7 @@ import {
 } from '@angular/platform-browser-dynamic/testing';
 import { beforeEach } from 'vitest';
 
-window.CKEDITOR_GLOBAL_LICENSE_KEY = 'GPL';
+window.CKEDITOR_GLOBAL_LICENSE_KEY = import.meta.env.CKEDITOR_LICENSE_KEY || 'GPL';
 
 const globalState = globalThis as typeof globalThis & {
 	ckeditorTestBedInitialized?: boolean;

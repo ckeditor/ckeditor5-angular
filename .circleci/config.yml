@@ -95,7 +95,20 @@ jobs:
           command: pnpm ckeditor5-dev-ci-circle-workflow-notifier --task "pnpm ckeditor5-dev-ci-notify-circle-status --pipeline-id << pipeline.number >> --hide-author << parameters.hideAuthor >>"
           no_output_timeout: 1h
 
-  validate_and_tests:
+  validate:
+    docker:
+      - image: cimg/node:24.11.0
+    steps:
+      - checkout
+      - bootstrap_repository_command
+      - run:
+          name: Execute ESLint
+          command: pnpm run lint
+      - run:
+          name: Execute tests for internal scripts
+          command: pnpm run test:scripts
+
+  tests_current:
     docker:
       - image: cimg/node:24.11.0-browsers
     steps:
@@ -103,17 +116,9 @@ jobs:
       - bootstrap_repository_command
       - browser-tools/install_chrome
       - run:
-          name: Execute ESLint
-          command: pnpm run lint
-      - run:
-          name: Execute tests for internal scripts
-          command: pnpm run test:scripts
-      - run:
-          name: Run unit tests
+          name: Run tests for current
           command: pnpm run coverage
-      - run:
-          name: Run e2e tests
-          command: pnpm run test:e2e:ci
+
       - unless:
           # Upload the code coverage results for non-nightly builds only.
           condition: << pipeline.parameters.isNightly >>
@@ -132,6 +137,54 @@ jobs:
             - codecov/upload:
                 files: coverage/lcov.info
                 disable_search: true
+
+  tests_integration:
+    docker:
+      - image: cimg/node:24.11.0-browsers
+    parameters:
+      ckeditorDistTag:
+        type: string
+    steps:
+      - checkout
+      - bootstrap_repository_command
+      - browser-tools/install_chrome
+      - run:
+          name: Run integration checks for << parameters.ckeditorDistTag >>
+          command: |
+            #!/bin/bash
+
+            EDITOR_VERSION_TAG=<< parameters.ckeditorDistTag >>
+            SELECTED_VERSION=$( pnpm view ckeditor5@${EDITOR_VERSION_TAG} version )
+            LATEST_VERSION=$( pnpm view ckeditor5@latest version )
+
+            echo "Resolved ckeditor5@${EDITOR_VERSION_TAG} -> ${SELECTED_VERSION}"
+            echo "Resolved ckeditor5@latest -> ${LATEST_VERSION}"
+
+            if [[ -z "${SELECTED_VERSION}" || -z "${LATEST_VERSION}" ]]; then
+              echo "Failed to resolve CKEditor package versions for the integration matrix."
+              exit 1
+            fi
+
+            if [[ "${EDITOR_VERSION_TAG}" != "latest" ]] && [[ "${SELECTED_VERSION%%.*}" == "${LATEST_VERSION%%.*}" ]]; then
+              echo "Skipping duplicated integration run because ${EDITOR_VERSION_TAG} and latest resolve to the same major version."
+              circleci-agent step halt
+              exit 0
+            fi
+
+            if [[ "${EDITOR_VERSION_TAG}" != "latest" ]] && [[ -z ${CKEDITOR_LICENSE_KEY} ]]; then
+              if [[ -z ${CODECOV_TOKEN} ]]; then
+                echo "Skipping the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is not available in this community environment."
+                circleci-agent step halt
+                exit 0
+              fi
+
+              echo "Failing the ${EDITOR_VERSION_TAG} integration run because CKEDITOR_LICENSE_KEY is required in this environment."
+              exit 1
+            fi
+
+            pnpm add -Dw ckeditor5@${EDITOR_VERSION_TAG} ckeditor5-premium-features@${EDITOR_VERSION_TAG}
+            pnpm exec vitest run --project integration
+            pnpm run test:e2e:ci
 
   release_prepare:
     docker:
@@ -234,11 +287,21 @@ workflows:
         - equal: [ false, << pipeline.parameters.isNightly >> ]
         - equal: [ false, << pipeline.parameters.isRelease >> ]
     jobs:
-      - validate_and_tests
+      - validate
+      - tests_current
+      - tests_integration:
+          matrix:
+            alias: tests_integration_matrix
+            parameters:
+              ckeditorDistTag: &integration_editor_version_tags
+                - latest
+                - lts-v47
       - release_prepare
       - trigger_release_process:
           requires:
-            - validate_and_tests
+            - validate
+            - tests_current
+            - tests_integration_matrix
             - release_prepare
           filters:
             branches:
@@ -268,7 +331,12 @@ workflows:
         - equal: [ true, << pipeline.parameters.isNightly >> ]
         - equal: [ false, << pipeline.parameters.isRelease >> ]
     jobs:
-      - validate_and_tests
+      - validate
+      - tests_current
+      - tests_integration:
+          matrix:
+            parameters:
+              ckeditorDistTag: *integration_editor_version_tags
       - notify_ci_failure:
           hideAuthor: "true"
           filters:

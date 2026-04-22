@@ -133,13 +133,21 @@ To test it in production, use:
 pnpm run start --configuration production
 ```
 
-To run unit tests once (without watch, Vitest + Chrome), use:
+To run the full automated test suite against the default installed editor version, use:
 
 ```bash
 pnpm run test
 ```
 
 The unit test suite runs in a real browser (Chrome) using Vitest browser mode.
+
+To run only the integration subset used by the CI editor-version matrix, use:
+
+```bash
+pnpm exec vitest run --project integration
+```
+
+After a regular `pnpm install`, this command uses the default `ckeditor5` and `ckeditor5-premium-features` versions from `package.json`.
 
 To run unit tests in watch mode, use:
 
@@ -155,6 +163,17 @@ pnpm run start
 # Then, start tests.
 pnpm run test:e2e
 ```
+
+To reproduce the LTS integration matrix run locally, install the matching editor packages first and then run the integration checks:
+
+```bash
+export CKEDITOR_LICENSE_KEY=<your-key>
+pnpm add -Dw ckeditor5@lts-v47 ckeditor5-premium-features@lts-v47
+pnpm exec vitest run --project integration
+pnpm run test:e2e:ci
+```
+
+If you prefer, you can put `CKEDITOR_LICENSE_KEY` in `.env` or `.env.local` instead. The Vitest setup reads it through Vite, and `pnpm run start` forwards it to `ng serve` for local e2e runs.
 
 To run coverage tests, run:
 
