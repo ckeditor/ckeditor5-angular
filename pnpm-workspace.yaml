@@ -17,6 +17,7 @@ overrides:
   'picomatch@^4': '^4.0.4'
   'postcss@^8': '^8.5.10'
   'serialize-javascript@^6': '^7.0.5'
+  'protobufjs@^7': '^7.5.5'
   'uuid@^8': '^14.0.0'
   'uuid@^9': '^14.0.0'
   'tar@^6': '^7.5.11'
