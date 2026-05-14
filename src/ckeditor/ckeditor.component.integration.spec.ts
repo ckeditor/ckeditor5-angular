@@ -8,6 +8,7 @@ import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { AngularEditor } from 'src/editor/editor';
+import { MockEditor } from 'src/editor/mock-editor';
 
 import { CKEditorComponent } from './ckeditor.component';
 
@@ -309,10 +310,16 @@ describe( 'CKEditorComponent integration', () => {
 			} );
 
 			it( 'should fire the error event when an error occurs and the ready event afterwards #2', async () => {
+				fixture.destroy();
+
+				fixture = TestBed.createComponent( CKEditorComponent );
+				component = fixture.componentInstance;
+				component.editor = MockEditor;
+
 				const fixture2 = TestBed.createComponent( CKEditorComponent );
 				const component2 = fixture2.componentInstance;
 
-				component2.editor = AngularEditor;
+				component2.editor = MockEditor;
 
 				window.onerror = null;
 
