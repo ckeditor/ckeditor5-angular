@@ -7,101 +7,77 @@ import {
 	Component,
 	ChangeDetectionStrategy,
 	ElementRef,
-	Input,
 	inject,
 	Renderer2,
-	type OnChanges,
-	type OnDestroy,
-	type SimpleChanges
+	input,
+	effect
 } from '@angular/core';
 
+import { normalizeClassList } from './utils/normalize-class-list';
 import {
 	type EditorElementDefinition,
 	type EditorElementObjectDefinition,
 	normalizeEditorElementDefinition
 } from './utils/normalize-editor-element-definition';
 
-/**
- * A component that dynamically renders an HTML element based on an editor element definition.
- */
+/*
+  A component that dynamically renders an HTML element based on an editor element definition.
+*/
 @Component( {
 	selector: 'ckeditor-editor-element',
 	template: '',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush
 } )
-export class EditorElementComponent implements OnChanges, OnDestroy {
-	/**
-     * Definition of the element to render. Accepts a tag-name string or a
-     * full element object definition object.
-	 *
-	 * Defaults to `'div'` when `null` or `undefined` is provided.
-     */
-	@Input() public definition: EditorElementDefinition | null = null;
+export class EditorElementComponent {
+	private readonly _hostRef = inject( ElementRef ) as ElementRef<HTMLElement>;
+	private readonly _renderer = inject( Renderer2 );
 
-	/**
-     * The rendered DOM element.
-     */
+	public readonly definition = input<EditorElementDefinition | null>( null );
+
 	public get element(): HTMLElement | null {
 		return this._element;
 	}
 
 	private _element: HTMLElement | null = null;
 
-	private readonly _hostRef = inject( ElementRef ) as ElementRef<HTMLElement>;
+	constructor() {
+		effect( onCleanup => {
+			const currentDefinition = this.definition();
 
-	private readonly _renderer = inject( Renderer2 );
+			const normalized = normalizeEditorElementDefinition( currentDefinition ?? 'div' );
+			const el: HTMLElement = this._renderer.createElement( normalized.name );
 
-	public ngOnChanges( changes: SimpleChanges ): void {
-		if ( changes.definition ) {
-			this._createOrUpdateElement();
-		}
+			this._applyDefinition( el, normalized );
+			this._renderer.appendChild( this._hostRef.nativeElement, el );
+			this._element = el;
+
+			onCleanup( () => {
+				if ( this._element ) {
+					this._renderer.removeChild( this._hostRef.nativeElement, this._element );
+					this._element = null;
+				}
+			} );
+		} );
 	}
 
-	public ngOnDestroy(): void {
-		this._removeElement();
-	}
-
-	/**
-     * (Re-)creates the target element according to the current definition.
-     * Any previously rendered element is removed first.
-     */
-	private _createOrUpdateElement(): void {
-		this._removeElement();
-
-		const normalized = normalizeEditorElementDefinition( this.definition ?? 'div' );
-		const el: HTMLElement = this._renderer.createElement( normalized.name );
-
-		this._applyDefinition( el, normalized );
-
-		this._renderer.appendChild( this._hostRef.nativeElement, el );
-		this._element = el;
-	}
-
-	/**
-     * Removes the current target element from the DOM, if present.
-     */
-	private _removeElement(): void {
-		if ( this._element ) {
-			this._renderer.removeChild( this._hostRef.nativeElement, this._element );
-			this._element = null;
-		}
-	}
-
-	/**
-     * Applies classes, styles and attributes from the definition to the element.
-     */
 	private _applyDefinition( el: HTMLElement, def: EditorElementObjectDefinition ): void {
-		for ( const cls of [ def.classes ].flat().filter( Boolean ) as Array<string> ) {
-			this._renderer.addClass( el, cls );
+		const classes = normalizeClassList( def.classes ?? [] );
+
+		for ( const className of classes ) {
+			this._renderer.addClass( el, className );
 		}
 
-		for ( const [ property, value ] of Object.entries( def.styles ?? {} ) ) {
-			this._renderer.setStyle( el, property, value );
+		if ( def.styles ) {
+			for ( const [ property, value ] of Object.entries( def.styles ) ) {
+				this._renderer.setStyle( el, property, value );
+			}
 		}
 
-		for ( const [ name, value ] of Object.entries( def.attributes ?? {} ) ) {
-			this._renderer.setAttribute( el, name, value );
+		if ( def.attributes ) {
+			for ( const [ name, value ] of Object.entries( def.attributes ) ) {
+				this._renderer.setAttribute( el, name, value );
+			}
 		}
 	}
 }
