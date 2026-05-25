@@ -17,7 +17,7 @@ export function normalizeEditorElementDefinition( definition: EditorElementDefin
 		);
 	}
 
-	if ( typeof definition !== 'object' || definition === null ) {
+	if ( typeof definition === 'string' ) {
 		return {
 			name: definition
 		};
