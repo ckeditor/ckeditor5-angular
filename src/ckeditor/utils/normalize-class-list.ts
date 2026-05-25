@@ -5,7 +5,7 @@
 
 export function normalizeClassList( classes: null | undefined | string | Array<string> ): Array<string> {
 	if ( typeof classes === 'string' ) {
-		return [ classes ];
+		return [ classes ].filter( Boolean );
 	}
 
 	return classes ?? [];

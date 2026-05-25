@@ -4,28 +4,40 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import { normalizeClassList } from './normalize-class-list.js';
+import { normalizeClassList } from './normalize-class-list';
 
-describe( 'normalizeClassList', () => {
-	it( 'returns the exact same string if a string is provided', () => {
-		expect( normalizeClassList( 'my-class' ) ).toBe( 'my-class' );
-		expect( normalizeClassList( 'class-one class-two' ) ).toBe( 'class-one class-two' );
+describe( 'normalizeClassList()', () => {
+	describe( 'when given a string', () => {
+		it( 'should return an array containing the string', () => {
+			expect( normalizeClassList( 'foo-class' ) ).toEqual( [ 'foo-class' ] );
+		} );
+
+		it( 'should return an empty array if the string is empty', () => {
+			expect( normalizeClassList( '' ) ).toEqual( [] );
+		} );
 	} );
 
-	it( 'joins an array of strings with a space', () => {
-		expect( normalizeClassList( [ 'class-one', 'class-two' ] ) ).toBe( 'class-one class-two' );
-		expect( normalizeClassList( [ 'single-class' ] ) ).toBe( 'single-class' );
+	describe( 'when given an array', () => {
+		it( 'should return the exact same array instance', () => {
+			const input = [ 'class-a', 'class-b' ];
+			const result = normalizeClassList( input );
+
+			expect( result ).toEqual( [ 'class-a', 'class-b' ] );
+			expect( result ).toBe( input );
+		} );
+
+		it( 'should return an empty array if the input array is empty', () => {
+			expect( normalizeClassList( [] ) ).toEqual( [] );
+		} );
 	} );
 
-	it( 'returns an empty string if an empty array is provided', () => {
-		expect( normalizeClassList( [] ) ).toBe( '' );
-	} );
+	describe( 'when given a nullish value', () => {
+		it( 'should return an empty array for null', () => {
+			expect( normalizeClassList( null ) ).toEqual( [] );
+		} );
 
-	it( 'returns an empty string if null is provided', () => {
-		expect( normalizeClassList( null ) ).toBe( '' );
-	} );
-
-	it( 'returns an empty string if undefined is provided', () => {
-		expect( normalizeClassList( undefined ) ).toBe( '' );
+		it( 'should return an empty array for undefined', () => {
+			expect( normalizeClassList( undefined ) ).toEqual( [] );
+		} );
 	} );
 } );
