@@ -109,6 +109,8 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * Tag name of the editor component.
 	 *
 	 * The default tag is 'div'.
+	 *
+	 * @deprecated
 	 */
 	@Input() public tagName = 'div';
 
