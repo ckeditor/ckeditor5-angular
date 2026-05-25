@@ -3,10 +3,10 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-export function normalizeClassList( classes: null | undefined | string | Array<string> ): string {
+export function normalizeClassList( classes: null | undefined | string | Array<string> ): Array<string> {
 	if ( typeof classes === 'string' ) {
-		return classes;
+		return [ classes ];
 	}
 
-	return ( classes ?? [] ).join( ' ' );
+	return classes ?? [];
 }
