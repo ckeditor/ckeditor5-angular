@@ -30,7 +30,7 @@ describe( 'CKEditorComponent integration', () => {
 		beforeEach( async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = AngularEditor;
+			component.editor = AngularEditor as any;
 		} );
 
 		afterEach( () => {
