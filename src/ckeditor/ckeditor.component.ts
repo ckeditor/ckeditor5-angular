@@ -118,7 +118,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * editor element component.
 	 */
 	public get elementDefinition(): EditorElementDefinition {
-		return getEditorElementDefinition( this.editor!, this.config );
+		return getEditorElementDefinition( this.editor!, this.config, this.tagName );
 	}
 
 	/**
@@ -570,12 +570,15 @@ function getEditorFromWatchdogOrNull( watchdog: EditorWatchdog | ContextWatchdog
 /**
  * Get definition of the element used to create editor.
  */
-function getEditorElementDefinition( editor: EditorRelaxedConstructor, config: EditorRelaxedConfig ): EditorElementDefinition {
-	// Classic editor hides element rendered by React, so it makes no sense
-	// to use custom tag in this case. Let's render `div`.
+function getEditorElementDefinition(
+	editor: EditorRelaxedConstructor,
+	config: EditorRelaxedConfig,
+	defaultTag: string
+): EditorElementDefinition {
+	// Classic editor hides element rendered by React, so it makes no sense to use custom tag in this case.
 	if ( !editor.editorName || editor.editorName === 'ClassicEditor' ) {
-		return 'div';
+		return defaultTag;
 	}
 
-	return config.roots?.main?.element ?? config.root?.element ?? 'div';
+	return config.roots?.main?.element ?? config.root?.element ?? defaultTag;
 }
