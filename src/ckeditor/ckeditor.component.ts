@@ -86,7 +86,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: EditorRelaxedConstructor<TEditor> & {
+	@Input( { required: true } ) public editor!: EditorRelaxedConstructor<TEditor> & {
 		EditorWatchdog: typeof EditorWatchdog;
 	};
 
@@ -118,7 +118,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * editor element component.
 	 */
 	public get elementDefinition(): EditorElementDefinition {
-		return getEditorElementDefinition( this.editor!, this.config, this.tagName );
+		return getEditorElementDefinition( this.editor, this.config, this.tagName );
 	}
 
 	/**
@@ -379,7 +379,7 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
-		const Editor = this.editor!;
+		const Editor = this.editor;
 
 		const supports = getInstalledCKBaseFeatures();
 		const element = this.editorElementComponent.element!;
