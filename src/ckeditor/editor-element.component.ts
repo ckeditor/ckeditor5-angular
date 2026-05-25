@@ -54,6 +54,7 @@ export class EditorElementComponent {
 			this._element = el;
 
 			onCleanup( () => {
+				/* istanbul ignore else -- @preserve */
 				if ( this._element ) {
 					this._renderer.removeChild( this._hostRef.nativeElement, this._element );
 					this._element = null;

@@ -156,6 +156,51 @@ describe( 'CKEditorComponent', () => {
 				expect( component.getId() ).toMatch( /e[0-9a-z]{32}/ );
 			} );
 		} );
+
+		describe( 'elementDefinition', () => {
+			it( 'should return defaultTag if editor has no name or is ClassicEditor', () => {
+				component.editor = { ...MockEditor, editorName: undefined } as any;
+				component.tagName = 'section';
+				expect( component.elementDefinition ).toBe( 'section' );
+
+				component.editor = { ...MockEditor, editorName: 'ClassicEditor' } as any;
+				expect( component.elementDefinition ).toBe( 'section' );
+			} );
+
+			it( 'should return custom tag from config.roots.main.element if provided for non-classic editor', () => {
+				component.editor = { ...MockEditor, editorName: 'DecoupledEditor' } as any;
+				component.tagName = 'div';
+				component.config = {
+					roots: {
+						main: {
+							element: 'article'
+						}
+					}
+				} as any;
+
+				expect( component.elementDefinition ).toBe( 'article' );
+			} );
+
+			it( 'should return custom tag from config.root.element if config.roots.main.element is not provided', () => {
+				component.editor = { ...MockEditor, editorName: 'InlineEditor' } as any;
+				component.tagName = 'div';
+				component.config = {
+					root: {
+						element: 'aside'
+					}
+				} as any;
+
+				expect( component.elementDefinition ).toBe( 'aside' );
+			} );
+
+			it( 'should fallback to defaultTag if neither roots.main.element nor root.element is provided', () => {
+				component.editor = { ...MockEditor, editorName: 'InlineEditor' } as any;
+				component.tagName = 'span';
+				component.config = {} as any;
+
+				expect( component.elementDefinition ).toBe( 'span' );
+			} );
+		} );
 	} );
 } );
 
