@@ -63,13 +63,13 @@ importers:
     devDependencies:
       '@analogjs/vite-plugin-angular':
         specifier: ^2.2.3
-        version: 2.3.1(@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(sugarss@4.0.1(postcss@8.5.10))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3))(@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3))
+        version: 2.3.1(@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3))(@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3))
       '@analogjs/vitest-angular':
         specifier: ^2.2.3
-        version: 2.3.1(822810ce9d8171b02322eb5587b34f91)
+        version: 2.3.1(547b162d60c696fafcfc2c44096960c1)
       '@angular-devkit/build-angular':
         specifier: ^19.2.19
-        version: 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(sugarss@4.0.1(postcss@8.5.10))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3)
+        version: 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3)
       '@angular/cli':
         specifier: ^19.2.20
         version: 19.2.22(@types/node@14.18.63)(chokidar@4.0.3)
@@ -99,10 +99,10 @@ importers:
         version: 14.18.63
       '@vitest/browser-playwright':
         specifier: ^4.0.18
-        version: 4.1.0(playwright@1.58.2)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
+        version: 4.1.0(playwright@1.58.2)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
       '@vitest/coverage-v8':
         specifier: ^4.0.18
-        version: 4.1.0(@vitest/browser@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0))(vitest@4.1.0)
+        version: 4.1.0(@vitest/browser@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0))(vitest@4.1.0)
       ckeditor5:
         specifier: ^48.0.0
         version: 48.0.0
@@ -117,10 +117,10 @@ importers:
         version: 13.17.0
       eslint:
         specifier: ^9.38.0
-        version: 9.39.4(jiti@2.6.1)
+        version: 9.39.4(jiti@1.21.7)
       eslint-config-ckeditor5:
         specifier: ^13.0.0
-        version: 13.0.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+        version: 13.0.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
       eslint-plugin-ckeditor5-rules:
         specifier: ^13.0.0
         version: 13.0.1
@@ -171,13 +171,13 @@ importers:
         version: 5.5.4
       typescript-eslint:
         specifier: ^8.32.0
-        version: 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+        version: 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
       upath:
         specifier: ^2.0.1
         version: 2.0.1
       vitest:
         specifier: ^4.0.18
-        version: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+        version: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       webpack:
         specifier: ^5.94.0
         version: 5.105.4(webpack-cli@5.1.4)
@@ -197,8 +197,8 @@ importers:
         specifier: '>=19.2.19'
         version: 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@19.2.20(@angular/animations@19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@19.2.20(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^2.3.1
-        version: 2.3.1(ckeditor5@47.6.1)
+        specifier: ^2.4.0
+        version: 2.4.0(ckeditor5@47.6.1)
       ckeditor5:
         specifier: '>=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
         version: 47.6.1
@@ -1212,6 +1212,11 @@ packages:
 
   '@ckeditor/ckeditor5-integrations-common@2.3.1':
     resolution: {integrity: sha512-YcNvRhPMBIHjExmSVGypx98N8E5AiESUZTBzphrzstfxtunJFFVvFJ3KuzHwKLaBUPs7YIpqS6cNVft1gFRH7Q==}
+    peerDependencies:
+      ckeditor5: '>=42.0.0 || ^0.0.0-nightly'
+
+  '@ckeditor/ckeditor5-integrations-common@2.4.0':
+    resolution: {integrity: sha512-kPhR1yLSrww6WRMjkCOF9jhL9RlrRZbrrnbN8z/yr6aFILasNQxMgHpAjYpo1z5ChgUiNHQho0XUFvle86QnQg==}
     peerDependencies:
       ckeditor5: '>=42.0.0 || ^0.0.0-nightly'
 
@@ -3261,6 +3266,7 @@ packages:
 
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
+    deprecated: Potential CWE-502 - Update to 1.3.1 or higher
 
   '@uploadcare/cname-prefix@6.18.4':
     resolution: {integrity: sha512-dEDkoMneA01UoJNpS7KcxxCkuP87fdWfK111Q/3nt5WO1gb6VpvZuUse9ac+A/h9iVEkaPxsO7cNsEtLxGKOpQ==}
@@ -5205,10 +5211,6 @@ packages:
     resolution: {integrity: sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==}
     hasBin: true
 
-  jiti@2.6.1:
-    resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
-    hasBin: true
-
   joi@18.0.2:
     resolution: {integrity: sha512-RuCOQMIt78LWnktPoeBL0GErkNaJPTBGcYuyaBvUOQSpcpcLfWrHPPihYdOGbV5pam9VTWbeoF7TsGiHugcjGA==}
     engines: {node: '>= 20'}
@@ -6943,12 +6945,6 @@ packages:
   style-mod@4.1.3:
     resolution: {integrity: sha512-i/n8VsZydrugj3Iuzll8+x/00GH2vnYsk1eomD8QiRrSAeW6ItbCQDtfXCeJHd0iwiNagqjQkvpvREEPtW3IoQ==}
 
-  sugarss@4.0.1:
-    resolution: {integrity: sha512-WCjS5NfuVJjkQzK10s8WOBY+hhDxxNt/N6ZaGwxFZ+wN3/lKKFSaaKUNecULcTTvE4urLcKaZFQD8vO0mOZujw==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.5.10
-
   supports-color@7.2.0:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
@@ -7621,20 +7617,20 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  ? '@analogjs/vite-plugin-angular@2.3.1(@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(sugarss@4.0.1(postcss@8.5.10))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3))(@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3))'
-  : dependencies:
+  '@analogjs/vite-plugin-angular@2.3.1(@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3))(@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3))':
+    dependencies:
       tinyglobby: 0.2.15
       ts-morph: 21.0.1
     optionalDependencies:
-      '@angular-devkit/build-angular': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(sugarss@4.0.1(postcss@8.5.10))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3)
-      '@angular/build': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3)
+      '@angular-devkit/build-angular': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3)
+      '@angular/build': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3)
 
-  '@analogjs/vitest-angular@2.3.1(822810ce9d8171b02322eb5587b34f91)':
+  '@analogjs/vitest-angular@2.3.1(547b162d60c696fafcfc2c44096960c1)':
     dependencies:
-      '@analogjs/vite-plugin-angular': 2.3.1(@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(sugarss@4.0.1(postcss@8.5.10))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3))(@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3))
+      '@analogjs/vite-plugin-angular': 2.3.1(@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3))(@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3))
       '@angular-devkit/architect': 0.1902.22(chokidar@4.0.3)
       '@angular-devkit/schematics': 19.2.22(chokidar@4.0.3)
-      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
     optionalDependencies:
       zone.js: 0.15.1
 
@@ -7645,13 +7641,13 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(sugarss@4.0.1(postcss@8.5.10))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3)':
+  '@angular-devkit/build-angular@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(typescript@5.5.4)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(webpack-cli@5.1.4)(yaml@2.8.3)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.22(chokidar@4.0.3)
       '@angular-devkit/build-webpack': 0.1902.22(chokidar@4.0.3)(webpack-dev-server@5.2.2)(webpack@5.105.0(esbuild@0.25.4)(webpack-cli@5.1.4))
       '@angular-devkit/core': 19.2.22(chokidar@4.0.3)
-      '@angular/build': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3)
+      '@angular/build': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3)
       '@angular/compiler-cli': 19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4)
       '@babel/core': 7.26.10
       '@babel/generator': 7.26.10
@@ -7664,7 +7660,7 @@ snapshots:
       '@babel/runtime': 7.26.10
       '@discoveryjs/json-ext': 0.6.3
       '@ngtools/webpack': 19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(typescript@5.5.4)(webpack@5.105.0(esbuild@0.25.4)(webpack-cli@5.1.4))
-      '@vitejs/plugin-basic-ssl': 1.2.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      '@vitejs/plugin-basic-ssl': 1.2.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.20(postcss@8.5.10)
       babel-loader: 9.2.1(@babel/core@7.26.10)(webpack@5.105.0(esbuild@0.25.4)(webpack-cli@5.1.4))
@@ -7766,7 +7762,7 @@ snapshots:
       '@angular/core': 19.2.20(rxjs@6.6.7)(zone.js@0.15.1)
       tslib: 2.8.1
 
-  '@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3)':
+  '@angular/build@19.2.22(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(@angular/compiler@19.2.20)(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(ng-packagr@19.2.2(@angular/compiler-cli@19.2.20(@angular/compiler@19.2.20)(typescript@5.5.4))(tslib@2.8.1)(typescript@5.5.4))(postcss@8.5.10)(terser@5.39.0)(typescript@5.5.4)(yaml@2.8.3)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1902.22(chokidar@4.0.3)
@@ -7777,7 +7773,7 @@ snapshots:
       '@babel/helper-split-export-declaration': 7.24.7
       '@babel/plugin-syntax-import-attributes': 7.26.0(@babel/core@7.26.10)
       '@inquirer/confirm': 5.1.6(@types/node@14.18.63)
-      '@vitejs/plugin-basic-ssl': 1.2.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      '@vitejs/plugin-basic-ssl': 1.2.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       beasties: 0.3.2
       browserslist: 4.28.1
       esbuild: 0.25.4
@@ -7795,7 +7791,7 @@ snapshots:
       semver: 7.7.1
       source-map-support: 0.5.21
       typescript: 5.5.4
-      vite: 6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3)
+      vite: 6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3)
       watchpack: 2.4.2
     optionalDependencies:
       less: 4.2.2
@@ -8857,8 +8853,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       '@ckeditor/ckeditor5-widget': 47.6.1
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-clipboard@48.0.0':
     dependencies:
@@ -8948,8 +8942,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       '@ckeditor/ckeditor5-watchdog': 47.6.1
       es-toolkit: 1.39.5
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-core@48.0.0':
     dependencies:
@@ -9525,13 +9517,13 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 48.0.0
       '@ckeditor/ckeditor5-utils': 48.0.0
 
-  '@ckeditor/ckeditor5-integrations-common@2.3.1(ckeditor5@47.6.1)':
-    dependencies:
-      ckeditor5: 47.6.1
-
   '@ckeditor/ckeditor5-integrations-common@2.3.1(ckeditor5@48.0.0)':
     dependencies:
       ckeditor5: 48.0.0
+
+  '@ckeditor/ckeditor5-integrations-common@2.4.0(ckeditor5@47.6.1)':
+    dependencies:
+      ckeditor5: 47.6.1
 
   '@ckeditor/ckeditor5-language@47.6.1':
     dependencies:
@@ -9710,6 +9702,8 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-mention@48.0.0':
     dependencies:
@@ -9739,6 +9733,8 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.6.1
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-minimap@48.0.0':
     dependencies:
@@ -9762,6 +9758,8 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       '@ckeditor/ckeditor5-widget': 47.6.1
       ckeditor5: 47.6.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-page-break@48.0.0':
     dependencies:
@@ -9845,6 +9843,8 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.6.1
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-remove-format@48.0.0':
     dependencies:
@@ -9911,6 +9911,8 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.6.1
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-show-blocks@48.0.0':
     dependencies:
@@ -9955,6 +9957,8 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 47.6.1
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-source-editing@48.0.0':
     dependencies:
@@ -9991,6 +9995,8 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-style@48.0.0':
     dependencies:
@@ -10015,6 +10021,8 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 47.6.1
       ckeditor5: 47.6.1
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-table@48.0.0':
     dependencies:
@@ -10169,6 +10177,8 @@ snapshots:
       '@ckeditor/ckeditor5-engine': 47.6.1
       '@ckeditor/ckeditor5-utils': 47.6.1
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-watchdog@48.0.0':
     dependencies:
@@ -10206,6 +10216,8 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 47.6.1
       ckeditor5: 47.6.1
       es-toolkit: 1.39.5
+    transitivePeerDependencies:
+      - supports-color
 
   '@ckeditor/ckeditor5-word-count@48.0.0':
     dependencies:
@@ -10576,9 +10588,9 @@ snapshots:
   '@esbuild/win32-x64@0.27.4':
     optional: true
 
-  '@eslint-community/eslint-utils@4.9.1(eslint@9.39.4(jiti@2.6.1))':
+  '@eslint-community/eslint-utils@4.9.1(eslint@9.39.4(jiti@1.21.7))':
     dependencies:
-      eslint: 9.39.4(jiti@2.6.1)
+      eslint: 9.39.4(jiti@1.21.7)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
@@ -11641,10 +11653,10 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@stylistic/eslint-plugin@4.4.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)':
+  '@stylistic/eslint-plugin@4.4.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)':
     dependencies:
-      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
-      eslint: 9.39.4(jiti@2.6.1)
+      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
+      eslint: 9.39.4(jiti@1.21.7)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
       estraverse: 5.3.0
@@ -11813,15 +11825,15 @@ snapshots:
       '@types/node': 14.18.63
     optional: true
 
-  '@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4))(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)':
+  '@typescript-eslint/eslint-plugin@8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4))(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
       '@typescript-eslint/scope-manager': 8.57.0
-      '@typescript-eslint/type-utils': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
-      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+      '@typescript-eslint/type-utils': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 8.57.0
-      eslint: 9.39.4(jiti@2.6.1)
+      eslint: 9.39.4(jiti@1.21.7)
       ignore: 7.0.5
       natural-compare: 1.4.0
       ts-api-utils: 2.4.0(typescript@5.5.4)
@@ -11829,14 +11841,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)':
+  '@typescript-eslint/parser@8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.57.0
       '@typescript-eslint/types': 8.57.0
       '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.5.4)
       '@typescript-eslint/visitor-keys': 8.57.0
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 9.39.4(jiti@2.6.1)
+      eslint: 9.39.4(jiti@1.21.7)
       typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
@@ -11859,13 +11871,13 @@ snapshots:
     dependencies:
       typescript: 5.5.4
 
-  '@typescript-eslint/type-utils@8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)':
+  '@typescript-eslint/type-utils@8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)':
     dependencies:
       '@typescript-eslint/types': 8.57.0
       '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.5.4)
-      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
       debug: 4.4.3(supports-color@8.1.1)
-      eslint: 9.39.4(jiti@2.6.1)
+      eslint: 9.39.4(jiti@1.21.7)
       ts-api-utils: 2.4.0(typescript@5.5.4)
       typescript: 5.5.4
     transitivePeerDependencies:
@@ -11888,13 +11900,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)':
+  '@typescript-eslint/utils@8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@2.6.1))
+      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@1.21.7))
       '@typescript-eslint/scope-manager': 8.57.0
       '@typescript-eslint/types': 8.57.0
       '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.5.4)
-      eslint: 9.39.4(jiti@2.6.1)
+      eslint: 9.39.4(jiti@1.21.7)
       typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
@@ -11940,33 +11952,33 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@vitejs/plugin-basic-ssl@1.2.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))':
+  '@vitejs/plugin-basic-ssl@1.2.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))':
     dependencies:
-      vite: 6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3)
+      vite: 6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3)
 
-  '@vitest/browser-playwright@4.1.0(playwright@1.58.2)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)':
+  '@vitest/browser-playwright@4.1.0(playwright@1.58.2)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)':
     dependencies:
-      '@vitest/browser': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
-      '@vitest/mocker': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      '@vitest/browser': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
+      '@vitest/mocker': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       playwright: 1.58.2
       tinyrainbow: 3.1.0
-      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - bufferutil
       - msw
       - utf-8-validate
       - vite
 
-  '@vitest/browser@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)':
+  '@vitest/browser@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)':
     dependencies:
       '@blazediff/core': 1.9.1
-      '@vitest/mocker': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      '@vitest/mocker': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       '@vitest/utils': 4.1.0
       magic-string: 0.30.21
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.1.0
-      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       ws: 8.19.0
     transitivePeerDependencies:
       - bufferutil
@@ -11974,7 +11986,7 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/coverage-v8@4.1.0(@vitest/browser@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0))(vitest@4.1.0)':
+  '@vitest/coverage-v8@4.1.0(@vitest/browser@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0))(vitest@4.1.0)':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
       '@vitest/utils': 4.1.0
@@ -11986,9 +11998,9 @@ snapshots:
       obug: 2.1.1
       std-env: 4.0.0
       tinyrainbow: 3.1.0
-      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      vitest: 4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
     optionalDependencies:
-      '@vitest/browser': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
+      '@vitest/browser': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
 
   '@vitest/expect@4.1.0':
     dependencies:
@@ -11999,13 +12011,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))':
+  '@vitest/mocker@4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))':
     dependencies:
       '@vitest/spy': 4.1.0
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3)
+      vite: 6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3)
 
   '@vitest/pretty-format@4.1.0':
     dependencies:
@@ -13285,17 +13297,17 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-config-ckeditor5@13.0.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4):
+  eslint-config-ckeditor5@13.0.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4):
     dependencies:
       '@eslint/js': 9.39.4
       '@eslint/markdown': 6.6.0
-      '@stylistic/eslint-plugin': 4.4.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
-      eslint: 9.39.4(jiti@2.6.1)
+      '@stylistic/eslint-plugin': 4.4.1(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
+      eslint: 9.39.4(jiti@1.21.7)
       eslint-plugin-ckeditor5-rules: 13.0.1
-      eslint-plugin-mocha: 11.2.0(eslint@9.39.4(jiti@2.6.1))
+      eslint-plugin-mocha: 11.2.0(eslint@9.39.4(jiti@1.21.7))
       globals: 16.5.0
       typescript: 5.5.4
-      typescript-eslint: 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+      typescript-eslint: 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
     transitivePeerDependencies:
       - supports-color
 
@@ -13308,10 +13320,10 @@ snapshots:
       validate-npm-package-name: 6.0.2
       yaml: 2.8.3
 
-  eslint-plugin-mocha@11.2.0(eslint@9.39.4(jiti@2.6.1)):
+  eslint-plugin-mocha@11.2.0(eslint@9.39.4(jiti@1.21.7)):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@2.6.1))
-      eslint: 9.39.4(jiti@2.6.1)
+      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@1.21.7))
+      eslint: 9.39.4(jiti@1.21.7)
       globals: 15.15.0
 
   eslint-scope@5.1.1:
@@ -13330,9 +13342,9 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@9.39.4(jiti@2.6.1):
+  eslint@9.39.4(jiti@1.21.7):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@2.6.1))
+      '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4(jiti@1.21.7))
       '@eslint-community/regexpp': 4.12.2
       '@eslint/config-array': 0.21.2
       '@eslint/config-helpers': 0.4.2
@@ -13367,7 +13379,7 @@ snapshots:
       natural-compare: 1.4.0
       optionator: 0.9.4
     optionalDependencies:
-      jiti: 2.6.1
+      jiti: 1.21.7
     transitivePeerDependencies:
       - supports-color
 
@@ -14228,9 +14240,6 @@ snapshots:
       supports-color: 8.1.1
 
   jiti@1.21.7: {}
-
-  jiti@2.6.1:
-    optional: true
 
   joi@18.0.2:
     dependencies:
@@ -16406,11 +16415,6 @@ snapshots:
 
   style-mod@4.1.3: {}
 
-  sugarss@4.0.1(postcss@8.5.10):
-    dependencies:
-      postcss: 8.5.10
-    optional: true
-
   supports-color@7.2.0:
     dependencies:
       has-flag: 4.0.0
@@ -16592,13 +16596,13 @@ snapshots:
 
   typed-assert@1.0.9: {}
 
-  typescript-eslint@8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4):
+  typescript-eslint@8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4))(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
-      '@typescript-eslint/parser': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
+      '@typescript-eslint/eslint-plugin': 8.57.0(@typescript-eslint/parser@8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4))(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
+      '@typescript-eslint/parser': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
       '@typescript-eslint/typescript-estree': 8.57.0(typescript@5.5.4)
-      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.5.4)
-      eslint: 9.39.4(jiti@2.6.1)
+      '@typescript-eslint/utils': 8.57.0(eslint@9.39.4(jiti@1.21.7))(typescript@5.5.4)
+      eslint: 9.39.4(jiti@1.21.7)
       typescript: 5.5.4
     transitivePeerDependencies:
       - supports-color
@@ -16738,7 +16742,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3):
+  vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.4)
@@ -16749,18 +16753,17 @@ snapshots:
     optionalDependencies:
       '@types/node': 14.18.63
       fsevents: 2.3.3
-      jiti: 2.6.1
+      jiti: 1.21.7
       less: 4.2.2
       lightningcss: 1.32.0
       sass: 1.85.0
-      sugarss: 4.0.1(postcss@8.5.10)
       terser: 5.39.0
       yaml: 2.8.3
 
-  vitest@4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3)):
+  vitest@4.1.0(@types/node@14.18.63)(@vitest/browser-playwright@4.1.0)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3)):
     dependencies:
       '@vitest/expect': 4.1.0
-      '@vitest/mocker': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))
+      '@vitest/mocker': 4.1.0(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))
       '@vitest/pretty-format': 4.1.0
       '@vitest/runner': 4.1.0
       '@vitest/snapshot': 4.1.0
@@ -16777,11 +16780,11 @@ snapshots:
       tinyexec: 1.0.4
       tinyglobby: 0.2.15
       tinyrainbow: 3.1.0
-      vite: 6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3)
+      vite: 6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 14.18.63
-      '@vitest/browser-playwright': 4.1.0(playwright@1.58.2)(vite@6.4.2(@types/node@14.18.63)(jiti@2.6.1)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(sugarss@4.0.1(postcss@8.5.10))(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
+      '@vitest/browser-playwright': 4.1.0(playwright@1.58.2)(vite@6.4.2(@types/node@14.18.63)(jiti@1.21.7)(less@4.2.2)(lightningcss@1.32.0)(sass@1.85.0)(terser@5.39.0)(yaml@2.8.3))(vitest@4.1.0)
     transitivePeerDependencies:
       - msw
 

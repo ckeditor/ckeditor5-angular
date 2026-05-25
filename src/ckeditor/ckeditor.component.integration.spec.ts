@@ -314,12 +314,12 @@ describe( 'CKEditorComponent integration', () => {
 
 				fixture = TestBed.createComponent( CKEditorComponent );
 				component = fixture.componentInstance;
-				component.editor = MockEditor;
+				component.editor = MockEditor as any;
 
 				const fixture2 = TestBed.createComponent( CKEditorComponent );
 				const component2 = fixture2.componentInstance;
 
-				component2.editor = MockEditor;
+				component2.editor = MockEditor as any;
 
 				window.onerror = null;
 

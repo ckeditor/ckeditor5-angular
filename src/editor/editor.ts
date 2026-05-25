@@ -30,7 +30,7 @@ import {
 	CloudServices
 } from 'ckeditor5';
 
-import { getLicenseKey } from '../ckeditor/get-license-key';
+import { getLicenseKey } from '../ckeditor/utils/get-license-key';
 
 export class AngularEditor extends ClassicEditor {
 	public static override builtinPlugins = [

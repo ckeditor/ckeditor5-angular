@@ -7,9 +7,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CKEditorComponent } from './ckeditor.component';
+import { EditorElementComponent } from './editor-element.component';
 
 @NgModule( {
-	imports: [ FormsModule, CommonModule ],
+	imports: [
+		FormsModule,
+		CommonModule,
+		EditorElementComponent
+	],
 	declarations: [ CKEditorComponent ],
 	exports: [ CKEditorComponent ]
 } )
