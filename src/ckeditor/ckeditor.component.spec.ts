@@ -10,6 +10,7 @@ import { MockEditor } from 'src/editor/mock-editor';
 
 import { CKEditorComponent } from './ckeditor.component';
 import { AngularIntegrationUsageDataPlugin } from './plugins/angular-integration-usage-data.plugin';
+import { EditorElementComponent } from './editor-element.component';
 
 describe( 'CKEditorComponent', () => {
 	let component: CKEditorComponent;
@@ -17,6 +18,7 @@ describe( 'CKEditorComponent', () => {
 
 	beforeEach( async () => {
 		await TestBed.configureTestingModule( {
+			imports: [ EditorElementComponent ],
 			declarations: [ CKEditorComponent ]
 		} ).compileComponents();
 	} );
