@@ -31,6 +31,7 @@ import {
 } )
 export class EditorElementComponent {
 	private readonly _hostRef = inject( ElementRef ) as ElementRef<HTMLElement>;
+
 	private readonly _renderer = inject( Renderer2 );
 
 	public readonly definition = input<EditorElementDefinition | null>( null );
