@@ -94,6 +94,7 @@ export default defineConfig( {
 				'src/generated/**',
 				'src/**/*.spec.ts',
 				'src/**/*.module.ts',
+				'src/app/**',
 				'src/editor/**',
 				'src/app/**/*.ts',
 				'src/environments/**',
