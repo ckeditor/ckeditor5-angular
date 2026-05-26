@@ -577,7 +577,7 @@ function getEditorElementDefinition(
 	config: EditorRelaxedConfig,
 	defaultTag: string
 ): EditorElementDefinition {
-	// Classic editor hides element rendered by React, so it makes no sense to use custom tag in this case.
+	// Classic editor hides the element rendered by the integration, so it makes no sense to use a custom tag here.
 	if ( !editor.editorName || editor.editorName === 'ClassicEditor' ) {
 		return defaultTag;
 	}
