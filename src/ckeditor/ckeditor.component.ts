@@ -115,15 +115,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	@Input() public tagName = 'div';
 
 	/**
-	 * Returns the element definition derived from the current editor constructor
-	 * and config. Used by the template to pass the correct definition down to
-	 * editor element component.
-	 */
-	public get elementDefinition(): EditorElementDefinition {
-		return getEditorElementDefinition( this.editor, this.config, this.tagName );
-	}
-
-	/**
 	 * The context watchdog.
 	 */
 	@Input() public watchdog?: ContextWatchdog;
@@ -205,6 +196,15 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 */
 	@ViewChild( 'editorEl', { static: true } )
 	private editorElementComponent!: EditorElementComponent;
+
+	/**
+	 * Returns the element definition derived from the current editor constructor
+	 * and config. Used by the template to pass the correct definition down to
+	 * editor element component.
+	 */
+	protected get elementDefinition(): EditorElementDefinition {
+		return getEditorElementDefinition( this.editor, this.config, this.tagName );
+	}
 
 	/**
 	 * The instance of the editor created by this component.
