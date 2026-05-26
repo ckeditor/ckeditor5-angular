@@ -80,6 +80,23 @@ describe( 'EditorElementComponent', () => {
 		expect( renderedElement?.getAttribute( 'role' ) ).toBe( 'textbox' );
 	} );
 
+	it( 'should support custom style properties', () => {
+		const definition: EditorElementDefinition = {
+			name: 'article',
+			styles: {
+				'--cke-test': 'blue'
+			}
+		};
+
+		fixture.componentRef.setInput( 'definition', definition );
+		fixture.detectChanges();
+
+		const hostElement: HTMLElement = fixture.nativeElement;
+		const renderedElement = hostElement.querySelector( 'article' )!;
+
+		expect( renderedElement.style.cssText ).to.equal( '--cke-test: blue;' );
+	} );
+
 	it( 'should accept a single string for classes configuration', () => {
 		const definition: EditorElementDefinition = {
 			name: 'p',
@@ -90,6 +107,7 @@ describe( 'EditorElementComponent', () => {
 		fixture.detectChanges();
 
 		const renderedElement = fixture.nativeElement.querySelector( 'p' );
+
 		expect( renderedElement?.classList.contains( 'single-class-name' ) ).toBe( true );
 	} );
 

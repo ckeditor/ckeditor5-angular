@@ -72,7 +72,7 @@ export class EditorElementComponent {
 
 		if ( def.styles ) {
 			for ( const [ property, value ] of Object.entries( def.styles ) ) {
-				this._renderer.setStyle( el, property, value );
+				el.style.setProperty( property, value );
 			}
 		}
 
