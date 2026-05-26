@@ -5,13 +5,13 @@
 
 import {
 	Component,
-	ElementRef,
 	EventEmitter,
 	forwardRef,
 	Inject,
 	Input,
 	NgZone,
 	Output,
+	ViewChild,
 	type AfterViewInit,
 	type OnChanges,
 	type OnDestroy,
@@ -40,11 +40,16 @@ import {
 	compareInstalledCKBaseVersion,
 	getInstalledCKBaseFeatures,
 	uid,
+	type EditorRelaxedConfig,
 	type EditorRelaxedConstructor
 } from '@ckeditor/ckeditor5-integrations-common';
-import { getLicenseKey } from './get-license-key';
+
+import { getLicenseKey } from './utils/get-license-key';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog';
+
+import type { EditorElementComponent } from './editor-element.component';
+import type { EditorElementDefinition } from './utils/normalize-editor-element-definition';
 
 const ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID = 'Lock from Angular integration (@ckeditor/ckeditor5-angular)';
 
@@ -65,7 +70,7 @@ export interface ChangeEvent<TEditor extends Editor = Editor> {
 
 @Component( {
 	selector: 'ckeditor',
-	template: '<ng-template></ng-template>',
+	template: '<ckeditor-editor-element [definition]="elementDefinition" #editorEl />',
 	// Integration with @angular/forms.
 	providers: [
 		{
@@ -78,15 +83,10 @@ export interface ChangeEvent<TEditor extends Editor = Editor> {
 } )
 export class CKEditorComponent<TEditor extends Editor = Editor> implements AfterViewInit, OnDestroy, OnChanges, ControlValueAccessor {
 	/**
-	 * The reference to the DOM element created by the component.
-	 */
-	private elementRef!: ElementRef<HTMLElement>;
-
-	/**
 	 * The constructor of the editor to be used for the instance of the component.
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
-	@Input() public editor?: EditorRelaxedConstructor<TEditor> & {
+	@Input( { required: true } ) public editor!: EditorRelaxedConstructor<TEditor> & {
 		EditorWatchdog: typeof EditorWatchdog;
 	};
 
@@ -109,6 +109,8 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * Tag name of the editor component.
 	 *
 	 * The default tag is 'div'.
+	 *
+	 * @deprecated Use `config.root.element` (or `config.roots.main.element`) instead.
 	 */
 	@Input() public tagName = 'div';
 
@@ -189,6 +191,22 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	@Output() public error = new EventEmitter<unknown>();
 
 	/**
+	 * Reference to the child component responsible for creating and managing
+	 * the DOM element that the editor attaches to.
+	 */
+	@ViewChild( 'editorEl', { static: true } )
+	private editorElementComponent!: EditorElementComponent;
+
+	/**
+	 * Returns the element definition derived from the current editor constructor
+	 * and config. Used by the template to pass the correct definition down to
+	 * editor element component.
+	 */
+	protected get elementDefinition(): EditorElementDefinition {
+		return getEditorElementDefinition( this.editor, this.config, this.tagName );
+	}
+
+	/**
 	 * The instance of the editor created by this component.
 	 */
 	public get editorInstance(): TEditor | null {
@@ -258,9 +276,8 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		return this.id;
 	}
 
-	public constructor( @Inject( ElementRef ) elementRef: ElementRef, @Inject( NgZone ) ngZone: NgZone ) {
+	public constructor( @Inject( NgZone ) ngZone: NgZone ) {
 		this.ngZone = ngZone;
-		this.elementRef = elementRef;
 
 		assertMinimumSupportedVersion();
 	}
@@ -364,15 +381,13 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * because of the issue in the collaboration mode (#6).
 	 */
 	private attachToWatchdog() {
-		const Editor = this.editor!;
+		const Editor = this.editor;
 
 		const supports = getInstalledCKBaseFeatures();
-		const element = document.createElement( this.tagName );
+		const element = this.editorElementComponent.element!;
 
 		const creator = ( config: EditorConfig ) => {
 			return this.ngZone.runOutsideAngular( async () => {
-				this.elementRef.nativeElement.appendChild( element );
-
 				const editor = await (
 					supports.elementConfigAttachment ?
 						Editor.create( assignElementToEditorConfig( Editor, element, config ) ) :
@@ -395,8 +410,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 		const destructor = async ( editor: Editor ) => {
 			await editor.destroy();
-
-			this.elementRef.nativeElement.removeChild( element );
 		};
 
 		const emitError = ( e?: unknown ) => {
@@ -554,4 +567,20 @@ function assertMinimumSupportedVersion(): void {
  */
 function getEditorFromWatchdogOrNull( watchdog: EditorWatchdog | ContextWatchdog, id: string ) {
 	return ( watchdog as any )._watchdogs.get( id );
+}
+
+/**
+ * Get definition of the element used to create editor.
+ */
+function getEditorElementDefinition(
+	editor: EditorRelaxedConstructor,
+	config: EditorRelaxedConfig,
+	defaultTag: string
+): EditorElementDefinition {
+	// Classic editor hides the element rendered by the integration, so it makes no sense to use a custom tag here.
+	if ( !editor.editorName || editor.editorName === 'ClassicEditor' ) {
+		return defaultTag;
+	}
+
+	return config.roots?.main?.element ?? config.root?.element ?? defaultTag;
 }

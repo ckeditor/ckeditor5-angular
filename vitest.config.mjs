@@ -96,6 +96,7 @@ export default defineConfig( {
 				'src/**/*.module.ts',
 				'src/app/**',
 				'src/editor/**',
+				'src/app/**/*.ts',
 				'src/environments/**',
 				'src/main.ts',
 				'src/polyfills.ts',

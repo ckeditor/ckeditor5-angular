@@ -28,3 +28,12 @@ minimumReleaseAgeExclude:
 shellEmulator: true
 shamefullyHoist: true
 preferFrozenLockfile: true
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  cypress: true
+  esbuild: true
+  lmdb: false
+  msgpackr-extract: false
+  protobufjs: true
+  snyk: false

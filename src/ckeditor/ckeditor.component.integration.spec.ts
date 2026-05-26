@@ -11,6 +11,7 @@ import { AngularEditor } from 'src/editor/editor';
 import { MockEditor } from 'src/editor/mock-editor';
 
 import { CKEditorComponent } from './ckeditor.component';
+import { EditorElementComponent } from './editor-element.component';
 
 describe( 'CKEditorComponent integration', () => {
 	let component: CKEditorComponent;
@@ -18,6 +19,7 @@ describe( 'CKEditorComponent integration', () => {
 
 	beforeEach( async () => {
 		await TestBed.configureTestingModule( {
+			imports: [ EditorElementComponent ],
 			declarations: [ CKEditorComponent ]
 		} ).compileComponents();
 	} );
@@ -30,7 +32,7 @@ describe( 'CKEditorComponent integration', () => {
 		beforeEach( async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
-			component.editor = AngularEditor;
+			component.editor = AngularEditor as any;
 		} );
 
 		afterEach( () => {
@@ -314,12 +316,12 @@ describe( 'CKEditorComponent integration', () => {
 
 				fixture = TestBed.createComponent( CKEditorComponent );
 				component = fixture.componentInstance;
-				component.editor = MockEditor;
+				component.editor = MockEditor as any;
 
 				const fixture2 = TestBed.createComponent( CKEditorComponent );
 				const component2 = fixture2.componentInstance;
 
-				component2.editor = MockEditor;
+				component2.editor = MockEditor as any;
 
 				window.onerror = null;
 

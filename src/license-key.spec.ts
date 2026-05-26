@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { getLicenseKey } from './ckeditor/get-license-key';
+import { getLicenseKey } from './ckeditor/utils/get-license-key';
 import { GENERATED_CKEDITOR_LICENSE_KEY } from './generated/license-key';
 
 describe( 'license key initialization', () => {

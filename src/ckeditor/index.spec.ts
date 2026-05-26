@@ -13,6 +13,7 @@ import {
 	CKEditorComponent,
 	CKEditorModule
 } from './index';
+import { EditorElementComponent } from './editor-element.component';
 
 describe( 'index.ts - the entry file', () => {
 	let component: CKEditorComponent;
@@ -20,6 +21,7 @@ describe( 'index.ts - the entry file', () => {
 
 	beforeEach( async () => {
 		await TestBed.configureTestingModule( {
+			imports: [ EditorElementComponent ],
 			declarations: [ CKEditorComponent ]
 		} )
 			.compileComponents();
