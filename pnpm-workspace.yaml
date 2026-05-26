@@ -11,17 +11,11 @@ onlyBuiltDependencies:
   - protobufjs
 
 overrides:
-  'axios@^1': '^1.15.0'
   'diff@^7': '^8.0.3'
-  'fast-xml-parser@^5': '^5.5.7'
-  'picomatch@^4': '^4.0.4'
-  'postcss@^8': '^8.5.10'
   'serialize-javascript@^6': '^7.0.5'
-  'protobufjs@^7': '^7.5.5'
-  'uuid@^8': '^14.0.0'
-  'uuid@^9': '^14.0.0'
   'tar@^6': '^7.5.11'
-  'vite@^6': '^6.4.2'
+  'webpack-dev-server@^5': '^5.2.4'
+  'ws@^8': '^8.20.1'
 
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
