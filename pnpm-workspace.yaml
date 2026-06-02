@@ -2,13 +2,16 @@ packages:
   - .
   - src/ckeditor
 
-onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - core-js
-  - cypress
-  - esbuild
-  - nice-napi
-  - protobufjs
+allowBuilds:
+  '@parcel/watcher': true
+  core-js: true
+  cypress: true
+  esbuild: true
+  lmdb: false
+  msgpackr-extract: false
+  nice-napi: true
+  protobufjs: true
+  snyk: false
 
 overrides:
   'diff@^7': '^8.0.3'
@@ -16,6 +19,9 @@ overrides:
   'tar@^6': '^7.5.11'
   'webpack-dev-server@^5': '^5.2.4'
   'ws@^8': '^8.20.1'
+  'qs@^6': '^6.15.2'
+  'uuid@^8': '^11.1.1'
+  'uuid@^9': '^11.1.1'
 
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
@@ -28,12 +34,3 @@ minimumReleaseAgeExclude:
 shellEmulator: true
 shamefullyHoist: true
 preferFrozenLockfile: true
-allowBuilds:
-  '@parcel/watcher': true
-  core-js: true
-  cypress: true
-  esbuild: true
-  lmdb: false
-  msgpackr-extract: false
-  protobufjs: true
-  snyk: false
