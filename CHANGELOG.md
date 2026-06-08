@@ -1,6 +1,55 @@
 Changelog
 =========
 
+## [11.2.0](https://github.com/ckeditor/ckeditor5-angular/compare/v11.1.2...v11.2.0) (June 8, 2026)
+
+### Features
+
+* It is now possible to customize the editable element tag name, classes, styles, and attributes via `config.root.element` or `config.roots.main.element`. The value can be a plain string (tag name) or an object:
+
+  ```ts
+  import { BalloonEditor } from 'ckeditor5';
+
+  // In your component:
+  public BalloonEditor = BalloonEditor;
+  public config = {
+  	root: {
+  		element: {
+  			name: 'article',
+  			classes: [ 'my-editor', 'custom-class' ],
+  			styles: { color: 'red' },
+  			attributes: { role: 'textbox' }
+  		}
+  	}
+  };
+  ```
+
+  ```html
+  <ckeditor [editor]="BalloonEditor" [config]="config"></ckeditor>
+  ```
+
+  To configure the root as a paragraph-like (inline-content only) editor, also pass `modelElement: '$inlineRoot'`:
+
+  ```ts
+  public config = {
+  	root: {
+  		element: 'h1',
+  		modelElement: '$inlineRoot',
+  		initialData: 'Document title',
+  		placeholder: 'Enter title...'
+  	}
+  };
+  ```
+
+  For editors that use the Angular-rendered element as their editable (such as `InlineEditor` or `BalloonEditor`), the editable falls back to the `tagName` input (`div` by default) when no element definition is provided in the config. For `ClassicEditor`, which creates its own editable internally, `config.root.element` (or `config.roots.main.element`) should always be provided explicitly.
+
+  The `tagName` input has been deprecated in favor of this new configuration.
+
+### Other changes
+
+* Readme simplification.
+
+
 ## [11.1.2](https://github.com/ckeditor/ckeditor5-angular/compare/v11.1.1...v11.1.2) (April 15, 2026)
 
 ### Bug fixes
@@ -27,13 +76,6 @@ Changelog
 ### Other changes
 
 * Accept internal CKEditor 5 releases in `peerDependencies`. Closes [#530](https://github.com/ckeditor/ckeditor5-angular/issues/530).
-
-
-## [11.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v10.1.0...v11.0.0) (November 27, 2025)
-
-### BREAKING CHANGES
-
-* Dropped support for Angular v18. The minimum supported Angular version is now **v19**. Closes [#514](https://github.com/ckeditor/ckeditor5-angular/issues/514).
 
 ---
 
