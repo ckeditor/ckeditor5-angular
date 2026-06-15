@@ -2,7 +2,7 @@ import type { ComponentFixture } from '@angular/core/testing';
 import { TestBed } from '@angular/core/testing';
 import type { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { CKEditorModule } from '../../ckeditor/ckeditor.module';
 import { SimpleUsageComponent } from './simple-usage.component';
@@ -23,10 +23,11 @@ describe( 'SimpleUsageComponent', () => {
 
 		fixture = TestBed.createComponent( SimpleUsageComponent );
 		component = fixture.componentInstance;
-		debugElement = fixture.debugElement.query( By.directive( CKEditorComponent ) );
-		ckeditorComponent = debugElement.componentInstance;
 
 		fixture.detectChanges();
+
+		debugElement = fixture.debugElement.query( By.directive( CKEditorComponent ) );
+		ckeditorComponent = debugElement.componentInstance;
 	} );
 
 	afterEach( () => {
@@ -39,20 +40,20 @@ describe( 'SimpleUsageComponent', () => {
 
 	describe( 'disabled state', () => {
 		it( 'should be set to false at start', () => {
-			expect( component.isDisabled ).toBeFalsy();
+			expect( component.isDisabled() ).toBeFalsy();
 		} );
 
 		it( 'should be synced', () => {
 			component.toggleDisableEditors();
 			fixture.detectChanges();
 
-			expect( component.isDisabled ).toBeTruthy();
+			expect( component.isDisabled() ).toBeTruthy();
 			expect( ckeditorComponent.disabled ).toBeTruthy();
 
 			component.toggleDisableEditors();
 			fixture.detectChanges();
 
-			expect( component.isDisabled ).toBeFalsy();
+			expect( component.isDisabled() ).toBeFalsy();
 			expect( ckeditorComponent.disabled ).toBeFalsy();
 		} );
 	} );
@@ -101,6 +102,79 @@ describe( 'SimpleUsageComponent', () => {
 			ckeditorComponent.error.emit();
 
 			expect( component.componentEvents ).toContain( 'The editor crashed.' );
+		} );
+	} );
+
+	describe( 'inline mode', () => {
+		afterEach( () => {
+			vi.useRealTimers();
+		} );
+
+		it( 'should have isInline false by default', () => {
+			expect( component.isInline() ).toBeFalsy();
+		} );
+
+		it( 'should have isEditorVisible true by default', () => {
+			expect( component.isEditorVisible() ).toBeTruthy();
+		} );
+
+		it( 'should derive $root modelElement from isInline by default', () => {
+			expect( component.editorConfig().root.modelElement ).toBe( '$root' );
+		} );
+
+		it( 'should toggle isInline and hide the editor immediately', () => {
+			vi.useFakeTimers();
+
+			component.toggleInlineMode();
+
+			expect( component.isInline() ).toBeTruthy();
+			expect( component.isEditorVisible() ).toBeFalsy();
+		} );
+
+		it( 'should derive $inlineRoot modelElement from isInline after toggle', () => {
+			vi.useFakeTimers();
+
+			component.toggleInlineMode();
+
+			expect( component.editorConfig().root.modelElement ).toBe( '$inlineRoot' );
+		} );
+
+		it( 'should restore isEditorVisible after the setTimeout fires', () => {
+			vi.useFakeTimers();
+
+			component.toggleInlineMode();
+			expect( component.isEditorVisible() ).toBeFalsy();
+
+			vi.runAllTimers();
+			fixture.detectChanges();
+
+			expect( component.isEditorVisible() ).toBeTruthy();
+		} );
+
+		it( 'should remount the <ckeditor> component after the timer fires', () => {
+			vi.useFakeTimers();
+
+			component.toggleInlineMode();
+			fixture.detectChanges();
+
+			expect( fixture.debugElement.query( By.directive( CKEditorComponent ) ) ).toBeNull();
+
+			vi.runAllTimers();
+			fixture.detectChanges();
+
+			expect( fixture.debugElement.query( By.directive( CKEditorComponent ) ) ).not.toBeNull();
+		} );
+
+		it( 'should toggle back to $root when called a second time', () => {
+			vi.useFakeTimers();
+
+			component.toggleInlineMode();
+			vi.runAllTimers();
+
+			component.toggleInlineMode();
+
+			expect( component.isInline() ).toBeFalsy();
+			expect( component.editorConfig().root.modelElement ).toBe( '$root' );
 		} );
 	} );
 } );
