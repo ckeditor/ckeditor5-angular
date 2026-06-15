@@ -3,14 +3,27 @@
 <p><strong>Note:</strong> Open the console for additional logs.</p>
 
 <p>
-	<button (click)="toggleDisableEditors()">{{ isDisabled ? 'Enable editors' : 'Disable editors' }}</button>
+	<button (click)="toggleDisableEditors()">{{ isDisabled() ? 'Enable editors' : 'Disable editors' }}</button>
+</p>
+
+<p>
+	<label>
+		<input
+			type="checkbox"
+			[checked]="isInline()"
+			(change)="toggleInlineMode()"
+		>
+		Inline mode
+	</label>
 </p>
 
 <h3>Classic build</h3>
 <ckeditor
+	*ngIf="isEditorVisible()"
 	[data]="editorData"
 	[editor]="Editor"
-	[disabled]="isDisabled"
+	[config]="editorConfig()"
+	[disabled]="isDisabled()"
 	id="classic-editor"
 	name="classic-editor"
 
