@@ -34,3 +34,4 @@ minimumReleaseAgeExclude:
 shellEmulator: true
 shamefullyHoist: true
 preferFrozenLockfile: true
+verifyDepsBeforeRun: false
