@@ -11,7 +11,7 @@ allowBuilds:
   msgpackr-extract: false
   nice-napi: true
   protobufjs: true
-  snyk: false
+  snyk: true
 
 overrides:
   'diff@^7': '^8.0.3'
@@ -34,3 +34,4 @@ minimumReleaseAgeExclude:
 shellEmulator: true
 shamefullyHoist: true
 preferFrozenLockfile: true
+verifyDepsBeforeRun: false
