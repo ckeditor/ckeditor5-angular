@@ -22,9 +22,9 @@
     "release:publish-packages": "node scripts/publishpackages.mjs"
   },
   "dependencies": {
-    "@angular/animations": "^19.2.19",
-    "@angular/common": "^19.2.19",
-    "@angular/compiler": "^19.2.19",
+    "@angular/animations": "^20.3.25",
+    "@angular/common": "^20.3.25",
+    "@angular/compiler": "^20.3.25",
     "@angular/core": "^19.2.19",
     "@angular/forms": "^19.2.19",
     "@angular/platform-browser": "^19.2.19",
@@ -40,7 +40,7 @@
     "@analogjs/vite-plugin-angular": "^2.5.1",
     "@analogjs/vitest-angular": "^2.2.3",
     "@angular-devkit/build-angular": "^19.2.26",
-    "@angular/cli": "^19.2.26",
+    "@angular/cli": "^20.3.30",
     "@angular/compiler-cli": "^19.2.19",
     "@angular/language-service": "^19.2.19",
     "@ckeditor/ckeditor5-dev-bump-year": "^55.6.0",
