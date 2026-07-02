@@ -35,6 +35,7 @@ minimumReleaseAgeExclude:
   - '@ckeditor/*'
   - '@cksource/*'
   - '*ckeditor5*'
+  - 'ckeditor5-premium-features'
   - 'axios'
   - 'vite'
 
