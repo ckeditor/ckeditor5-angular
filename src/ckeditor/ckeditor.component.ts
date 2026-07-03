@@ -504,7 +504,11 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		const modelDocument = editor.model.document;
 		const viewDocument = editor.editing.view.document;
 
-		modelDocument.on<ModelDocumentChangeEvent>( 'change:data', evt => {
+		// `.on()` comes from the `Emitter` mixin that `ModelDocument`/`ViewDocument` extend via an
+		// anonymous constructor type. Angular's ivy partial-compilation type-checker (ng-packagr)
+		// fails to resolve members inherited that way, unlike a plain `tsc` run, so the cast below
+		// works around the false-positive `TS2339` it reports.
+		( modelDocument as any ).on( 'change:data', ( evt: GetEventInfo<ModelDocumentChangeEvent> ) => {
 			this.ngZone.run( () => {
 				if ( this.disableTwoWayDataBinding ) {
 					return;
@@ -520,13 +524,13 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			} );
 		} );
 
-		viewDocument.on<ViewDocumentFocusEvent>( 'focus', evt => {
+		( viewDocument as any ).on( 'focus', ( evt: GetEventInfo<ViewDocumentFocusEvent> ) => {
 			this.ngZone.run( () => {
 				this.focus.emit( { event: evt, editor } );
 			} );
 		} );
 
-		viewDocument.on<ViewDocumentBlurEvent>( 'blur', evt => {
+		( viewDocument as any ).on( 'blur', ( evt: GetEventInfo<ViewDocumentBlurEvent> ) => {
 			this.ngZone.run( () => {
 				if ( this.cvaOnTouched ) {
 					this.cvaOnTouched();

@@ -587,7 +587,7 @@ describe( 'CKEditorComponent integration', () => {
 
 			await waitCycle();
 
-			vi.spyOn( appRef, 'tick' ).mockImplementation( () => {} );
+			const tickSpy = vi.spyOn( appRef as unknown as { _tick(): void }, '_tick' ).mockImplementation( () => {} );
 
 			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
 
@@ -600,7 +600,7 @@ describe( 'CKEditorComponent integration', () => {
 
 			await waitCycle();
 
-			expect( appRef.tick ).toHaveBeenCalledTimes( 1 );
+			expect( tickSpy ).toHaveBeenCalledTimes( 1 );
 		} );
 
 		it( 'should run change detection if error has listeners', async () => {
@@ -629,7 +629,7 @@ describe( 'CKEditorComponent integration', () => {
 
 			await waitCycle();
 
-			vi.spyOn( appRef, 'tick' ).mockImplementation( () => {} );
+			const tickSpy = vi.spyOn( appRef as unknown as { _tick(): void }, '_tick' ).mockImplementation( () => {} );
 
 			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
 
@@ -642,7 +642,7 @@ describe( 'CKEditorComponent integration', () => {
 
 			await waitCycle();
 
-			expect( appRef.tick ).toHaveBeenCalledTimes( 2 );
+			expect( tickSpy ).toHaveBeenCalledTimes( 2 );
 		} );
 	} );
 } );
