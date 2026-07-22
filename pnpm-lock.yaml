@@ -85,20 +85,20 @@ importers:
         specifier: ^20.3.25
         version: 20.3.25
       '@ckeditor/ckeditor5-dev-bump-year':
-        specifier: ^55.6.0
-        version: 55.6.3
+        specifier: ^58.0.0
+        version: 58.0.0
       '@ckeditor/ckeditor5-dev-changelog':
-        specifier: ^55.4.0
-        version: 55.6.3(@babel/core@7.29.7)(@types/node@14.18.63)(webpack@5.107.2)
+        specifier: ^58.0.0
+        version: 58.0.0(@types/node@14.18.63)
       '@ckeditor/ckeditor5-dev-ci':
-        specifier: ^55.4.0
-        version: 55.6.3
+        specifier: ^58.0.0
+        version: 58.0.0
       '@ckeditor/ckeditor5-dev-release-tools':
-        specifier: ^55.6.0
-        version: 55.6.3(@babel/core@7.29.7)(@types/node@14.18.63)(webpack@5.107.2)
+        specifier: ^58.0.0
+        version: 58.0.0(@types/node@14.18.63)
       '@ckeditor/ckeditor5-dev-utils':
-        specifier: ^55.4.0
-        version: 55.6.3(@babel/core@7.29.7)(webpack@5.107.2)
+        specifier: ^58.0.0
+        version: 58.0.0
       '@types/node':
         specifier: ^14.11.8
         version: 14.18.63
@@ -124,11 +124,11 @@ importers:
         specifier: ^10.0.0
         version: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
       eslint-config-ckeditor5:
-        specifier: ^18.1.0
-        version: 18.1.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
+        specifier: ^19.0.0
+        version: 19.0.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
       eslint-plugin-ckeditor5-rules:
-        specifier: ^18.1.0
-        version: 18.1.0
+        specifier: ^19.0.0
+        version: 19.0.0
       fs-extra:
         specifier: ^10.0.1
         version: 10.1.0
@@ -212,6 +212,10 @@ importers:
         version: 6.6.7
 
 packages:
+
+  '@11ty/gray-matter@2.1.0':
+    resolution: {integrity: sha512-fNdBOb3MgDz/1UCIoeY4wDuGbp+/3s5y6UrsyfMabECbh/CVycj7Er33JXqSxRwxrRKXcGE1Jipuq/1mODInsQ==}
+    engines: {node: '>=11'}
 
   '@algolia/abtesting@1.1.0':
     resolution: {integrity: sha512-sEyWjw28a/9iluA37KLGu8vjxEIlb60uxznfTUmXImy7H5NvbpSO6yYgmgH5KiD7j+zTUUihiST0jEP12IoXow==}
@@ -1085,26 +1089,26 @@ packages:
   '@ckeditor/ckeditor5-core@48.3.0':
     resolution: {integrity: sha512-SXfYS9uWGzRCVWWz88dtZLJ1moVEN6KPSFlDW9S5y5iNpHb45kyTO1lOZ0OBEtYusguyfoX7u9SL/tQUQrNhnQ==}
 
-  '@ckeditor/ckeditor5-dev-bump-year@55.6.3':
-    resolution: {integrity: sha512-SuFNwXCApRkyR3iJ81LESkblxFJC2VXLX7oN+EvAPYVh1FlTx1dc7tvWhuWZlDrd06s6KOStoEdLe/CUomA6jQ==}
+  '@ckeditor/ckeditor5-dev-bump-year@58.0.0':
+    resolution: {integrity: sha512-Z7h1jrjoqcbDDQGqICyx1nfXxWM6XRsVfDTApcpxLSz8NPyL/we4i+3kt6LGKom1CnrZdVzr4ilNodH4n8y9Gw==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
 
-  '@ckeditor/ckeditor5-dev-changelog@55.6.3':
-    resolution: {integrity: sha512-bkmPT+LZDRb1BIrTIoroj9rwklcm5pQFaHcv0SrPdFs/O3rq2lmagGcTAcyb41uR1BNGB9kXXlfxRQh+QdW0TA==}
-    engines: {node: '>=24.11.0', npm: '>=5.7.1'}
-    hasBin: true
-
-  '@ckeditor/ckeditor5-dev-ci@55.6.3':
-    resolution: {integrity: sha512-Fov0HGuusR/OmXX1elKjeZunNVKaT94wAgUrpc2WHCGvwWW4XT7G/Fo6pMQIP2U0m8aYKhycevgiFcAiep5gyA==}
+  '@ckeditor/ckeditor5-dev-changelog@58.0.0':
+    resolution: {integrity: sha512-H6um7KRtH3rHFJypRSwO1+spZhJHhXoLDWFA5VisP1mom5tdbRFJtU0NKahPMB+dug335j8YJp2H36HG20G3Wg==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
     hasBin: true
 
-  '@ckeditor/ckeditor5-dev-release-tools@55.6.3':
-    resolution: {integrity: sha512-FpXsmybGmjXGYZZxclj8FWZ2C66UoyeVbBmB0R8kdGLu9aArh1UHKWGdXmH7Do4UnlMtCkqhk9hzZJXhgKqwhg==}
+  '@ckeditor/ckeditor5-dev-ci@58.0.0':
+    resolution: {integrity: sha512-aP9ykYebNviBQrzeOBLLbGdDmbKv5emxBjIwdoRwg4oHBaQQvUfi5d5m+FezUSdrtF/NQt/glE88eRs+qZP7ag==}
+    engines: {node: '>=24.11.0', npm: '>=5.7.1'}
+    hasBin: true
+
+  '@ckeditor/ckeditor5-dev-release-tools@58.0.0':
+    resolution: {integrity: sha512-G5rEGg8PMQ1aBDa95n04UrF72F9Ro+FE6qUGjsQkil1M+uJdOuSktX6b1WoRSL4Gjunj+lxNJpXq/BkO8Hl/ow==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
 
-  '@ckeditor/ckeditor5-dev-utils@55.6.3':
-    resolution: {integrity: sha512-SZrLUKOoF5fq/ditrD9G5UdeZbhRxwbKb1OrlNSnUw4iClTkBw5JM0UHOrWnDooHZWBgOike8syQbYfVAnMOzg==}
+  '@ckeditor/ckeditor5-dev-utils@58.0.0':
+    resolution: {integrity: sha512-E54nWOz/mmFMeHc5mtzHYqIIrTn8UCOtZzYwtMrAVkGMC1TfKSaCCnblqAyrTGKro2dy1Rl/cy82FTeTBQ9DPQ==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
 
   '@ckeditor/ckeditor5-document-outline@48.3.0':
@@ -3366,6 +3370,9 @@ packages:
   '@types/serve-static@1.15.10':
     resolution: {integrity: sha512-tRs1dB+g8Itk72rlSI2ZrW6vZg0YrLI81iQSTkMmOqnqCaNr/8Ek4VwWcN5vZgCYWbg/JJSGBlUaYGAOP73qBw==}
 
+  '@types/shelljs@0.10.0':
+    resolution: {integrity: sha512-OEfyhE5Ox+FeoHbhrEDwm0kXxntO6nsyMRCFvNsIBHPZu5rV1w2OjPcLclaC/IZ1TlzZPgbeMfwAZEi5N238yQ==}
+
   '@types/sinonjs__fake-timers@8.1.1':
     resolution: {integrity: sha512-0kSuKjAS0TrGLJ0M/+8MaFkGsQhZpB6pxOmvS3K8FYI72K//YmdfoW9X2qPsAKh1mkwxGD5zib9s1FIFed6E8g==}
 
@@ -3735,9 +3742,6 @@ packages:
   arg@5.0.2:
     resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
 
-  argparse@1.0.10:
-    resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
-
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
 
@@ -3798,19 +3802,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.29.7
       webpack: '>=5.61.0'
-
-  babel-loader@10.1.1:
-    resolution: {integrity: sha512-JwKSzk2kjIe7mgPK+/lyZ2QAaJcpahNAdM+hgR2HI8D0OJVkdj8Rl6J3kaLYki9pwF7P2iWnD8qVv80Lq1ABtg==}
-    engines: {node: ^18.20.0 || ^20.10.0 || >=22.0.0}
-    peerDependencies:
-      '@babel/core': ^7.29.7
-      '@rspack/core': ^1.0.0 || ^2.0.0-0
-      webpack: '>=5.61.0'
-    peerDependenciesMeta:
-      '@rspack/core':
-        optional: true
-      webpack:
-        optional: true
 
   babel-plugin-polyfill-corejs2@0.4.17:
     resolution: {integrity: sha512-aTyf30K/rqAsNwN76zYrdtx8obu0E4KoUME29B1xj+B3WxgvWkp943vYQ+z8Mv3lw9xHXMHpvSPOBxzAkIa94w==}
@@ -4247,18 +4238,6 @@ packages:
       webpack:
         optional: true
 
-  css-loader@7.1.4:
-    resolution: {integrity: sha512-vv3J9tlOl04WjiMvHQI/9tmIrCxVrj6PFbHemBB1iihpeRbi/I4h033eoFIhwxBBqLhI0KYFS7yvynBFhIZfTw==}
-    engines: {node: '>= 18.12.0'}
-    peerDependencies:
-      '@rspack/core': 0.x || ^1.0.0 || ^2.0.0-0
-      webpack: ^5.27.0
-    peerDependenciesMeta:
-      '@rspack/core':
-        optional: true
-      webpack:
-        optional: true
-
   css-select@6.0.0:
     resolution: {integrity: sha512-rZZVSLle8v0+EY8QAkDWrKhpgt6SA5OtHsgBnsj6ZaLb5dmDVOWUDtQitd9ydxxvEjhewNudS6eTVU7uOyzvXw==}
 
@@ -4517,11 +4496,6 @@ packages:
   es6-error@4.1.1:
     resolution: {integrity: sha512-Um/+FxMr9CISWh0bi5Zv0iOD+4cFh5qLeks1qhAopKVAJw3drgKbKySikp7wGhDL0HPeaja0P5ULZrxLkniUVg==}
 
-  esbuild-loader@4.5.0:
-    resolution: {integrity: sha512-rVYe97IN1+VoealVHQ3STEPbfTm+vvPk7AZPrL53Pt6JUGBhHTnIqyaow7EveMFlmQ2A1bLp7q19sP4PppaCDQ==}
-    peerDependencies:
-      webpack: ^4.40.0 || ^5.0.0
-
   esbuild-wasm@0.28.1:
     resolution: {integrity: sha512-p/GD4E8oYRjg3kjdKrnMb0s4PzXgJF42e0MF4H0+ACyK/kIlFRp3e0fzOleIG+wBBm6MM3XQrbpe7soEA+vJIA==}
     engines: {node: '>=18'}
@@ -4556,15 +4530,15 @@ packages:
     resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
     engines: {node: '>=12'}
 
-  eslint-config-ckeditor5@18.1.0:
-    resolution: {integrity: sha512-65yQYs1SPjirxtMYGj3M1r0DhuGMmnfccDfFzjiqawunaMXer0HXbexYUqTaeM476mjiiAIaeRtV0Etz9hiM7Q==}
+  eslint-config-ckeditor5@19.0.0:
+    resolution: {integrity: sha512-LCngFCHjuCmLOOze1BicUieFCbnIFnlnuiQvfjma4Qs0LfnClosWbsfhxjCLuHcgBgvGjU7whf1v80VGShVbKg==}
     engines: {node: '>=24.11.0'}
     peerDependencies:
       eslint: ^10.0.0
       typescript: ^5.5.4
 
-  eslint-plugin-ckeditor5-rules@18.1.0:
-    resolution: {integrity: sha512-arHlwq24iiktj8RMs5rxpnRGl/EgGoZUj7VBYvbHCA5Ku6jwh7fwjQJ5fhqDD4OMSBsxyGi4Pz4KuxN+a9T/iw==}
+  eslint-plugin-ckeditor5-rules@19.0.0:
+    resolution: {integrity: sha512-nbDuphrXCh3rhb0FLZfPZaB9DaJ3mYoZcxT91vqx9+Uvsw3glmRwgIiIgh4k4dsshm77XDhZu8rjVpqP/lAkYg==}
     engines: {node: '>=24.11.0'}
 
   eslint-plugin-mocha@11.3.0:
@@ -4609,11 +4583,6 @@ packages:
   espree@11.2.0:
     resolution: {integrity: sha512-7p3DrVEIopW1B1avAGLuCSh1jubc01H2JHc8B4qqGblmg5gI9yumBgACjWo4JlIc04ufug4xJ3SQI8HkS/Rgzw==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
-
-  esprima@4.0.1:
-    resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
-    engines: {node: '>=4'}
-    hasBin: true
 
   esquery@1.7.0:
     resolution: {integrity: sha512-Ap6G0WQwcU/LHsvLwON1fAQX9Zp0A2Y6Y/cJBl9r/JbW90Zyg4/zbG6zzKa2OTALELarYHmKu0GhpM5EO+7T0g==}
@@ -4904,9 +4873,6 @@ packages:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
     engines: {node: '>=10'}
 
-  get-tsconfig@4.14.0:
-    resolution: {integrity: sha512-yTb+8DXzDREzgvYmh6s9vHsSVCHeC0G3PI5bEXNBHtmshPnO+S5O7qgLEOn0I5QvMy6kpZN8K1NKGyilLb93wA==}
-
   getos@3.2.1:
     resolution: {integrity: sha512-U56CfOK17OKgTVqozZjUKNdkfEv6jk5WISBJ8SHoagjE6L69zOwl3Z+O8myjY9MEW3i2HPWQBt/LTbCgcC973Q==}
 
@@ -4963,10 +4929,6 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
-
-  gray-matter@4.0.3:
-    resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
-    engines: {node: '>=6.0'}
 
   handle-thing@2.0.1:
     resolution: {integrity: sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==}
@@ -5407,10 +5369,6 @@ packages:
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
-
-  js-yaml@3.15.0:
-    resolution: {integrity: sha512-ttBQIIQPDeLjpPOohtUdXuXUVoA2uIB6fEH9HyJ7234s5mBJ5wTx20njxplLZQgLaOfpmPQA7X2t5AX6tIPbog==}
-    hasBin: true
 
   js-yaml@4.2.0:
     resolution: {integrity: sha512-ePWsvanv0DWuDRsW8dnt+R4jQ31SCRCQ7hhNcPXZPsoBZiemuZNYGf7adZdqX2D86j6rvKp3RpCxVTSb8WQlOw==}
@@ -5946,12 +5904,6 @@ packages:
   mimic-function@5.0.1:
     resolution: {integrity: sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==}
     engines: {node: '>=18'}
-
-  mini-css-extract-plugin@2.10.2:
-    resolution: {integrity: sha512-AOSS0IdEB95ayVkxn5oGzNQwqAi2J0Jb/kKm43t7H73s8+f5873g0yuj0PNvK4dO75mu5DHg4nlgp4k6Kga8eg==}
-    engines: {node: '>= 12.13.0'}
-    peerDependencies:
-      webpack: ^5.0.0
 
   mini-css-extract-plugin@2.9.4:
     resolution: {integrity: sha512-ZWYT7ln73Hptxqxk2DxPU9MmapXRhxkJD6tkSR04dnQxm8BGu2hzgKLugK5yySD97u/8yy7Ma7E76k9ZdvtjkQ==}
@@ -6633,9 +6585,6 @@ packages:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}
     engines: {node: '>=8'}
 
-  resolve-pkg-maps@1.0.0:
-    resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
-
   resolve-url-loader@5.0.0:
     resolution: {integrity: sha512-uZtduh8/8srhBoMx//5bwqjQ+rfYOUq8zC9NrMUGtjBiGTtFJM42s58/36+hTqeqINcnYe08Nj3LkK9lW4N8Xg==}
     engines: {node: '>=12'}
@@ -6991,9 +6940,6 @@ packages:
   split@0.3.3:
     resolution: {integrity: sha512-wD2AeVmxXRBoX44wAycgjVpMhvbwdI2aZjCkvfNcH1YqHQvJVa1duWc73OyVGJUc05fhFaTZeQ/PYsrmyH0JVA==}
 
-  sprintf-js@1.0.3:
-    resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
-
   sprintf-js@1.1.3:
     resolution: {integrity: sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==}
 
@@ -7065,10 +7011,6 @@ packages:
     resolution: {integrity: sha512-yDPMNjp4WyfYBkHnjIRLfca1i6KMyGCtsVgoKe/z1+6vukgaENdgGBZt+ZmKPc4gavvEZ5OgHfHdrazhgNyG7w==}
     engines: {node: '>=12'}
 
-  strip-bom-string@1.0.0:
-    resolution: {integrity: sha512-uCC2VHvQRYu+lMh4My/sFNmF2klFymLX1wHJeXnbEJERpV/ZsVuonzerjfrGpIGF7LBVa1O7i9kjiWvJiFck8g==}
-    engines: {node: '>=0.10.0'}
-
   strip-final-newline@2.0.0:
     resolution: {integrity: sha512-BrpvfNAE3dcvq7ll3xVumzjKjZQ5tI1sEUIKr3Uoks0XUl45St3FlatVqef9prk4jRDzhW6WZg+3bk93y6pLjA==}
     engines: {node: '>=6'}
@@ -7078,12 +7020,6 @@ packages:
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
-
-  style-loader@4.0.0:
-    resolution: {integrity: sha512-1V4WqhhZZgjVAVJyt7TdDPZoPBPNHbekX4fWnCJL1yQukhCeZhJySUL+gL9y6sNdN95uEOS83Y55SqHcP7MzLA==}
-    engines: {node: '>= 18.12.0'}
-    peerDependencies:
-      webpack: ^5.27.0
 
   style-mod@4.1.3:
     resolution: {integrity: sha512-i/n8VsZydrugj3Iuzll8+x/00GH2vnYsk1eomD8QiRrSAeW6ItbCQDtfXCeJHd0iwiNagqjQkvpvREEPtW3IoQ==}
@@ -7747,6 +7683,11 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
 snapshots:
+
+  '@11ty/gray-matter@2.1.0':
+    dependencies:
+      js-yaml: 4.2.0
+      section-matter: 1.0.0
 
   '@algolia/abtesting@1.1.0':
     dependencies:
@@ -9083,36 +9024,33 @@ snapshots:
       '@ckeditor/ckeditor5-watchdog': 48.3.0
       es-toolkit: 1.45.1
 
-  '@ckeditor/ckeditor5-dev-bump-year@55.6.3':
+  '@ckeditor/ckeditor5-dev-bump-year@58.0.0':
     dependencies:
       glob: 13.0.6
 
-  '@ckeditor/ckeditor5-dev-changelog@55.6.3(@babel/core@7.29.7)(@types/node@14.18.63)(webpack@5.107.2)':
+  '@ckeditor/ckeditor5-dev-changelog@58.0.0(@types/node@14.18.63)':
     dependencies:
-      '@ckeditor/ckeditor5-dev-utils': 55.6.3(@babel/core@7.29.7)(webpack@5.107.2)
+      '@11ty/gray-matter': 2.1.0
+      '@ckeditor/ckeditor5-dev-utils': 58.0.0
       cac: 7.0.0
       date-fns: 4.4.0
       glob: 13.0.6
-      gray-matter: 4.0.3
       inquirer: 12.11.1(@types/node@14.18.63)
       semver: 7.8.4
       upath: 2.0.1
     transitivePeerDependencies:
-      - '@babel/core'
-      - '@rspack/core'
       - '@types/node'
       - supports-color
-      - webpack
 
-  '@ckeditor/ckeditor5-dev-ci@55.6.3':
+  '@ckeditor/ckeditor5-dev-ci@58.0.0':
     dependencies:
       '@octokit/rest': 22.0.1
       slack-notify: 2.0.7
       snyk: 1.1305.1
 
-  '@ckeditor/ckeditor5-dev-release-tools@55.6.3(@babel/core@7.29.7)(@types/node@14.18.63)(webpack@5.107.2)':
+  '@ckeditor/ckeditor5-dev-release-tools@58.0.0(@types/node@14.18.63)':
     dependencies:
-      '@ckeditor/ckeditor5-dev-utils': 55.6.3(@babel/core@7.29.7)(webpack@5.107.2)
+      '@ckeditor/ckeditor5-dev-utils': 58.0.0
       '@octokit/rest': 22.0.1
       cli-columns: 4.0.0
       glob: 13.0.6
@@ -9122,36 +9060,24 @@ snapshots:
       simple-git: 3.36.0
       upath: 2.0.1
     transitivePeerDependencies:
-      - '@babel/core'
-      - '@rspack/core'
       - '@types/node'
       - supports-color
-      - webpack
 
-  '@ckeditor/ckeditor5-dev-utils@55.6.3(@babel/core@7.29.7)(webpack@5.107.2)':
+  '@ckeditor/ckeditor5-dev-utils@58.0.0':
     dependencies:
+      '@types/shelljs': 0.10.0
       '@types/through2': 2.0.41
-      babel-loader: 10.1.1(@babel/core@7.29.7)(webpack@5.107.2)
       cli-cursor: 5.0.0
       cli-spinners: 3.4.0
-      css-loader: 7.1.4(webpack@5.107.2)
-      esbuild-loader: 4.5.0(webpack@5.107.2)
       glob: 13.0.6
       is-interactive: 2.0.0
-      lightningcss: 1.32.0
-      mini-css-extract-plugin: 2.10.2(webpack@5.107.2)
       pacote: 21.5.1(supports-color@8.1.1)
-      raw-loader: 4.0.2(webpack@5.107.2)
       shelljs: 0.10.0
       simple-git: 3.36.0
-      style-loader: 4.0.0(webpack@5.107.2)
       through2: 4.0.2
       upath: 2.0.1
     transitivePeerDependencies:
-      - '@babel/core'
-      - '@rspack/core'
       - supports-color
-      - webpack
 
   '@ckeditor/ckeditor5-document-outline@48.3.0':
     dependencies:
@@ -11610,6 +11536,11 @@ snapshots:
       '@types/node': 14.18.63
       '@types/send': 0.17.6
 
+  '@types/shelljs@0.10.0':
+    dependencies:
+      '@types/node': 14.18.63
+      fast-glob: 3.3.3
+
   '@types/sinonjs__fake-timers@8.1.1': {}
 
   '@types/sizzle@2.3.10': {}
@@ -12086,10 +12017,6 @@ snapshots:
 
   arg@5.0.2: {}
 
-  argparse@1.0.10:
-    dependencies:
-      sprintf-js: 1.0.3
-
   argparse@2.0.1: {}
 
   array-flatten@1.1.1: {}
@@ -12151,13 +12078,6 @@ snapshots:
       '@babel/core': 7.29.7
       find-up: 5.0.0
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.12)(webpack-cli@5.1.4)
-
-  babel-loader@10.1.1(@babel/core@7.29.7)(webpack@5.107.2):
-    dependencies:
-      '@babel/core': 7.29.7
-      find-up: 5.0.0
-    optionalDependencies:
-      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.15)(webpack-cli@5.1.4)
 
   babel-plugin-polyfill-corejs2@0.4.17(@babel/core@7.29.7):
     dependencies:
@@ -12698,19 +12618,6 @@ snapshots:
     optionalDependencies:
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.12)(webpack-cli@5.1.4)
 
-  css-loader@7.1.4(webpack@5.107.2):
-    dependencies:
-      icss-utils: 5.1.0(postcss@8.5.15)
-      postcss: 8.5.15
-      postcss-modules-extract-imports: 3.1.0(postcss@8.5.15)
-      postcss-modules-local-by-default: 4.2.0(postcss@8.5.15)
-      postcss-modules-scope: 3.2.1(postcss@8.5.15)
-      postcss-modules-values: 4.0.0(postcss@8.5.15)
-      postcss-value-parser: 4.2.0
-      semver: 7.8.4
-    optionalDependencies:
-      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.15)(webpack-cli@5.1.4)
-
   css-select@6.0.0:
     dependencies:
       boolbase: 1.0.0
@@ -12838,7 +12745,8 @@ snapshots:
 
   destroy@1.2.0: {}
 
-  detect-libc@2.1.2: {}
+  detect-libc@2.1.2:
+    optional: true
 
   detect-node@2.1.0: {}
 
@@ -12969,14 +12877,6 @@ snapshots:
 
   es6-error@4.1.1: {}
 
-  esbuild-loader@4.5.0(webpack@5.107.2):
-    dependencies:
-      esbuild: 0.28.1
-      get-tsconfig: 4.14.0
-      loader-utils: 2.0.4
-      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.15)(webpack-cli@5.1.4)
-      webpack-sources: 3.5.0
-
   esbuild-wasm@0.28.1: {}
 
   esbuild@0.25.12:
@@ -13047,14 +12947,14 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-config-ckeditor5@18.1.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3):
+  eslint-config-ckeditor5@19.0.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3):
     dependencies:
       '@eslint/css': 1.4.0
       '@eslint/js': 10.0.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
       '@eslint/markdown': 6.6.0
       '@stylistic/eslint-plugin': 4.4.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
       eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
-      eslint-plugin-ckeditor5-rules: 18.1.0
+      eslint-plugin-ckeditor5-rules: 19.0.0
       eslint-plugin-mocha: 11.3.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
       globals: 16.5.0
       typescript: 5.8.3
@@ -13062,7 +12962,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-ckeditor5-rules@18.1.0:
+  eslint-plugin-ckeditor5-rules@19.0.0:
     dependencies:
       '@es-joy/jsdoccomment': 0.50.2
       '@eslint/css-tree': 4.0.4
@@ -13144,8 +13044,6 @@ snapshots:
       acorn: 8.17.0
       acorn-jsx: 5.3.2(acorn@8.17.0)
       eslint-visitor-keys: 5.0.1
-
-  esprima@4.0.1: {}
 
   esquery@1.7.0:
     dependencies:
@@ -13501,10 +13399,6 @@ snapshots:
 
   get-stream@6.0.1: {}
 
-  get-tsconfig@4.14.0:
-    dependencies:
-      resolve-pkg-maps: 1.0.0
-
   getos@3.2.1:
     dependencies:
       async: 3.2.6
@@ -13560,13 +13454,6 @@ snapshots:
   gopd@1.2.0: {}
 
   graceful-fs@4.2.11: {}
-
-  gray-matter@4.0.3:
-    dependencies:
-      js-yaml: 3.15.0
-      kind-of: 6.0.3
-      section-matter: 1.0.0
-      strip-bom-string: 1.0.0
 
   handle-thing@2.0.1: {}
 
@@ -14027,11 +13914,6 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@3.15.0:
-    dependencies:
-      argparse: 1.0.10
-      esprima: 4.0.1
-
   js-yaml@4.2.0:
     dependencies:
       argparse: 2.0.1
@@ -14198,6 +14080,7 @@ snapshots:
       lightningcss-linux-x64-musl: 1.32.0
       lightningcss-win32-arm64-msvc: 1.32.0
       lightningcss-win32-x64-msvc: 1.32.0
+    optional: true
 
   lines-and-columns@1.2.4: {}
 
@@ -14777,12 +14660,6 @@ snapshots:
   mimic-fn@2.1.0: {}
 
   mimic-function@5.0.1: {}
-
-  mini-css-extract-plugin@2.10.2(webpack@5.107.2):
-    dependencies:
-      schema-utils: 4.3.3
-      tapable: 2.3.3
-      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.15)(webpack-cli@5.1.4)
 
   mini-css-extract-plugin@2.9.4(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.12)(webpack-cli@5.1.4)):
     dependencies:
@@ -15554,8 +15431,6 @@ snapshots:
 
   resolve-from@5.0.0: {}
 
-  resolve-pkg-maps@1.0.0: {}
-
   resolve-url-loader@5.0.0:
     dependencies:
       adjust-sourcemap-loader: 4.0.0
@@ -16077,8 +15952,6 @@ snapshots:
     dependencies:
       through: 2.3.8
 
-  sprintf-js@1.0.3: {}
-
   sprintf-js@1.1.3: {}
 
   sshpk@1.18.0:
@@ -16165,18 +16038,12 @@ snapshots:
     dependencies:
       ansi-regex: 6.2.2
 
-  strip-bom-string@1.0.0: {}
-
   strip-final-newline@2.0.0: {}
 
   style-loader@2.0.0(webpack@5.107.2):
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.15)(webpack-cli@5.1.4)
-
-  style-loader@4.0.0(webpack@5.107.2):
-    dependencies:
       webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.15)(webpack-cli@5.1.4)
 
   style-mod@4.1.3: {}
