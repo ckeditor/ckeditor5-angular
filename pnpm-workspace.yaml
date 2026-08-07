@@ -14,30 +14,22 @@ allowBuilds:
   snyk: true
 
 overrides:
-  '@typescript-eslint/utils@^8.32': '^8.57.0'
-  'diff@^7': '^8.0.3'
-  'serialize-javascript@^6': '^7.0.5'
-  'tar@^6': '^7.5.11'
-  'webpack-dev-server@^5': '^5.2.5'
-  'ws@^8': '^8.20.1'
+  '@modelcontextprotocol/sdk@^1': '^1.30.0'
+  'esbuild@^0.27': '^0.28.1'
+  'http-proxy-middleware@^3': '^3.0.7'
+  'postcss@^8': '^8.5.23'
+  'protobufjs@^7': '^7.6.5'
   'qs@^6': '^6.15.2'
   'uuid@^8': '^11.1.1'
   'uuid@^9': '^11.1.1'
-  'esbuild@^0.27': '^0.28.1'
-  'esbuild@^0.28': '^0.28.1'
-  'protobufjs@^7': '^7.6.4'
-  'vite@^6': '^6.4.3'
-  '@babel/core@^7': '^7.29.7'
-  'http-proxy-middleware@^3': '^3.0.7'
-  'piscina@^4': '^4.9.3'
+  'webpack-dev-server@^5': '^5.2.6'
+  'ws@^8': '^8.20.1'
 
 minimumReleaseAge: 4320 # 3 days
 minimumReleaseAgeExclude:
   - '@ckeditor/*'
   - '@cksource/*'
   - '*ckeditor5*'
-  - 'axios'
-  - 'vite'
 
 shellEmulator: true
 shamefullyHoist: true
