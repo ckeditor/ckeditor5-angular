@@ -54,7 +54,7 @@
     "ckeditor5": "^48.3.0",
     "ckeditor5-premium-features": "^48.3.0",
     "css-loader": "^5.2.7",
-    "cypress": "^13.17.0",
+    "cypress": "^15.16.0",
     "eslint": "^10.0.0",
     "eslint-config-ckeditor5": "^19.0.0",
     "eslint-plugin-ckeditor5-rules": "^19.0.0",
