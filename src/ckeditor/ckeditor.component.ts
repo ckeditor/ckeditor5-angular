@@ -290,7 +290,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 		// The editor may still be starting. Without this, the component would find nothing to destroy and
 		// the creation would then register a page-level error callback that nothing would ever remove.
-		await this.creating;
+		//
+		// Whatever it settles as: if something after `create()` threw, the editor still exists and still
+		// has to be taken down, so the rejection must not stop the teardown below.
+		await this.creating?.catch( () => {} );
 
 		this.offEditorError?.();
 		this.offEditorError = undefined;
@@ -413,6 +416,8 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 			this.currentEditor = editor;
 
+			// Held above before anything else runs, so that a throw below still leaves an editor the
+			// component knows about and destroys.
 			if ( this.initiallyDisabled ) {
 				editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
 			}

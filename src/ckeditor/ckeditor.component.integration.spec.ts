@@ -351,6 +351,11 @@ describe( 'CKEditorComponent integration', () => {
 			return { fixture: created, editor: component.editorInstance, errors };
 		}
 
+		beforeEach( () => {
+			// The dispatched errors are meant for the reporter; without this the runner picks them up too.
+			window.onerror = null;
+		} );
+
 		function throwFrom( editor: any ): CKEditorError {
 			/**
 			 * Thrown on purpose by this test, so that there is something to report.
@@ -360,6 +365,9 @@ describe( 'CKEditorComponent integration', () => {
 			const error = new CKEditorError( 'a-custom-error', editor );
 
 			Promise.resolve().then( () => {
+				// The error is meant for the reporter. Swallowing the event keeps the test runner from
+				// treating it as an unhandled failure of the run.
+				window.addEventListener( 'error', evt => evt.preventDefault(), { capture: true, once: true } );
 				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
 			} );
 
@@ -396,6 +404,37 @@ describe( 'CKEditorComponent integration', () => {
 
 			first.fixture.destroy();
 			second.fixture.destroy();
+		} );
+
+		// The reporter drops errors from an editor that is no longer ready, so a silent component proves
+		// nothing about the unsubscribe. What it costs is the page-level listeners, which come down only
+		// when the last registration goes, so that is what is asserted.
+		it( 'should unregister the reporting when the component is destroyed', async () => {
+			const off = vi.fn();
+			const register = vi.spyOn( AngularEditor, 'onEditorError' ).mockReturnValue( off );
+			const { fixture: created } = await mountReal();
+
+			expect( register ).toHaveBeenCalledOnce();
+			expect( off ).not.toHaveBeenCalled();
+
+			created.destroy();
+			await waitCycle();
+
+			expect( off ).toHaveBeenCalledOnce();
+		} );
+
+		it( 'should destroy an editor that finished starting after the component was destroyed', async () => {
+			const created = TestBed.createComponent( CKEditorComponent );
+			const component = created.componentInstance;
+
+			component.editor = AngularEditor;
+			created.detectChanges();
+
+			// Destroyed while `create()` is still in flight.
+			created.destroy();
+			await waitCycle();
+
+			expect( component.editorInstance ).toBeNull();
 		} );
 
 		it( 'should stop emitting once the component is destroyed', async () => {
@@ -445,6 +484,9 @@ describe( 'CKEditorComponent integration', () => {
 			error.is = () => true;
 			error.context = oldEditor;
 			Promise.resolve().then( () => {
+				// The error is meant for the reporter. Swallowing the event keeps the test runner from
+				// treating it as an unhandled failure of the run.
+				window.addEventListener( 'error', evt => evt.preventDefault(), { capture: true, once: true } );
 				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
 			} );
 
@@ -488,6 +530,9 @@ describe( 'CKEditorComponent integration', () => {
 			error.is = () => true;
 			error.context = oldEditor;
 			Promise.resolve().then( () => {
+				// The error is meant for the reporter. Swallowing the event keeps the test runner from
+				// treating it as an unhandled failure of the run.
+				window.addEventListener( 'error', evt => evt.preventDefault(), { capture: true, once: true } );
 				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
 			} );
 
