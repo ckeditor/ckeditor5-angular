@@ -22,16 +22,13 @@ import { first } from 'rxjs/operators';
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from '@angular/forms';
 
 import type {
-	ContextWatchdog,
-	EditorWatchdog,
-	WatchdogConfig,
 	Editor,
 	EditorConfig,
+	EditorErrorCallback,
 	GetEventInfo,
 	ModelDocumentChangeEvent,
 	ViewDocumentBlurEvent,
-	ViewDocumentFocusEvent,
-	ContextWatchdogItemConfiguration
+	ViewDocumentFocusEvent
 } from 'ckeditor5';
 
 import {
@@ -46,7 +43,6 @@ import {
 
 import { getLicenseKey } from './utils/get-license-key';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
-import { DisabledEditorWatchdog, type EditorRelaxedCreatorFunction } from './disabled-editor-watchdog';
 
 import type { EditorElementComponent } from './editor-element.component';
 import type { EditorElementDefinition } from './utils/normalize-editor-element-definition';
@@ -87,7 +83,12 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * It can be e.g. the `ClassicEditorBuild`, `InlineEditorBuild` or some custom editor.
 	 */
 	@Input( { required: true } ) public editor!: EditorRelaxedConstructor<TEditor> & {
-		EditorWatchdog: typeof EditorWatchdog;
+
+		/**
+		 * Declared here because the component reaches for it instead of importing `onEditorError()`.
+		 * Every editor class has it — it is a static on `Editor`.
+		 */
+		onEditorError: ( callback: EditorErrorCallback ) => () => void;
 	};
 
 	/**
@@ -113,21 +114,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * @deprecated Use `config.root.element` (or `config.roots.main.element`) instead.
 	 */
 	@Input() public tagName = 'div';
-
-	/**
-	 * The context watchdog.
-	 */
-	@Input() public watchdog?: ContextWatchdog;
-
-	/**
-	 * Config for the EditorWatchdog.
-	 */
-	@Input() public editorWatchdogConfig?: WatchdogConfig;
-
-	/**
-	 * When set to `true`, the editor watchdog is disabled, and a fake watchdog is used.
-	 */
-	@Input() public disableWatchdog = false;
 
 	/**
 	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
@@ -210,24 +196,29 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * The instance of the editor created by this component.
 	 */
 	public get editorInstance(): TEditor | null {
-		let editorWatchdog = this.editorWatchdog;
-
-		if ( this.watchdog && !this.disableWatchdog ) {
-			editorWatchdog = getEditorFromWatchdogOrNull( this.watchdog, this.id );
-		}
-
-		if ( editorWatchdog ) {
-			return editorWatchdog.editor;
-		}
-
-		return null;
+		return this.currentEditor ?? null;
 	}
 
 	/**
-	 * The editor watchdog. It is created when the context watchdog is not passed to the component.
-	 * It keeps the editor running.
+	 * The editor created by this component. Nothing wraps it any more, so the component holds it directly.
 	 */
-	private editorWatchdog?: EditorWatchdog<TEditor> | DisabledEditorWatchdog<TEditor>;
+	private currentEditor?: TEditor;
+
+	/**
+	 * Unregisters the error reporting callback when the editor goes away.
+	 */
+	private offEditorError?: () => void;
+
+	/**
+	 * The pending creation, so that destroying the component can wait for it instead of walking away from
+	 * an editor that does not exist yet.
+	 */
+	private creating?: Promise<void>;
+
+	/**
+	 * Whether the component is already on its way out. Creation checks it, because it can finish after.
+	 */
+	private isDestroyed = false;
 
 	/**
 	 * If the component is read–only before the editor instance is created, it remembers that state,
@@ -263,11 +254,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	private isEditorSettingData = false;
 
 	/**
-	 * Listener bound to the watchdog `itemError` event.
-	 */
-	private watchdogItemErrorListener?: ( evt: unknown, { itemId }: { itemId: string } ) => void;
-
-	/**
 	 * The unique ID of the editor instance.
 	 */
 	private id = uid();
@@ -287,17 +273,11 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 		if ( Object.prototype.hasOwnProperty.call( changes, 'data' ) && changes.data && !changes.data.isFirstChange() ) {
 			this.writeValue( changes.data.currentValue );
 		}
-
-		if ( Object.prototype.hasOwnProperty.call( changes, 'disableWatchdog' ) && !changes.disableWatchdog.isFirstChange() ) {
-			this.destroyEditor().then( () => {
-				this.attachToWatchdog();
-			} );
-		}
 	}
 
 	// Implementing the AfterViewInit interface.
 	public ngAfterViewInit(): void {
-		this.attachToWatchdog();
+		this.initializeEditor();
 	}
 
 	// Implementing the OnDestroy interface.
@@ -306,16 +286,21 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	}
 
 	private async destroyEditor(): Promise<void> {
-		if ( this.watchdog && getEditorFromWatchdogOrNull( this.watchdog, this.id ) ) {
-			await this.watchdog.remove( this.id );
+		this.isDestroyed = true;
 
-			if ( this.watchdogItemErrorListener ) {
-				this.watchdog.off( 'itemError', this.watchdogItemErrorListener );
-			}
-		} else if ( this.editorWatchdog && this.editorWatchdog.editor ) {
-			await this.editorWatchdog.destroy();
+		// The editor may still be starting. Without this, the component would find nothing to destroy and
+		// the creation would then register a page-level error callback that nothing would ever remove.
+		await this.creating;
 
-			this.editorWatchdog = undefined;
+		this.offEditorError?.();
+		this.offEditorError = undefined;
+
+		const editor = this.currentEditor;
+
+		if ( editor ) {
+			this.currentEditor = undefined;
+
+			await editor.destroy();
 		}
 	}
 
@@ -380,37 +365,11 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 	 * the editor with the Angular component. This method does not use the `editor.data.set()`
 	 * because of the issue in the collaboration mode (#6).
 	 */
-	private attachToWatchdog() {
+	private initializeEditor() {
 		const Editor = this.editor;
 
 		const supports = getInstalledCKBaseFeatures();
 		const element = this.editorElementComponent.element!;
-
-		const creator = ( config: EditorConfig ) => {
-			return this.ngZone.runOutsideAngular( async () => {
-				const editor = await (
-					supports.elementConfigAttachment ?
-						Editor.create( assignElementToEditorConfig( Editor, element, config ) ) :
-						Editor.create( element, config )
-				);
-
-				if ( this.initiallyDisabled ) {
-					editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
-				}
-
-				this.ngZone.run( () => {
-					this.ready.emit( editor );
-				} );
-
-				this.setUpEditorEvents( editor );
-
-				return editor;
-			} );
-		};
-
-		const destructor = async ( editor: Editor ) => {
-			await editor.destroy();
-		};
 
 		const emitError = ( e?: unknown ) => {
 			// Do not run change detection by re-entering the Angular zone if the `error`
@@ -425,70 +384,62 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 			}
 		};
 
-		// Based on the presence of the watchdog decide how to initialize the editor.
-		if ( this.watchdog && !this.disableWatchdog ) {
-			let watchdogConfig: Record<string, any> = {
-				id: this.id,
-				type: 'editor',
-				destructor,
-				config: this.getConfig()
-			};
+		// Note: must be called outside of the Angular zone too because creating an editor sets up
+		// listeners on the window within a microtask.
+		this.creating = this.ngZone.runOutsideAngular( async () => {
+			let editor: TEditor;
 
-			/* istanbul ignore next -- @preserve */
-			if ( supports.elementConfigAttachment ) {
-				watchdogConfig = {
-					...watchdogConfig,
-					creator
-				};
-			} else {
-				watchdogConfig = {
-					...watchdogConfig,
-					creator: ( _: HTMLElement, config: EditorConfig ) => creator( config ),
-					sourceElementOrData: element
-				};
-			}
+			try {
+				const config = this.getConfig();
 
-			// When the context watchdog is passed add the new item to it based on the passed configuration.
-			this.watchdog.add( watchdogConfig as ContextWatchdogItemConfiguration ).catch( e => {
+				editor = await (
+					supports.elementConfigAttachment ?
+						Editor.create( assignElementToEditorConfig( Editor, element, config ) ) :
+						Editor.create( element, config )
+				);
+			} catch ( e ) {
 				emitError( e );
-			} );
 
-			this.watchdogItemErrorListener = ( _, { itemId } ) => {
-				if ( itemId === this.id ) {
-					emitError();
-				}
-			};
-
-			this.watchdog.on( 'itemError', this.watchdogItemErrorListener );
-		} else {
-			// In the other case create the watchdog by hand to keep the editor running.
-			const WatchdogClass = this.disableWatchdog ? DisabledEditorWatchdog : this.editor!.EditorWatchdog;
-			const config = this.getConfig();
-
-			const editorWatchdog = new WatchdogClass(
-				this.editor!,
-				this.editorWatchdogConfig
-			);
-
-			editorWatchdog.setCreator( creator );
-			editorWatchdog.setDestructor( destructor );
-
-			if ( !this.disableWatchdog ) {
-				editorWatchdog.on( 'error', emitError );
+				return;
 			}
 
-			this.editorWatchdog = editorWatchdog;
+			// The component can be destroyed while the editor is being created. Nothing below should run
+			// then, and the editor nobody asked for any more has to go.
+			if ( this.isDestroyed ) {
+				await editor.destroy();
 
-			// Note: must be called outside of the Angular zone too because `create` is calling
-			// `_startErrorHandling` within a microtask, which sets up `error` listener on the window.
-			this.ngZone.runOutsideAngular( () => {
-				const create = editorWatchdog.create.bind( editorWatchdog ) as EditorRelaxedCreatorFunction;
+				return;
+			}
 
-				create( config ).catch( e => {
-					emitError( e );
-				} );
+			this.currentEditor = editor;
+
+			if ( this.initiallyDisabled ) {
+				editor.enableReadOnlyMode( ANGULAR_INTEGRATION_READ_ONLY_LOCK_ID );
+			}
+
+			// Errors that escape a running editor. An editor that failed to start is reported by the
+			// rejected `create()` above instead, because reporting only covers a running one.
+			//
+			// Off the editor class rather than imported: importing a value from CKEditor loads the npm
+			// build, and an application that meant to load it from a CDN is then refused.
+			this.offEditorError = Editor.onEditorError( ( { error, source } ) => {
+				// One registration serves the whole page, so every component hears about every editor.
+				// This is what keeps an error with the component whose editor it came from.
+				//
+				// An error attributed to a `Context` rather than to an editor is therefore not emitted
+				// here. An integrator sharing a context and wanting those has to register their own
+				// callback with `Editor.onEditorError()`.
+				if ( source === editor ) {
+					emitError( error );
+				}
 			} );
-		}
+
+			this.ngZone.run( () => {
+				this.ready.emit( editor );
+			} );
+
+			this.setUpEditorEvents( editor );
+		} );
 	}
 
 	private getConfig() {
@@ -552,25 +503,15 @@ function hasObservers<T>( emitter: EventEmitter<T> ): boolean {
  * Checks if currently installed version of the editor is supported by the integration.
  */
 function assertMinimumSupportedVersion(): void {
-	switch ( compareInstalledCKBaseVersion( '42.0.0' ) ) {
+	switch ( compareInstalledCKBaseVersion( '49.0.0' ) ) {
 		case null:
 			console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
 			break;
 
 		case -1:
-			console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 42+ or nightly build.' );
+			console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 49+ or nightly build.' );
 			break;
 	}
-}
-
-/**
- * Temporarily use the `_watchdogs` internal map as the `getItem()` method throws
- * an error when the item is not registered yet.
- *
- * See https://github.com/ckeditor/ckeditor5-angular/issues/177
- */
-function getEditorFromWatchdogOrNull( watchdog: EditorWatchdog | ContextWatchdog, id: string ) {
-	return ( watchdog as any )._watchdogs.get( id );
 }
 
 /**
