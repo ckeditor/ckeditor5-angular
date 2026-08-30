@@ -1,0 +1,52 @@
+<h2>Error handling demo</h2>
+
+<p>
+	There is no Watchdog any more, so a crashed editor stays as it is instead of being silently rebuilt.
+	<strong>Simulate error</strong> throws an error that is reported through the <code>(error)</code>
+	output and leaves the editor working — type something first and see that it stays.
+</p>
+
+<div class="test-toolbar">
+	<button (click)="setMode( 'single' )" [disabled]="mode === 'single'">One editor</button>
+	<button (click)="setMode( 'two' )" [disabled]="mode === 'two'">Two editors</button>
+	<button (click)="setMode( 'context' )" [disabled]="mode === 'context'">Two editors in a context</button>
+</div>
+
+<p *ngIf="mode === 'two'">
+	An error belongs to the editor it came from. Break one and only that one reports.
+</p>
+
+<p *ngIf="mode === 'context'">
+	The same two editors, now sharing one <code>Context</code>. Sharing it does not make them share their
+	errors either — break one and only that one reports. An error attributed to the context itself rather
+	than to an editor does not reach <code>(error)</code> at all; register your own callback with
+	<code>Editor.onEditorError()</code> if you need those.
+</p>
+
+<div *ngFor="let editor of editors" class="demo-editor">
+	<h3>{{ editor.name }}</h3>
+
+	<div class="test-toolbar">
+		<button (click)="simulateError( editor )" [disabled]="!editor.instance">Simulate error</button>
+	</div>
+
+	<ckeditor
+		[data]="editor.data"
+		[editor]="Editor"
+		[config]="sharedConfig"
+		(ready)="onReady( editor, $event )"
+		(error)="onError( editor, $event )"
+	>
+	</ckeditor>
+</div>
+
+<h3>Reported errors</h3>
+<button (click)="clear()">Clear</button>
+
+<p *ngIf="errors.length === 0"><em>Nothing reported yet.</em></p>
+
+<ul *ngIf="errors.length > 0">
+	<li *ngFor="let error of errors">
+		<strong>{{ error.timestamp | date:'medium' }}:</strong> {{ error.from }} · {{ error.message }}
+	</li>
+</ul>
