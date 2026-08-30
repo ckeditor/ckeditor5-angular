@@ -7,8 +7,8 @@ import { ApplicationRef, Component, SimpleChange, ViewChild } from '@angular/cor
 import { TestBed, type ComponentFixture } from '@angular/core/testing';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { CKEditorError } from 'ckeditor5';
 import { AngularEditor } from 'src/editor/editor';
-import { MockEditor } from 'src/editor/mock-editor';
 
 import { CKEditorComponent } from './ckeditor.component';
 import { EditorElementComponent } from './editor-element.component';
@@ -292,216 +292,6 @@ describe( 'CKEditorComponent integration', () => {
 				} );
 			} );
 		} );
-
-		describe( 'in case of the context watchdog integration', () => {
-			it( 'should create an editor internally', async () => {
-				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-				const spy = vi.fn();
-
-				await contextWatchdog.create();
-
-				component.watchdog = contextWatchdog;
-				component.ready.subscribe( spy );
-
-				fixture.detectChanges();
-
-				await waitCycle();
-
-				expect( spy ).toHaveBeenCalledTimes( 1 );
-				expect( spy ).toHaveBeenCalledWith( component.editorInstance );
-			} );
-
-			it( 'should fire the error event when an error occurs and the ready event afterwards #2', async () => {
-				fixture.destroy();
-
-				fixture = TestBed.createComponent( CKEditorComponent );
-				component = fixture.componentInstance;
-				component.editor = MockEditor as any;
-
-				const fixture2 = TestBed.createComponent( CKEditorComponent );
-				const component2 = fixture2.componentInstance;
-
-				component2.editor = MockEditor as any;
-
-				window.onerror = null;
-
-				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-
-				await contextWatchdog.create();
-
-				component.watchdog = contextWatchdog;
-				component2.watchdog = contextWatchdog;
-
-				fixture.detectChanges();
-				fixture2.detectChanges();
-				await waitCycle();
-
-				const errorSpy = vi.fn();
-				const error2Spy = vi.fn();
-				const readySpy = vi.fn();
-
-				component.error.subscribe( errorSpy );
-				component2.error.subscribe( error2Spy );
-				component.ready.subscribe( readySpy );
-
-				await waitCycle();
-
-				const oldEditor = component.editorInstance;
-
-				setTimeout( () => {
-					const error: any = new Error( 'foo' );
-					error.is = () => true;
-					error.context = oldEditor;
-
-					throw error;
-				} );
-
-				await waitCycle();
-
-				expect( errorSpy ).toHaveBeenCalledTimes( 1 );
-				expect( readySpy ).toHaveBeenCalledTimes( 1 );
-
-				// TODO: https://github.com/ckeditor/ckeditor5-angular/issues/420
-				// expect( error2Spy ).toHaveBeenCalledTimes( 0 );
-
-				fixture2.destroy();
-			} );
-
-			it( 'should update the editor once the editor is ready', async () => {
-				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-
-				await contextWatchdog.create();
-
-				component.watchdog = contextWatchdog;
-				component.disabled = true;
-
-				fixture.detectChanges();
-				await waitCycle();
-
-				expect( component.editorInstance ).toBeTruthy();
-				expect( component.editorInstance!.isReadOnly ).toEqual( true );
-			} );
-
-			it( 'should destroy editor when item error listener is missing', async () => {
-				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-
-				await contextWatchdog.create();
-
-				component.watchdog = contextWatchdog;
-				fixture.detectChanges();
-				await waitCycle();
-
-				const removeSpy = vi.spyOn( contextWatchdog, 'remove' );
-				const offSpy = vi.spyOn( contextWatchdog, 'off' );
-
-				( component as any ).watchdogItemErrorListener = undefined;
-
-				await component.ngOnDestroy();
-
-				expect( removeSpy ).toHaveBeenCalledTimes( 1 );
-				expect( offSpy ).not.toHaveBeenCalled();
-			} );
-		} );
-
-		describe( 'in case of the editor watchdog integration', () => {
-			it( 'should use the provided configuration', async () => {
-				component.editorWatchdogConfig = { crashNumberLimit: 678 };
-
-				fixture.detectChanges();
-
-				expect( ( component as any ).editorWatchdog ).not.toBeUndefined();
-				expect( ( component as any ).editorWatchdog._crashNumberLimit ).toEqual( 678 );
-			} );
-
-			it( 'should restart the editor when the editor crashes', async () => {
-				window.onerror = null;
-
-				fixture.detectChanges();
-				await waitCycle();
-
-				const oldEditor = component.editorInstance;
-				expect( oldEditor ).toBeTruthy();
-
-				setTimeout( () => {
-					const error: any = new Error( 'foo' );
-					error.is = () => true;
-					error.context = oldEditor;
-
-					throw error;
-				} );
-
-				await waitCycle();
-
-				expect( oldEditor ).not.toEqual( component.editorInstance );
-				expect( component.editorInstance ).toBeTruthy();
-			} );
-
-			it( 'should fire the error event when an error occurs and the ready event afterwards', async () => {
-				window.onerror = null;
-
-				fixture.detectChanges();
-				await waitCycle();
-
-				const errorSpy = vi.fn();
-				const readySpy = vi.fn();
-
-				component.error.subscribe( errorSpy );
-				component.ready.subscribe( readySpy );
-
-				await waitCycle();
-
-				const oldEditor = component.editorInstance;
-
-				setTimeout( () => {
-					const error: any = new Error( 'foo' );
-					error.is = () => true;
-					error.context = oldEditor;
-
-					throw error;
-				} );
-
-				await waitCycle();
-
-				expect( errorSpy ).toHaveBeenCalledTimes( 1 );
-				expect( readySpy ).toHaveBeenCalledTimes( 1 );
-			} );
-		} );
-
-		describe( 'disableWatchdog', () => {
-			it( 'should allow toggling the watchdog', async () => {
-				const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
-				await contextWatchdog.create();
-				const watchdogAddSpy = vi.spyOn( contextWatchdog, 'add' );
-				const watchdogRemoveSpy = vi.spyOn( contextWatchdog, 'remove' );
-
-				component.watchdog = contextWatchdog;
-				component.disableWatchdog = false;
-				fixture.detectChanges();
-				await waitCycle();
-
-				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 1 );
-				expect( component.editorInstance ).toBeTruthy();
-
-				component.disableWatchdog = true;
-				component.ngOnChanges( {
-					disableWatchdog: new SimpleChange( false, true, false )
-				} );
-				await waitCycle();
-
-				expect( watchdogRemoveSpy ).toHaveBeenCalledTimes( 1 );
-				expect( component.editorInstance ).toBeTruthy();
-				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 1 );
-
-				component.disableWatchdog = false;
-				component.ngOnChanges( {
-					disableWatchdog: new SimpleChange( true, false, false )
-				} );
-				await waitCycle();
-
-				expect( watchdogAddSpy ).toHaveBeenCalledTimes( 2 );
-				expect( component.editorInstance ).toBeTruthy();
-			} );
-		} );
 	} );
 
 	describe( 'initialization errors are catched', () => {
@@ -524,7 +314,7 @@ describe( 'CKEditorComponent integration', () => {
 			};
 		} );
 
-		it( 'when internal watchdog is created', async () => {
+		it( 'should report an editor that failed to start', async () => {
 			fixture = TestBed.createComponent( CKEditorComponent );
 			const component = fixture.componentInstance;
 			const errorSpy = vi.fn();
@@ -539,26 +329,86 @@ describe( 'CKEditorComponent integration', () => {
 
 			fixture.destroy();
 		} );
+	} );
 
-		it( 'when external watchdog is provided', async () => {
-			fixture = TestBed.createComponent( CKEditorComponent );
-			const component = fixture.componentInstance;
-			const errorSpy = vi.fn();
-			component.error.subscribe( errorSpy );
-			const contextWatchdog = new AngularEditor.ContextWatchdog( AngularEditor.Context );
+	describe( 'error reporting', () => {
+		// A real editor, unlike the mock used elsewhere: reporting finds the editor an error belongs to
+		// among the editors that are actually running, and a mock is not one of them.
+		async function mountReal(): Promise<{ fixture: ComponentFixture<CKEditorComponent>; editor: any; errors: Array<any> }> {
+			const created = TestBed.createComponent( CKEditorComponent );
+			const component = created.componentInstance;
+			const errors: Array<any> = [];
 
-			await contextWatchdog.create();
-
-			component.watchdog = contextWatchdog;
+			component.error.subscribe( ( error: unknown ) => errors.push( error ) );
 			component.editor = AngularEditor;
-			component.config = config;
 
-			fixture.detectChanges();
+			created.detectChanges();
+
+			await vi.waitFor( () => {
+				expect( component.editorInstance ).not.toBeNull();
+			} );
+
+			return { fixture: created, editor: component.editorInstance, errors };
+		}
+
+		function throwFrom( editor: any ): CKEditorError {
+			/**
+			 * Thrown on purpose by this test, so that there is something to report.
+			 *
+			 * @error a-custom-error
+			 */
+			const error = new CKEditorError( 'a-custom-error', editor );
+
+			Promise.resolve().then( () => {
+				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
+			} );
+
+			return error;
+		}
+
+		it( 'should emit an error that escaped a running editor, and keep the editor', async () => {
+			const { fixture: created, editor, errors } = await mountReal();
+			const error = throwFrom( editor );
+
 			await waitCycle();
 
-			expect( errorSpy ).toHaveBeenCalledTimes( 1 );
+			expect( errors ).to.deep.equal( [ error ] );
 
-			fixture.destroy();
+			// Nothing restarts, so the editor the component holds is the one that threw.
+			expect( created.componentInstance.editorInstance ).to.equal( editor );
+
+			created.destroy();
+		} );
+
+		// One registration serves the whole page, so every component hears about every editor. This is
+		// what keeps an error with the component whose editor it came from.
+		it( 'should not emit an error that came from another editor', async () => {
+			const first = await mountReal();
+			const second = await mountReal();
+			const error = throwFrom( second.editor );
+
+			await waitCycle();
+
+			// The component the error came from heard about it. Without this, the assertion below would
+			// hold just as well for an error that was never reported to anyone.
+			expect( second.errors ).to.deep.equal( [ error ] );
+			expect( first.errors ).to.deep.equal( [] );
+
+			first.fixture.destroy();
+			second.fixture.destroy();
+		} );
+
+		it( 'should stop emitting once the component is destroyed', async () => {
+			const { fixture: created, editor, errors } = await mountReal();
+
+			created.destroy();
+			await waitCycle();
+
+			throwFrom( editor );
+
+			await waitCycle();
+
+			expect( errors ).to.deep.equal( [] );
 		} );
 	} );
 
@@ -600,7 +450,8 @@ describe( 'CKEditorComponent integration', () => {
 
 			await waitCycle();
 
-			expect( tickSpy ).toHaveBeenCalledTimes( 1 );
+			// Nothing re-enters the Angular zone: there is no listener to notify, and no restart to render.
+			expect( tickSpy ).toHaveBeenCalledTimes( 0 );
 		} );
 
 		it( 'should run change detection if error has listeners', async () => {
@@ -642,7 +493,9 @@ describe( 'CKEditorComponent integration', () => {
 
 			await waitCycle();
 
-			expect( tickSpy ).toHaveBeenCalledTimes( 2 );
+			// Once, for emitting the error to the listener. Under the Watchdog there was a second cycle,
+			// for rendering the editor it had just rebuilt.
+			expect( tickSpy ).toHaveBeenCalledTimes( 1 );
 		} );
 	} );
 } );
