@@ -437,6 +437,35 @@ describe( 'CKEditorComponent integration', () => {
 			expect( component.editorInstance ).toBeNull();
 		} );
 
+		// An integrator who owns the context destroys it themselves, and that takes its editors with it.
+		// The component must not then destroy an editor that is already down.
+		it( 'should not destroy an editor the context has already taken down', async () => {
+			const context = await ( AngularEditor as any ).Context.create( {} );
+			const created = TestBed.createComponent( CKEditorComponent );
+			const component = created.componentInstance;
+
+			component.editor = AngularEditor;
+			component.config = { context } as any;
+			created.detectChanges();
+
+			await vi.waitFor( () => {
+				expect( component.editorInstance ).not.toBeNull();
+			} );
+
+			const editor = component.editorInstance!;
+			const destroySpy = vi.spyOn( editor, 'destroy' );
+
+			await context.destroy();
+
+			expect( editor.state ).to.equal( 'destroyed' );
+
+			created.destroy();
+			await waitCycle();
+
+			// Once, by the context. The component saw it was already down and left it alone.
+			expect( destroySpy ).toHaveBeenCalledTimes( 1 );
+		} );
+
 		it( 'should stop emitting once the component is destroyed', async () => {
 			const { fixture: created, editor, errors } = await mountReal();
 
