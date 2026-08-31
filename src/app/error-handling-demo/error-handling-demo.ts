@@ -38,6 +38,14 @@ export class ErrorHandlingDemoComponent {
 	public sharedConfig: EditorConfig = {};
 
 	private context?: Context;
+
+	/**
+	 * Which mode switch is the current one. Creating a context is asynchronous, so a switch that started
+	 * earlier must not write its result over a later one.
+	 */
+	private generation = 0;
+
+	private isDestroyed = false;
 	private ngZone: NgZone;
 
 	constructor( @Inject( NgZone ) ngZone: NgZone ) {
@@ -45,6 +53,8 @@ export class ErrorHandlingDemoComponent {
 	}
 
 	public async setMode( mode: Mode ): Promise<void> {
+		const generation = ++this.generation;
+
 		this.mode = mode;
 		this.editors = [];
 		this.sharedConfig = {};
@@ -56,7 +66,17 @@ export class ErrorHandlingDemoComponent {
 		}
 
 		if ( !this.context ) {
-			this.context = await AngularEditor.Context.create( {} );
+			const context = await AngularEditor.Context.create( {} );
+
+			// Another mode was chosen, or the demo went away, while the context was being created. Nobody
+			// is going to use it and nobody else knows about it, so it has to go here.
+			if ( generation !== this.generation || this.isDestroyed ) {
+				await context.destroy();
+
+				return;
+			}
+
+			this.context = context;
 		}
 
 		this.sharedConfig = { context: this.context };
@@ -105,6 +125,8 @@ export class ErrorHandlingDemoComponent {
 	}
 
 	public async ngOnDestroy(): Promise<void> {
+		this.isDestroyed = true;
+
 		// The demo created the context, so the demo destroys it. Leaving the route takes the editors down,
 		// not the context they shared.
 		await this.context?.destroy();
