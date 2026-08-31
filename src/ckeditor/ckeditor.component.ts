@@ -300,12 +300,14 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 		const editor = this.currentEditor;
 
-		// Not if it is already gone. An integrator who owns the context destroys it themselves, and
-		// `Context#destroy()` takes its editors with it — so by the time this runs, this editor may be
+		// Let go of it either way: the component is on its way out, so `editorInstance` must stop naming
+		// an editor, destroyed or not.
+		this.currentEditor = undefined;
+
+		// Destroy it only if it is still alive. An integrator who owns the context destroys it themselves,
+		// and `Context#destroy()` takes its editors with it — so by the time this runs, this editor may be
 		// down already. The watchdog used to give this for nothing, by clearing its own reference.
 		if ( editor && editor.state !== 'destroyed' ) {
-			this.currentEditor = undefined;
-
 			await editor.destroy();
 		}
 	}

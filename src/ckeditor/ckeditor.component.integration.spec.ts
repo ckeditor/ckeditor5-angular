@@ -464,6 +464,9 @@ describe( 'CKEditorComponent integration', () => {
 
 			// Once, by the context. The component saw it was already down and left it alone.
 			expect( destroySpy ).toHaveBeenCalledTimes( 1 );
+
+			// It still let go of it: a destroyed component names no editor.
+			expect( component.editorInstance ).toBeNull();
 		} );
 
 		it( 'should stop emitting once the component is destroyed', async () => {
