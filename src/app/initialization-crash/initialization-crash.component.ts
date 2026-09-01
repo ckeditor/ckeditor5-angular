@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import type { EditorConfig, WatchdogConfig } from 'ckeditor5';
+import type { EditorConfig } from 'ckeditor5';
 import { CKEditorComponent } from 'src/ckeditor';
 import { AngularEditor } from 'src/editor/editor';
 
@@ -10,7 +10,6 @@ import { AngularEditor } from 'src/editor/editor';
 } )
 export class InitializationCrashComponent {
 	public Editor = AngularEditor;
-	public EditorWatchdog = AngularEditor;
 
 	@ViewChild( CKEditorComponent ) public ckeditor?: CKEditorComponent;
 
@@ -18,12 +17,6 @@ export class InitializationCrashComponent {
 	public ready = false;
 
 	public errorOccurred = false;
-	public errorOccurredWatchdog = false;
-	public editorWatchdogConfig: WatchdogConfig = {
-		crashNumberLimit: 5,
-		minimumNonErrorTimePeriod: 1000,
-		saveInterval: 1200
-	};
 
 	public ngOnInit(): void {
 		this.config = {
@@ -42,12 +35,7 @@ export class InitializationCrashComponent {
 	}
 
 	public onError( error: any ): void {
-		console.error( 'Editor without watchdog threw an error which was caught', error );
+		console.error( 'The editor failed to start and the error was caught', error );
 		this.errorOccurred = true;
-	}
-
-	public onErrorWatchdog( error: any ): void {
-		console.error( 'Editor with watchdog threw an error which was caught', error );
-		this.errorOccurredWatchdog = true;
 	}
 }

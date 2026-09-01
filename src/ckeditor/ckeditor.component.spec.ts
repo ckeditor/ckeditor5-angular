@@ -55,7 +55,7 @@ describe( 'CKEditorComponent', () => {
 			expect( console.warn ).toHaveBeenCalledWith( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
 		} );
 
-		it( 'should print a warning if using CKEditor 5 in version lower than 37', () => {
+		it( 'should print a warning if using CKEditor 5 in version lower than 49', () => {
 			vi.stubGlobal( 'CKEDITOR_VERSION', '30.0.0' );
 
 			fixture = TestBed.createComponent( CKEditorComponent );
@@ -63,12 +63,12 @@ describe( 'CKEditorComponent', () => {
 			component.editor = MockEditor as any;
 
 			expect( console.warn ).toHaveBeenCalledWith(
-				'The <CKEditor> component requires using CKEditor 5 in version 42+ or nightly build.'
+				'The <CKEditor> component requires using CKEditor 5 in version 49+ or nightly build.'
 			);
 		} );
 
-		it( 'should not print any warning if using CKEditor 5 in version 37 or higher', () => {
-			vi.stubGlobal( 'CKEDITOR_VERSION', '42.0.0' );
+		it( 'should not print any warning if using CKEditor 5 in version 49 or higher', () => {
+			vi.stubGlobal( 'CKEDITOR_VERSION', '49.0.0' );
 
 			fixture = TestBed.createComponent( CKEditorComponent );
 			component = fixture.componentInstance;
