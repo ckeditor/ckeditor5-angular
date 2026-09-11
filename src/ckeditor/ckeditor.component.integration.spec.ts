@@ -437,6 +437,38 @@ describe( 'CKEditorComponent integration', () => {
 			expect( component.editorInstance ).toBeNull();
 		} );
 
+		// The editor that started too late is destroyed right there, inside the pending creation. Should
+		// that destruction fail, the rejection must not stop the teardown that is waiting for it.
+		it( 'should finish the teardown when the editor that started too late fails to destroy', async () => {
+			let finishCreating: ( editor: any ) => void;
+
+			vi.spyOn( AngularEditor, 'create' ).mockReturnValue( new Promise( resolve => {
+				finishCreating = resolve;
+			} ) as any );
+
+			const created = TestBed.createComponent( CKEditorComponent );
+			const component = created.componentInstance;
+
+			component.editor = AngularEditor;
+			created.detectChanges();
+
+			// Destroyed while `create()` is still in flight, so the teardown waits for the creation.
+			const teardown = component.ngOnDestroy();
+
+			// Only now does the editor arrive — and it refuses to go down.
+			const destroy = vi.fn().mockRejectedValue( new Error( 'Cannot destroy.' ) );
+
+			finishCreating!( { destroy } );
+
+			// The teardown ran to the end instead of rejecting along with the creation.
+			await expect( teardown ).resolves.toBeUndefined();
+
+			expect( destroy ).toHaveBeenCalledOnce();
+			expect( component.editorInstance ).toBeNull();
+
+			created.destroy();
+		} );
+
 		// An integrator who owns the context destroys it themselves, and that takes its editors with it.
 		// The component must not then destroy an editor that is already down.
 		it( 'should not destroy an editor the context has already taken down', async () => {
