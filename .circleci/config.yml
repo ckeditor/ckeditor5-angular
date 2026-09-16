@@ -28,7 +28,7 @@ commands:
           # Pinned to 11.14.0 exactly; pnpm 11.15.x duplicates the CKEditor packages in the
           # LTS integration run, which breaks the editor. This is also the version the dependency
           # policy pins company-wide, so it cannot move here without moving there.
-          command: sudo npm i -g pnpm@11.14.0
+          command: sudo npm i -g pnpm@12.3.4
       - run:
           name: Install dependencies
           command: pnpm install --frozen-lockfile
