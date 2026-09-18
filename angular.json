@@ -27,7 +27,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "ckeditor5.css",
+                "input": "node_modules/ckeditor5/dist",
+                "output": "assets"
+              }
             ],
             "styles": [
               "ckeditor5/ckeditor5.css",

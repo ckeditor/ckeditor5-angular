@@ -1,0 +1,25 @@
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { CKEditorModule } from 'src/ckeditor';
+
+import { ShadowRootHostModule } from '../shared/shadow-root-host.module';
+import { ShadowDomUsageComponent } from './shadow-dom-usage.component';
+
+@NgModule( {
+	declarations: [
+		ShadowDomUsageComponent
+	],
+	imports: [
+		BrowserModule,
+		CKEditorModule,
+		ShadowRootHostModule,
+		RouterModule.forChild( [
+			{
+				path: '',
+				component: ShadowDomUsageComponent
+			}
+		] )
+	]
+} )
+export class ShadowDomUsageModule {}
