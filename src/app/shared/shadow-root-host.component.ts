@@ -31,18 +31,17 @@ export class ShadowRootHostComponent implements AfterContentInit, OnChanges, OnD
 
 	/**
 	 * Emitted whenever a root is attached and in the document, which is when it is safe to inject
-	 * `<link>` tags into it.
+	 * `<link>` tags into it. It fires before the content is created, so a handler can still change
+	 * the state the projected template depends on.
 	 */
 	@Output() public readonly attached = new EventEmitter<ShadowRoot>();
 
 	@ContentChild( TemplateRef ) private _template!: TemplateRef<unknown>;
 
 	private readonly _elementRef: ElementRef<HTMLElement> = inject( ElementRef );
-
 	private readonly _viewContainerRef = inject( ViewContainerRef );
 
 	private _host: HTMLElement | null = null;
-
 	private _view: EmbeddedViewRef<unknown> | null = null;
 
 	public ngAfterContentInit(): void {
@@ -69,12 +68,15 @@ export class ShadowRootHostComponent implements AfterContentInit, OnChanges, OnD
 
 		shadowRoot.adoptedStyleSheets = this.styleSheets;
 
+		// Emitted before the content is created. Otherwise, on a mode change, the template would be
+		// instantiated with the state left over from the previous root — mounting an editor into the
+		// fresh root only for the handler to tear it down again.
+		this.attached.emit( shadowRoot );
+
 		// The view is created in the light DOM, so its root nodes are moved into the shadow root.
 		this._view = this._viewContainerRef.createEmbeddedView( this._template );
 		this._view.rootNodes.forEach( ( node: Node ) => shadowRoot.appendChild( node ) );
 		this._view.detectChanges();
-
-		this.attached.emit( shadowRoot );
 	}
 
 	private _destroy(): void {
