@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CKEditorModule } from 'src/ckeditor';
 
 import { ShadowRootHostModule } from '../shared/shadow-root-host.module';
+import { ShadowRootModeSelectModule } from '../shared/shadow-root-mode-select.module';
 import { ShadowDomCdnUsageComponent } from './shadow-dom-cdn-usage.component';
 
 @NgModule( {
@@ -14,6 +15,7 @@ import { ShadowDomCdnUsageComponent } from './shadow-dom-cdn-usage.component';
 		BrowserModule,
 		CKEditorModule,
 		ShadowRootHostModule,
+		ShadowRootModeSelectModule,
 		RouterModule.forChild( [
 			{
 				path: '',

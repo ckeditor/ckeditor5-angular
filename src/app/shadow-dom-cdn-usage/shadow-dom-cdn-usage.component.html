@@ -2,16 +2,7 @@
 
 <p><strong>Note:</strong> Open the console for additional logs.</p>
 
-<p>
-	<label>
-		Shadow root mode
-		<select [value]="mode()" (change)="mode.set( $any( $event.target ).value )">
-			@for ( item of modes; track item ) {
-				<option [value]="item">{{ item }}</option>
-			}
-		</select>
-	</label>
-</p>
+<app-shadow-root-mode-select [(mode)]="mode" />
 
 <p>
 	<button (click)="toggleDisableEditors()">{{ isDisabled() ? 'Enable editors' : 'Disable editors' }}</button>

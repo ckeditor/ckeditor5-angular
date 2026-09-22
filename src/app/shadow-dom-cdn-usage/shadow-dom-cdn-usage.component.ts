@@ -18,9 +18,8 @@ export class ShadowDomCdnUsageComponent {
 
 	public config: EditorConfig | null = null;
 
-	public readonly modes: Array<ShadowRootMode> = [ 'open', 'closed' ];
-
 	public readonly mode = signal<ShadowRootMode>( 'open' );
+
 	public readonly isDisabled = signal( false );
 
 	public editorData =
@@ -33,11 +32,6 @@ Nothing is added to the document head.</p>`;
 		this.isDisabled.update( v => !v );
 	}
 
-	/**
-	 * Loading starts once a root is attached and in the document. A `<link>` in a detached tree never
-	 * starts loading, and the loader would wait for it forever. It runs again after a mode change,
-	 * because the host attaches a fresh root then.
-	 */
 	public onShadowRootAttached( shadowRoot: ShadowRoot ): void {
 		this.Editor = null;
 
@@ -57,7 +51,7 @@ Nothing is added to the document head.</p>`;
 		} = cloud.CKEditor;
 
 		this.config = {
-			licenseKey: 'GPL',
+			licenseKey: window.CKEDITOR_GLOBAL_LICENSE_KEY || 'GPL',
 			plugins: [
 				Essentials, Autoformat, Bold, Italic, BlockQuote, Heading, Indent,
 				Link, List, Paragraph, PasteFromOffice, Table, TableToolbar, TextTransformation

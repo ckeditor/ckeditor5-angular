@@ -10,10 +10,10 @@ import { getCKEditorStyleSheet } from '../shared/get-ckeditor-stylesheet';
 export class ShadowDomUsageComponent implements OnInit {
 	public readonly Editor = AngularEditor;
 
-	public readonly modes: Array<ShadowRootMode> = [ 'open', 'closed' ];
-
 	public readonly mode = signal<ShadowRootMode>( 'open' );
+
 	public readonly isDisabled = signal( false );
+
 	public readonly styleSheets = signal<Array<CSSStyleSheet>>( [] );
 
 	public editorData =
