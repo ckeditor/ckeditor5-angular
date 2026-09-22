@@ -35,7 +35,11 @@
               }
             ],
             "styles": [
-              "ckeditor5/ckeditor5.css",
+              {
+                "input": "node_modules/ckeditor5/dist/ckeditor5.css",
+                "bundleName": "ckeditor5",
+                "inject": false
+              },
               "src/styles.css"
             ],
             "scripts": [],
