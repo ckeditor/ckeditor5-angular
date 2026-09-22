@@ -32,6 +32,14 @@ const appRoutes: Routes = [
 		loadChildren: () => import( './simple-cdn-usage/simple-cdn-usage.module' ).then( m => m.SimpleCdnUsageModule )
 	},
 	{
+		path: 'shadow-dom-usage',
+		loadChildren: () => import( './shadow-dom-usage/shadow-dom-usage.module' ).then( m => m.ShadowDomUsageModule )
+	},
+	{
+		path: 'shadow-dom-cdn-usage',
+		loadChildren: () => import( './shadow-dom-cdn-usage/shadow-dom-cdn-usage.module' ).then( m => m.ShadowDomCdnUsageModule )
+	},
+	{
 		path: 'init-crash',
 		loadChildren: () => import( './initialization-crash/initialization-crash.module' ).then( m => m.InitializationCrashModule )
 	}
