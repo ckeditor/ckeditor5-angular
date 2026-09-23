@@ -63,16 +63,16 @@ importers:
     devDependencies:
       '@analogjs/vite-plugin-angular':
         specifier: ^2.5.1
-        version: 2.6.2(29c2e05d32215901993fe0c91ebd073f)
+        version: 2.6.2(5ce06ec0cbc9f1c5c73debb945978b04)
       '@analogjs/vitest-angular':
         specifier: ^2.2.3
-        version: 2.6.2(@analogjs/vite-plugin-angular@2.6.2(29c2e05d32215901993fe0c91ebd073f))(@angular-devkit/architect@0.2003.30(chokidar@4.0.3))(@angular-devkit/schematics@20.3.30(chokidar@4.0.3))(vitest@4.1.11)(zone.js@0.15.1)
+        version: 2.6.2(@analogjs/vite-plugin-angular@2.6.2(5ce06ec0cbc9f1c5c73debb945978b04))(@angular-devkit/architect@0.2003.30(chokidar@4.0.3))(@angular-devkit/schematics@20.3.30(chokidar@4.0.3))(vitest@4.1.11)(zone.js@0.15.1)
       '@angular-devkit/build-angular':
         specifier: ^20.3.25
-        version: 20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(supports-color@8.1.1)(typescript@5.8.3)(vitest@4.1.11)(webpack-cli@5.1.4)(yaml@2.9.0)
+        version: 20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(typescript@5.8.3)(vitest@4.1.11)(webpack-cli@5.1.4)(yaml@2.9.0)
       '@angular/cli':
         specifier: ^20.3.27
-        version: 20.3.30(@types/node@14.18.63)(chokidar@4.0.3)(supports-color@8.1.1)
+        version: 20.3.30(@types/node@14.18.63)(chokidar@4.0.3)
       '@angular/compiler-cli':
         specifier: ^20.3.31
         version: 20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3)
@@ -117,10 +117,10 @@ importers:
         version: 5.2.7(webpack@5.107.2)
       eslint:
         specifier: ^10.0.0
-        version: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+        version: 10.7.0(jiti@1.21.7)
       eslint-config-ckeditor5:
         specifier: ^19.0.0
-        version: 19.0.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
+        version: 19.0.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
       eslint-plugin-ckeditor5-rules:
         specifier: ^19.0.0
         version: 19.0.0
@@ -135,7 +135,7 @@ importers:
         version: 8.0.3
       lint-staged:
         specifier: ^10.4.0
-        version: 10.5.4(supports-color@8.1.1)
+        version: 10.5.4
       minimist:
         specifier: ^1.2.8
         version: 1.2.8
@@ -168,7 +168,7 @@ importers:
         version: 5.8.3
       typescript-eslint:
         specifier: ^8.32.0
-        version: 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
+        version: 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
       upath:
         specifier: ^2.0.1
         version: 2.0.1
@@ -177,7 +177,7 @@ importers:
         version: 4.1.11(@types/node@14.18.63)(@vitest/browser-playwright@4.1.11)(@vitest/coverage-v8@4.1.11)(vite@7.3.5(@types/node@14.18.63)(jiti@1.21.7)(less@4.9.0)(lightningcss@1.32.0)(sass@1.90.0)(terser@5.43.1)(yaml@2.9.0))
       webpack:
         specifier: ^5.94.0
-        version: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+        version: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-cli:
         specifier: ^5.1.4
         version: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
@@ -195,10 +195,10 @@ importers:
         version: 20.3.31(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
         specifier: ^3.1.0
-        version: 3.1.0(ckeditor5@0.0.0-nightly-20260911.0)
+        version: 3.1.0(ckeditor5@0.0.0-nightly-20260923.1)
       ckeditor5:
         specifier: '>=49.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
-        version: 0.0.0-nightly-20260911.0
+        version: 0.0.0-nightly-20260923.1
       rxjs:
         specifier: '>=6.0.0'
         version: 6.6.7
@@ -1030,47 +1030,26 @@ packages:
     peerDependencies:
       '@ckeditor/ckeditor5-utils': '>= 42.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
 
-  '@ckeditor/ckeditor5-adapter-ckfinder@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-0/kyvd8J0VsLimpLa82KRk+2jiKXRPvq89MjLuCkItCwcRSpFIBe+wRNHtbLWU5eGVWuwCnYhVfE1F5U+uL90Q==}
-
   '@ckeditor/ckeditor5-adapter-ckfinder@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-gLh2F2x3EHPYVyggw45RIdzXPTSrTQ6MHQKaMGVUItaox+Hz1STQ8vHy4ZWwBZs2YRwTWSmO7y4SEMpUogywhQ==}
 
   '@ckeditor/ckeditor5-ai@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ZRk+CvVYa1V+4niy61uJENJN7Dhg3L5uLZW8vUz4JVIz5nczMC3lUtt6o1DTJkbwBxEF5fMtmPILdzHVU+3Hyg==}
 
-  '@ckeditor/ckeditor5-alignment@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-UrGLRypudZN1KYbh0VBAXxtaDwM1W1PxIkMKg1KvVc0uUFMTSgrvpV6B3AehQ/yStzxhqzZbl+Awpacd9JHHmA==}
-
   '@ckeditor/ckeditor5-alignment@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-iiJqsmav8QCX77awCtTfc0vBGOXOBIK3A69EaRUtqoq8lJylWUrP9CWeWwW3kc+lAQT5QE0MkhRS0JbAzjIy3w==}
-
-  '@ckeditor/ckeditor5-autoformat@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-F6Nado3T3yUtlX/1KqcHUpsrWc6/lQkNtnVj9JHsh2Jpa7FkYgwBLONkiJ+LdW43egt1WnIiJm5huNuhPvidvA==}
 
   '@ckeditor/ckeditor5-autoformat@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ZEfD6D95veeKfwGh3GHPAsi9m9l9N/XZD2W5w03F0yWBrbSKQne2R6oYf54TAxC7Xzu9F2W7JmJKSJ8079vZWA==}
 
-  '@ckeditor/ckeditor5-autosave@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-735lKddp1h+gw+786yVMDqH6BE+rm73GzsSE88++0k47+fM27ru7LO7zE7czFVlm6XMlSv10L0lKhxLv9aiAwQ==}
-
   '@ckeditor/ckeditor5-autosave@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-dx5b7p8AUw8XX6wA78DiB/VK5lRaNm/DVcJkzThbsGORO4EMnM3C+SLbu+3OjQpCL/9+JZHaHQcDl2BP66twOQ==}
-
-  '@ckeditor/ckeditor5-basic-styles@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-oBP7QFlgjsHwRNajlNP5kkB5Sxvd9nj0n3hmdFwUO8dmE57S8dQXNCZVTT+wNIRCYbY0GI8TDE9RmC7FLQLXNg==}
 
   '@ckeditor/ckeditor5-basic-styles@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-JrITlFrRE94X5TJPV8Mb8UkgTbVzU/UXmIU4k693ewnji+rbXrnZNxP4VbVFvykjxqCq7UEwzsTBcI3RYlGCvg==}
 
-  '@ckeditor/ckeditor5-block-quote@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-NDPC2UbxfX+dAEVFaojODqtyK3f4jyJKUIWwOPYvMbXNUuvobCJPIY1ENEvO4XG6e9co4e0sX7ItKKKK0zW7kA==}
-
   '@ckeditor/ckeditor5-block-quote@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-oH0tWYKOYPuBM9nqW1S+cOAssufZJfshhoLerH9MTqSMk5A6lYCZfn3y8zD0m8bm3VxK26BXXCh9pUW1BVMitw==}
-
-  '@ckeditor/ckeditor5-bookmark@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-IZd8spAnpQoGlTV7d5DGsb/Loc0990RR+ziWsSxIPwDNC4xOeZCdGHr469rvXrPI5+AW9ZWBBZNEa6NWsz3eWg==}
 
   '@ckeditor/ckeditor5-bookmark@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-u+fMTCHdCkwxa7uJT3ZIEiwwT/w1g5eMdkHctvIUjzbXNina7OsLJhX5dQOLCuJdlew3apJazZKOfiz5//zWSQ==}
@@ -1078,32 +1057,17 @@ packages:
   '@ckeditor/ckeditor5-case-change@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-CE10d8rctp898hGhq/NppykKvaUZMm4/t2NgP7JZ2lFtDz9qzKMKurUcvFHs3NWwTi2n8aECgP6YHMk8HLUs8g==}
 
-  '@ckeditor/ckeditor5-ckbox@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-RJ9kLUjIRm7xis2YNkmOqZkCHOWz27QPX4/qCeDTTTqtGHfmJGLnBaY4BK2dcgBj8f/+SQZAYjlHBf7VuaEAvA==}
-
   '@ckeditor/ckeditor5-ckbox@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-MYfKUwFf8wMDH7KTCKxRzggMVgfO0WVeG//Gfxl9MHs8kaI0sJiJE2f2n8jdkDEHZRCLUA/AwIzJNGes+U2U9Q==}
-
-  '@ckeditor/ckeditor5-ckfinder@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-qScBclxU7vHKeyt/y11agoiZyfWbuukJNPVFt0xo+Fuh78U6i/vpOwqoACI7R0efdgaj/xIisVpOjthzpDzlfA==}
 
   '@ckeditor/ckeditor5-ckfinder@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-G/iMXmUn+dePlPRb0K6oeCWwWe+TtcWIj5M3PmeOffaV3jNOsAf6GcEXACiTuweO1pCjmoab5XC0EkJjp5Y31A==}
 
-  '@ckeditor/ckeditor5-clipboard@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-L+tp8Ri8PZlioBSL4XB36t3Ewhpuy3vrESmrTjUq6MimsZj9BCnT4HWpX8XUcvOJFE2SlfI4zhawV2C6v5h2oQ==}
-
   '@ckeditor/ckeditor5-clipboard@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-U2Jod5D1c0LdVzTtjajbCaNdrbr8RB3b9Qyj2QCduasCdfeimBw7C81OAlfUPMwGwHczl10aT6K4sua7Qd1oPg==}
 
-  '@ckeditor/ckeditor5-cloud-services@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-7YT+11pa9YdMrjgr7mb/IUtARGbkebY0LLGdRnbYRqGqW6wQvklAg9FUwDjwUlehFLceLsrGHYZwtpSMPfsONQ==}
-
   '@ckeditor/ckeditor5-cloud-services@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-fx8FJ1QxHFshSs/sVBF12IjItkYq/BiSBEg7vFAZSDdVBJbr/94QJVmTXS2J6/TJ9PBP9NGsvLZnLa8c4uZnug==}
-
-  '@ckeditor/ckeditor5-code-block@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-+DT7o8fY07g70joU+NSr7RSYrdlrnmVwbBaR94URHlveOEp2W9eU0G26Xkez7sXcxSoTf8w4BrndBHVveeejGA==}
 
   '@ckeditor/ckeditor5-code-block@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-7qnnWJr1rt22tZ/FqFy/LjpXdUsbu9CSOb1USPrJBUioadwKVWDFAE8t6N1OSAWHra1iv8rEqze1/UIuCmYmsg==}
@@ -1113,9 +1077,6 @@ packages:
 
   '@ckeditor/ckeditor5-comments@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-lxPZl+QSLjpxDz1sb30AwFwclNefDaekeEyAKQh7IB08wGOMS9K8l7B/FCmjBpEutXW9QVsogCVjS4GgO+jR/A==}
-
-  '@ckeditor/ckeditor5-core@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-p4ljDL6EnxXbAimVbviy5BW3+jy3X1qUBOOzE/4ysBSE1r8VYc6IKesqVVGxSBCZmEtyoizwq3/nDJQwNTEKzA==}
 
   '@ckeditor/ckeditor5-core@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-As+GGhfUgicn4UjRbea7l7pcaZY1qVRm0uzuh2JtVLJJCOvbsJM4smdGJXP4G8MXnKoQ36Dh8Isby9CVjq1wpA==}
@@ -1145,38 +1106,20 @@ packages:
   '@ckeditor/ckeditor5-document-outline@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-dxrbRO4OMQPq6fVqLUzQbYkzt8etRyvsh3lUc0PZiyGMi2Jt+Rlm1smPEKN7LM8QFLDi4d/GTlH9OSK3/6wSyQ==}
 
-  '@ckeditor/ckeditor5-easy-image@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-x8kG8VjR3cDGpVwV4LYqzb7vDZ9oR3BI1C+g6mN3zOEhsAXZK/P+noMxD2fUWX26gZ1OHAAgxfkWsV4NjJHggw==}
-
   '@ckeditor/ckeditor5-easy-image@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-7Lct7fbg3lVnci/W2Ulw3aqpxQ2zxlQUh88fFkHT+n/0GlPvlIEagvrM6dpSi8gPhtZavGQASE9kPdEdEvndfg==}
-
-  '@ckeditor/ckeditor5-editor-balloon@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-YlTP4w+7uLdGrsMowY1L8ETSXMJ1ujjbdPs8yN6ehZqrx0Vc5jRYVU2+XfSfVLGTCLslHxPjXKk9snGIaP5Ssw==}
 
   '@ckeditor/ckeditor5-editor-balloon@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-5PjIz1XPGFwk0r8Ek7nAipMbuX8FEz/H6H/bYZRPa4t9AZEaCmUwHe7CGf440DNBNekzlG99r+dFtF5MicAZjA==}
 
-  '@ckeditor/ckeditor5-editor-classic@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-KCiLqI/5Hgg5fDqxNIfHBg6bSp8MF3j+dUhNVFXWBbVYIvjt3JysktU+NPVlVWYy8eZ2p1bwW6HS168sKzEX0g==}
-
   '@ckeditor/ckeditor5-editor-classic@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-7r5M+1ZiXmshkN2HuThzugMckXDrvMPIOM2BCRwExFqeDusAaC07YooQNJ7cy9g4Jm/x0adJc89zL8qNtX4WBA==}
-
-  '@ckeditor/ckeditor5-editor-decoupled@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-sZgM9M1oX7TYVP4XZxdDzDFIb6NXH1HRdr4inKuI+xGsQrJggIYeGSlVCfCfNMfWq3qohQPpcNywdSaiOX0VQw==}
 
   '@ckeditor/ckeditor5-editor-decoupled@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-KzUu7MGfp8NbAhkfofdB3FYk3ZUbxcPnqqLbewjfpSdHAL6Pl+2BUR2ouiDcLrqOekjNSEshckVp/q8C3V6oZg==}
 
-  '@ckeditor/ckeditor5-editor-inline@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-h87qRPWrtploSYGV8k9DGfPA2Aq9AU/vWnu+teAYE6ZJTSbSxLqjND3eRiU4yQmGP+aycwXwB9UKsMSeM68yFw==}
-
   '@ckeditor/ckeditor5-editor-inline@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-nS7macklQRfi6pWCyhY8t9CxD6GJ4EDWgyzae/8YJn3nj2jf5NkGePaxTNoe1eCRmdKzR6yTTV5N1juPJXzoBA==}
-
-  '@ckeditor/ckeditor5-editor-multi-root@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-6Ktnye3A5kpEUkshpPzf6dJOYcB2DkN7+QxCliaoy4fiCS/iW5XE59Vje3ZJggv3hM4Lfdk+SKUQqFalH0IG8Q==}
 
   '@ckeditor/ckeditor5-editor-multi-root@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-Gx34GyCcrYGHxJnctH0D5PiEgZLVoBb5ReZcp9pBaqfGOqrGzo8TIQiCxaf58xj+eaHWMa3IMairtFzrtRyJEQ==}
@@ -1184,26 +1127,14 @@ packages:
   '@ckeditor/ckeditor5-email@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-93fnDgInmbtlA6Z7j9+kHNVtOoyjETDCRhhVotTMt2GjI+7pO4+PhfpYrEhi4fwwEIFvLPUSIKwyKFal4bVPCA==}
 
-  '@ckeditor/ckeditor5-emoji@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-L2hSL4afrC6umwoL3T2UDnGubTxvaQKuNos2TeK5p5aOMB/BVMk9aIArIIwWbvepJfx4cpDodSRKfR4OmuqJjw==}
-
   '@ckeditor/ckeditor5-emoji@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-MV/DetgaQboM5pD9YY5h9KOoxx1P1VAAZID28vMWyPUEQ3/3EOv/oJBDxt+x8moz8Ait786wnhX+vnm4VCPkfw==}
-
-  '@ckeditor/ckeditor5-engine@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-hxvkJPBkS1NrP4LZzFhRWA7bwGlZ5wtJj9j2jVj8Oo/T5G/QtOX9SgiH0zAt4rYBjYDZZ9x2lB61EwLm17ELiw==}
 
   '@ckeditor/ckeditor5-engine@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-rNZT1aImm7jQpdeyNQSBAqMUVPxvGY4p/dd2REyb7UwasF+bqSMuQNzLMvehvF+xu/A9Fs0w0C2Wj/Q4KM3GyA==}
 
-  '@ckeditor/ckeditor5-enter@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-WO7gYYWna7yQ4AR2yuwWtRGIpXj2/1QA1wP6c9xSjWImUgM1ZS/BXCDPh0id2L90aLpTLScqXZwsG1E3pcWMlA==}
-
   '@ckeditor/ckeditor5-enter@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-Mo+M8o4Hg3MSnsWAxjuzCwvCycM0D/cNSwicsmS31z6ZgbEds0jyFw3Rbp5OZwZiGoot1jHMHi8yx06E2kD+cg==}
-
-  '@ckeditor/ckeditor5-essentials@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-xQaaFvXW3tnfNTW3i78DZ45eE+7vx0R6KILjPQF/oHkN4oFGTAUSGZIXqPYdSFM1jrG2cJctnp8Azmq6HVN9IA==}
 
   '@ckeditor/ckeditor5-essentials@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-cfe0/Fc3gIlQxluP9Ej0yS73P7c7LNPHukbAwcQI6zjS6FoYR/an+nU6dgIbR9PlKkyLp6nfd5dbK3WdgPzG2w==}
@@ -1217,14 +1148,8 @@ packages:
   '@ckeditor/ckeditor5-export-word@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-igjujSwAoquDDlBzz92QR4mZ6sE/HXBk9WRV34WCPFO68W0gPObSKy58uIobHuOB1B6WznYMP+XDuABRKkBeCg==}
 
-  '@ckeditor/ckeditor5-find-and-replace@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-k8fI4WA3LzEkXaQoFptn2YTdxyjJFHb0QAvyafvNveSGILE4/BsVV48dXEIQuizPs6yu9onzjw4/Reye0P8gmQ==}
-
   '@ckeditor/ckeditor5-find-and-replace@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-sdJM9qfZ6Snj3zEzDgq+IbiRLY5JM6Yx492VWOUdNm0Xia/TxOhMKTr9ietL+ZuZ7wYEYue+gdfla4iSe0Z0Bw==}
-
-  '@ckeditor/ckeditor5-font@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-JOQ1siiQPTh7fL20A1CLvLqo5BeF6rf2y19ad7z01M2aFD5hyZEs9o14WMD7EXenab30M4+SbBLoqQtTCymysg==}
 
   '@ckeditor/ckeditor5-font@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-tv1qABoXfINjHEE/RFLYFpaYZc3UNaQ7bcd0Keaac8TKS6xWKq3NIcBfCFTHTMeQYzbGQNVK1e6royAhhl5i0w==}
@@ -1235,59 +1160,32 @@ packages:
   '@ckeditor/ckeditor5-format-painter@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-q23BzbidmcRi7f7w2eFHNeelGB9D2LIXCpc2Fxx7aVoHLv8me9rqvvuTO5RfUxfxrXOqMAcl7NC2ipXflytJjg==}
 
-  '@ckeditor/ckeditor5-fullscreen@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-FEWkZNIUKuXSrQ1qSmmV+bhGGypux1DVBtcDAVLjb1zneXddNcQH6OP2zuJ1khs487uqUdH/94G0zPQuwbTcHg==}
-
   '@ckeditor/ckeditor5-fullscreen@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-gwf0r6L42JxHmlRCkbvT3oSIhJ14zGR10uoosQCSJcklqqRakJuWSfWNYMYed9EKSi2/BlaLJ7ofBLjiPYJQeQ==}
-
-  '@ckeditor/ckeditor5-heading@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-+HKqoVRvMDj421khLvyhh/ScabUno6BMYvFAHcimk8jrtrb9Bdx7cYBapmldz7LV7CalIsYHEfKymhptVQj8hg==}
 
   '@ckeditor/ckeditor5-heading@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ALorYgRuOJewFneKfepFcZpH6PIPSiAuQ0vs5+kUS6T+dDyybYU4OHQa1seTeTujRh3VLNKxExmQtMdsJPijhQ==}
 
-  '@ckeditor/ckeditor5-highlight@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-mfWGJClouwPvyCSLPV1Q01Ia4XMnfJeaccUt0qzxRalFmYZ+juXh4puMXViZDA0wd9rTteniZTh5JSJD/Z/atg==}
-
   '@ckeditor/ckeditor5-highlight@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-hWhaNIX7y/M+rXpnHIrXTXUtTrTQiL7Pll2iyOp2fvbEgiymuS5PP4dsNYGGzP9HgPCesVivtz3jOmCRFxfreQ==}
-
-  '@ckeditor/ckeditor5-horizontal-line@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-MaKXR0/SCSPYRS5k+icqkbR+rRKAGlaDI9eTGbXZftCMdCJysu3EqH4VaEk8ZcdV3xfFq4Gje8FdL5sm9m1K8g==}
 
   '@ckeditor/ckeditor5-horizontal-line@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-NnUBN4n96HP+faBWWs8VitgzV5WNA05QWUXDGbNGVkZD8oADOKSpu1yRS/b5idSgOpQ/KpIQrBbo3yHvxjoCcg==}
 
-  '@ckeditor/ckeditor5-html-embed@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-QLNi/P1PIDwJ00TXtrKpJ7ZMAtIphzgmrOXIG/BfrtAe7wiktf+eo+JHINBJaeJymKyP8GvGnCEfKvqfl6nwtg==}
-
   '@ckeditor/ckeditor5-html-embed@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-snrQbRMFI9VMIFalKfuPO4v3V8DTznFmuSntSysPXyrVnwdG4EWT1pKTTiN9oU2kZVjS1X3niqJEi8qJC5dGxQ==}
-
-  '@ckeditor/ckeditor5-html-support@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-WV0722QeUqFSRvunSivDUCZF44gCyEreP5XH/oIXH3a7+5a343xpOPqMB0FM0/VtmAzOSy0nKvyN4njp9yQaLQ==}
 
   '@ckeditor/ckeditor5-html-support@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-2gS0VAK7TntiQ8sZB7jc0+WeJCt04mkhHq+P2dClM4t8m24M3NvKWGsbtuv01BRY0I0iqANc0rthJ030oMYYiA==}
 
-  '@ckeditor/ckeditor5-icons@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-qQgGIDJIdCOG+vuJnU+Jh6Sq4/03TEmjIgPzQUftF9amNRme21Bkrs2l7H8NoW6PSytsBwxlKd8ASuTdmnfLEg==}
-
   '@ckeditor/ckeditor5-icons@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-SasRUj6AjXQ8MWE//d2YFc5G+o0AlFFM0E9bid36Afv0RT04YQmpKl3lkqduVkTAhv2QRT2dUIeIQtaI7rg0Yg==}
-
-  '@ckeditor/ckeditor5-image@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-oJL9LS1OoYVp6rS3hmMG5rr/NtHh9LWUSU2UBumM3r5M5XP/d/vteSDbxM8z9RtdWQMEW4R9626fiD+eXQnq5Q==}
 
   '@ckeditor/ckeditor5-image@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ymnhs2k0cD2AHKLme911Z1Cr4Eth98kR8Gmla6Odx+8KAEPvRZeFOzQCJHTEjakvyX1zn8i8HaAezxqJqp8FdQ==}
 
   '@ckeditor/ckeditor5-import-word@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ai7xeKAextYGuk1M4dg4IXdvWdZ1v9l0N/1RIGzANK7nRiuGdwKcmKIQUP4V8yy/x/pKjQwRVxX8C2+cubx5QQ==}
-
-  '@ckeditor/ckeditor5-indent@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-e/+2/ySyqBq16MjhXnKLT7psOlzPM5A5kdcwths9mg7VEHtgtzd47Ro2RewTPo9zsFdoLkvBemgHBEFNi1cZoA==}
 
   '@ckeditor/ckeditor5-indent@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ZXEyUL+goH6IgEA0WMwIQlqUxUqr/v4ZNDRITHv0ElUHUsauzvAmEQnkz2No/bMbwirR4igXEM4W7avG2X7FWw==}
@@ -1297,17 +1195,11 @@ packages:
     peerDependencies:
       ckeditor5: '>=42.0.0 || ^0.0.0-nightly'
 
-  '@ckeditor/ckeditor5-language@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-jMek4vi6qGp7QPg+K4W5+wgfpT9MBjaEjHf4Zn2Y+kaHNVwdEjKQry4Zs0TZObwMlagW7uh7ieJGiYi2bQaYXQ==}
-
   '@ckeditor/ckeditor5-language@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-fxVBOSrbF6q+MfeU9lRXa7kFA/bwyTsS/fi1MP3awxYecdjfcCPl8UPa3RZltX4td/zvT0G+uDmRsV/vXP8SbQ==}
 
   '@ckeditor/ckeditor5-line-height@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-C3Gz9hlTWSeTsnlcAsM3TsN3LOnTqv5ego1H2F7MYLcx98qWCZiTQmQHRPYyG/7RqfGscF2fKO76bPpHOjL0AA==}
-
-  '@ckeditor/ckeditor5-link@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-rxGmtN2/adTiX8xd/PKGQYeoJ5o312ZSYIqiUlpSXyNe2uRbfweJpwc+Kwi+DJWV1ViZAkLjXAC+7TMEdp0S2w==}
 
   '@ckeditor/ckeditor5-link@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-rAYG8r4+gGICzxLhrUkL2Ggje0BUb+NjbNYmnRn0S9UH7ULOl0XQK8rmUEMbjOQtGgug5Bi9fCASoAhhoV8T/g==}
@@ -1315,26 +1207,14 @@ packages:
   '@ckeditor/ckeditor5-list-multi-level@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-cwkAYnIO8SI6xUpi4PfcIfhwlRoNY41Qgg++acF3qnz2XhNC8PKjqfVLssXzaztt5pfypPiXIg/rn8PCM6PNbQ==}
 
-  '@ckeditor/ckeditor5-list@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-/ety+gmKn7eGrBUJsHnVao32UzfzNAtZkut54ltoVmJsocdBNg1Ifm3KhK1HX5K2fADiiBtHqkW4qOnMJqaiIg==}
-
   '@ckeditor/ckeditor5-list@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-G2ZBFEURxvHawk8dIpRxP4KbONm23vmsOoKQfTwczCFBc314Phf2j7/2ptPvFYlt/9ddHcdxARZnte3a6+KYGQ==}
-
-  '@ckeditor/ckeditor5-markdown-gfm@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-GKJPQlKZxoOokLgVtzObHt/Wc7+0LXCvrtpn3+zpzdMzOJZHnTUw4u4/q4YGBP4k998kbvbu0TW5XTyvn94e0w==}
 
   '@ckeditor/ckeditor5-markdown-gfm@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ifODA7bD+rxakid3Um7InGcBEQcbHcELyIPhoQClcVZFcUGMChD5yEk50m0Sfe17W3Pz04apPaqzaI4a6ggxmQ==}
 
-  '@ckeditor/ckeditor5-media-embed@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-P9bO36MOf6w9aUmPrdqXqUiliZPBM6t19bgLetrbBr6RtfXy3VlDbLXP/8AKyhvXMmWAMvFVdiGt4JRiJXXUuA==}
-
   '@ckeditor/ckeditor5-media-embed@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-S4+eKp5D3Quu62s8Hb9eujN4PN+H2+7fX9YhFUjRqWGYWGFGcoXAxzGIkpVlTXja+xzl346i6TKdC3+ncyoakw==}
-
-  '@ckeditor/ckeditor5-mention@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-5IChzurWukYQQirlENRyqAlFsGG2cVOLHawEnaWX8S3/P49TgIFmgebJNowfp4oTwphKtV+F53SYuOhqYsikMw==}
 
   '@ckeditor/ckeditor5-mention@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-8kRNnxm5EeP693Yaq0hHsVkpezZsEinxGOkDPWCSh6Q6LmgN3D6l9vCrVJZz0XkcpHnCO4X/zp1nKzz1m16Y4A==}
@@ -1342,17 +1222,11 @@ packages:
   '@ckeditor/ckeditor5-merge-fields@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-/2qutaBh1w5EK8kNIctm8zDBBXK7aCr8zg+QJEM7Moh2e8fsykEymMRviwlVbQZHQcqSM9TmxwAtwMQRsMBw4w==}
 
-  '@ckeditor/ckeditor5-minimap@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-vFqw++QBu98M9eQWyr1gjCkufEjtf0btHSoVzmZNVYlTGVo4lgvrhgMF+4Q2vwsjzPaAJZkblwglVBOEEgL/UA==}
-
   '@ckeditor/ckeditor5-minimap@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-qXznpiMLXI/uiCAHHzi1GbOu1Axfb5IpYUYV4FofmiTKfAB5LcU/0mg6d87bHqfLMxaF2OiATzTeOyk32ky+wQ==}
 
   '@ckeditor/ckeditor5-operations-compressor@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-ggM8p11IpeSnZrzc6Mq823fUVMET4YC0CK3/mJtplAhvfjYGCpJLC7p5fYB0QI85/P4/UMhybSMRJHZDD04hNg==}
-
-  '@ckeditor/ckeditor5-page-break@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-HDu82pKmI1ZooQymIXZFPkRx6WQx3C1i93HsyDuJWJB8dZoyZA5pPhQ0ZLIXTb87B7VOs4BcIihDME+peVjWIQ==}
 
   '@ckeditor/ckeditor5-page-break@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-PR7QhXa2joOq5GnxztzIHAoVpSABKoP/LX/sS9/SLwBHef+Xe6muUcdQOi7d4nZAoCcwPSuZG9Be7cGbw0hmTA==}
@@ -1360,17 +1234,11 @@ packages:
   '@ckeditor/ckeditor5-pagination@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-m3pUfbf1ZA/eRzHAaygiFX/ZVvdZnwKS0pTOoqQ5jLegLCqwZC+yrq2pEOtqya93Qr9L/r6wVTtVUgE2IV1zLg==}
 
-  '@ckeditor/ckeditor5-paragraph@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-o+4rpR6IbzL+j8ZTWu+wpwBTsRWX+ZUkp0WtMrXoqUz58PTmfeUzv5/S3suXLkTEbjTP2UrND1iwya09MAo86A==}
-
   '@ckeditor/ckeditor5-paragraph@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-Du3fecDi5M1fFmvo2W3Gs4EL/7SZ4Hbj0LIewYcaTbd6ELqYgSNZmkAhP+pxYTnnfS28BuDLY4W50lE9ZMCZTg==}
 
   '@ckeditor/ckeditor5-paste-from-office-enhanced@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-594BozrNv9++fGQhOO+ePFgIWt6ZmdpQDOZGj+LXmSjLz+hZl4mg/esZXN/nNMjVtkLzpSeoVBd/cU3TkdOKYw==}
-
-  '@ckeditor/ckeditor5-paste-from-office@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-XjeTxKo3jB+yu+19fF3L7a0h2Ow73QQzG/VXKDVM3+jree3DOw89qMEJndT6uoTJqBIeNc9znAn/We1PZafEyw==}
 
   '@ckeditor/ckeditor5-paste-from-office@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-8FJDr+gY3kp40f/wFlsoVYOXy2DLJTucYtU11QqeEw70N5ve5o+X6HYbJuDCuRoLQj15dsCQy42fls6NWAtoCw==}
@@ -1378,14 +1246,8 @@ packages:
   '@ckeditor/ckeditor5-real-time-collaboration@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-pX6jU1tEJCEp5T0vPEvizvbhp2y2Ja1uzM2Zm0pGJQk1TdKw6/ZK7kzeKmLZ8ehwsxmZDKCmDf5Hvf7Yre0Tjw==}
 
-  '@ckeditor/ckeditor5-remove-format@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-v6WNQ4LbSZ04P1d20URzVTYfEeP56uMKaqG+0zkzdfSsqJhcHLHpTiAqyO8Q9eeGXVYgaRfw7IGTDbKj9no4mA==}
-
   '@ckeditor/ckeditor5-remove-format@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-I8Igh+2/Wxc2X5ESZYqqAciR3a2BWkGPVTE2FfCZ533wHZo8SV+D05CNXLYspLiRxj66RxXZ3/kPoiHjJQtgzg==}
-
-  '@ckeditor/ckeditor5-restricted-editing@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-Zb+QDggUpEffsy2mhcQVNfJbNBrQ33RurnUnfvvcfHG38YMcMago0DHXQOCsHSdr0GQgshie1yFn/bt8dX2Arw==}
 
   '@ckeditor/ckeditor5-restricted-editing@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-0cWizeR6jnob1JTWgEOlm3hinQvnhu6/bD9Fgzu1qSesB4HIBD6Xvvjj4X0WwTWfY0fH9g9z1QjjGJ3szAbO+g==}
@@ -1393,14 +1255,8 @@ packages:
   '@ckeditor/ckeditor5-revision-history@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-t/Hzj6A13e4fBQh7ArvQ2JXq0Wb3Gf2VKwlOAYuSrZMLCf7S05+emQATgW0WEaWuXbBKpnZrx4wVlv51v/fKXg==}
 
-  '@ckeditor/ckeditor5-select-all@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-fXqpEQPYpHO6xqv5ZGF/6ffQIuzQ73MYwVaaApTLZ7OWdCXnOY6kV/UrF4S35j7fTalv6+hrkcMEMHbSfPVi3g==}
-
   '@ckeditor/ckeditor5-select-all@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-VEtBBQbjmXvbrpd6VEAqJUIlH71rs4+wMukYwKg283/TlvXpPIks+qmjHTUAh+5GZUyvIm+JXYkc8jh6PAsQ0Q==}
-
-  '@ckeditor/ckeditor5-show-blocks@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-DwfbUK2CQNtQxEEyL1LikcwTq+IaXg3zxz3VMDX1YrmwN2XwVf88skkHxI3oSBUDCWdfrWNaxz0do7x4nOOsCg==}
 
   '@ckeditor/ckeditor5-show-blocks@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-lBYDeKP85KgArYglzW3BzRHwVFr/QHtt4NiDURnFFQZqo8tkQg2/rzMfavi4N0gvI1DDQw7ToVJuvCRmpCVm4g==}
@@ -1411,26 +1267,14 @@ packages:
   '@ckeditor/ckeditor5-source-editing-enhanced@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-c0KkYh6nfrlykv71XR2AGRGrKYtpEt/eer+EUNXVhra3d20cSyGk0ngqqNwobZd5xajSSktHOIAWPclpcKDFRg==}
 
-  '@ckeditor/ckeditor5-source-editing@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-LueMQvhY4e1e+i9UQmozAOhGFDRPe21fg/6Dc254Pm+lcPeInQAd+m91r3aidQHYct5VCf8zOB9tLLGB33GL+g==}
-
   '@ckeditor/ckeditor5-source-editing@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-QstCt6fZFeJOQncVz35LM5vvnjYEAf5Bw8THioJRj60x16IONz97DdICeQr4w8ZpMUv9rYIjmxddPTd7xjsPuQ==}
-
-  '@ckeditor/ckeditor5-special-characters@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-TaB7UsNPI3uSJrK5ls080SO/MmlqYV+hieBhKXTgUmCu1Fltx7mLBLisNXXWto5W2y6VkdkhccTrh9nW8wWFiQ==}
 
   '@ckeditor/ckeditor5-special-characters@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-aK86ERVoKRVHqL0EIkgdWwOhp+boVz40yImAl0sdTP2jx9GOH9LJiLJfT4+lZ4w3gaimG1jMeAq5qbCCo+Tx8w==}
 
-  '@ckeditor/ckeditor5-style@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-YFEG4KR4pM+JNhd2vKka+oOsijFF+IM1uqC9i5bLGdM4u2z8BKOHoJ5XfC1G/Ehb28lFlG/sLqYIyh8z30aqTQ==}
-
   '@ckeditor/ckeditor5-style@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-dSkO9CPkfi/VUByBUwNeUFq6CFysyAPqQFjo5QdxvIEH1Jcgp12CRM4iZispEVm4ScvZChHZ7LQcG/clrSq1Cg==}
-
-  '@ckeditor/ckeditor5-table@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-DTy3L1Ferx/+8M1JFLS3nzKhYw7jpmts716y+O0XLJYl4cBVKAAeCMJEdB+UEgBhuDo8di+e1zeXW6s7R7jKKA==}
 
   '@ckeditor/ckeditor5-table@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-W80bSNkB5FN7pxlGG7vvLxkWh+F15FjZes2XI9dKK//jhk3ac768Ri/vNetq/ZJYQur2pFfpDnOYL4DQ6BK0BA==}
@@ -1441,26 +1285,14 @@ packages:
   '@ckeditor/ckeditor5-track-changes@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-JnQqbwES8baN89ettDnTScPEZrYAvV2ZHvPxhtncqyX76EukdkDz8t/ZPhXtlkrJHivVN/KyLmcTluYvS+fX2Q==}
 
-  '@ckeditor/ckeditor5-typing@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-u00EuCkOpg6UI9HfhMRwhhrTdq5HbGOGEUph3jWcsf8HXR+BdDtAFT9lH7nLNZYnromJD6oJkYkQTDaU+0TEUg==}
-
   '@ckeditor/ckeditor5-typing@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-vCerwSMv9SlEXF+d06kDB9V2xQt2RNhi1rK3p9KQ/IHY6e9GhZkUnhWN3smzbHNhqTUELCATPWz4iwcqPa3p6Q==}
-
-  '@ckeditor/ckeditor5-ui@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-RiFmslr3qaZ78FO8JMgUCheHaVod6kZaxTe0urvgsYPUtGTdJpgdRZE2FlSD0LrABuaGFKHcaoy4mgBSdzSVlQ==}
 
   '@ckeditor/ckeditor5-ui@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-+e1nRX7BDaosY3MTkVyy83ZxZgki6KZm1YvOqn3uDBd7QoI969ZKsq+nHPyqsajxUjugRfb8r1+AClY6ROGJZA==}
 
-  '@ckeditor/ckeditor5-undo@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-W1T5yKuRY/3HviD1XQj16g3Bp+o39h/ZSeE7P7CGwjOP7nalYLre4pNIUBCrqDXZKnPiqbn7WdQEBmeSsh/ERA==}
-
   '@ckeditor/ckeditor5-undo@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-xL2uX9+uY2D/uxRBXzOiCZ1Rl5WQ5JN5KpkfBsaE6Oscnc/8V44WWTwxkCsrw9gV0oqY6OUmXIUIks/BEnItJw==}
-
-  '@ckeditor/ckeditor5-upload@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-+8JOV6M26PmFk4urPSM1bceyZ5AphwbPe0t+LO1qxpXxeAIf8e1PTe4NS3/q1pErw6EHq2poeaykxbm4FtM5vg==}
 
   '@ckeditor/ckeditor5-upload@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-yIFUlSLu4FUHHBBAdSMFzsfVvFHQ7xydrweHqZZ5btXS46xe55aJzn2a6nuHU+d895uYmLmFGrtO3jdu1zDqHQ==}
@@ -1468,20 +1300,11 @@ packages:
   '@ckeditor/ckeditor5-uploadcare@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-igd/JwTpF7Nbe+2EVHdnxht5fJnHi7qHFsO9p/NH+kn6N5bYPLgNKrfXQUjjz/QXXcGkBaw1q0sqQYJW64igxw==}
 
-  '@ckeditor/ckeditor5-utils@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-wJJDOx2KDZqtx3YITNQihGY6Z+OdGMRldvIg+LCD/5xg5jY4yki/YSjQ+d4wL6ADpBKEZZuGOWGDWm1N++UbWg==}
-
   '@ckeditor/ckeditor5-utils@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-JBxzx9PTRqE7HXuqmRzG5yejT7qFPyU32XRlwatk38p6TPcAveVMHfMg6umqUQ2QfY+t5CBSwaG5w3R75rW0ow==}
 
-  '@ckeditor/ckeditor5-widget@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-EZsxoONDjRxoA/jkEspocja0eumjD7XTLRIlo907zzRBsaMqaHZeYgurValWKBg8vZYX//YAheKTrDXg8jGaDA==}
-
   '@ckeditor/ckeditor5-widget@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-gNkylphsZPcMcNuYxO687U21KBdJhwh9hjNnNETCGyx0iF4z537CTClcQdv05MiLaK6xbLTWAzorl4/Q9REbuw==}
-
-  '@ckeditor/ckeditor5-word-count@0.0.0-nightly-20260911.0':
-    resolution: {integrity: sha512-fNtS7wKVx6rWMXx2BBUwbIAtajANUCMXkuO/B3LkhHhjiB6JwMv+VVDivAEqUuqaU7Nc/Dqh6sLVpXbxWA1yjg==}
 
   '@ckeditor/ckeditor5-word-count@0.0.0-nightly-20260923.1':
     resolution: {integrity: sha512-wNVEagSDALoDQowzvRV68IDOyJTnUntPy8WGCcXxvVP0H+XP7tVcoDpI3lz/AOmpQEAH9209DcuVCKTMIC5eQA==}
@@ -2913,11 +2736,6 @@ packages:
     cpu: [arm]
     os: [android]
 
-  '@rollup/rollup-android-arm-eabi@4.61.1':
-    resolution: {integrity: sha512-JnBB8MdXj45cajvTuO5FmPlvFVJRQgvrz1uSEl3NwqFnReAPGwb8EanbGi4z2nRaqLzjJSv5/JmycoTKlRZxHA==}
-    cpu: [arm]
-    os: [android]
-
   '@rollup/rollup-android-arm-eabi@4.62.2':
     resolution: {integrity: sha512-6o7ZLZK+BeenkZCFNDXqpbjw9bD6nuWonvS/lwQJp7NoVVxm6p3qE7qQ5jGuBjiFsgvqjD8mZAU5oWxTmbOeOg==}
     cpu: [arm]
@@ -2925,11 +2743,6 @@ packages:
 
   '@rollup/rollup-android-arm64@4.59.0':
     resolution: {integrity: sha512-hZ+Zxj3SySm4A/DylsDKZAeVg0mvi++0PYVceVyX7hemkw7OreKdCvW2oQ3T1FMZvCaQXqOTHb8qmBShoqk69Q==}
-    cpu: [arm64]
-    os: [android]
-
-  '@rollup/rollup-android-arm64@4.61.1':
-    resolution: {integrity: sha512-Jx2g7iSjw4AOT0HDPHM9RV3GNjRXwybWtSFZiZAYUTjUwjVrYIwq3kBf+LnhqJlzXFAqTAh2F7IGI+O568exPw==}
     cpu: [arm64]
     os: [android]
 
@@ -2943,11 +2756,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@rollup/rollup-darwin-arm64@4.61.1':
-    resolution: {integrity: sha512-0F1L/Z3Eqv8mT2n3dCpeO8GcTvHvVqkP5/t6DMsn0KzhYVcg+s7Ncl5DS8qjKYEeio6Az0Gt6nyBORay5qIlCA==}
-    cpu: [arm64]
-    os: [darwin]
-
   '@rollup/rollup-darwin-arm64@4.62.2':
     resolution: {integrity: sha512-v39RCCvj4He82I9sFmk+M1VZ0PLM9sfsLVikjfx2hYBNALhrrOR2D3JjQA6AhlaSOgcR+RzrKY7e1+bT6SUO/A==}
     cpu: [arm64]
@@ -2955,11 +2763,6 @@ packages:
 
   '@rollup/rollup-darwin-x64@4.59.0':
     resolution: {integrity: sha512-ZW2KkwlS4lwTv7ZVsYDiARfFCnSGhzYPdiOU4IM2fDbL+QGlyAbjgSFuqNRbSthybLbIJ915UtZBtmuLrQAT/w==}
-    cpu: [x64]
-    os: [darwin]
-
-  '@rollup/rollup-darwin-x64@4.61.1':
-    resolution: {integrity: sha512-qLttcH871ujY4YcVfUSShhOw+CsoTatYz8gRbHO7Bb92QH059/P0y5do1KMs41fY0BpD2x4AJH/gID0zFiqVKQ==}
     cpu: [x64]
     os: [darwin]
 
@@ -2973,11 +2776,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
 
-  '@rollup/rollup-freebsd-arm64@4.61.1':
-    resolution: {integrity: sha512-fUI4RapGE0Oh3mb8mgfvC1O2nU1RpDZUKnDQm3xB1Ipg7C2wTs5Kstz7G2uWK99a8S2yTMq8/P4uycwNa0nJyw==}
-    cpu: [arm64]
-    os: [freebsd]
-
   '@rollup/rollup-freebsd-arm64@4.62.2':
     resolution: {integrity: sha512-tT4pvt4qXD+vEoezupCWi+a1F0vvDiksiHc+PxRlYTOH1I6/X4id9jPxTP+Fg+545euaFT1jJVs4CEdHZAU1vw==}
     cpu: [arm64]
@@ -2988,11 +2786,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
-  '@rollup/rollup-freebsd-x64@4.61.1':
-    resolution: {integrity: sha512-H5YrdvJaDtI/U9/emrD4b++xkvp3y/JvOe4rizHbxvkyMfRS/CiRYdji+Pl8D0brEaNFWUh1drQxgAGIl6Xudw==}
-    cpu: [x64]
-    os: [freebsd]
-
   '@rollup/rollup-freebsd-x64@4.62.2':
     resolution: {integrity: sha512-6nU5F2wCW+qvCBhTn1pdIU3bzsIoF7EUwsCDRxilWGprQR6yd508YnH9+OKFCwpfS8pjZqDUmnCAr7exax0XCg==}
     cpu: [x64]
@@ -3000,12 +2793,6 @@ packages:
 
   '@rollup/rollup-linux-arm-gnueabihf@4.59.0':
     resolution: {integrity: sha512-t4ONHboXi/3E0rT6OZl1pKbl2Vgxf9vJfWgmUoCEVQVxhW6Cw/c8I6hbbu7DAvgp82RKiH7TpLwxnJeKv2pbsw==}
-    cpu: [arm]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-arm-gnueabihf@4.61.1':
-    resolution: {integrity: sha512-Q8CBCCQtDFrYtXoeUXSrnFXKOnyUhx6bz+SkL6A0E7V8kAiCJ5pamq1WtbfpVGhR5TSpXY6ak3avmDc5fHTyJA==}
     cpu: [arm]
     os: [linux]
     libc: [glibc]
@@ -3022,12 +2809,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-arm-musleabihf@4.61.1':
-    resolution: {integrity: sha512-nwnhk1581l0FBVellGcVCAT0Oi06onEA3WB53sf01VO3I0UPBkMH9sXONYME2K0ovXcNayJfNtHfm6mpJElatQ==}
-    cpu: [arm]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-arm-musleabihf@4.62.2':
     resolution: {integrity: sha512-JqgflS8wEB+UXV/vS1RpRbifGBeN4D5lz8D8oOFbFZw4vedvdOgCFAjfBmIMdW3yL10XpQQ0Ambepw6MXrhOnA==}
     cpu: [arm]
@@ -3036,12 +2817,6 @@ packages:
 
   '@rollup/rollup-linux-arm64-gnu@4.59.0':
     resolution: {integrity: sha512-jYgUGk5aLd1nUb1CtQ8E+t5JhLc9x5WdBKew9ZgAXg7DBk0ZHErLHdXM24rfX+bKrFe+Xp5YuJo54I5HFjGDAA==}
-    cpu: [arm64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-arm64-gnu@4.61.1':
-    resolution: {integrity: sha512-x5Xr49hwt3hdW75UOZm3395YwwzPyauktslv29KpWL/T+vVAzoT3azLcTWv0eMciBNrx+DYjH4paehHoLpPvpg==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
@@ -3058,12 +2833,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-arm64-musl@4.61.1':
-    resolution: {integrity: sha512-unMS3H73DpaoPyyEVPjGKleM/s0mkmsauTENpw4INQY8y4+IuLNjkueQ5QCtC0D3N38Y38yhAU8OoZ20S2Tm6w==}
-    cpu: [arm64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-arm64-musl@4.62.2':
     resolution: {integrity: sha512-HVu2bp0zhvJ8xHEV9+UUs7S90VadmBSY3LcIMvozbPo4AuMGDWlz3ymHLHZPX4hR67TKTt8Qp5PJ5RBg/i+RMQ==}
     cpu: [arm64]
@@ -3072,12 +2841,6 @@ packages:
 
   '@rollup/rollup-linux-loong64-gnu@4.59.0':
     resolution: {integrity: sha512-gbUSW/97f7+r4gHy3Jlup8zDG190AuodsWnNiXErp9mT90iCy9NKKU0Xwx5k8VlRAIV2uU9CsMnEFg/xXaOfXg==}
-    cpu: [loong64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-loong64-gnu@4.61.1':
-    resolution: {integrity: sha512-zNZzGRnAhwjFEYmvphJRV5XaQGjs62cCmeYYHUT//NbvEnHauw+I85nGG+SiVg5ld4GX8D1IbKIX+ozITQnhMQ==}
     cpu: [loong64]
     os: [linux]
     libc: [glibc]
@@ -3094,12 +2857,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-loong64-musl@4.61.1':
-    resolution: {integrity: sha512-LdpWGL8X209B2SIvWjqlc8VZgM6PKfontSerGepuldQmHYrAOtnMCXeJkxXGbC+PPZVOuu5czJo7fNV6aeW8rQ==}
-    cpu: [loong64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-loong64-musl@4.62.2':
     resolution: {integrity: sha512-IxKLoxCQ2IWi6bT2akyDUBGsOImDKB+sPp4EsTmwFQ/fMwpCKm8uLSSgP/Kx/QYUgKis6SEZ5/Nlhup0DIA0PQ==}
     cpu: [loong64]
@@ -3108,12 +2865,6 @@ packages:
 
   '@rollup/rollup-linux-ppc64-gnu@4.59.0':
     resolution: {integrity: sha512-sw1o3tfyk12k3OEpRddF68a1unZ5VCN7zoTNtSn2KndUE+ea3m3ROOKRCZxEpmT9nsGnogpFP9x6mnLTCaoLkA==}
-    cpu: [ppc64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-ppc64-gnu@4.61.1':
-    resolution: {integrity: sha512-EC5kTtNaNGOmbMGqar8dvJy6y/hg99GAwjfBz++pxZhQATXGcRjd6c5en5wcbru0vkRmiMGsQKdMJOOf6sza4g==}
     cpu: [ppc64]
     os: [linux]
     libc: [glibc]
@@ -3130,12 +2881,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-ppc64-musl@4.61.1':
-    resolution: {integrity: sha512-8hiwp6D4acEcNK78I4rP0/XtS1sknWIAMJBPdR4l6zUtyTm5KiTDr5bXmWt4foY7nAN7AThDHgkLIEZOWKbzWw==}
-    cpu: [ppc64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-ppc64-musl@4.62.2':
     resolution: {integrity: sha512-CjvEnqJL/0/TQ3TXX3OPIJ/kmBellrWd4heXUmHeJlTnmwjKpSJzoehLaL6Xk0ZnMHBu9dZuFADNOrtjF4v+2w==}
     cpu: [ppc64]
@@ -3144,12 +2889,6 @@ packages:
 
   '@rollup/rollup-linux-riscv64-gnu@4.59.0':
     resolution: {integrity: sha512-NDYMpsXYJJaj+I7UdwIuHHNxXZ/b/N2hR15NyH3m2qAtb/hHPA4g4SuuvrdxetTdndfj9b1WOmy73kcPRoERUg==}
-    cpu: [riscv64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-riscv64-gnu@4.61.1':
-    resolution: {integrity: sha512-10dh/h/BqA7DuMPWSxkR8uks18FRwnwOEqr5zOTEl+NOwP/OMzKX8OFR/Of9xxDA7D5qef1Nzar5WDD2kCCr1g==}
     cpu: [riscv64]
     os: [linux]
     libc: [glibc]
@@ -3166,12 +2905,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-riscv64-musl@4.61.1':
-    resolution: {integrity: sha512-YKJ5lg35DP17gcAOggnihe+APw9HLyj1Xn7gsmGumBJAUDa6NGXNixJzmkWLhcK9TOuuyQjdamzvJefkO7qHZQ==}
-    cpu: [riscv64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-riscv64-musl@4.62.2':
     resolution: {integrity: sha512-nQts12zJ3NQRoE6uYljOH89v7szzLDvG2JD/vsX+vGXU8w/At1GowTZ5/7qeFQ8m7L55rpR8Okugnuo5bgjy2Q==}
     cpu: [riscv64]
@@ -3180,12 +2913,6 @@ packages:
 
   '@rollup/rollup-linux-s390x-gnu@4.59.0':
     resolution: {integrity: sha512-oF87Ie3uAIvORFBpwnCvUzdeYUqi2wY6jRFWJAy1qus/udHFYIkplYRW+wo+GRUP4sKzYdmE1Y3+rY5Gc4ZO+w==}
-    cpu: [s390x]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-s390x-gnu@4.61.1':
-    resolution: {integrity: sha512-Mlil5G2Jj6a7B3LWGctg+XPL9vdXYuzCtNXfxOQ0nPjc2m6ueUktocPGH9bnAM0bNRKb/bAWTujUU7IJQdQA+g==}
     cpu: [s390x]
     os: [linux]
     libc: [glibc]
@@ -3202,12 +2929,6 @@ packages:
     os: [linux]
     libc: [glibc]
 
-  '@rollup/rollup-linux-x64-gnu@4.61.1':
-    resolution: {integrity: sha512-bVWIOIk6pV01p4CdUbPP7CJ/434z+OooYjDuFcR+44N35YvKUC66G8MGnvcWx5mWKW3g61J+t74l3Kj15Kwn2Q==}
-    cpu: [x64]
-    os: [linux]
-    libc: [glibc]
-
   '@rollup/rollup-linux-x64-gnu@4.62.2':
     resolution: {integrity: sha512-5BqxR/pshjey51iliyzTD5Xi3EN0aLmQ2lZ3lvefVV9c82BvrLo2/6OT55iifpWBufs6kdwWbuOKS841DrmK9A==}
     cpu: [x64]
@@ -3216,12 +2937,6 @@ packages:
 
   '@rollup/rollup-linux-x64-musl@4.59.0':
     resolution: {integrity: sha512-2UdiwS/9cTAx7qIUZB/fWtToJwvt0Vbo0zmnYt7ED35KPg13Q0ym1g442THLC7VyI6JfYTP4PiSOWyoMdV2/xg==}
-    cpu: [x64]
-    os: [linux]
-    libc: [musl]
-
-  '@rollup/rollup-linux-x64-musl@4.61.1':
-    resolution: {integrity: sha512-qy5pBvZbqNFheBz61R1rzsezjm0J7O2oNGoWtGoY89SZYLUfxAJTBAqDChqAIdB4rCiIbi9nF7yZ83GnNiLwSw==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
@@ -3237,11 +2952,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
 
-  '@rollup/rollup-openbsd-x64@4.61.1':
-    resolution: {integrity: sha512-E83TXjI4zm0+5f2qO+UOudaCYIhYwpJ5jq6YCZNIZ+6CbfhKrkAGezeiASBL9ElxAxFsRS9ZhESv8mfnj6TKeg==}
-    cpu: [x64]
-    os: [openbsd]
-
   '@rollup/rollup-openbsd-x64@4.62.2':
     resolution: {integrity: sha512-srjEIxSH3LRnJN6THczDHWQplqEMFiAJrTab0msUryh9kwNpkICf3Ea6q6MN/2cZwRFUNx5w+h6Hpi4QuHS6Zg==}
     cpu: [x64]
@@ -3249,11 +2959,6 @@ packages:
 
   '@rollup/rollup-openharmony-arm64@4.59.0':
     resolution: {integrity: sha512-tt9KBJqaqp5i5HUZzoafHZX8b5Q2Fe7UjYERADll83O4fGqJ49O1FsL6LpdzVFQcpwvnyd0i+K/VSwu/o/nWlA==}
-    cpu: [arm64]
-    os: [openharmony]
-
-  '@rollup/rollup-openharmony-arm64@4.61.1':
-    resolution: {integrity: sha512-fbWnKqVkjrJN38vNe3ahkbk6iejS/3b0Nt7EEtPpE6RBacZcGXNKbzfHN3GUUlXOPghUg0j6XUGrtjX9z1sIvA==}
     cpu: [arm64]
     os: [openharmony]
 
@@ -3267,11 +2972,6 @@ packages:
     cpu: [arm64]
     os: [win32]
 
-  '@rollup/rollup-win32-arm64-msvc@4.61.1':
-    resolution: {integrity: sha512-ArMl38iVAbk0New1ogihQNY6iphLi4ZaRsa037gUzv5yeKPY8TD3Dmy4x2RNC1VztU/uqm+G+/RwFrSka3Oy2g==}
-    cpu: [arm64]
-    os: [win32]
-
   '@rollup/rollup-win32-arm64-msvc@4.62.2':
     resolution: {integrity: sha512-mmF4AY1i0hG/bLWUctUq59gtmgaSIRa3cu/A3JFRp/sCNEme2bgDEiDS22P9FbnJB8NJNF4jPJiSP5RHQpUTDg==}
     cpu: [arm64]
@@ -3279,11 +2979,6 @@ packages:
 
   '@rollup/rollup-win32-ia32-msvc@4.59.0':
     resolution: {integrity: sha512-UKFMHPuM9R0iBegwzKF4y0C4J9u8C6MEJgFuXTBerMk7EJ92GFVFYBfOZaSGLu6COf7FxpQNqhNS4c4icUPqxA==}
-    cpu: [ia32]
-    os: [win32]
-
-  '@rollup/rollup-win32-ia32-msvc@4.61.1':
-    resolution: {integrity: sha512-0mYtjHS9ucAbcATycCNK9IGBk/cCe/ma7EmSLGZdsxnOA8cjRIyU04wDpVAD9NiOfLUR9KTxdiO53uOkherqjQ==}
     cpu: [ia32]
     os: [win32]
 
@@ -3297,11 +2992,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rollup/rollup-win32-x64-gnu@4.61.1':
-    resolution: {integrity: sha512-gK1iCEPfpoSG9wfBihXxvBMi8ZfcWffYkEsC/Eih+iFENTaewvNcrEQ69lIOWYO5pePHKLHHO7nq5AILGO/HQQ==}
-    cpu: [x64]
-    os: [win32]
-
   '@rollup/rollup-win32-x64-gnu@4.62.2':
     resolution: {integrity: sha512-T6xr6ucWSFto+VGajA8YH26LdpHRuP4YLHEKAtCWvJDOlnmWcDZVCI2Jmjr+IFHDlt2zRaTAKE4tfjTaWLgJBg==}
     cpu: [x64]
@@ -3309,11 +2999,6 @@ packages:
 
   '@rollup/rollup-win32-x64-msvc@4.59.0':
     resolution: {integrity: sha512-2HRCml6OztYXyJXAvdDXPKcawukWY2GpR5/nxKp4iBgiO3wcoEGkAaqctIbZcNB6KlUQBIqt8VYkNSj2397EfA==}
-    cpu: [x64]
-    os: [win32]
-
-  '@rollup/rollup-win32-x64-msvc@4.61.1':
-    resolution: {integrity: sha512-X+zaP2x+j4RXGfbp/seSoRHWnPxzApilDszisZxbYH5C/jTxFhCtDNdPGZb9lJyYPs24wGxruPF7Y+sIXt9Gzw==}
     cpu: [x64]
     os: [win32]
 
@@ -4020,9 +3705,6 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
-  caniuse-lite@1.0.30001799:
-    resolution: {integrity: sha512-hG1bReV+OUU+MOqK4t/ZWI0tZOyz3rqS9XuhOUz1cIcbwBKjOyJEJuw9ER5JuNyqxNk8u/JUVbGibBOL1yrjFw==}
-
   caniuse-lite@1.0.30001810:
     resolution: {integrity: sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg==}
 
@@ -4077,9 +3759,6 @@ packages:
     resolution: {integrity: sha512-4WqVROWvI949UtHBAK3v19aYOeIE7gY94Cv5HKctiqaO3b5QV0jjJn60bBIFOwwbOf5Z4MpqOr4Z2T7IwIkFCA==}
     peerDependencies:
       ckeditor5: 0.0.0-nightly-20260923.1
-
-  ckeditor5@0.0.0-nightly-20260911.0:
-    resolution: {integrity: sha512-dbi/icV3ih8mTIcZPRZkp8jc8YUCdVXgply2l+lpsEAU6MqFCv99FFldm5e9mfqkN04rVXuirlGKOKvDTh8nbA==}
 
   ckeditor5@0.0.0-nightly-20260923.1:
     resolution: {integrity: sha512-zxj3jd3lCS5hx6zi87AUOALIGVBehdTbr/vHtvFCyc/1smADI2/UcmPx+SiVf5WCN059lhitOGxs0piB0XKZNA==}
@@ -4514,9 +4193,6 @@ packages:
   es-set-tostringtag@2.1.0:
     resolution: {integrity: sha512-j6vWzfrGVfyXxge+O0x5sh6cvxAog0a/4Rdd2K36zCMV5eJ+/+tOAngRO8cODMNWbVRdVlmGZQL2YS3yR8bIUA==}
     engines: {node: '>= 0.4'}
-
-  es-toolkit@1.45.1:
-    resolution: {integrity: sha512-/jhoOj/Fx+A+IIyDNOvO3TItGmlMKhtX8ISAHKE90c4b/k1tqaqEZ+uUqfpU8DMnW5cgNJv606zS55jGvza0Xw==}
 
   es-toolkit@1.52.0:
     resolution: {integrity: sha512-XTNEJQh1tY1ZJVcf6ayP/2n4ZPyaHlW2FWs7xvw5ddPuhUVjLD3olQVQS7kf58JbAB48iL0uL/jerTrjtV3lDA==}
@@ -6392,9 +6068,6 @@ packages:
     resolution: {integrity: sha512-dLsljMd9sqwRkby8zhO1gSg3PnJIBFid8f4CQj/sXx+7cKx+E7u0PKhZ+U4wmhx7EfmtvnA318oVaIkAB1lRJw==}
     hasBin: true
 
-  rehype-dom-parse@5.0.2:
-    resolution: {integrity: sha512-8CqP11KaqvtWsMqVEC2yM3cZWZsDNqqpr8nPvogjraLuh45stabgcpXadCAxu1n6JaUNJ/Xr3GIqXP7okbNqLg==}
-
   rehype-dom-stringify@4.0.2:
     resolution: {integrity: sha512-2HVFYbtmm5W3C2j8QsV9lcHdIMc2Yn/ytlPKcSC85/tRx2haZbU8V67Wxyh8STT38ZClvKlZ993Me/Hw8g88Aw==}
 
@@ -6491,11 +6164,6 @@ packages:
 
   rollup@4.59.0:
     resolution: {integrity: sha512-2oMpl67a3zCH9H79LeMcbDhXW/UmWG/y2zuqnF2jQq5uq9TbM9TVyXvA4+t+ne2IIkBdrLpAaRQAvo7YI/Yyeg==}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
-    hasBin: true
-
-  rollup@4.61.1:
-    resolution: {integrity: sha512-I4KW6iuRpuu2uHBLraZ1wNZe0DP7lnRha+VJ9tNaYVaVgKhW0aI3h4RYnoRPeql0flHm/Co55b7snEDcOfOJrA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -7581,7 +7249,7 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.13
       '@jridgewell/trace-mapping': 0.3.31
 
-  '@analogjs/vite-plugin-angular@2.6.2(29c2e05d32215901993fe0c91ebd073f)':
+  '@analogjs/vite-plugin-angular@2.6.2(5ce06ec0cbc9f1c5c73debb945978b04)':
     dependencies:
       magic-string: 0.30.21
       obug: 2.1.2
@@ -7589,16 +7257,16 @@ snapshots:
       tinyglobby: 0.2.17
       ts-morph: 21.0.1
     optionalDependencies:
-      '@angular-devkit/build-angular': 20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(supports-color@8.1.1)(typescript@5.8.3)(vitest@4.1.11)(webpack-cli@5.1.4)(yaml@2.9.0)
+      '@angular-devkit/build-angular': 20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(typescript@5.8.3)(vitest@4.1.11)(webpack-cli@5.1.4)(yaml@2.9.0)
       '@angular/build': 20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.9.0)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(postcss@8.5.25)(terser@5.43.1)(tslib@2.8.1)(typescript@5.8.3)(vitest@4.1.11)(yaml@2.9.0)
       vite: 7.3.5(@types/node@14.18.63)(jiti@1.21.7)(less@4.9.0)(lightningcss@1.32.0)(sass@1.90.0)(terser@5.43.1)(yaml@2.9.0)
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  '@analogjs/vitest-angular@2.6.2(@analogjs/vite-plugin-angular@2.6.2(29c2e05d32215901993fe0c91ebd073f))(@angular-devkit/architect@0.2003.30(chokidar@4.0.3))(@angular-devkit/schematics@20.3.30(chokidar@4.0.3))(vitest@4.1.11)(zone.js@0.15.1)':
+  '@analogjs/vitest-angular@2.6.2(@analogjs/vite-plugin-angular@2.6.2(5ce06ec0cbc9f1c5c73debb945978b04))(@angular-devkit/architect@0.2003.30(chokidar@4.0.3))(@angular-devkit/schematics@20.3.30(chokidar@4.0.3))(vitest@4.1.11)(zone.js@0.15.1)':
     dependencies:
-      '@analogjs/vite-plugin-angular': 2.6.2(29c2e05d32215901993fe0c91ebd073f)
+      '@analogjs/vite-plugin-angular': 2.6.2(5ce06ec0cbc9f1c5c73debb945978b04)
       '@angular-devkit/architect': 0.2003.30(chokidar@4.0.3)
       '@angular-devkit/schematics': 20.3.30(chokidar@4.0.3)
       vitest: 4.1.11(@types/node@14.18.63)(@vitest/browser-playwright@4.1.11)(@vitest/coverage-v8@4.1.11)(vite@7.3.5(@types/node@14.18.63)(jiti@1.21.7)(less@4.9.0)(lightningcss@1.32.0)(sass@1.90.0)(terser@5.43.1)(yaml@2.9.0))
@@ -7612,7 +7280,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-angular@20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(supports-color@8.1.1)(typescript@5.8.3)(vitest@4.1.11)(webpack-cli@5.1.4)(yaml@2.9.0)':
+  '@angular-devkit/build-angular@20.3.30(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(@angular/compiler@20.3.31)(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3))(tslib@2.8.1)(typescript@5.8.3))(typescript@5.8.3)(vitest@4.1.11)(webpack-cli@5.1.4)(yaml@2.9.0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2003.30(chokidar@4.0.3)
@@ -7639,7 +7307,7 @@ snapshots:
       css-loader: 7.1.2(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
       esbuild-wasm: 0.28.1
       fast-glob: 3.3.3
-      http-proxy-middleware: 3.0.7(supports-color@8.1.1)
+      http-proxy-middleware: 3.0.7
       istanbul-lib-instrument: 6.0.3
       jsonc-parser: 3.3.1
       karma-source-map-support: 1.4.0
@@ -7667,7 +7335,7 @@ snapshots:
       typescript: 5.8.3
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
-      webpack-dev-server: 5.2.6(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
       webpack-merge: 6.0.1
       webpack-subresource-integrity: 5.1.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
     optionalDependencies:
@@ -7710,7 +7378,7 @@ snapshots:
       '@angular-devkit/architect': 0.2003.30(chokidar@4.0.3)
       rxjs: 7.8.2
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-dev-server: 5.2.6(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
     transitivePeerDependencies:
       - chokidar
 
@@ -7793,14 +7461,14 @@ snapshots:
       - tsx
       - yaml
 
-  '@angular/cli@20.3.30(@types/node@14.18.63)(chokidar@4.0.3)(supports-color@8.1.1)':
+  '@angular/cli@20.3.30(@types/node@14.18.63)(chokidar@4.0.3)':
     dependencies:
       '@angular-devkit/architect': 0.2003.30(chokidar@4.0.3)
       '@angular-devkit/core': 20.3.30(chokidar@4.0.3)
       '@angular-devkit/schematics': 20.3.30(chokidar@4.0.3)
       '@inquirer/prompts': 7.8.2(@types/node@14.18.63)
       '@listr2/prompt-adapter-inquirer': 3.0.1(@inquirer/prompts@7.8.2(@types/node@14.18.63))(@types/node@14.18.63)(listr2@9.0.1)
-      '@modelcontextprotocol/sdk': 1.30.0(supports-color@8.1.1)(zod@4.1.13)
+      '@modelcontextprotocol/sdk': 1.30.0(zod@4.1.13)
       '@schematics/angular': 20.3.30(chokidar@4.0.3)
       '@yarnpkg/lockfile': 1.1.0
       algoliasearch: 5.35.0
@@ -7808,7 +7476,7 @@ snapshots:
       jsonc-parser: 3.3.1
       listr2: 9.0.1
       npm-package-arg: 13.0.0
-      pacote: 21.5.1(supports-color@8.1.1)
+      pacote: 21.5.1
       resolve: 1.22.10
       semver: 7.7.2
       yargs: 18.0.0
@@ -7908,7 +7576,7 @@ snapshots:
       '@babel/types': 7.29.7
       '@jridgewell/remapping': 2.3.5
       convert-source-map: 2.0.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       gensync: 1.0.0-beta.2
       json5: 2.2.3
       semver: 6.3.1
@@ -7972,7 +7640,7 @@ snapshots:
       '@babel/core': 7.29.7
       '@babel/helper-compilation-targets': 7.29.7
       '@babel/helper-plugin-utils': 7.29.7
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       lodash.debounce: 4.0.8
       resolve: 1.22.12
     transitivePeerDependencies:
@@ -8560,7 +8228,7 @@ snapshots:
       '@babel/parser': 7.29.7
       '@babel/template': 7.29.7
       '@babel/types': 7.29.7
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -8585,12 +8253,6 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
-
-  '@ckeditor/ckeditor5-adapter-ckfinder@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-adapter-ckfinder@0.0.0-nightly-20260923.1':
     dependencies:
@@ -8643,14 +8305,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@ckeditor/ckeditor5-alignment@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-alignment@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -8658,14 +8312,6 @@ snapshots:
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-autoformat@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-heading': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-autoformat@0.0.0-nightly-20260923.1':
     dependencies:
@@ -8675,28 +8321,12 @@ snapshots:
       '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-autosave@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-autosave@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-basic-styles@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-basic-styles@0.0.0-nightly-20260923.1':
     dependencies:
@@ -8707,16 +8337,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-block-quote@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-block-quote@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -8726,17 +8346,6 @@ snapshots:
       '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-bookmark@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-link': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-bookmark@0.0.0-nightly-20260923.1':
     dependencies:
@@ -8757,20 +8366,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-ckbox@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-cloud-services': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-link': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      blurhash: 2.0.5
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-ckbox@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-cloud-services': 0.0.0-nightly-20260923.1
@@ -8785,16 +8380,6 @@ snapshots:
       blurhash: 2.0.5
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-ckfinder@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-adapter-ckfinder': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-link': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-ckfinder@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-adapter-ckfinder': 0.0.0-nightly-20260923.1
@@ -8805,15 +8390,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-clipboard@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-clipboard@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -8823,27 +8399,11 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-cloud-services@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-cloud-services@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-code-block@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-code-block@0.0.0-nightly-20260923.1':
     dependencies:
@@ -8889,13 +8449,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-core@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-core@0.0.0-nightly-20260923.1':
     dependencies:
@@ -8951,7 +8504,7 @@ snapshots:
       cli-spinners: 3.4.0
       glob: 13.0.6
       is-interactive: 2.0.0
-      pacote: 21.5.1(supports-color@8.1.1)
+      pacote: 21.5.1
       shelljs: 0.10.0
       simple-git: 3.36.0
       through2: 4.0.2
@@ -8970,14 +8523,6 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-easy-image@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-cloud-services': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-easy-image@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-cloud-services': 0.0.0-nightly-20260923.1
@@ -8985,14 +8530,6 @@ snapshots:
       '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-editor-balloon@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-editor-balloon@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9002,14 +8539,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-editor-classic@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-editor-classic@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9017,14 +8546,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-editor-decoupled@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-editor-decoupled@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9034,14 +8555,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-editor-inline@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-editor-inline@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9049,14 +8562,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-editor-multi-root@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-editor-multi-root@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9077,17 +8582,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-emoji@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-mention': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-      fuzzysort: 3.1.0
-
   '@ckeditor/ckeditor5-emoji@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9099,37 +8593,16 @@ snapshots:
       es-toolkit: 1.52.0
       fuzzysort: 3.1.0
 
-  '@ckeditor/ckeditor5-engine@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-engine@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-enter@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-enter@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-essentials@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-select-all': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-undo': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-essentials@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9171,15 +8644,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-find-and-replace@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-find-and-replace@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9188,14 +8652,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-font@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-font@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9225,15 +8681,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-fullscreen@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-classic': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-decoupled': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-fullscreen@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9242,16 +8689,6 @@ snapshots:
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-heading@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-paragraph': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-heading@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9263,14 +8700,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-highlight@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-highlight@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9278,15 +8707,6 @@ snapshots:
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-horizontal-line@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-horizontal-line@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9297,15 +8717,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-html-embed@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-html-embed@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9314,21 +8725,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-html-support@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-heading': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-list': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-remove-format': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-table': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-html-support@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9345,23 +8741,7 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-icons@0.0.0-nightly-20260911.0': {}
-
   '@ckeditor/ckeditor5-icons@0.0.0-nightly-20260923.1': {}
-
-  '@ckeditor/ckeditor5-image@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-undo': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-image@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9388,16 +8768,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-indent@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-heading': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-list': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-indent@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9408,20 +8778,9 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-integrations-common@3.1.0(ckeditor5@0.0.0-nightly-20260911.0)':
-    dependencies:
-      ckeditor5: 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-integrations-common@3.1.0(ckeditor5@0.0.0-nightly-20260923.1)':
     dependencies:
       ckeditor5: 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-language@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-language@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9438,20 +8797,6 @@ snapshots:
       '@ckeditor/ckeditor5-list': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-link@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-link@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9477,19 +8822,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
 
-  '@ckeditor/ckeditor5-list@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-font': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-list@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260923.1
@@ -9502,27 +8834,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-markdown-gfm@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      hast-util-from-dom: 5.0.1
-      hast-util-to-html: 9.0.5
-      hastscript: 9.0.1
-      rehype-dom-parse: 5.0.2
-      rehype-dom-stringify: 4.0.2
-      rehype-remark: 10.0.1
-      remark-breaks: 4.0.0
-      remark-gfm: 4.0.1
-      remark-parse: 11.0.0
-      remark-rehype: 11.1.2
-      remark-stringify: 11.0.0
-      unified: 11.0.5
-      unist-util-visit: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
 
   '@ckeditor/ckeditor5-markdown-gfm@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9545,18 +8856,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@ckeditor/ckeditor5-media-embed@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-undo': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-media-embed@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260923.1
@@ -9568,15 +8867,6 @@ snapshots:
       '@ckeditor/ckeditor5-undo': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-mention@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-mention@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9599,13 +8889,6 @@ snapshots:
       '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-minimap@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-minimap@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9618,15 +8901,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
       protobufjs: 7.6.5
-
-  '@ckeditor/ckeditor5-page-break@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-page-break@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9646,14 +8920,6 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-paragraph@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-paragraph@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9669,13 +8935,6 @@ snapshots:
       '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-paste-from-office': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-paste-from-office@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-paste-from-office@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9704,14 +8963,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@ckeditor/ckeditor5-remove-format@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-remove-format@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9719,16 +8970,6 @@ snapshots:
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-restricted-editing@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-restricted-editing@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9755,14 +8996,6 @@ snapshots:
       es-toolkit: 1.52.0
       luxon: 3.6.1
 
-  '@ckeditor/ckeditor5-select-all@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-select-all@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9770,14 +9003,6 @@ snapshots:
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-show-blocks@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-show-blocks@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9814,27 +9039,12 @@ snapshots:
       '@codemirror/theme-one-dark': 6.1.3
       '@codemirror/view': 6.43.4
 
-  '@ckeditor/ckeditor5-source-editing@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-source-editing@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-special-characters@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-special-characters@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9843,18 +9053,6 @@ snapshots:
       '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-style@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-html-support': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-list': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-table': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-style@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9867,19 +9065,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-table@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-table@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9930,32 +9115,12 @@ snapshots:
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
 
-  '@ckeditor/ckeditor5-typing@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-typing@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-ui@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-multi-root': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@types/color-convert': 2.0.4
-      color-convert: 3.1.0
-      color-parse: 2.0.2
-      es-toolkit: 1.45.1
-      vanilla-colorful: 0.7.2
 
   '@ckeditor/ckeditor5-ui@0.0.0-nightly-20260923.1':
     dependencies:
@@ -9970,14 +9135,6 @@ snapshots:
       es-toolkit: 1.52.0
       vanilla-colorful: 0.7.2
 
-  '@ckeditor/ckeditor5-undo@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-
   '@ckeditor/ckeditor5-undo@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260923.1
@@ -9985,11 +9142,6 @@ snapshots:
       '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
-
-  '@ckeditor/ckeditor5-upload@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
 
   '@ckeditor/ckeditor5-upload@0.0.0-nightly-20260923.1':
     dependencies:
@@ -10011,26 +9163,10 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@ckeditor/ckeditor5-utils@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
-
   '@ckeditor/ckeditor5-utils@0.0.0-nightly-20260923.1':
     dependencies:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-widget@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-widget@0.0.0-nightly-20260923.1':
     dependencies:
@@ -10042,14 +9178,6 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260923.1
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260923.1
       es-toolkit: 1.52.0
-
-  '@ckeditor/ckeditor5-word-count@0.0.0-nightly-20260911.0':
-    dependencies:
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      es-toolkit: 1.45.1
 
   '@ckeditor/ckeditor5-word-count@0.0.0-nightly-20260923.1':
     dependencies:
@@ -10330,17 +9458,17 @@ snapshots:
   '@esbuild/win32-x64@0.28.1':
     optional: true
 
-  '@eslint-community/eslint-utils@4.9.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))':
+  '@eslint-community/eslint-utils@4.9.1(eslint@10.7.0(jiti@1.21.7))':
     dependencies:
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      eslint: 10.7.0(jiti@1.21.7)
       eslint-visitor-keys: 3.4.3
 
   '@eslint-community/regexpp@4.12.2': {}
 
-  '@eslint/config-array@0.23.5(supports-color@8.1.1)':
+  '@eslint/config-array@0.23.5':
     dependencies:
       '@eslint/object-schema': 3.0.5
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       minimatch: 10.2.5
     transitivePeerDependencies:
       - supports-color
@@ -10372,9 +9500,9 @@ snapshots:
       '@eslint/css-tree': 4.0.4
       '@eslint/plugin-kit': 0.7.2
 
-  '@eslint/js@10.0.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))':
+  '@eslint/js@10.0.1(eslint@10.7.0(jiti@1.21.7))':
     optionalDependencies:
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      eslint: 10.7.0(jiti@1.21.7)
 
   '@eslint/markdown@6.6.0':
     dependencies:
@@ -10729,7 +9857,7 @@ snapshots:
 
   '@kwsites/file-exists@1.1.1':
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -10811,7 +9939,7 @@ snapshots:
 
   '@marijn/find-cluster-break@1.0.3': {}
 
-  '@modelcontextprotocol/sdk@1.30.0(supports-color@8.1.1)(zod@4.1.13)':
+  '@modelcontextprotocol/sdk@1.30.0(zod@4.1.13)':
     dependencies:
       '@hono/node-server': 2.0.12(hono@4.13.8)
       ajv: 8.20.0
@@ -10821,8 +9949,8 @@ snapshots:
       cross-spawn: 7.0.6
       eventsource: 3.0.7
       eventsource-parser: 3.0.2
-      express: 5.2.1(supports-color@8.1.1)
-      express-rate-limit: 8.5.2(express@5.2.1(supports-color@8.1.1))
+      express: 5.2.1
+      express-rate-limit: 8.5.2(express@5.2.1)
       hono: 4.13.8
       jose: 6.2.3
       json-schema-typed: 8.0.2
@@ -11317,24 +10445,21 @@ snapshots:
 
   '@protobufjs/utf8@1.1.1': {}
 
-  '@rollup/plugin-json@6.1.0(rollup@4.61.1)':
+  '@rollup/plugin-json@6.1.0(rollup@4.62.2)':
     dependencies:
-      '@rollup/pluginutils': 5.4.0(rollup@4.61.1)
+      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
     optionalDependencies:
-      rollup: 4.61.1
+      rollup: 4.62.2
 
-  '@rollup/pluginutils@5.4.0(rollup@4.61.1)':
+  '@rollup/pluginutils@5.4.0(rollup@4.62.2)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.4
     optionalDependencies:
-      rollup: 4.61.1
+      rollup: 4.62.2
 
   '@rollup/rollup-android-arm-eabi@4.59.0':
-    optional: true
-
-  '@rollup/rollup-android-arm-eabi@4.61.1':
     optional: true
 
   '@rollup/rollup-android-arm-eabi@4.62.2':
@@ -11343,16 +10468,10 @@ snapshots:
   '@rollup/rollup-android-arm64@4.59.0':
     optional: true
 
-  '@rollup/rollup-android-arm64@4.61.1':
-    optional: true
-
   '@rollup/rollup-android-arm64@4.62.2':
     optional: true
 
   '@rollup/rollup-darwin-arm64@4.59.0':
-    optional: true
-
-  '@rollup/rollup-darwin-arm64@4.61.1':
     optional: true
 
   '@rollup/rollup-darwin-arm64@4.62.2':
@@ -11361,16 +10480,10 @@ snapshots:
   '@rollup/rollup-darwin-x64@4.59.0':
     optional: true
 
-  '@rollup/rollup-darwin-x64@4.61.1':
-    optional: true
-
   '@rollup/rollup-darwin-x64@4.62.2':
     optional: true
 
   '@rollup/rollup-freebsd-arm64@4.59.0':
-    optional: true
-
-  '@rollup/rollup-freebsd-arm64@4.61.1':
     optional: true
 
   '@rollup/rollup-freebsd-arm64@4.62.2':
@@ -11379,16 +10492,10 @@ snapshots:
   '@rollup/rollup-freebsd-x64@4.59.0':
     optional: true
 
-  '@rollup/rollup-freebsd-x64@4.61.1':
-    optional: true
-
   '@rollup/rollup-freebsd-x64@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-arm-gnueabihf@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm-gnueabihf@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-arm-gnueabihf@4.62.2':
@@ -11397,16 +10504,10 @@ snapshots:
   '@rollup/rollup-linux-arm-musleabihf@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-arm-musleabihf@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-arm-musleabihf@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-arm64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-arm64-gnu@4.62.2':
@@ -11415,16 +10516,10 @@ snapshots:
   '@rollup/rollup-linux-arm64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-arm64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-arm64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-loong64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-loong64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-loong64-gnu@4.62.2':
@@ -11433,16 +10528,10 @@ snapshots:
   '@rollup/rollup-linux-loong64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-loong64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-loong64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-ppc64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-ppc64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-ppc64-gnu@4.62.2':
@@ -11451,16 +10540,10 @@ snapshots:
   '@rollup/rollup-linux-ppc64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-ppc64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-ppc64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-riscv64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-riscv64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-riscv64-gnu@4.62.2':
@@ -11469,16 +10552,10 @@ snapshots:
   '@rollup/rollup-linux-riscv64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-riscv64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-riscv64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-s390x-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.62.2':
@@ -11487,16 +10564,10 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-x64-gnu@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-x64-musl@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.62.2':
@@ -11505,16 +10576,10 @@ snapshots:
   '@rollup/rollup-openbsd-x64@4.59.0':
     optional: true
 
-  '@rollup/rollup-openbsd-x64@4.61.1':
-    optional: true
-
   '@rollup/rollup-openbsd-x64@4.62.2':
     optional: true
 
   '@rollup/rollup-openharmony-arm64@4.59.0':
-    optional: true
-
-  '@rollup/rollup-openharmony-arm64@4.61.1':
     optional: true
 
   '@rollup/rollup-openharmony-arm64@4.62.2':
@@ -11523,16 +10588,10 @@ snapshots:
   '@rollup/rollup-win32-arm64-msvc@4.59.0':
     optional: true
 
-  '@rollup/rollup-win32-arm64-msvc@4.61.1':
-    optional: true
-
   '@rollup/rollup-win32-arm64-msvc@4.62.2':
     optional: true
 
   '@rollup/rollup-win32-ia32-msvc@4.59.0':
-    optional: true
-
-  '@rollup/rollup-win32-ia32-msvc@4.61.1':
     optional: true
 
   '@rollup/rollup-win32-ia32-msvc@4.62.2':
@@ -11541,16 +10600,10 @@ snapshots:
   '@rollup/rollup-win32-x64-gnu@4.59.0':
     optional: true
 
-  '@rollup/rollup-win32-x64-gnu@4.61.1':
-    optional: true
-
   '@rollup/rollup-win32-x64-gnu@4.62.2':
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.59.0':
-    optional: true
-
-  '@rollup/rollup-win32-x64-msvc@4.61.1':
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.62.2':
@@ -11621,10 +10674,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@sigstore/tuf@4.0.2(supports-color@8.1.1)':
+  '@sigstore/tuf@4.0.2':
     dependencies:
       '@sigstore/protobuf-specs': 0.5.1
-      tuf-js: 4.1.0(supports-color@8.1.1)
+      tuf-js: 4.1.0
     transitivePeerDependencies:
       - supports-color
 
@@ -11644,10 +10697,10 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@stylistic/eslint-plugin@4.4.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)':
+  '@stylistic/eslint-plugin@4.4.1(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
+      eslint: 10.7.0(jiti@1.21.7)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
       estraverse: 5.3.0
@@ -11812,15 +10865,15 @@ snapshots:
     dependencies:
       '@types/node': 14.18.63
 
-  '@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)':
+  '@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3))(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      '@typescript-eslint/parser': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
       '@typescript-eslint/scope-manager': 8.61.0
-      '@typescript-eslint/type-utils': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
-      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
+      '@typescript-eslint/type-utils': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
+      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
       '@typescript-eslint/visitor-keys': 8.61.0
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      eslint: 10.7.0(jiti@1.21.7)
       ignore: 7.0.5
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@5.8.3)
@@ -11828,14 +10881,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)':
+  '@typescript-eslint/parser@8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.61.0
       '@typescript-eslint/types': 8.61.0
       '@typescript-eslint/typescript-estree': 8.61.0(typescript@5.8.3)
       '@typescript-eslint/visitor-keys': 8.61.0
-      debug: 4.4.3(supports-color@8.1.1)
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      debug: 4.4.3
+      eslint: 10.7.0(jiti@1.21.7)
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
@@ -11844,7 +10897,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.61.0(typescript@5.8.3)
       '@typescript-eslint/types': 8.61.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
@@ -11858,13 +10911,13 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@typescript-eslint/type-utils@8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)':
+  '@typescript-eslint/type-utils@8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/types': 8.61.0
       '@typescript-eslint/typescript-estree': 8.61.0(typescript@5.8.3)
-      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
-      debug: 4.4.3(supports-color@8.1.1)
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
+      debug: 4.4.3
+      eslint: 10.7.0(jiti@1.21.7)
       ts-api-utils: 2.5.0(typescript@5.8.3)
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -11878,7 +10931,7 @@ snapshots:
       '@typescript-eslint/tsconfig-utils': 8.61.0(typescript@5.8.3)
       '@typescript-eslint/types': 8.61.0
       '@typescript-eslint/visitor-keys': 8.61.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       minimatch: 10.2.5
       semver: 7.8.4
       tinyglobby: 0.2.17
@@ -11887,13 +10940,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)':
+  '@typescript-eslint/utils@8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)':
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
+      '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(jiti@1.21.7))
       '@typescript-eslint/scope-manager': 8.61.0
       '@typescript-eslint/types': 8.61.0
       '@typescript-eslint/typescript-estree': 8.61.0(typescript@5.8.3)
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      eslint: 10.7.0(jiti@1.21.7)
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
@@ -12110,20 +11163,20 @@ snapshots:
 
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
 
   '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.2.6)(webpack@5.107.2)':
     dependencies:
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
     optionalDependencies:
-      webpack-dev-server: 5.2.6(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
 
   '@xtuc/ieee754@1.2.0': {}
 
@@ -12278,7 +11331,7 @@ snapshots:
   autoprefixer@10.4.21(postcss@8.5.25):
     dependencies:
       browserslist: 4.29.0
-      caniuse-lite: 1.0.30001799
+      caniuse-lite: 1.0.30001810
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
@@ -12344,11 +11397,11 @@ snapshots:
 
   blurhash@2.0.5: {}
 
-  body-parser@1.20.6(supports-color@8.1.1):
+  body-parser@1.20.6:
     dependencies:
       bytes: 3.1.2
       content-type: 1.0.5
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
       depd: 2.0.0
       destroy: 1.2.0
       http-errors: 2.0.1
@@ -12361,11 +11414,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  body-parser@2.3.0(supports-color@8.1.1):
+  body-parser@2.3.0:
     dependencies:
       bytes: 3.1.2
       content-type: 2.0.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       http-errors: 2.0.1
       iconv-lite: 0.7.2
       on-finished: 2.4.1
@@ -12440,8 +11493,6 @@ snapshots:
       get-intrinsic: 1.3.0
 
   callsites@3.1.0: {}
-
-  caniuse-lite@1.0.30001799: {}
 
   caniuse-lite@1.0.30001810: {}
 
@@ -12520,70 +11571,6 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
-
-  ckeditor5@0.0.0-nightly-20260911.0:
-    dependencies:
-      '@ckeditor/ckeditor5-adapter-ckfinder': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-alignment': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-autoformat': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-autosave': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-basic-styles': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-block-quote': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-bookmark': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ckbox': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ckfinder': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-clipboard': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-cloud-services': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-code-block': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-core': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-easy-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-balloon': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-classic': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-decoupled': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-inline': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-editor-multi-root': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-emoji': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-engine': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-enter': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-essentials': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-find-and-replace': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-font': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-fullscreen': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-heading': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-highlight': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-horizontal-line': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-html-embed': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-html-support': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-icons': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-image': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-indent': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-language': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-link': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-list': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-markdown-gfm': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-media-embed': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-mention': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-minimap': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-page-break': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-paragraph': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-paste-from-office': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-remove-format': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-restricted-editing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-select-all': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-show-blocks': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-source-editing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-special-characters': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-style': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-table': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-typing': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-undo': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-upload': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-widget': 0.0.0-nightly-20260911.0
-      '@ckeditor/ckeditor5-word-count': 0.0.0-nightly-20260911.0
-    transitivePeerDependencies:
-      - supports-color
 
   ckeditor5@0.0.0-nightly-20260923.1:
     dependencies:
@@ -12734,11 +11721,11 @@ snapshots:
     dependencies:
       mime-db: 1.54.0
 
-  compression@1.8.1(supports-color@8.1.1):
+  compression@1.8.1:
     dependencies:
       bytes: 3.1.2
       compressible: 2.0.18
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
       negotiator: 0.6.4
       on-headers: 1.1.0
       safe-buffer: 5.2.1
@@ -12833,7 +11820,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       schema-utils: 3.3.0
       semver: 7.8.4
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
 
   css-loader@7.1.2(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
     dependencies:
@@ -12862,22 +11849,18 @@ snapshots:
 
   date-fns@4.4.0: {}
 
-  debug@2.6.9(supports-color@8.1.1):
+  debug@2.6.9:
     dependencies:
       ms: 2.0.0
-    optionalDependencies:
-      supports-color: 8.1.1
 
   debug@3.2.7:
     dependencies:
       ms: 2.1.3
     optional: true
 
-  debug@4.4.3(supports-color@8.1.1):
+  debug@4.4.3:
     dependencies:
       ms: 2.1.3
-    optionalDependencies:
-      supports-color: 8.1.1
 
   decode-named-character-reference@1.3.0:
     dependencies:
@@ -12980,7 +11963,7 @@ snapshots:
   engine.io-client@6.6.6:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       engine.io-parser: 5.2.3
       ws: 8.21.0
       xmlhttprequest-ssl: 2.1.2
@@ -13040,8 +12023,6 @@ snapshots:
       get-intrinsic: 1.3.0
       has-tostringtag: 1.0.2
       hasown: 2.0.4
-
-  es-toolkit@1.45.1: {}
 
   es-toolkit@1.52.0: {}
 
@@ -13115,18 +12096,18 @@ snapshots:
 
   escape-string-regexp@5.0.0: {}
 
-  eslint-config-ckeditor5@19.0.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3):
+  eslint-config-ckeditor5@19.0.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3):
     dependencies:
       '@eslint/css': 1.4.0
-      '@eslint/js': 10.0.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
+      '@eslint/js': 10.0.1(eslint@10.7.0(jiti@1.21.7))
       '@eslint/markdown': 6.6.0
-      '@stylistic/eslint-plugin': 4.4.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      '@stylistic/eslint-plugin': 4.4.1(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
+      eslint: 10.7.0(jiti@1.21.7)
       eslint-plugin-ckeditor5-rules: 19.0.0
-      eslint-plugin-mocha: 11.3.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
+      eslint-plugin-mocha: 11.3.0(eslint@10.7.0(jiti@1.21.7))
       globals: 16.5.0
       typescript: 5.8.3
-      typescript-eslint: 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
+      typescript-eslint: 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -13140,10 +12121,10 @@ snapshots:
       validate-npm-package-name: 6.0.2
       yaml: 2.9.0
 
-  eslint-plugin-mocha@11.3.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1)):
+  eslint-plugin-mocha@11.3.0(eslint@10.7.0(jiti@1.21.7)):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(jiti@1.21.7))
+      eslint: 10.7.0(jiti@1.21.7)
       globals: 15.15.0
 
   eslint-scope@5.1.1:
@@ -13164,11 +12145,11 @@ snapshots:
 
   eslint-visitor-keys@5.0.1: {}
 
-  eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1):
+  eslint@10.7.0(jiti@1.21.7):
     dependencies:
-      '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))
+      '@eslint-community/eslint-utils': 4.9.1(eslint@10.7.0(jiti@1.21.7))
       '@eslint-community/regexpp': 4.12.2
-      '@eslint/config-array': 0.23.5(supports-color@8.1.1)
+      '@eslint/config-array': 0.23.5
       '@eslint/config-helpers': 0.6.0
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.2
@@ -13178,7 +12159,7 @@ snapshots:
       '@types/estree': 1.0.9
       ajv: 6.15.0
       cross-spawn: 7.0.6
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       escape-string-regexp: 4.0.0
       eslint-scope: 9.1.2
       eslint-visitor-keys: 5.0.1
@@ -13275,26 +12256,26 @@ snapshots:
 
   exponential-backoff@3.1.3: {}
 
-  express-rate-limit@8.5.2(express@5.2.1(supports-color@8.1.1)):
+  express-rate-limit@8.5.2(express@5.2.1):
     dependencies:
-      express: 5.2.1(supports-color@8.1.1)
+      express: 5.2.1
       ip-address: 10.4.0
 
-  express@4.22.2(supports-color@8.1.1):
+  express@4.22.2:
     dependencies:
       accepts: 1.3.8
       array-flatten: 1.1.1
-      body-parser: 1.20.6(supports-color@8.1.1)
+      body-parser: 1.20.6
       content-disposition: 0.5.4
       content-type: 1.0.5
       cookie: 0.7.2
       cookie-signature: 1.0.7
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
       depd: 2.0.0
       encodeurl: 2.0.0
       escape-html: 1.0.3
       etag: 1.8.1
-      finalhandler: 1.3.2(supports-color@8.1.1)
+      finalhandler: 1.3.2
       fresh: 0.5.2
       http-errors: 2.0.1
       merge-descriptors: 1.0.3
@@ -13306,7 +12287,7 @@ snapshots:
       qs: 6.16.0
       range-parser: 1.2.1
       safe-buffer: 5.2.1
-      send: 0.19.2(supports-color@8.1.1)
+      send: 0.19.2
       serve-static: 1.16.3
       setprototypeof: 1.2.0
       statuses: 2.0.2
@@ -13316,20 +12297,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  express@5.2.1(supports-color@8.1.1):
+  express@5.2.1:
     dependencies:
       accepts: 2.0.0
-      body-parser: 2.3.0(supports-color@8.1.1)
+      body-parser: 2.3.0
       content-disposition: 1.1.0
       content-type: 1.0.5
       cookie: 0.7.2
       cookie-signature: 1.2.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       depd: 2.0.0
       encodeurl: 2.0.0
       escape-html: 1.0.3
       etag: 1.8.1
-      finalhandler: 2.1.1(supports-color@8.1.1)
+      finalhandler: 2.1.1
       fresh: 2.0.0
       http-errors: 2.0.1
       merge-descriptors: 2.0.0
@@ -13340,8 +12321,8 @@ snapshots:
       proxy-addr: 2.0.7
       qs: 6.16.0
       range-parser: 1.2.1
-      router: 2.2.0(supports-color@8.1.1)
-      send: 1.2.1(supports-color@8.1.1)
+      router: 2.2.0
+      send: 1.2.1
       serve-static: 2.2.1
       statuses: 2.0.2
       type-is: 2.1.0
@@ -13397,9 +12378,9 @@ snapshots:
     dependencies:
       to-regex-range: 5.0.1
 
-  finalhandler@1.3.2(supports-color@8.1.1):
+  finalhandler@1.3.2:
     dependencies:
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
       encodeurl: 2.0.0
       escape-html: 1.0.3
       on-finished: 2.4.1
@@ -13409,9 +12390,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  finalhandler@2.1.1(supports-color@8.1.1):
+  finalhandler@2.1.1:
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       encodeurl: 2.0.0
       escape-html: 1.0.3
       on-finished: 2.4.1
@@ -13446,9 +12427,9 @@ snapshots:
 
   flatted@3.4.2: {}
 
-  follow-redirects@1.16.0(debug@4.4.3(supports-color@8.1.1)):
+  follow-redirects@1.16.0(debug@4.4.3):
     optionalDependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
 
   form-data@4.0.6:
     dependencies:
@@ -13740,14 +12721,14 @@ snapshots:
   http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
   http-proxy-middleware@2.0.10(@types/express@4.17.25):
     dependencies:
       '@types/http-proxy': 1.17.17
-      http-proxy: 1.18.1(debug@4.4.3(supports-color@8.1.1))
+      http-proxy: 1.18.1(debug@4.4.3)
       is-glob: 4.0.3
       is-plain-obj: 3.0.0
       micromatch: 4.0.8
@@ -13756,21 +12737,21 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  http-proxy-middleware@3.0.7(supports-color@8.1.1):
+  http-proxy-middleware@3.0.7:
     dependencies:
       '@types/http-proxy': 1.17.17
-      debug: 4.4.3(supports-color@8.1.1)
-      http-proxy: 1.18.1(debug@4.4.3(supports-color@8.1.1))
+      debug: 4.4.3
+      http-proxy: 1.18.1(debug@4.4.3)
       is-glob: 4.0.3
       is-plain-object: 5.0.0
       micromatch: 4.0.8
     transitivePeerDependencies:
       - supports-color
 
-  http-proxy@1.18.1(debug@4.4.3(supports-color@8.1.1)):
+  http-proxy@1.18.1(debug@4.4.3):
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.16.0(debug@4.4.3(supports-color@8.1.1))
+      follow-redirects: 1.16.0(debug@4.4.3)
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -13778,7 +12759,7 @@ snapshots:
   https-proxy-agent@7.0.6:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -14120,13 +13101,13 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@10.5.4(supports-color@8.1.1):
+  lint-staged@10.5.4:
     dependencies:
       chalk: 4.1.2
       cli-truncate: 2.1.0
       commander: 6.2.1
       cosmiconfig: 7.1.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       dedent: 0.7.0
       enquirer: 2.4.1
       execa: 4.1.0
@@ -14649,7 +13630,7 @@ snapshots:
   micromark@4.0.2:
     dependencies:
       '@types/debug': 4.1.13
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       decode-named-character-reference: 1.3.0
       devlop: 1.1.0
       micromark-core-commonmark: 2.0.3
@@ -14810,7 +13791,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular/compiler-cli': 20.3.31(@angular/compiler@20.3.31)(typescript@5.8.3)
-      '@rollup/plugin-json': 6.1.0(rollup@4.61.1)
+      '@rollup/plugin-json': 6.1.0(rollup@4.62.2)
       '@rollup/wasm-node': 4.61.1
       ajv: 8.20.0
       ansi-colors: 4.1.3
@@ -14826,14 +13807,14 @@ snapshots:
       ora: 8.2.0
       piscina: 5.2.0
       postcss: 8.5.25
-      rollup-plugin-dts: 6.4.1(rollup@4.61.1)(typescript@5.8.3)
+      rollup-plugin-dts: 6.4.1(rollup@4.62.2)(typescript@5.8.3)
       rxjs: 7.8.2
       sass: 1.101.0
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.8.3
     optionalDependencies:
-      rollup: 4.61.1
+      rollup: 4.62.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15045,7 +14026,7 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  pacote@21.5.1(supports-color@8.1.1):
+  pacote@21.5.1:
     dependencies:
       '@gar/promise-retry': 1.0.3
       '@npmcli/git': 7.0.2
@@ -15061,7 +14042,7 @@ snapshots:
       npm-pick-manifest: 11.0.3
       npm-registry-fetch: 19.1.1
       proc-log: 6.1.0
-      sigstore: 4.1.1(supports-color@8.1.1)
+      sigstore: 4.1.1
       ssri: 13.0.1
       tar: 7.5.22
     transitivePeerDependencies:
@@ -15166,7 +14147,7 @@ snapshots:
       postcss: 8.5.25
       schema-utils: 3.3.0
       semver: 7.8.4
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
 
   postcss-loader@8.1.1(postcss@8.5.25)(typescript@5.8.3)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
     dependencies:
@@ -15298,7 +14279,7 @@ snapshots:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
 
   readable-stream@2.3.8:
     dependencies:
@@ -15352,12 +14333,6 @@ snapshots:
   regjsparser@0.13.1:
     dependencies:
       jsesc: 3.1.0
-
-  rehype-dom-parse@5.0.2:
-    dependencies:
-      '@types/hast': 3.0.4
-      hast-util-from-dom: 5.0.1
-      unified: 11.0.5
 
   rehype-dom-stringify@4.0.2:
     dependencies:
@@ -15483,13 +14458,13 @@ snapshots:
       semver-compare: 1.0.0
       sprintf-js: 1.1.3
 
-  rollup-plugin-dts@6.4.1(rollup@4.61.1)(typescript@5.8.3):
+  rollup-plugin-dts@6.4.1(rollup@4.62.2)(typescript@5.8.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: 4.61.1
+      rollup: 4.62.2
       typescript: 5.8.3
     optionalDependencies:
       '@babel/code-frame': 7.29.7
@@ -15525,37 +14500,6 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.59.0
       fsevents: 2.3.3
 
-  rollup@4.61.1:
-    dependencies:
-      '@types/estree': 1.0.9
-    optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.61.1
-      '@rollup/rollup-android-arm64': 4.61.1
-      '@rollup/rollup-darwin-arm64': 4.61.1
-      '@rollup/rollup-darwin-x64': 4.61.1
-      '@rollup/rollup-freebsd-arm64': 4.61.1
-      '@rollup/rollup-freebsd-x64': 4.61.1
-      '@rollup/rollup-linux-arm-gnueabihf': 4.61.1
-      '@rollup/rollup-linux-arm-musleabihf': 4.61.1
-      '@rollup/rollup-linux-arm64-gnu': 4.61.1
-      '@rollup/rollup-linux-arm64-musl': 4.61.1
-      '@rollup/rollup-linux-loong64-gnu': 4.61.1
-      '@rollup/rollup-linux-loong64-musl': 4.61.1
-      '@rollup/rollup-linux-ppc64-gnu': 4.61.1
-      '@rollup/rollup-linux-ppc64-musl': 4.61.1
-      '@rollup/rollup-linux-riscv64-gnu': 4.61.1
-      '@rollup/rollup-linux-riscv64-musl': 4.61.1
-      '@rollup/rollup-linux-s390x-gnu': 4.61.1
-      '@rollup/rollup-linux-x64-gnu': 4.61.1
-      '@rollup/rollup-linux-x64-musl': 4.61.1
-      '@rollup/rollup-openbsd-x64': 4.61.1
-      '@rollup/rollup-openharmony-arm64': 4.61.1
-      '@rollup/rollup-win32-arm64-msvc': 4.61.1
-      '@rollup/rollup-win32-ia32-msvc': 4.61.1
-      '@rollup/rollup-win32-x64-gnu': 4.61.1
-      '@rollup/rollup-win32-x64-msvc': 4.61.1
-      fsevents: 2.3.3
-
   rollup@4.62.2:
     dependencies:
       '@types/estree': 1.0.9
@@ -15587,9 +14531,9 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.62.2
       fsevents: 2.3.3
 
-  router@2.2.0(supports-color@8.1.1):
+  router@2.2.0:
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       depd: 2.0.0
       is-promise: 4.0.0
       parseurl: 1.3.3
@@ -15678,9 +14622,9 @@ snapshots:
 
   semver@7.8.4: {}
 
-  send@0.19.2(supports-color@8.1.1):
+  send@0.19.2:
     dependencies:
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
       depd: 2.0.0
       destroy: 1.2.0
       encodeurl: 2.0.0
@@ -15696,9 +14640,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  send@1.2.1(supports-color@8.1.1):
+  send@1.2.1:
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       encodeurl: 2.0.0
       escape-html: 1.0.3
       etag: 1.8.1
@@ -15718,11 +14662,11 @@ snapshots:
 
   serialize-javascript@7.0.5: {}
 
-  serve-index@1.9.2(supports-color@8.1.1):
+  serve-index@1.9.2:
     dependencies:
       accepts: 1.3.8
       batch: 0.6.1
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
       escape-html: 1.0.3
       http-errors: 1.8.1
       mime-types: 2.1.35
@@ -15735,7 +14679,7 @@ snapshots:
       encodeurl: 2.0.0
       escape-html: 1.0.3
       parseurl: 1.3.3
-      send: 0.19.2(supports-color@8.1.1)
+      send: 0.19.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15744,7 +14688,7 @@ snapshots:
       encodeurl: 2.0.0
       escape-html: 1.0.3
       parseurl: 1.3.3
-      send: 1.2.1(supports-color@8.1.1)
+      send: 1.2.1
     transitivePeerDependencies:
       - supports-color
 
@@ -15803,13 +14747,13 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
-  sigstore@4.1.1(supports-color@8.1.1):
+  sigstore@4.1.1:
     dependencies:
       '@sigstore/bundle': 4.0.0
       '@sigstore/core': 3.2.1
       '@sigstore/protobuf-specs': 0.5.1
       '@sigstore/sign': 4.1.1
-      '@sigstore/tuf': 4.0.2(supports-color@8.1.1)
+      '@sigstore/tuf': 4.0.2
       '@sigstore/verify': 3.1.1
     transitivePeerDependencies:
       - supports-color
@@ -15820,7 +14764,7 @@ snapshots:
       '@kwsites/promise-deferred': 1.1.1
       '@simple-git/args-pathspec': 1.0.3
       '@simple-git/argv-parser': 1.1.1
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -15864,7 +14808,7 @@ snapshots:
   socket.io-client@4.8.3:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       engine.io-client: 6.6.6
       socket.io-parser: 4.2.7
     transitivePeerDependencies:
@@ -15875,7 +14819,7 @@ snapshots:
   socket.io-parser@4.2.7:
     dependencies:
       '@socket.io/component-emitter': 3.1.2
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -15888,7 +14832,7 @@ snapshots:
   socks-proxy-agent@8.0.5:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       socks: 2.8.9
     transitivePeerDependencies:
       - supports-color
@@ -15926,9 +14870,9 @@ snapshots:
 
   spdx-license-ids@3.0.23: {}
 
-  spdy-transport@3.0.0(supports-color@8.1.1):
+  spdy-transport@3.0.0:
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       detect-node: 2.1.0
       hpack.js: 2.1.6
       obuf: 1.1.2
@@ -15937,13 +14881,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  spdy@4.0.2(supports-color@8.1.1):
+  spdy@4.0.2:
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       handle-thing: 2.0.1
       http-deceiver: 1.2.7
       select-hose: 2.0.0
-      spdy-transport: 3.0.0(supports-color@8.1.1)
+      spdy-transport: 3.0.0
     transitivePeerDependencies:
       - supports-color
 
@@ -15967,7 +14911,7 @@ snapshots:
 
   stream-parser@0.3.1:
     dependencies:
-      debug: 2.6.9(supports-color@8.1.1)
+      debug: 2.6.9
     transitivePeerDependencies:
       - supports-color
     optional: true
@@ -16019,7 +14963,7 @@ snapshots:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.3.0
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
 
   style-mod@4.1.3: {}
 
@@ -16055,15 +14999,14 @@ snapshots:
       lightningcss: 1.32.0
       postcss: 8.5.25
 
-  terser-webpack-plugin@5.6.1(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.107.2):
+  terser-webpack-plugin@5.6.1(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.107.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.48.0
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
     optionalDependencies:
-      esbuild: 0.28.1
       lightningcss: 1.32.0
       postcss: 8.5.25
 
@@ -16141,7 +15084,7 @@ snapshots:
       semver: 7.8.4
       source-map: 0.7.6
       typescript: 5.8.3
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
     optionalDependencies:
       loader-utils: 3.3.1
 
@@ -16168,10 +15111,10 @@ snapshots:
     dependencies:
       tslib: 1.14.1
 
-  tuf-js@4.1.0(supports-color@8.1.1):
+  tuf-js@4.1.0:
     dependencies:
       '@tufjs/models': 4.1.0
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.4.3
       make-fetch-happen: 15.0.6
     transitivePeerDependencies:
       - supports-color
@@ -16197,13 +15140,13 @@ snapshots:
 
   typed-assert@1.0.9: {}
 
-  typescript-eslint@8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3):
+  typescript-eslint@8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
-      '@typescript-eslint/parser': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3))(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
+      '@typescript-eslint/parser': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
       '@typescript-eslint/typescript-estree': 8.61.0(typescript@5.8.3)
-      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7)(supports-color@8.1.1))(typescript@5.8.3)
-      eslint: 10.7.0(jiti@1.21.7)(supports-color@8.1.1)
+      '@typescript-eslint/utils': 8.61.0(eslint@10.7.0(jiti@1.21.7))(typescript@5.8.3)
+      eslint: 10.7.0(jiti@1.21.7)
       typescript: 5.8.3
     transitivePeerDependencies:
       - supports-color
@@ -16391,10 +15334,10 @@ snapshots:
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack: 5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-merge: 5.10.0
     optionalDependencies:
-      webpack-dev-server: 5.2.6(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
 
   webpack-dev-middleware@7.4.2(tslib@2.8.1)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
     dependencies:
@@ -16409,7 +15352,7 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  webpack-dev-server@5.2.6(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  webpack-dev-server@5.2.6(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -16423,9 +15366,9 @@ snapshots:
       bonjour-service: 1.4.1
       chokidar: 3.6.0
       colorette: 2.0.20
-      compression: 1.8.1(supports-color@8.1.1)
+      compression: 1.8.1
       connect-history-api-fallback: 2.0.0
-      express: 4.22.2(supports-color@8.1.1)
+      express: 4.22.2
       graceful-fs: 4.2.11
       http-proxy-middleware: 2.0.10(@types/express@4.17.25)
       ipaddr.js: 2.4.0
@@ -16434,9 +15377,9 @@ snapshots:
       p-retry: 6.2.1
       schema-utils: 4.3.3
       selfsigned: 5.5.0
-      serve-index: 1.9.2(supports-color@8.1.1)
+      serve-index: 1.9.2
       sockjs: 0.3.24
-      spdy: 4.0.2(supports-color@8.1.1)
+      spdy: 4.0.2
       webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
       ws: 8.21.0
     optionalDependencies:
@@ -16511,7 +15454,7 @@ snapshots:
       - postcss
       - uglify-js
 
-  webpack@5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4):
+  webpack@5.107.2(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4):
     dependencies:
       '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
@@ -16533,7 +15476,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.107.2)
+      terser-webpack-plugin: 5.6.1(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.107.2)
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:

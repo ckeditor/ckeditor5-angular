@@ -19,6 +19,8 @@ export default defineConfig( {
 		command: 'pnpm run start',
 		url: baseURL,
 		reuseExistingServer: !process.env.CI,
+		// Without it, Playwright kills the server with SIGKILL and `scripts/start.mjs` cannot restore `src/generated/license-key.ts`.
+		gracefulShutdown: { signal: 'SIGTERM', timeout: 10_000 },
 		// The first `ng serve` build of the demo app may take a while.
 		timeout: 180_000
 	}
