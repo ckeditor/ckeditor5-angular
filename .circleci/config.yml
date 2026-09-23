@@ -172,7 +172,7 @@ jobs:
 
             pnpm add -Dw ckeditor5@${EDITOR_VERSION_TAG} ckeditor5-premium-features@${EDITOR_VERSION_TAG}
             pnpm exec vitest run --project integration
-            pnpm run test:e2e:ci
+            pnpm run test:e2e
 
   release_prepare:
     docker:
