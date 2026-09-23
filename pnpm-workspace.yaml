@@ -5,7 +5,6 @@ packages:
 allowBuilds:
   '@parcel/watcher': true
   core-js: true
-  cypress: set this to true or false
   esbuild: true
   lmdb: false
   msgpackr-extract: false
