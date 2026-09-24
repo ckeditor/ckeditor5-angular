@@ -28,9 +28,8 @@ testem.log
 /src/generated/license-key.ts
 
 # e2e
-/cypress/videos
-/cypress/screenshots
-/cypress/downloads
+/test-results
+/playwright-report
 
 # System Files
 .DS_Store
