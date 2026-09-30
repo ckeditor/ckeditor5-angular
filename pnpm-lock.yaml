@@ -194,8 +194,8 @@ importers:
         specifier: '>=20.3.25'
         version: 20.3.31(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.31(@angular/animations@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.31(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.31(@angular/compiler@20.3.31)(rxjs@6.6.7)(zone.js@0.15.1)))(rxjs@6.6.7)
       '@ckeditor/ckeditor5-integrations-common':
-        specifier: ^3.1.0
-        version: 3.1.0(ckeditor5@0.0.0-nightly-20260923.1(supports-color@8.1.1))
+        specifier: ^3.2.0
+        version: 3.2.0(ckeditor5@0.0.0-nightly-20260923.1(supports-color@8.1.1))
       ckeditor5:
         specifier: '>=49.0.0 || ^0.0.0-nightly || ^0.0.0-internal'
         version: 0.0.0-nightly-20260923.1(supports-color@8.1.1)
@@ -1291,11 +1291,6 @@ packages:
 
   '@ckeditor/ckeditor5-indent@0.0.0-nightly-20260930.0':
     resolution: {integrity: sha512-TACG+1f3blCECgPQgsf7r8wrOGX5nxMVoqrF0XdO66rBEufeGPPBCqqvdYBIpoeAuF/y7e1/DCPNV20sdBjTHw==}
-
-  '@ckeditor/ckeditor5-integrations-common@3.1.0':
-    resolution: {integrity: sha512-q+CPb1y5TLMUjLg/RatTTcQwThniD2uw0OqjUd+Z5VyHvy6EdWlpW5k2+CK265t8Tiqb4wj3XiIGB+XJS4s+Zw==}
-    peerDependencies:
-      ckeditor5: '>=42.0.0 || ^0.0.0-nightly'
 
   '@ckeditor/ckeditor5-integrations-common@3.2.0':
     resolution: {integrity: sha512-9ZSf9l/M83D6wzpPBX0fC0DYtWZTEUfkJim3SZmkfeALLy8yAL5qoC0bwX9Yyr5VivTvNgx2qkUlI/1ZgY8Y1Q==}
@@ -9265,7 +9260,7 @@ snapshots:
       '@ckeditor/ckeditor5-ui': 0.0.0-nightly-20260930.0
       '@ckeditor/ckeditor5-utils': 0.0.0-nightly-20260930.0
 
-  '@ckeditor/ckeditor5-integrations-common@3.1.0(ckeditor5@0.0.0-nightly-20260923.1(supports-color@8.1.1))':
+  '@ckeditor/ckeditor5-integrations-common@3.2.0(ckeditor5@0.0.0-nightly-20260923.1(supports-color@8.1.1))':
     dependencies:
       ckeditor5: 0.0.0-nightly-20260923.1(supports-color@8.1.1)
 
