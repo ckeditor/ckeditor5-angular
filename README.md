@@ -35,14 +35,17 @@ Because of the breaking changes in the Angular library output format, the `@cked
       <td colspan="3">Actively supported versions</td>
     </tr>
     <tr>
-      <td><code>^11</code></td>
-      <td><code>19+</code></td>
-      <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v47.0.0">47</a> or higher.</td>
+      <td><code>^12</code></td>
+      <td><code>20+</code></td>
+      <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v49.0.0">49</a> or higher.</td>
     </tr>
-    <tr>
     <tr>
       <td colspan="3">Past releases (no longer maintained)</td>
     </tr>
+    <tr>
+      <td><code>^11</code></td>
+      <td><code>19+</code></td>
+      <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v47.0.0">47</a> or higher.</td>
     </tr>
     <tr>
       <td><code>^10</code></td>
@@ -158,11 +161,10 @@ pnpm run test:dev
 To run e2e tests, run:
 
 ```bash
-# Prepare the server.
-pnpm run start
-# Then, start tests.
 pnpm run test:e2e
 ```
+
+Playwright starts the demo app with `pnpm run start` on its own, or reuses one that already runs on port 4200. The tests use the system Chrome, so no browser download is needed.
 
 To reproduce the LTS integration matrix run locally, install the matching editor packages first and then run the integration checks:
 
@@ -170,7 +172,7 @@ To reproduce the LTS integration matrix run locally, install the matching editor
 export CKEDITOR_LICENSE_KEY=<your-key>
 pnpm add -Dw ckeditor5@lts-v47 ckeditor5-premium-features@lts-v47
 pnpm exec vitest run --project integration
-pnpm run test:e2e:ci
+pnpm run test:e2e
 ```
 
 If you prefer, you can put `CKEDITOR_LICENSE_KEY` in `.env` or `.env.local` instead. The Vitest setup reads it through Vite, and `pnpm run start` forwards it to `ng serve` for local e2e runs.

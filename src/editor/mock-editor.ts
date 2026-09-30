@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-import { EditorWatchdog, ContextWatchdog } from 'ckeditor5';
+import { onEditorError } from 'ckeditor5';
 
 /**
  * Mock of class that representing a basic, generic editor.
@@ -11,8 +11,8 @@ import { EditorWatchdog, ContextWatchdog } from 'ckeditor5';
  * @see: https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html
  */
 export class MockEditor {
-	public static EditorWatchdog: any = EditorWatchdog;
-	public static ContextWatchdog: any = ContextWatchdog;
+	// A real editor class carries this static, and the component reaches for it instead of importing.
+	public static onEditorError = onEditorError;
 
 	// In order to tests events, we need to somehow mock those properties.
 	public static _on = (): void => {};

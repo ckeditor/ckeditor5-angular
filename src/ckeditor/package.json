@@ -19,13 +19,13 @@
     "ckeditor 5"
   ],
   "dependencies": {
-    "@ckeditor/ckeditor5-integrations-common": "^2.4.0"
+    "@ckeditor/ckeditor5-integrations-common": "^3.2.0"
   },
   "peerDependencies": {
     "@angular/core": ">=20.3.25",
     "@angular/common": ">=20.3.25",
     "@angular/forms": ">=20.3.25",
-    "ckeditor5": ">=47.0.0 || ^0.0.0-nightly || ^0.0.0-internal",
+    "ckeditor5": ">=49.0.0 || ^0.0.0-nightly || ^0.0.0-internal",
     "rxjs": ">=6.0.0"
   },
   "author": "CKSource (http://cksource.com/)",
