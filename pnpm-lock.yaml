@@ -183,7 +183,7 @@ importers:
         version: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-cli:
         specifier: ^5.1.4
-        version: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+        version: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
 
   src/ckeditor:
     dependencies:
@@ -2764,11 +2764,6 @@ packages:
     cpu: [arm]
     os: [android]
 
-  '@rollup/rollup-android-arm-eabi@4.61.1':
-    resolution: {integrity: sha512-JnBB8MdXj45cajvTuO5FmPlvFVJRQgvrz1uSEl3NwqFnReAPGwb8EanbGi4z2nRaqLzjJSv5/JmycoTKlRZxHA==}
-    cpu: [arm]
-    os: [android]
-
   '@rollup/rollup-android-arm-eabi@4.62.2':
     resolution: {integrity: sha512-6o7ZLZK+BeenkZCFNDXqpbjw9bD6nuWonvS/lwQJp7NoVVxm6p3qE7qQ5jGuBjiFsgvqjD8mZAU5oWxTmbOeOg==}
     cpu: [arm]
@@ -2776,11 +2771,6 @@ packages:
 
   '@rollup/rollup-android-arm64@4.59.0':
     resolution: {integrity: sha512-hZ+Zxj3SySm4A/DylsDKZAeVg0mvi++0PYVceVyX7hemkw7OreKdCvW2oQ3T1FMZvCaQXqOTHb8qmBShoqk69Q==}
-    cpu: [arm64]
-    os: [android]
-
-  '@rollup/rollup-android-arm64@4.61.1':
-    resolution: {integrity: sha512-Jx2g7iSjw4AOT0HDPHM9RV3GNjRXwybWtSFZiZAYUTjUwjVrYIwq3kBf+LnhqJlzXFAqTAh2F7IGI+O568exPw==}
     cpu: [arm64]
     os: [android]
 
@@ -2794,11 +2784,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@rollup/rollup-darwin-arm64@4.61.1':
-    resolution: {integrity: sha512-0F1L/Z3Eqv8mT2n3dCpeO8GcTvHvVqkP5/t6DMsn0KzhYVcg+s7Ncl5DS8qjKYEeio6Az0Gt6nyBORay5qIlCA==}
-    cpu: [arm64]
-    os: [darwin]
-
   '@rollup/rollup-darwin-arm64@4.62.2':
     resolution: {integrity: sha512-v39RCCvj4He82I9sFmk+M1VZ0PLM9sfsLVikjfx2hYBNALhrrOR2D3JjQA6AhlaSOgcR+RzrKY7e1+bT6SUO/A==}
     cpu: [arm64]
@@ -2806,11 +2791,6 @@ packages:
 
   '@rollup/rollup-darwin-x64@4.59.0':
     resolution: {integrity: sha512-ZW2KkwlS4lwTv7ZVsYDiARfFCnSGhzYPdiOU4IM2fDbL+QGlyAbjgSFuqNRbSthybLbIJ915UtZBtmuLrQAT/w==}
-    cpu: [x64]
-    os: [darwin]
-
-  '@rollup/rollup-darwin-x64@4.61.1':
-    resolution: {integrity: sha512-qLttcH871ujY4YcVfUSShhOw+CsoTatYz8gRbHO7Bb92QH059/P0y5do1KMs41fY0BpD2x4AJH/gID0zFiqVKQ==}
     cpu: [x64]
     os: [darwin]
 
@@ -2824,11 +2804,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
 
-  '@rollup/rollup-freebsd-arm64@4.61.1':
-    resolution: {integrity: sha512-fUI4RapGE0Oh3mb8mgfvC1O2nU1RpDZUKnDQm3xB1Ipg7C2wTs5Kstz7G2uWK99a8S2yTMq8/P4uycwNa0nJyw==}
-    cpu: [arm64]
-    os: [freebsd]
-
   '@rollup/rollup-freebsd-arm64@4.62.2':
     resolution: {integrity: sha512-tT4pvt4qXD+vEoezupCWi+a1F0vvDiksiHc+PxRlYTOH1I6/X4id9jPxTP+Fg+545euaFT1jJVs4CEdHZAU1vw==}
     cpu: [arm64]
@@ -2839,11 +2814,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
-  '@rollup/rollup-freebsd-x64@4.61.1':
-    resolution: {integrity: sha512-H5YrdvJaDtI/U9/emrD4b++xkvp3y/JvOe4rizHbxvkyMfRS/CiRYdji+Pl8D0brEaNFWUh1drQxgAGIl6Xudw==}
-    cpu: [x64]
-    os: [freebsd]
-
   '@rollup/rollup-freebsd-x64@4.62.2':
     resolution: {integrity: sha512-6nU5F2wCW+qvCBhTn1pdIU3bzsIoF7EUwsCDRxilWGprQR6yd508YnH9+OKFCwpfS8pjZqDUmnCAr7exax0XCg==}
     cpu: [x64]
@@ -2851,12 +2821,6 @@ packages:
 
   '@rollup/rollup-linux-arm-gnueabihf@4.59.0':
     resolution: {integrity: sha512-t4ONHboXi/3E0rT6OZl1pKbl2Vgxf9vJfWgmUoCEVQVxhW6Cw/c8I6hbbu7DAvgp82RKiH7TpLwxnJeKv2pbsw==}
-    cpu: [arm]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-arm-gnueabihf@4.61.1':
-    resolution: {integrity: sha512-Q8CBCCQtDFrYtXoeUXSrnFXKOnyUhx6bz+SkL6A0E7V8kAiCJ5pamq1WtbfpVGhR5TSpXY6ak3avmDc5fHTyJA==}
     cpu: [arm]
     os: [linux]
     libc: [glibc]
@@ -2873,12 +2837,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-arm-musleabihf@4.61.1':
-    resolution: {integrity: sha512-nwnhk1581l0FBVellGcVCAT0Oi06onEA3WB53sf01VO3I0UPBkMH9sXONYME2K0ovXcNayJfNtHfm6mpJElatQ==}
-    cpu: [arm]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-arm-musleabihf@4.62.2':
     resolution: {integrity: sha512-JqgflS8wEB+UXV/vS1RpRbifGBeN4D5lz8D8oOFbFZw4vedvdOgCFAjfBmIMdW3yL10XpQQ0Ambepw6MXrhOnA==}
     cpu: [arm]
@@ -2887,12 +2845,6 @@ packages:
 
   '@rollup/rollup-linux-arm64-gnu@4.59.0':
     resolution: {integrity: sha512-jYgUGk5aLd1nUb1CtQ8E+t5JhLc9x5WdBKew9ZgAXg7DBk0ZHErLHdXM24rfX+bKrFe+Xp5YuJo54I5HFjGDAA==}
-    cpu: [arm64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-arm64-gnu@4.61.1':
-    resolution: {integrity: sha512-x5Xr49hwt3hdW75UOZm3395YwwzPyauktslv29KpWL/T+vVAzoT3azLcTWv0eMciBNrx+DYjH4paehHoLpPvpg==}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
@@ -2909,12 +2861,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-arm64-musl@4.61.1':
-    resolution: {integrity: sha512-unMS3H73DpaoPyyEVPjGKleM/s0mkmsauTENpw4INQY8y4+IuLNjkueQ5QCtC0D3N38Y38yhAU8OoZ20S2Tm6w==}
-    cpu: [arm64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-arm64-musl@4.62.2':
     resolution: {integrity: sha512-HVu2bp0zhvJ8xHEV9+UUs7S90VadmBSY3LcIMvozbPo4AuMGDWlz3ymHLHZPX4hR67TKTt8Qp5PJ5RBg/i+RMQ==}
     cpu: [arm64]
@@ -2923,12 +2869,6 @@ packages:
 
   '@rollup/rollup-linux-loong64-gnu@4.59.0':
     resolution: {integrity: sha512-gbUSW/97f7+r4gHy3Jlup8zDG190AuodsWnNiXErp9mT90iCy9NKKU0Xwx5k8VlRAIV2uU9CsMnEFg/xXaOfXg==}
-    cpu: [loong64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-loong64-gnu@4.61.1':
-    resolution: {integrity: sha512-zNZzGRnAhwjFEYmvphJRV5XaQGjs62cCmeYYHUT//NbvEnHauw+I85nGG+SiVg5ld4GX8D1IbKIX+ozITQnhMQ==}
     cpu: [loong64]
     os: [linux]
     libc: [glibc]
@@ -2945,12 +2885,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-loong64-musl@4.61.1':
-    resolution: {integrity: sha512-LdpWGL8X209B2SIvWjqlc8VZgM6PKfontSerGepuldQmHYrAOtnMCXeJkxXGbC+PPZVOuu5czJo7fNV6aeW8rQ==}
-    cpu: [loong64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-loong64-musl@4.62.2':
     resolution: {integrity: sha512-IxKLoxCQ2IWi6bT2akyDUBGsOImDKB+sPp4EsTmwFQ/fMwpCKm8uLSSgP/Kx/QYUgKis6SEZ5/Nlhup0DIA0PQ==}
     cpu: [loong64]
@@ -2959,12 +2893,6 @@ packages:
 
   '@rollup/rollup-linux-ppc64-gnu@4.59.0':
     resolution: {integrity: sha512-sw1o3tfyk12k3OEpRddF68a1unZ5VCN7zoTNtSn2KndUE+ea3m3ROOKRCZxEpmT9nsGnogpFP9x6mnLTCaoLkA==}
-    cpu: [ppc64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-ppc64-gnu@4.61.1':
-    resolution: {integrity: sha512-EC5kTtNaNGOmbMGqar8dvJy6y/hg99GAwjfBz++pxZhQATXGcRjd6c5en5wcbru0vkRmiMGsQKdMJOOf6sza4g==}
     cpu: [ppc64]
     os: [linux]
     libc: [glibc]
@@ -2981,12 +2909,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-ppc64-musl@4.61.1':
-    resolution: {integrity: sha512-8hiwp6D4acEcNK78I4rP0/XtS1sknWIAMJBPdR4l6zUtyTm5KiTDr5bXmWt4foY7nAN7AThDHgkLIEZOWKbzWw==}
-    cpu: [ppc64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-ppc64-musl@4.62.2':
     resolution: {integrity: sha512-CjvEnqJL/0/TQ3TXX3OPIJ/kmBellrWd4heXUmHeJlTnmwjKpSJzoehLaL6Xk0ZnMHBu9dZuFADNOrtjF4v+2w==}
     cpu: [ppc64]
@@ -2995,12 +2917,6 @@ packages:
 
   '@rollup/rollup-linux-riscv64-gnu@4.59.0':
     resolution: {integrity: sha512-NDYMpsXYJJaj+I7UdwIuHHNxXZ/b/N2hR15NyH3m2qAtb/hHPA4g4SuuvrdxetTdndfj9b1WOmy73kcPRoERUg==}
-    cpu: [riscv64]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-riscv64-gnu@4.61.1':
-    resolution: {integrity: sha512-10dh/h/BqA7DuMPWSxkR8uks18FRwnwOEqr5zOTEl+NOwP/OMzKX8OFR/Of9xxDA7D5qef1Nzar5WDD2kCCr1g==}
     cpu: [riscv64]
     os: [linux]
     libc: [glibc]
@@ -3017,12 +2933,6 @@ packages:
     os: [linux]
     libc: [musl]
 
-  '@rollup/rollup-linux-riscv64-musl@4.61.1':
-    resolution: {integrity: sha512-YKJ5lg35DP17gcAOggnihe+APw9HLyj1Xn7gsmGumBJAUDa6NGXNixJzmkWLhcK9TOuuyQjdamzvJefkO7qHZQ==}
-    cpu: [riscv64]
-    os: [linux]
-    libc: [musl]
-
   '@rollup/rollup-linux-riscv64-musl@4.62.2':
     resolution: {integrity: sha512-nQts12zJ3NQRoE6uYljOH89v7szzLDvG2JD/vsX+vGXU8w/At1GowTZ5/7qeFQ8m7L55rpR8Okugnuo5bgjy2Q==}
     cpu: [riscv64]
@@ -3031,12 +2941,6 @@ packages:
 
   '@rollup/rollup-linux-s390x-gnu@4.59.0':
     resolution: {integrity: sha512-oF87Ie3uAIvORFBpwnCvUzdeYUqi2wY6jRFWJAy1qus/udHFYIkplYRW+wo+GRUP4sKzYdmE1Y3+rY5Gc4ZO+w==}
-    cpu: [s390x]
-    os: [linux]
-    libc: [glibc]
-
-  '@rollup/rollup-linux-s390x-gnu@4.61.1':
-    resolution: {integrity: sha512-Mlil5G2Jj6a7B3LWGctg+XPL9vdXYuzCtNXfxOQ0nPjc2m6ueUktocPGH9bnAM0bNRKb/bAWTujUU7IJQdQA+g==}
     cpu: [s390x]
     os: [linux]
     libc: [glibc]
@@ -3053,12 +2957,6 @@ packages:
     os: [linux]
     libc: [glibc]
 
-  '@rollup/rollup-linux-x64-gnu@4.61.1':
-    resolution: {integrity: sha512-bVWIOIk6pV01p4CdUbPP7CJ/434z+OooYjDuFcR+44N35YvKUC66G8MGnvcWx5mWKW3g61J+t74l3Kj15Kwn2Q==}
-    cpu: [x64]
-    os: [linux]
-    libc: [glibc]
-
   '@rollup/rollup-linux-x64-gnu@4.62.2':
     resolution: {integrity: sha512-5BqxR/pshjey51iliyzTD5Xi3EN0aLmQ2lZ3lvefVV9c82BvrLo2/6OT55iifpWBufs6kdwWbuOKS841DrmK9A==}
     cpu: [x64]
@@ -3067,12 +2965,6 @@ packages:
 
   '@rollup/rollup-linux-x64-musl@4.59.0':
     resolution: {integrity: sha512-2UdiwS/9cTAx7qIUZB/fWtToJwvt0Vbo0zmnYt7ED35KPg13Q0ym1g442THLC7VyI6JfYTP4PiSOWyoMdV2/xg==}
-    cpu: [x64]
-    os: [linux]
-    libc: [musl]
-
-  '@rollup/rollup-linux-x64-musl@4.61.1':
-    resolution: {integrity: sha512-qy5pBvZbqNFheBz61R1rzsezjm0J7O2oNGoWtGoY89SZYLUfxAJTBAqDChqAIdB4rCiIbi9nF7yZ83GnNiLwSw==}
     cpu: [x64]
     os: [linux]
     libc: [musl]
@@ -3088,11 +2980,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
 
-  '@rollup/rollup-openbsd-x64@4.61.1':
-    resolution: {integrity: sha512-E83TXjI4zm0+5f2qO+UOudaCYIhYwpJ5jq6YCZNIZ+6CbfhKrkAGezeiASBL9ElxAxFsRS9ZhESv8mfnj6TKeg==}
-    cpu: [x64]
-    os: [openbsd]
-
   '@rollup/rollup-openbsd-x64@4.62.2':
     resolution: {integrity: sha512-srjEIxSH3LRnJN6THczDHWQplqEMFiAJrTab0msUryh9kwNpkICf3Ea6q6MN/2cZwRFUNx5w+h6Hpi4QuHS6Zg==}
     cpu: [x64]
@@ -3100,11 +2987,6 @@ packages:
 
   '@rollup/rollup-openharmony-arm64@4.59.0':
     resolution: {integrity: sha512-tt9KBJqaqp5i5HUZzoafHZX8b5Q2Fe7UjYERADll83O4fGqJ49O1FsL6LpdzVFQcpwvnyd0i+K/VSwu/o/nWlA==}
-    cpu: [arm64]
-    os: [openharmony]
-
-  '@rollup/rollup-openharmony-arm64@4.61.1':
-    resolution: {integrity: sha512-fbWnKqVkjrJN38vNe3ahkbk6iejS/3b0Nt7EEtPpE6RBacZcGXNKbzfHN3GUUlXOPghUg0j6XUGrtjX9z1sIvA==}
     cpu: [arm64]
     os: [openharmony]
 
@@ -3118,11 +3000,6 @@ packages:
     cpu: [arm64]
     os: [win32]
 
-  '@rollup/rollup-win32-arm64-msvc@4.61.1':
-    resolution: {integrity: sha512-ArMl38iVAbk0New1ogihQNY6iphLi4ZaRsa037gUzv5yeKPY8TD3Dmy4x2RNC1VztU/uqm+G+/RwFrSka3Oy2g==}
-    cpu: [arm64]
-    os: [win32]
-
   '@rollup/rollup-win32-arm64-msvc@4.62.2':
     resolution: {integrity: sha512-mmF4AY1i0hG/bLWUctUq59gtmgaSIRa3cu/A3JFRp/sCNEme2bgDEiDS22P9FbnJB8NJNF4jPJiSP5RHQpUTDg==}
     cpu: [arm64]
@@ -3130,11 +3007,6 @@ packages:
 
   '@rollup/rollup-win32-ia32-msvc@4.59.0':
     resolution: {integrity: sha512-UKFMHPuM9R0iBegwzKF4y0C4J9u8C6MEJgFuXTBerMk7EJ92GFVFYBfOZaSGLu6COf7FxpQNqhNS4c4icUPqxA==}
-    cpu: [ia32]
-    os: [win32]
-
-  '@rollup/rollup-win32-ia32-msvc@4.61.1':
-    resolution: {integrity: sha512-0mYtjHS9ucAbcATycCNK9IGBk/cCe/ma7EmSLGZdsxnOA8cjRIyU04wDpVAD9NiOfLUR9KTxdiO53uOkherqjQ==}
     cpu: [ia32]
     os: [win32]
 
@@ -3148,11 +3020,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@rollup/rollup-win32-x64-gnu@4.61.1':
-    resolution: {integrity: sha512-gK1iCEPfpoSG9wfBihXxvBMi8ZfcWffYkEsC/Eih+iFENTaewvNcrEQ69lIOWYO5pePHKLHHO7nq5AILGO/HQQ==}
-    cpu: [x64]
-    os: [win32]
-
   '@rollup/rollup-win32-x64-gnu@4.62.2':
     resolution: {integrity: sha512-T6xr6ucWSFto+VGajA8YH26LdpHRuP4YLHEKAtCWvJDOlnmWcDZVCI2Jmjr+IFHDlt2zRaTAKE4tfjTaWLgJBg==}
     cpu: [x64]
@@ -3160,11 +3027,6 @@ packages:
 
   '@rollup/rollup-win32-x64-msvc@4.59.0':
     resolution: {integrity: sha512-2HRCml6OztYXyJXAvdDXPKcawukWY2GpR5/nxKp4iBgiO3wcoEGkAaqctIbZcNB6KlUQBIqt8VYkNSj2397EfA==}
-    cpu: [x64]
-    os: [win32]
-
-  '@rollup/rollup-win32-x64-msvc@4.61.1':
-    resolution: {integrity: sha512-X+zaP2x+j4RXGfbp/seSoRHWnPxzApilDszisZxbYH5C/jTxFhCtDNdPGZb9lJyYPs24wGxruPF7Y+sIXt9Gzw==}
     cpu: [x64]
     os: [win32]
 
@@ -3881,11 +3743,6 @@ packages:
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
-
-  browserslist@4.28.2:
-    resolution: {integrity: sha512-48xSriZYYg+8qXna9kwqjIVzuQxi+KYWp2+5nCYnYKPTr0LvD89Jqk2Or5ogxz0NUMfIjhh2lIUX/LyX9B4oIg==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
 
   browserslist@4.28.4:
     resolution: {integrity: sha512-MTc8i/x9jBQd1iMw2CFGS+rwMa07eYjLR0CCTLDACl9xhxy+nIs3KeML/biicXtk9JrZ6dnnTatmc7ErPXIxqw==}
@@ -6602,11 +6459,6 @@ packages:
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
-  rollup@4.61.1:
-    resolution: {integrity: sha512-I4KW6iuRpuu2uHBLraZ1wNZe0DP7lnRha+VJ9tNaYVaVgKhW0aI3h4RYnoRPeql0flHm/Co55b7snEDcOfOJrA==}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
-    hasBin: true
-
   rollup@4.62.2:
     resolution: {integrity: sha512-RFnrW4lhXA3s3eqHDZvN654g8OTjzRfqpIRJYczCGB6HzphckVAi/Qh4tbPUbRuDi7s1Llv8g/NspLkttY3gTA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -7807,7 +7659,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.2003.30(chokidar@4.0.3)
-      '@angular-devkit/build-webpack': 0.2003.30(chokidar@4.0.3)(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      '@angular-devkit/build-webpack': 0.2003.30(chokidar@4.0.3)(webpack-dev-server@5.2.6)(webpack@5.105.0)
       '@angular-devkit/core': 20.3.30(chokidar@4.0.3)
       '@angular/build': 20.3.30(@angular/compiler-cli@20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3))(@angular/compiler@20.3.27)(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1))(@angular/platform-browser@20.3.27(@angular/animations@20.3.27(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.27(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1)))(@types/node@14.18.63)(chokidar@4.0.3)(jiti@1.21.7)(less@4.9.0(supports-color@8.1.1))(lightningcss@1.32.0)(ng-packagr@20.3.2(@angular/compiler-cli@20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3))(supports-color@8.1.1)(tslib@2.8.1)(typescript@5.8.3))(postcss@8.5.25)(supports-color@8.1.1)(terser@5.43.1)(tslib@2.8.1)(typescript@5.8.3)(vitest@4.1.10)(yaml@2.9.0)
       '@angular/compiler-cli': 20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3)
@@ -7821,13 +7673,13 @@ snapshots:
       '@babel/preset-env': 7.28.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/runtime': 7.28.3
       '@discoveryjs/json-ext': 0.6.3
-      '@ngtools/webpack': 20.3.30(@angular/compiler-cli@20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3))(typescript@5.8.3)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      '@ngtools/webpack': 20.3.30(@angular/compiler-cli@20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3))(typescript@5.8.3)(webpack@5.105.0)
       ansi-colors: 4.1.3
       autoprefixer: 10.4.21(postcss@8.5.25)
-      babel-loader: 10.0.0(@babel/core@7.29.7(supports-color@8.1.1))(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
-      browserslist: 4.28.2
-      copy-webpack-plugin: 14.0.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
-      css-loader: 7.1.2(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      babel-loader: 10.0.0(@babel/core@7.29.7(supports-color@8.1.1))(webpack@5.105.0)
+      browserslist: 4.28.4
+      copy-webpack-plugin: 14.0.0(webpack@5.105.0)
+      css-loader: 7.1.2(webpack@5.105.0)
       esbuild-wasm: 0.28.1
       fast-glob: 3.3.3
       http-proxy-middleware: 3.0.7(supports-color@8.1.1)
@@ -7835,32 +7687,32 @@ snapshots:
       jsonc-parser: 3.3.1
       karma-source-map-support: 1.4.0
       less: 4.9.0(supports-color@8.1.1)
-      less-loader: 12.3.0(less@4.9.0(supports-color@8.1.1))(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
-      license-webpack-plugin: 4.0.2(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      less-loader: 12.3.0(less@4.9.0(supports-color@8.1.1))(webpack@5.105.0)
+      license-webpack-plugin: 4.0.2(webpack@5.105.0)
       loader-utils: 3.3.1
-      mini-css-extract-plugin: 2.9.4(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      mini-css-extract-plugin: 2.9.4(webpack@5.105.0)
       open: 10.2.0
       ora: 8.2.0
       picomatch: 4.0.4
       piscina: 5.2.0
       postcss: 8.5.25
-      postcss-loader: 8.1.1(postcss@8.5.25)(typescript@5.8.3)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      postcss-loader: 8.1.1(postcss@8.5.25)(typescript@5.8.3)(webpack@5.105.0)
       resolve-url-loader: 5.0.0
       rxjs: 7.8.2
       sass: 1.90.0
-      sass-loader: 16.0.5(sass@1.90.0)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      sass-loader: 16.0.5(sass@1.90.0)(webpack@5.105.0)
       semver: 7.7.2
-      source-map-loader: 5.0.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      source-map-loader: 5.0.0(webpack@5.105.0)
       source-map-support: 0.5.21
       terser: 5.43.1
       tree-kill: 1.2.2
       tslib: 2.8.1
       typescript: 5.8.3
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
-      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.105.0)
+      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0)
       webpack-merge: 6.0.1
-      webpack-subresource-integrity: 5.1.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-subresource-integrity: 5.1.0(webpack@5.105.0)
     optionalDependencies:
       '@angular/core': 20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1)
       '@angular/platform-browser': 20.3.27(@angular/animations@20.3.27(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1)))(@angular/common@20.3.27(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1))(rxjs@6.6.7))(@angular/core@20.3.27(@angular/compiler@20.3.27)(rxjs@6.6.7)(zone.js@0.15.1))
@@ -7896,12 +7748,12 @@ snapshots:
       - webpack-cli
       - yaml
 
-  '@angular-devkit/build-webpack@0.2003.30(chokidar@4.0.3)(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))':
+  '@angular-devkit/build-webpack@0.2003.30(chokidar@4.0.3)(webpack-dev-server@5.2.6)(webpack@5.105.0)':
     dependencies:
       '@angular-devkit/architect': 0.2003.30(chokidar@4.0.3)
       rxjs: 7.8.2
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0)
     transitivePeerDependencies:
       - chokidar
 
@@ -10615,7 +10467,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.2
     optional: true
 
-  '@ngtools/webpack@20.3.30(@angular/compiler-cli@20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3))(typescript@5.8.3)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))':
+  '@ngtools/webpack@20.3.30(@angular/compiler-cli@20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3))(typescript@5.8.3)(webpack@5.105.0)':
     dependencies:
       '@angular/compiler-cli': 20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3)
       typescript: 5.8.3
@@ -10998,24 +10850,21 @@ snapshots:
 
   '@protobufjs/utf8@1.1.1': {}
 
-  '@rollup/plugin-json@6.1.0(rollup@4.61.1)':
+  '@rollup/plugin-json@6.1.0(rollup@4.62.2)':
     dependencies:
-      '@rollup/pluginutils': 5.4.0(rollup@4.61.1)
+      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
     optionalDependencies:
-      rollup: 4.61.1
+      rollup: 4.62.2
 
-  '@rollup/pluginutils@5.4.0(rollup@4.61.1)':
+  '@rollup/pluginutils@5.4.0(rollup@4.62.2)':
     dependencies:
       '@types/estree': 1.0.9
       estree-walker: 2.0.2
       picomatch: 4.0.4
     optionalDependencies:
-      rollup: 4.61.1
+      rollup: 4.62.2
 
   '@rollup/rollup-android-arm-eabi@4.59.0':
-    optional: true
-
-  '@rollup/rollup-android-arm-eabi@4.61.1':
     optional: true
 
   '@rollup/rollup-android-arm-eabi@4.62.2':
@@ -11024,16 +10873,10 @@ snapshots:
   '@rollup/rollup-android-arm64@4.59.0':
     optional: true
 
-  '@rollup/rollup-android-arm64@4.61.1':
-    optional: true
-
   '@rollup/rollup-android-arm64@4.62.2':
     optional: true
 
   '@rollup/rollup-darwin-arm64@4.59.0':
-    optional: true
-
-  '@rollup/rollup-darwin-arm64@4.61.1':
     optional: true
 
   '@rollup/rollup-darwin-arm64@4.62.2':
@@ -11042,16 +10885,10 @@ snapshots:
   '@rollup/rollup-darwin-x64@4.59.0':
     optional: true
 
-  '@rollup/rollup-darwin-x64@4.61.1':
-    optional: true
-
   '@rollup/rollup-darwin-x64@4.62.2':
     optional: true
 
   '@rollup/rollup-freebsd-arm64@4.59.0':
-    optional: true
-
-  '@rollup/rollup-freebsd-arm64@4.61.1':
     optional: true
 
   '@rollup/rollup-freebsd-arm64@4.62.2':
@@ -11060,16 +10897,10 @@ snapshots:
   '@rollup/rollup-freebsd-x64@4.59.0':
     optional: true
 
-  '@rollup/rollup-freebsd-x64@4.61.1':
-    optional: true
-
   '@rollup/rollup-freebsd-x64@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-arm-gnueabihf@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm-gnueabihf@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-arm-gnueabihf@4.62.2':
@@ -11078,16 +10909,10 @@ snapshots:
   '@rollup/rollup-linux-arm-musleabihf@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-arm-musleabihf@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-arm-musleabihf@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-arm64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-arm64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-arm64-gnu@4.62.2':
@@ -11096,16 +10921,10 @@ snapshots:
   '@rollup/rollup-linux-arm64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-arm64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-arm64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-loong64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-loong64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-loong64-gnu@4.62.2':
@@ -11114,16 +10933,10 @@ snapshots:
   '@rollup/rollup-linux-loong64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-loong64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-loong64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-ppc64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-ppc64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-ppc64-gnu@4.62.2':
@@ -11132,16 +10945,10 @@ snapshots:
   '@rollup/rollup-linux-ppc64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-ppc64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-ppc64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-riscv64-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-riscv64-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-riscv64-gnu@4.62.2':
@@ -11150,16 +10957,10 @@ snapshots:
   '@rollup/rollup-linux-riscv64-musl@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-riscv64-musl@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-riscv64-musl@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-s390x-gnu@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-s390x-gnu@4.62.2':
@@ -11168,16 +10969,10 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.59.0':
     optional: true
 
-  '@rollup/rollup-linux-x64-gnu@4.61.1':
-    optional: true
-
   '@rollup/rollup-linux-x64-gnu@4.62.2':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.59.0':
-    optional: true
-
-  '@rollup/rollup-linux-x64-musl@4.61.1':
     optional: true
 
   '@rollup/rollup-linux-x64-musl@4.62.2':
@@ -11186,16 +10981,10 @@ snapshots:
   '@rollup/rollup-openbsd-x64@4.59.0':
     optional: true
 
-  '@rollup/rollup-openbsd-x64@4.61.1':
-    optional: true
-
   '@rollup/rollup-openbsd-x64@4.62.2':
     optional: true
 
   '@rollup/rollup-openharmony-arm64@4.59.0':
-    optional: true
-
-  '@rollup/rollup-openharmony-arm64@4.61.1':
     optional: true
 
   '@rollup/rollup-openharmony-arm64@4.62.2':
@@ -11204,16 +10993,10 @@ snapshots:
   '@rollup/rollup-win32-arm64-msvc@4.59.0':
     optional: true
 
-  '@rollup/rollup-win32-arm64-msvc@4.61.1':
-    optional: true
-
   '@rollup/rollup-win32-arm64-msvc@4.62.2':
     optional: true
 
   '@rollup/rollup-win32-ia32-msvc@4.59.0':
-    optional: true
-
-  '@rollup/rollup-win32-ia32-msvc@4.61.1':
     optional: true
 
   '@rollup/rollup-win32-ia32-msvc@4.62.2':
@@ -11222,16 +11005,10 @@ snapshots:
   '@rollup/rollup-win32-x64-gnu@4.59.0':
     optional: true
 
-  '@rollup/rollup-win32-x64-gnu@4.61.1':
-    optional: true
-
   '@rollup/rollup-win32-x64-gnu@4.62.2':
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.59.0':
-    optional: true
-
-  '@rollup/rollup-win32-x64-msvc@4.61.1':
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.62.2':
@@ -11798,19 +11575,19 @@ snapshots:
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
       webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.107.2)':
     dependencies:
       webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.2.6)(webpack@5.107.2)':
     dependencies:
       webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
     optionalDependencies:
-      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0)
 
   '@xtuc/ieee754@1.2.0': {}
 
@@ -11982,7 +11759,7 @@ snapshots:
 
   autoprefixer@10.4.21(postcss@8.5.25):
     dependencies:
-      browserslist: 4.28.2
+      browserslist: 4.28.4
       caniuse-lite: 1.0.30001799
       fraction.js: 4.3.7
       normalize-range: 0.1.2
@@ -12004,7 +11781,7 @@ snapshots:
       - debug
       - supports-color
 
-  babel-loader@10.0.0(@babel/core@7.29.7(supports-color@8.1.1))(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  babel-loader@10.0.0(@babel/core@7.29.7(supports-color@8.1.1))(webpack@5.105.0):
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       find-up: 5.0.0
@@ -12124,14 +11901,6 @@ snapshots:
   braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
-
-  browserslist@4.28.2:
-    dependencies:
-      baseline-browser-mapping: 2.10.40
-      caniuse-lite: 1.0.30001799
-      electron-to-chromium: 1.5.380
-      node-releases: 2.0.50
-      update-browserslist-db: 1.2.3(browserslist@4.28.2)
 
   browserslist@4.28.4:
     dependencies:
@@ -12483,7 +12252,7 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
-  copy-webpack-plugin@14.0.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  copy-webpack-plugin@14.0.0(webpack@5.105.0):
     dependencies:
       glob-parent: 6.0.2
       normalize-path: 3.0.0
@@ -12494,7 +12263,7 @@ snapshots:
 
   core-js-compat@3.49.0:
     dependencies:
-      browserslist: 4.28.2
+      browserslist: 4.28.4
 
   core-js@3.49.0: {}
 
@@ -12548,7 +12317,7 @@ snapshots:
       semver: 7.8.4
       webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
 
-  css-loader@7.1.2(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  css-loader@7.1.2(webpack@5.105.0):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.25)
       postcss: 8.5.25
@@ -13904,7 +13673,7 @@ snapshots:
 
   lazy-ass@1.6.0: {}
 
-  less-loader@12.3.0(less@4.9.0(supports-color@8.1.1))(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  less-loader@12.3.0(less@4.9.0(supports-color@8.1.1))(webpack@5.105.0):
     dependencies:
       less: 4.9.0(supports-color@8.1.1)
     optionalDependencies:
@@ -13930,7 +13699,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  license-webpack-plugin@4.0.2(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  license-webpack-plugin@4.0.2(webpack@5.105.0):
     dependencies:
       webpack-sources: 3.5.0
     optionalDependencies:
@@ -14578,7 +14347,7 @@ snapshots:
 
   mimic-function@5.0.1: {}
 
-  mini-css-extract-plugin@2.9.4(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  mini-css-extract-plugin@2.9.4(webpack@5.105.0):
     dependencies:
       schema-utils: 4.3.3
       tapable: 2.3.3
@@ -14697,11 +14466,11 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular/compiler-cli': 20.3.27(@angular/compiler@20.3.27)(supports-color@8.1.1)(typescript@5.8.3)
-      '@rollup/plugin-json': 6.1.0(rollup@4.61.1)
+      '@rollup/plugin-json': 6.1.0(rollup@4.62.2)
       '@rollup/wasm-node': 4.61.1
       ajv: 8.20.0
       ansi-colors: 4.1.3
-      browserslist: 4.28.2
+      browserslist: 4.28.4
       chokidar: 4.0.3
       commander: 14.0.3
       dependency-graph: 1.0.0
@@ -14713,14 +14482,14 @@ snapshots:
       ora: 8.2.0
       piscina: 5.2.0
       postcss: 8.5.25
-      rollup-plugin-dts: 6.4.1(rollup@4.61.1)(typescript@5.8.3)
+      rollup-plugin-dts: 6.4.1(rollup@4.62.2)(typescript@5.8.3)
       rxjs: 7.8.2
       sass: 1.101.0
       tinyglobby: 0.2.17
       tslib: 2.8.1
       typescript: 5.8.3
     optionalDependencies:
-      rollup: 4.61.1
+      rollup: 4.62.2
     transitivePeerDependencies:
       - supports-color
 
@@ -15069,7 +14838,7 @@ snapshots:
       semver: 7.8.4
       webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
 
-  postcss-loader@8.1.1(postcss@8.5.25)(typescript@5.8.3)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  postcss-loader@8.1.1(postcss@8.5.25)(typescript@5.8.3)(webpack@5.105.0):
     dependencies:
       cosmiconfig: 9.0.2(typescript@5.8.3)
       jiti: 1.21.7
@@ -15399,13 +15168,13 @@ snapshots:
       semver-compare: 1.0.0
       sprintf-js: 1.1.3
 
-  rollup-plugin-dts@6.4.1(rollup@4.61.1)(typescript@5.8.3):
+  rollup-plugin-dts@6.4.1(rollup@4.62.2)(typescript@5.8.3):
     dependencies:
       '@jridgewell/remapping': 2.3.5
       '@jridgewell/sourcemap-codec': 1.5.5
       convert-source-map: 2.0.0
       magic-string: 0.30.21
-      rollup: 4.61.1
+      rollup: 4.62.2
       typescript: 5.8.3
     optionalDependencies:
       '@babel/code-frame': 7.29.7
@@ -15439,37 +15208,6 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.59.0
       '@rollup/rollup-win32-x64-gnu': 4.59.0
       '@rollup/rollup-win32-x64-msvc': 4.59.0
-      fsevents: 2.3.3
-
-  rollup@4.61.1:
-    dependencies:
-      '@types/estree': 1.0.9
-    optionalDependencies:
-      '@rollup/rollup-android-arm-eabi': 4.61.1
-      '@rollup/rollup-android-arm64': 4.61.1
-      '@rollup/rollup-darwin-arm64': 4.61.1
-      '@rollup/rollup-darwin-x64': 4.61.1
-      '@rollup/rollup-freebsd-arm64': 4.61.1
-      '@rollup/rollup-freebsd-x64': 4.61.1
-      '@rollup/rollup-linux-arm-gnueabihf': 4.61.1
-      '@rollup/rollup-linux-arm-musleabihf': 4.61.1
-      '@rollup/rollup-linux-arm64-gnu': 4.61.1
-      '@rollup/rollup-linux-arm64-musl': 4.61.1
-      '@rollup/rollup-linux-loong64-gnu': 4.61.1
-      '@rollup/rollup-linux-loong64-musl': 4.61.1
-      '@rollup/rollup-linux-ppc64-gnu': 4.61.1
-      '@rollup/rollup-linux-ppc64-musl': 4.61.1
-      '@rollup/rollup-linux-riscv64-gnu': 4.61.1
-      '@rollup/rollup-linux-riscv64-musl': 4.61.1
-      '@rollup/rollup-linux-s390x-gnu': 4.61.1
-      '@rollup/rollup-linux-x64-gnu': 4.61.1
-      '@rollup/rollup-linux-x64-musl': 4.61.1
-      '@rollup/rollup-openbsd-x64': 4.61.1
-      '@rollup/rollup-openharmony-arm64': 4.61.1
-      '@rollup/rollup-win32-arm64-msvc': 4.61.1
-      '@rollup/rollup-win32-ia32-msvc': 4.61.1
-      '@rollup/rollup-win32-x64-gnu': 4.61.1
-      '@rollup/rollup-win32-x64-msvc': 4.61.1
       fsevents: 2.3.3
 
   rollup@4.62.2:
@@ -15535,7 +15273,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass-loader@16.0.5(sass@1.90.0)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  sass-loader@16.0.5(sass@1.90.0)(webpack@5.105.0):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
@@ -15821,7 +15559,7 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
-  source-map-loader@5.0.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  source-map-loader@5.0.0(webpack@5.105.0):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.1
@@ -16004,7 +15742,7 @@ snapshots:
       minizlib: 3.1.0
       yallist: 5.0.0
 
-  terser-webpack-plugin@5.6.1(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  terser-webpack-plugin@5.6.1(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.105.0):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
@@ -16254,12 +15992,6 @@ snapshots:
 
   upath@2.0.1: {}
 
-  update-browserslist-db@1.2.3(browserslist@4.28.2):
-    dependencies:
-      browserslist: 4.28.2
-      escalade: 3.2.0
-      picocolors: 1.1.1
-
   update-browserslist-db@1.2.3(browserslist@4.28.4):
     dependencies:
       browserslist: 4.28.4
@@ -16383,12 +16115,12 @@ snapshots:
 
   web-namespaces@2.0.1: {}
 
-  webpack-cli@5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2):
+  webpack-cli@5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
       '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4)(webpack@5.107.2)
       '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4)(webpack@5.107.2)
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack-dev-server@5.2.6)(webpack@5.107.2)
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.6
@@ -16400,9 +16132,9 @@ snapshots:
       webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
       webpack-merge: 5.10.0
     optionalDependencies:
-      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-server: 5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0)
 
-  webpack-dev-middleware@7.4.2(tslib@2.8.1)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  webpack-dev-middleware@7.4.2(tslib@2.8.1)(webpack@5.105.0):
     dependencies:
       colorette: 2.0.20
       memfs: 4.57.7(tslib@2.8.1)
@@ -16415,7 +16147,20 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
-  webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  webpack-dev-middleware@7.4.2(tslib@2.8.1)(webpack@5.107.2):
+    dependencies:
+      colorette: 2.0.20
+      memfs: 4.57.7(tslib@2.8.1)
+      mime-types: 2.1.35
+      on-finished: 2.4.1
+      range-parser: 1.2.1
+      schema-utils: 4.3.3
+    optionalDependencies:
+      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+    transitivePeerDependencies:
+      - tslib
+
+  webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0):
     dependencies:
       '@types/bonjour': 3.5.13
       '@types/connect-history-api-fallback': 1.5.4
@@ -16443,11 +16188,51 @@ snapshots:
       serve-index: 1.9.2(supports-color@8.1.1)
       sockjs: 0.3.24
       spdy: 4.0.2(supports-color@8.1.1)
-      webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.105.0)
       ws: 8.21.0
     optionalDependencies:
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
-      webpack-cli: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - supports-color
+      - tslib
+      - utf-8-validate
+
+  webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.107.2):
+    dependencies:
+      '@types/bonjour': 3.5.13
+      '@types/connect-history-api-fallback': 1.5.4
+      '@types/express': 4.17.25
+      '@types/express-serve-static-core': 4.19.8
+      '@types/serve-index': 1.9.4
+      '@types/serve-static': 1.15.10
+      '@types/sockjs': 0.3.36
+      '@types/ws': 8.18.1
+      ansi-html-community: 0.0.8
+      bonjour-service: 1.4.1
+      chokidar: 3.6.0
+      colorette: 2.0.20
+      compression: 1.8.1(supports-color@8.1.1)
+      connect-history-api-fallback: 2.0.0
+      express: 4.22.2(supports-color@8.1.1)
+      graceful-fs: 4.2.11
+      http-proxy-middleware: 2.0.10(@types/express@4.17.25)(debug@4.4.3(supports-color@8.1.1))
+      ipaddr.js: 2.4.0
+      launch-editor: 2.14.1
+      open: 10.2.0
+      p-retry: 6.2.1
+      schema-utils: 4.3.3
+      selfsigned: 5.5.0
+      serve-index: 1.9.2(supports-color@8.1.1)
+      sockjs: 0.3.24
+      spdy: 4.0.2(supports-color@8.1.1)
+      webpack-dev-middleware: 7.4.2(tslib@2.8.1)(webpack@5.107.2)
+      ws: 8.21.0
+    optionalDependencies:
+      webpack: 5.107.2(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -16469,7 +16254,7 @@ snapshots:
 
   webpack-sources@3.5.0: {}
 
-  webpack-subresource-integrity@5.1.0(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)):
+  webpack-subresource-integrity@5.1.0(webpack@5.105.0):
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)
@@ -16484,7 +16269,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.17.0
       acorn-import-phases: 1.0.4(acorn@8.17.0)
-      browserslist: 4.28.2
+      browserslist: 4.28.4
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.24.0
       es-module-lexer: 2.1.0
@@ -16498,11 +16283,11 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4))
+      terser-webpack-plugin: 5.6.1(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack@5.105.0)
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
@@ -16526,7 +16311,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.17.0
       acorn-import-phases: 1.0.4(acorn@8.17.0)
-      browserslist: 4.28.2
+      browserslist: 4.28.4
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.24.0
       es-module-lexer: 2.1.0
@@ -16543,7 +16328,7 @@ snapshots:
       watchpack: 2.5.2
       webpack-sources: 3.5.0
     optionalDependencies:
-      webpack-cli: 5.1.4(webpack-dev-server@5.2.6(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(tslib@2.8.1)(webpack-cli@5.1.4)(webpack@5.105.0(esbuild@0.28.1)(lightningcss@1.32.0)(postcss@8.5.25)(webpack-cli@5.1.4)))(webpack@5.107.2)
+      webpack-cli: 5.1.4(webpack-dev-server@5.2.6)(webpack@5.107.2)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
