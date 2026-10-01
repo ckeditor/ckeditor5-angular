@@ -1,6 +1,13 @@
 Changelog
 =========
 
+## [12.0.0-alpha.1](https://github.com/ckeditor/ckeditor5-angular/compare/v12.0.0-alpha.0...v12.0.0-alpha.1) (October 1, 2026)
+
+### Features
+
+* Added support for Trusted Types when loading CKEditor 5 from CDN with `loadCKEditorCloud()`. Script URLs are now passed through the `ckeditor5-integrations` Trusted Types policy, so applications that enforce Trusted Types with the `require-trusted-types-for 'script'` CSP directive only need to add `ckeditor5-integrations` to the `trusted-types` directive.
+
+
 ## [12.0.0-alpha.0](https://github.com/ckeditor/ckeditor5-angular/compare/v11.2.0...v12.0.0-alpha.0) (September 22, 2026)
 
 ### BREAKING CHANGES
@@ -93,13 +100,6 @@ Changelog
 ### Other changes
 
 * Improved compatibility with the latest CKEditor 48.x. Closes [#550](https://github.com/ckeditor/ckeditor5-angular/issues/550).
-
-
-## [11.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v11.0.1...v11.1.0) (March 24, 2026)
-
-### Features
-
-* Added support for CKEditor 5 `48.0.0` and the new `roots` editor configuration. Closes [#547](https://github.com/ckeditor/ckeditor5-angular/issues/547).
 
 ---
 
