@@ -105,7 +105,7 @@ Note that the `package.json` file used in the main repository isn't published on
 ## Contributing
 
 > [!NOTE]
-> This project requires **pnpm v10** or higher. You can check your version with `pnpm --version` and update if needed with `npm install -g pnpm@latest`.
+> This project requires **pnpm v12.8.2**. You can check your version with `pnpm --version` and update if needed with `npm install -g pnpm@12.8.2`.
 
 After cloning this repository, install necessary dependencies:
 
