@@ -25,9 +25,8 @@ commands:
           command: sudo corepack disable
       - run:
           name: Install pnpm
-          # Pinned to 12.8.2 exactly and bumped deliberately: a floating pnpm version once duplicated
-          # the CKEditor packages in the LTS integration run, which broke the editor. This is also the
-          # version the dependency policy pins company-wide, so it cannot move here without moving there.
+          # Pinned to an exact version and bumped deliberately. The dependency policy pins the same
+          # version company-wide, so it cannot move here without moving there.
           command: sudo npm i -g pnpm@12.8.2
       - run:
           name: Install dependencies
