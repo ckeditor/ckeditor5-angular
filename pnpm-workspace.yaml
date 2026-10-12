@@ -13,16 +13,11 @@ allowBuilds:
   snyk: true
 
 overrides:
-  '@modelcontextprotocol/sdk@^1': '^1.30.0'
-  'esbuild@^0.27': '^0.28.1'
-  'http-proxy-middleware@^3': '^3.0.7'
-  'less@^4': '^4.7.0'
   'postcss@^8': '^8.5.23'
-  'protobufjs@^7': '^7.6.5'
   'qs@^6': '^6.15.2'
+  'simple-git@^3': '^4.0.2'
   'uuid@^8': '^11.1.1'
-  'uuid@^9': '^11.1.1'
-  'webpack-dev-server@^5': '^5.2.6'
+  'webpack-dev-middleware@^7': '^7.4.6'
   'ws@^8': '^8.20.1'
 
 minimumReleaseAge: 4320 # 3 days
