@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/ckeditor5.css">
+
+<h2>Integration with Signal Forms (<code>[formField]</code>)</h2>
+
+<form (submit)="$event.preventDefault(); onSubmit()" novalidate>
+	<h3>Post form</h3>
+
+	<div>
+		<label for="title">Title</label>
+		<input [formField]="postForm.title" type="text" id="title">
+	</div>
+
+	<label for="content">Content</label>
+	@if ( editor(); as editor ) {
+		@if ( editorConfig(); as editorConfig ) {
+			<ckeditor
+				[editor]="editor"
+				[config]="editorConfig"
+				[formField]="postForm.content"
+				(ready)="onReady($event)"
+				id="content">
+			</ckeditor>
+		}
+	} @else {
+		<p><em>Editor is not rendered.</em></p>
+	}
+
+	@if ( postForm.content().dirty() ) {
+		<p class="alert">Content is "dirty".</p>
+	}
+	@if ( postForm.content().touched() ) {
+		<p class="alert">Content has been "touched".</p>
+	}
+	@for ( error of postForm.content().errors(); track $index ) {
+		<p class="alert">Content error: {{ error.kind }}</p>
+	}
+
+	<p>
+		<button type="button" id="toggleEditor" (click)="editor() ? hideEditor() : showEditor()">
+			{{ editor() ? 'Hide' : 'Show' }} editor
+		</button>
+		<button type="button" id="setFromOutside" (click)="setContentFromOutside()">Set content from the model</button>
+		<button type="button" id="reset" (click)="reset()">Reset model</button>
+	</p>
+	<p>
+		<button type="submit">Submit this form</button>
+		&nbsp;<em>(Open the console first)</em>
+	</p>
+</form>
+
+<h3>Model preview</h3>
+<pre id="modelPreview">{{ postModel() | json }}</pre>
+<p>Content valid: <strong>{{ postForm.content().valid() }}</strong></p>

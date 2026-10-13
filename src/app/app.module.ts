@@ -20,6 +20,10 @@ const appRoutes: Routes = [
 		loadChildren: () => import( './demo-reactive-form/demo-reactive-form.module' ).then( m => m.DemoReactiveFormModule )
 	},
 	{
+		path: 'signal-forms',
+		loadChildren: () => import( './demo-signal-form/demo-signal-form.module' ).then( m => m.DemoSignalFormModule )
+	},
+	{
 		path: 'error-handling',
 		loadChildren: () => import( './error-handling-demo/error-handling-demo.module' ).then( m => m.ErrorHandlingDemoModule )
 	},
