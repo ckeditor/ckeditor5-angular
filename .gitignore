@@ -42,5 +42,5 @@ Thumbs.db
 
 # Vitest
 
-.vitest-attachments/
+.vitest/
 __screenshots__/
