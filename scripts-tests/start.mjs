@@ -75,7 +75,7 @@ describe( 'scripts/start', () => {
 		expect( vi.mocked( spawn ) ).toHaveBeenCalledWith(
 			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
 			[ 'exec', 'ng', 'serve', '--host', '0.0.0.0' ],
-			{ stdio: 'inherit' }
+			{ stdio: 'inherit', shell: process.platform === 'win32' }
 		);
 		expect( Array.from( mocks.signalHandlers.keys() ) ).toEqual( [ 'SIGINT', 'SIGTERM', 'SIGHUP' ] );
 	} );

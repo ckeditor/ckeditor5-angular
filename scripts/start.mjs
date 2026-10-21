@@ -25,7 +25,8 @@ const child = spawn(
 		...forwardedArgs
 	],
 	{
-		stdio: 'inherit'
+		stdio: 'inherit',
+		shell: process.platform === 'win32'
 	}
 );
 
