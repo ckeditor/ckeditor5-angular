@@ -9,8 +9,15 @@ import angular from '@analogjs/vite-plugin-angular';
 import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
-const DEFAULT_TESTS = [
+const ZONE_SETUP = 'src/test-setup-zone.ts';
+const ZONELESS_SETUP = 'src/test-setup-zoneless.ts';
+
+const ALL_TESTS = [
 	'src/**/*.spec.ts'
+];
+
+const LIBRARY_TESTS = [
+	'src/ckeditor/**/*.spec.ts'
 ];
 
 const INTEGRATION_TESTS = [
@@ -34,8 +41,6 @@ export default defineConfig( {
 	optimizeDeps: {
 		include: [
 			'zone.js',
-			'zone.js/plugins/sync-test',
-			'zone.js/plugins/proxy',
 			'zone.js/testing'
 		]
 	},
@@ -43,26 +48,13 @@ export default defineConfig( {
 		globals: false,
 		mockReset: true,
 		restoreMocks: true,
-		setupFiles: [
-			'src/test-setup.ts'
-		],
-		// `integration` is a version-sensitive subset used by the CI matrix.
-		// It intentionally overlaps with the full `all` suite.
 		projects: [
-			{
-				extends: true,
-				test: {
-					name: 'all',
-					include: DEFAULT_TESTS
-				}
-			},
-			{
-				extends: true,
-				test: {
-					name: 'integration',
-					include: INTEGRATION_TESTS
-				}
-			}
+			// The full suite with zone.js, the way the demo application is set up.
+			project( 'zone', ALL_TESTS, ZONE_SETUP ),
+			// The library specs without zone.js, the way a default Angular 21+ application is set up.
+			project( 'zoneless', LIBRARY_TESTS, ZONELESS_SETUP ),
+			// A version-sensitive subset used by the CI editor-version matrix. The overlap with `zone` is intentional.
+			project( 'integration', INTEGRATION_TESTS, ZONE_SETUP )
 		],
 		browser: {
 			enabled: true,
@@ -96,11 +88,10 @@ export default defineConfig( {
 				'src/**/*.module.ts',
 				'src/app/**',
 				'src/editor/**',
-				'src/app/**/*.ts',
 				'src/environments/**',
 				'src/main.ts',
 				'src/polyfills.ts',
-				'src/test-setup.ts'
+				'src/test-setup*.ts'
 			],
 			thresholds: {
 				statements: 100,
@@ -111,3 +102,17 @@ export default defineConfig( {
 		}
 	}
 } );
+
+/**
+ * `setupFiles` is set per project, because `extends: true` concatenates arrays with the root config.
+ */
+function project( name, include, setupFile ) {
+	return {
+		extends: true,
+		test: {
+			name,
+			include,
+			setupFiles: [ setupFile ]
+		}
+	};
+}

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { RouterModule, type Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -56,7 +56,9 @@ const appRoutes: Routes = [
 	declarations: [
 		AppComponent
 	],
-	providers: [],
+	providers: [
+		provideZoneChangeDetection()
+	],
 	bootstrap: [ AppComponent ]
 } )
 
