@@ -13,7 +13,6 @@ allowBuilds:
 overrides:
   'postcss@^8': '^8.5.23'
   'qs@^6': '^6.15.2'
-  'uuid@^8': '^11.1.1'
   'ws@^8': '^8.20.1'
 
 minimumReleaseAge: 4320 # 3 days

@@ -147,7 +147,7 @@ To run the full automated test suite against the default installed editor versio
 pnpm run test
 ```
 
-The unit test suite runs in a real browser (Chrome) using Vitest browser mode.
+The unit test suite runs in a real browser (Chrome) using Vitest browser mode. `pnpm run test` and `pnpm run coverage` run the library specs (`src/ckeditor/**`) twice: with zone.js, like the demo application (the `zone` project), and without it, like a default Angular 21+ application (the `zoneless` project).
 
 To run only the integration subset used by the CI editor-version matrix, use:
 
