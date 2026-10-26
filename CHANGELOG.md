@@ -1,6 +1,17 @@
 Changelog
 =========
 
+## [13.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v12.0.0...v13.0.0) (October 26, 2026)
+
+### BREAKING CHANGES
+
+* Dropped support for Angular v20. The minimum supported Angular version is now **v21**. Closes [#601](https://github.com/ckeditor/ckeditor5-angular/issues/601).
+
+### Other changes
+
+* Upgraded Node.js to version 26.10.0.
+
+
 ## [12.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v12.0.0-alpha.1...v12.0.0) (October 8, 2026)
 
 ### BREAKING CHANGES
@@ -119,13 +130,6 @@ Changelog
 ### Other changes
 
 * Readme simplification.
-
-
-## [11.1.2](https://github.com/ckeditor/ckeditor5-angular/compare/v11.1.1...v11.1.2) (April 15, 2026)
-
-### Bug fixes
-
-* Fixed an issue where the editor's alpha version was being compared incorrectly.
 
 ---
 
