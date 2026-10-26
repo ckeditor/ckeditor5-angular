@@ -5,7 +5,7 @@
 [![Coverage Status](https://codecov.io/github/ckeditor/ckeditor5-angular/graph/badge.svg)](https://codecov.io/github/ckeditor/ckeditor5-angular)
 ![Dependency Status](https://img.shields.io/librariesio/release/npm/@ckeditor/ckeditor5-angular)
 
-Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 13+.
+Official [CKEditor 5](https://ckeditor.com/ckeditor-5/) rich text editor component for Angular 21+.
 
 ## [Developer Documentation](https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/frameworks/angular.html) 📖
 
@@ -35,12 +35,17 @@ Because of the breaking changes in the Angular library output format, the `@cked
       <td colspan="3">Actively supported versions</td>
     </tr>
     <tr>
-      <td><code>^12</code></td>
-      <td><code>20+</code></td>
+      <td><code>^13</code></td>
+      <td><code>21+</code></td>
       <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v49.0.0">49</a> or higher.</td>
     </tr>
     <tr>
       <td colspan="3">Past releases (no longer maintained)</td>
+    </tr>
+    <tr>
+      <td><code>^12</code></td>
+      <td><code>20+</code></td>
+      <td>Requires CKEditor&nbsp;5 in version <a href="https://github.com/ckeditor/ckeditor5/releases/tag/v49.0.0">49</a> or higher.</td>
     </tr>
     <tr>
       <td><code>^11</code></td>
@@ -142,7 +147,7 @@ To run the full automated test suite against the default installed editor versio
 pnpm run test
 ```
 
-The unit test suite runs in a real browser (Chrome) using Vitest browser mode.
+The unit test suite runs in a real browser (Chrome) using Vitest browser mode. `pnpm run test` and `pnpm run coverage` run the library specs (`src/ckeditor/**`) twice: with zone.js, like the demo application (the `zone` project), and without it, like a default Angular 21+ application (the `zoneless` project).
 
 To run only the integration subset used by the CI editor-version matrix, use:
 

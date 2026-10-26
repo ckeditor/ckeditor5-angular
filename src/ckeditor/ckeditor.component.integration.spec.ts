@@ -538,11 +538,15 @@ describe( 'CKEditorComponent integration', () => {
 			const fixture = TestBed.createComponent( TestComponent );
 			fixture.detectChanges();
 
-			await waitCycle();
+			await vi.waitFor( () => {
+				expect( fixture.componentInstance.ckEditorComponent.editorInstance ).not.toBeNull();
+			} );
 
 			const tickSpy = vi.spyOn( appRef as unknown as { _tick(): void }, '_tick' ).mockImplementation( () => {} );
 
 			const oldEditor = fixture.componentInstance.ckEditorComponent.editorInstance;
+
+			const consoleErrorSpy = vi.spyOn( console, 'error' ).mockImplementation( () => {} );
 
 			const error: any = new Error( 'foo' );
 			error.is = () => true;
@@ -554,10 +558,14 @@ describe( 'CKEditorComponent integration', () => {
 				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
 			} );
 
-			await waitCycle();
+			await waitForScheduledTick();
 
 			// Nothing re-enters the Angular zone: there is no listener to notify, and no restart to render.
 			expect( tickSpy ).toHaveBeenCalledTimes( 0 );
+
+			// Without a listener the error goes to the console instead. Without zone.js the tick count alone
+			// cannot tell the two paths apart, because re-entering the zone does not run change detection there.
+			expect( consoleErrorSpy ).toHaveBeenCalledWith( error );
 		} );
 
 		it( 'should run change detection if error has listeners', async () => {
@@ -584,7 +592,9 @@ describe( 'CKEditorComponent integration', () => {
 			const fixture = TestBed.createComponent( TestComponent );
 			fixture.detectChanges();
 
-			await waitCycle();
+			await vi.waitFor( () => {
+				expect( fixture.componentInstance.ckEditorComponent.editorInstance ).not.toBeNull();
+			} );
 
 			const tickSpy = vi.spyOn( appRef as unknown as { _tick(): void }, '_tick' ).mockImplementation( () => {} );
 
@@ -600,7 +610,7 @@ describe( 'CKEditorComponent integration', () => {
 				window.dispatchEvent( new ErrorEvent( 'error', { error } ) );
 			} );
 
-			await waitCycle();
+			await waitForScheduledTick();
 
 			// Once, for emitting the error to the listener. Under the Watchdog there was a second cycle,
 			// for rendering the editor it had just rebuilt.
@@ -608,6 +618,19 @@ describe( 'CKEditorComponent integration', () => {
 		} );
 	} );
 } );
+
+/**
+ * Waits until Angular has run the change detection that the dispatched error may have scheduled.
+ *
+ * Without zone.js, Angular runs it no later than in a `setTimeout` that is queued only when the component handles the error,
+ * so a single `setTimeout` queued before that would fire first. The nested second one fires after Angular's.
+ * With zone.js, the change detection has already run by then.
+ */
+function waitForScheduledTick() {
+	return new Promise<void>( resolve => {
+		setTimeout( () => setTimeout( resolve ) );
+	} );
+}
 
 function waitCycle( time?: number ) {
 	return new Promise( res => {

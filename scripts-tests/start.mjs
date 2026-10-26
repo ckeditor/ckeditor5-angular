@@ -73,8 +73,8 @@ describe( 'scripts/start', () => {
 			'export const GENERATED_CKEDITOR_LICENSE_KEY = "foo\'bar\\\\baz";\n'
 		);
 		expect( vi.mocked( spawn ) ).toHaveBeenCalledWith(
-			process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm',
-			[ 'exec', 'ng', 'serve', '--host', '0.0.0.0' ],
+			process.execPath,
+			[ expect.stringMatching( /[\\/]@angular[\\/]cli[\\/]bin[\\/]ng\.js$/ ), 'serve', '--host', '0.0.0.0' ],
 			{ stdio: 'inherit' }
 		);
 		expect( Array.from( mocks.signalHandlers.keys() ) ).toEqual( [ 'SIGINT', 'SIGTERM', 'SIGHUP' ] );
@@ -131,6 +131,15 @@ describe( 'scripts/start', () => {
 
 		expect( vi.mocked( writeFileSync ) ).toHaveBeenNthCalledWith( 2, generatedFilePath, originalGeneratedFileContent );
 		expect( vi.mocked( process.exit ) ).toHaveBeenCalledWith( 5 );
+	} );
+
+	it( 'exits with a failure when the child process is killed by a signal', async () => {
+		await import( '../scripts/start.mjs' );
+
+		mocks.childHandlers.get( 'exit' )( null, 'SIGKILL' );
+
+		expect( vi.mocked( writeFileSync ) ).toHaveBeenNthCalledWith( 2, generatedFilePath, originalGeneratedFileContent );
+		expect( vi.mocked( process.exit ) ).toHaveBeenCalledWith( 1 );
 	} );
 
 	it( 'restores the generated license-key file and stops the child on termination signals', async () => {

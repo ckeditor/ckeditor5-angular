@@ -4,19 +4,15 @@ packages:
 
 allowBuilds:
   '@parcel/watcher': true
-  core-js: true
   esbuild: true
   lmdb: false
   msgpackr-extract: false
-  nice-napi: true
   protobufjs: true
   snyk: true
 
 overrides:
   'postcss@^8': '^8.5.23'
   'qs@^6': '^6.15.2'
-  'uuid@^8': '^11.1.1'
-  'webpack-dev-middleware@^7': '^7.4.6'
   'ws@^8': '^8.20.1'
 
 minimumReleaseAge: 4320 # 3 days

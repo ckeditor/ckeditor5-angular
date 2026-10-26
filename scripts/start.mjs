@@ -6,10 +6,13 @@
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { spawn } from 'node:child_process';
+import { createRequire } from 'node:module';
 
 const licenseKey = process.env.CKEDITOR_LICENSE_KEY || getLicenseKeyFromEnvFile() || 'GPL';
 const forwardedArgs = process.argv.slice( 2 );
-const pnpmExecutable = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
+// The Angular CLI is started with Node directly. Spawning `pnpm` would need a shell for `pnpm.cmd` on Windows,
+// and a shell neither escapes the forwarded arguments nor passes the termination signals on to `ng serve`.
+const ngCliPath = createRequire( import.meta.url ).resolve( '@angular/cli/bin/ng.js' );
 const generatedFilePath = resolve( process.cwd(), 'src/generated/license-key.ts' );
 const originalGeneratedFileContent = existsSync( generatedFilePath ) ? readFileSync( generatedFilePath, 'utf8' ) : null;
 
@@ -17,10 +20,9 @@ mkdirSync( dirname( generatedFilePath ), { recursive: true } );
 writeFileSync( generatedFilePath, createGeneratedLicenseKeyModule( licenseKey ) );
 
 const child = spawn(
-	pnpmExecutable,
+	process.execPath,
 	[
-		'exec',
-		'ng',
+		ngCliPath,
 		'serve',
 		...forwardedArgs
 	],
@@ -39,7 +41,9 @@ for ( const signal of [ 'SIGINT', 'SIGTERM', 'SIGHUP' ] ) {
 
 child.on( 'exit', code => {
 	restoreGeneratedLicenseKeyModule();
-	process.exit( code ?? 0 );
+
+	// A child killed by a signal has no exit code. It did not finish on its own, so report a failure.
+	process.exit( code ?? 1 );
 } );
 
 function getLicenseKeyFromEnvFile() {
