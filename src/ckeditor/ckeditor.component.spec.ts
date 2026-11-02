@@ -202,10 +202,236 @@ describe( 'CKEditorComponent', () => {
 			} );
 		} );
 	} );
+
+	describe( 'destroying the component', () => {
+		let pending: ReturnType<typeof createPendingEditor>;
+
+		beforeEach( () => {
+			vi.stubGlobal( 'CKEDITOR_VERSION', '49.0.0' );
+			vi.spyOn( console, 'error' ).mockImplementation( () => {} );
+
+			pending = createPendingEditor();
+
+			fixture = TestBed.createComponent( CKEditorComponent );
+			component = fixture.componentInstance;
+			component.editor = pending.Editor as any;
+		} );
+
+		afterEach( () => {
+			// Safe to call twice: the fixture ignores a second destroy.
+			fixture.destroy();
+			vi.restoreAllMocks();
+		} );
+
+		describe( 'while the editor is still being created', () => {
+			it( 'should destroy the editor once its creation completes', async () => {
+				fixture.detectChanges();
+				expect( pending.Editor.create ).toHaveBeenCalledTimes( 1 );
+
+				fixture.destroy();
+				await waitCycle();
+
+				// Nothing to destroy yet, the creation is still pending.
+				expect( pending.instance.destroy ).not.toHaveBeenCalled();
+
+				pending.resolve();
+				await waitCycle();
+
+				expect( pending.instance.destroy ).toHaveBeenCalledTimes( 1 );
+				expect( pending.instance.state ).toBe( 'destroyed' );
+				expect( component.editorInstance ).toBeNull();
+			} );
+
+			it( 'should not emit "ready" for an editor whose creation completes after destroy', async () => {
+				const readySpy = vi.fn();
+				component.ready.subscribe( readySpy );
+
+				fixture.detectChanges();
+				fixture.destroy();
+
+				pending.resolve();
+				await waitCycle();
+
+				expect( readySpy ).not.toHaveBeenCalled();
+			} );
+
+			it( 'should not integrate an editor whose creation completes after destroy', async () => {
+				fixture.detectChanges();
+				fixture.destroy();
+
+				pending.resolve();
+				await waitCycle();
+
+				expect( pending.Editor.onEditorError ).not.toHaveBeenCalled();
+				expect( pending.instance.model.document.on ).not.toHaveBeenCalled();
+				expect( pending.instance.editing.view.document.on ).not.toHaveBeenCalled();
+			} );
+
+			it( 'should not report a creation failure after destroy', async () => {
+				const errorSpy = vi.fn();
+				component.error.subscribe( errorSpy );
+
+				fixture.detectChanges();
+				fixture.destroy();
+
+				pending.reject( new Error( 'Creation failed.' ) );
+				await waitCycle();
+
+				expect( errorSpy ).not.toHaveBeenCalled();
+				expect( console.error ).not.toHaveBeenCalled();
+			} );
+
+			it( 'should keep the editor element attached to a parent until the creation completes', async () => {
+				fixture.detectChanges();
+
+				const element: HTMLElement = ( component as any ).editorElementComponent.element;
+
+				fixture.destroy();
+				await waitCycle();
+
+				// `ElementReplacer#replace()` in `ClassicEditorUI#init()` inserts the editor UI next to this
+				// element, so a creation still running at this point needs it to have a parent.
+				expect( element.parentNode ).not.toBeNull();
+
+				pending.resolve();
+				await waitCycle();
+
+				expect( pending.instance.destroy ).toHaveBeenCalledTimes( 1 );
+
+				// Removed only after the editor created for nobody has been destroyed.
+				expect( element.parentNode ).toBeNull();
+			} );
+
+			it( 'should remove the editor element once a failed creation settles', async () => {
+				fixture.detectChanges();
+
+				const element: HTMLElement = ( component as any ).editorElementComponent.element;
+
+				fixture.destroy();
+				await waitCycle();
+
+				expect( element.parentNode ).not.toBeNull();
+
+				pending.reject( new Error( 'Creation failed.' ) );
+				await waitCycle();
+
+				expect( element.parentNode ).toBeNull();
+			} );
+		} );
+
+		describe( 'while the component is alive', () => {
+			it( 'should still report a creation failure', async () => {
+				const error = new Error( 'Creation failed.' );
+				const errorSpy = vi.fn();
+				component.error.subscribe( errorSpy );
+
+				fixture.detectChanges();
+
+				pending.reject( error );
+				await waitCycle();
+
+				expect( errorSpy ).toHaveBeenCalledWith( error );
+			} );
+
+			it( 'should print a creation failure to the console when nothing listens to "error"', async () => {
+				const error = new Error( 'Creation failed.' );
+
+				fixture.detectChanges();
+
+				pending.reject( error );
+				await waitCycle();
+
+				expect( console.error ).toHaveBeenCalledWith( error );
+			} );
+		} );
+
+		describe( 'after the editor is ready', () => {
+			it( 'should destroy the editor and unregister the error callback', async () => {
+				const readySpy = vi.fn();
+				component.ready.subscribe( readySpy );
+
+				fixture.detectChanges();
+
+				pending.resolve();
+				await waitCycle();
+
+				expect( readySpy ).toHaveBeenCalledWith( pending.instance );
+				expect( component.editorInstance ).toBe( pending.instance );
+
+				fixture.destroy();
+				await waitCycle();
+
+				expect( pending.offEditorError ).toHaveBeenCalledTimes( 1 );
+				expect( pending.instance.destroy ).toHaveBeenCalledTimes( 1 );
+				expect( component.editorInstance ).toBeNull();
+			} );
+
+			it( 'should not destroy an editor that is already destroyed (e.g. together with its context)', async () => {
+				fixture.detectChanges();
+
+				pending.resolve();
+				await waitCycle();
+
+				pending.instance.state = 'destroyed';
+
+				fixture.destroy();
+				await waitCycle();
+
+				expect( pending.instance.destroy ).not.toHaveBeenCalled();
+				expect( pending.offEditorError ).toHaveBeenCalledTimes( 1 );
+				expect( component.editorInstance ).toBeNull();
+			} );
+		} );
+	} );
 } );
 
 function waitCycle( time?: number ) {
 	return new Promise( res => {
 		setTimeout( res, time );
 	} );
+}
+
+/**
+ * An editor class whose `create()` settles only when the test says so, to make the window
+ * between starting the creation and `ready` controllable.
+ */
+function createPendingEditor() {
+	let settle: { resolve: () => void; reject: ( error: unknown ) => void } | undefined;
+
+	const offEditorError = vi.fn();
+
+	const instance = {
+		state: 'initializing' as 'initializing' | 'ready' | 'destroyed',
+		isReadOnly: false,
+		model: { document: { on: vi.fn() } },
+		editing: { view: { document: { on: vi.fn() } } },
+		data: { get: vi.fn( () => '' ), set: vi.fn() },
+		enableReadOnlyMode: vi.fn(),
+		disableReadOnlyMode: vi.fn(),
+		destroy: vi.fn( async () => {
+			instance.state = 'destroyed';
+		} )
+	};
+
+	const Editor = {
+		editorName: 'ClassicEditor',
+		create: vi.fn( () => new Promise( ( resolve, reject ) => {
+			settle = {
+				resolve: () => {
+					instance.state = 'ready';
+					resolve( instance );
+				},
+				reject
+			};
+		} ) ),
+		onEditorError: vi.fn( () => offEditorError )
+	};
+
+	return {
+		Editor,
+		instance,
+		offEditorError,
+		resolve: () => settle!.resolve(),
+		reject: ( error: unknown ) => settle!.reject( error )
+	};
 }

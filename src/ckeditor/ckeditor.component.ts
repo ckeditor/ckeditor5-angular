@@ -406,7 +406,11 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 						Editor.create( element, config )
 				);
 			} catch ( e ) {
-				emitError( e );
+				// A creation the component no longer waits for has nobody to report to: the `error` output
+				// was unsubscribed with the component, so emitting would only print it to the console.
+				if ( !this.isDestroyed ) {
+					emitError( e );
+				}
 
 				return;
 			}
@@ -450,6 +454,10 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 
 			this.setUpEditorEvents( editor );
 		} );
+
+		// The creation needs the element to stay in its parent even if the component is destroyed meanwhile.
+		// It settles only after an editor created for nobody has been destroyed, so the element goes after it.
+		this.editorElementComponent.holdUntil( this.creating );
 	}
 
 	private getConfig() {

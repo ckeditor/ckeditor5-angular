@@ -42,6 +42,11 @@ export class EditorElementComponent {
 
 	private _element: HTMLElement | null = null;
 
+	/**
+	 * A pending operation that still needs the element, set with `holdUntil()`. Cleared once it settles.
+	 */
+	private _hold: Promise<unknown> | null = null;
+
 	constructor() {
 		effect( onCleanup => {
 			const currentDefinition = this.definition();
@@ -54,13 +59,40 @@ export class EditorElementComponent {
 			this._element = el;
 
 			onCleanup( () => {
-				/* istanbul ignore else -- @preserve */
-				if ( this._element ) {
-					this._renderer.removeChild( this._hostRef.nativeElement, this._element );
-					this._element = null;
+				const remove = () => this._renderer.removeChild( this._hostRef.nativeElement, el );
+
+				this._element = null;
+
+				// An editor that is still being created may be about to insert its UI next to this element
+				// (`ElementReplacer#replace()` in `ClassicEditorUI#init()`), which needs the element to have a parent.
+				// Removing it right away made such a creation fail with "Cannot read properties of null
+				// (reading 'insertBefore')". The element is removed once the creation has settled instead.
+				if ( this._hold ) {
+					this._hold.then( remove, remove );
+				} else {
+					remove();
 				}
 			} );
 		} );
+	}
+
+	/**
+	 * Keeps the element in the host until the given promise settles, even if the component is destroyed
+	 * (or the definition changes) in the meantime.
+	 *
+	 * @internal
+	 */
+	public holdUntil( promise: Promise<unknown> ): void {
+		const release = () => {
+			if ( this._hold === promise ) {
+				this._hold = null;
+			}
+		};
+
+		this._hold = promise;
+
+		// Releasing as soon as it settles keeps the removal synchronous when nothing is pending any more.
+		promise.then( release, release );
 	}
 
 	private _applyDefinition( el: HTMLElement, def: EditorElementObjectDefinition ): void {
