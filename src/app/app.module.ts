@@ -42,6 +42,10 @@ const appRoutes: Routes = [
 	{
 		path: 'init-crash',
 		loadChildren: () => import( './initialization-crash/initialization-crash.module' ).then( m => m.InitializationCrashModule )
+	},
+	{
+		path: 'destroy-during-creation',
+		loadChildren: () => import( './destroy-during-creation/destroy-during-creation.module' ).then( m => m.DestroyDuringCreationModule )
 	}
 ];
 

@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="/ckeditor5.css">
+
+<h2>Destroying the component during editor creation</h2>
+
+<p>
+	Open the console and click the button. The editor takes 3 seconds to start, but the component is removed
+	after half a second.
+</p>
+
+<ul>
+	<li><strong>Expected:</strong> after about 3 seconds "The editor was destroyed." appears and the heartbeats stop.</li>
+	<li>
+		<strong>Bug (#604):</strong> <code>TypeError: Cannot read properties of null (reading 'insertBefore')</code>
+		and the heartbeats never stop.
+	</li>
+</ul>
+
+<button (click)="showAndRemoveDuringCreation()" [disabled]="isVisible()">Show the editor and remove it during creation</button>
+
+@if ( isVisible() ) {
+	<ckeditor [editor]="Editor" [config]="config" />
+}
