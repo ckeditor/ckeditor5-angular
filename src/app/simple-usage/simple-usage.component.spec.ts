@@ -69,7 +69,9 @@ describe( 'SimpleUsageComponent', () => {
 
 			fixture.detectChanges();
 
-			expect( ckeditorComponent.data ).toEqual( '<p>foo</p>' );
+			vi.waitFor( () => {
+				expect( ckeditorComponent.data ).toEqual( '<p>foo</p>' );
+			} );
 		} );
 	} );
 
