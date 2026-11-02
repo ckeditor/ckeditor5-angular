@@ -212,6 +212,32 @@ describe( 'EditorElementComponent', () => {
 			expect( element.parentNode ).toBeNull();
 		} );
 
+		it( 'should keep holding for a newer promise when an older one settles first', async () => {
+			const older = createDeferred();
+			const newer = createDeferred();
+
+			fixture.detectChanges();
+
+			const element = component.element!;
+
+			component.holdUntil( older.promise );
+			component.holdUntil( newer.promise );
+
+			// The older one settling must not release the hold that the newer one has taken over.
+			older.resolve();
+			await older.promise;
+
+			fixture.destroy();
+
+			expect( element.parentNode ).not.toBeNull();
+
+			newer.resolve();
+			await newer.promise;
+			await Promise.resolve();
+
+			expect( element.parentNode ).toBeNull();
+		} );
+
 		it( 'should keep the previous element until the held promise settles when the definition changes', async () => {
 			const hold = createDeferred();
 
