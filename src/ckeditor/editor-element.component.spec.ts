@@ -128,6 +128,19 @@ describe( 'EditorElementComponent', () => {
 		expect( component.element ).toBe( newElement );
 	} );
 
+	it( 'should keep only the current element in the host after several definition changes', () => {
+		const hostElement: HTMLElement = fixture.nativeElement;
+
+		for ( const name of [ 'div', 'section', 'article', 'aside' ] ) {
+			fixture.componentRef.setInput( 'definition', name );
+			fixture.detectChanges();
+		}
+
+		expect( hostElement.children.length ).toBe( 1 );
+		expect( hostElement.firstElementChild ).toBe( component.element );
+		expect( component.element?.tagName.toLowerCase() ).toBe( 'aside' );
+	} );
+
 	it( 'should clean up the element from DOM when component is destroyed', () => {
 		fixture.componentRef.setInput( 'definition', 'aside' );
 		fixture.detectChanges();
@@ -141,6 +154,116 @@ describe( 'EditorElementComponent', () => {
 		expect( component.element ).toBeNull();
 	} );
 
+	describe( 'holdUntil()', () => {
+		it( 'should keep the element in the host after destroy until the held promise resolves', async () => {
+			const hold = createDeferred();
+
+			fixture.detectChanges();
+
+			const hostElement: HTMLElement = fixture.nativeElement;
+			const element = component.element!;
+
+			component.holdUntil( hold.promise );
+			fixture.destroy();
+
+			expect( element.parentNode ).toBe( hostElement );
+			expect( component.element ).toBeNull();
+
+			hold.resolve();
+			await hold.promise;
+			await Promise.resolve();
+
+			expect( element.parentNode ).toBeNull();
+		} );
+
+		it( 'should remove the element once the held promise rejects', async () => {
+			const hold = createDeferred();
+
+			fixture.detectChanges();
+
+			const element = component.element!;
+
+			component.holdUntil( hold.promise );
+			fixture.destroy();
+
+			expect( element.parentNode ).not.toBeNull();
+
+			hold.reject( new Error( 'Creation failed.' ) );
+			await hold.promise.catch( () => {} );
+			await Promise.resolve();
+
+			expect( element.parentNode ).toBeNull();
+		} );
+
+		it( 'should remove the element right away when the held promise has already settled', async () => {
+			const hold = createDeferred();
+
+			fixture.detectChanges();
+
+			const element = component.element!;
+
+			component.holdUntil( hold.promise );
+
+			hold.resolve();
+			await hold.promise;
+
+			fixture.destroy();
+
+			expect( element.parentNode ).toBeNull();
+		} );
+
+		it( 'should keep holding for a newer promise when an older one settles first', async () => {
+			const older = createDeferred();
+			const newer = createDeferred();
+
+			fixture.detectChanges();
+
+			const element = component.element!;
+
+			component.holdUntil( older.promise );
+			component.holdUntil( newer.promise );
+
+			// The older one settling must not release the hold that the newer one has taken over.
+			older.resolve();
+			await older.promise;
+
+			fixture.destroy();
+
+			expect( element.parentNode ).not.toBeNull();
+
+			newer.resolve();
+			await newer.promise;
+			await Promise.resolve();
+
+			expect( element.parentNode ).toBeNull();
+		} );
+
+		it( 'should keep the previous element until the held promise settles when the definition changes', async () => {
+			const hold = createDeferred();
+
+			fixture.componentRef.setInput( 'definition', 'div' );
+			fixture.detectChanges();
+
+			const hostElement: HTMLElement = fixture.nativeElement;
+			const previous = component.element!;
+
+			component.holdUntil( hold.promise );
+
+			fixture.componentRef.setInput( 'definition', 'section' );
+			fixture.detectChanges();
+
+			expect( previous.parentNode ).toBe( hostElement );
+			expect( component.element?.tagName.toLowerCase() ).toBe( 'section' );
+
+			hold.resolve();
+			await hold.promise;
+			await Promise.resolve();
+
+			expect( previous.parentNode ).toBeNull();
+			expect( hostElement.children.length ).toBe( 1 );
+		} );
+	} );
+
 	it( 'should throw an error if HTMLElement is passed as definition', () => {
 		const dummyElement = document.createElement( 'div' );
 
@@ -151,3 +274,15 @@ describe( 'EditorElementComponent', () => {
 		} ).toThrow( 'An HTMLElement cannot be used as an editor element definition.' );
 	} );
 } );
+
+function createDeferred() {
+	let resolve!: () => void;
+	let reject!: ( error: unknown ) => void;
+
+	const promise = new Promise<void>( ( res, rej ) => {
+		resolve = res;
+		reject = rej;
+	} );
+
+	return { promise, resolve, reject };
+}

@@ -64,12 +64,14 @@ describe( 'SimpleUsageComponent', () => {
 				.toContain( '<p>Getting used to an entirely different culture can be challenging.' );
 		} );
 
-		it( 'should be synced with editorData property', () => {
+		it( 'should be synced with editorData property', async () => {
 			component.editorData = '<p>foo</p>';
 
 			fixture.detectChanges();
 
-			expect( ckeditorComponent.data ).toEqual( '<p>foo</p>' );
+			await vi.waitFor( () => {
+				expect( ckeditorComponent.data ).toEqual( '<p>foo</p>' );
+			} );
 		} );
 	} );
 

@@ -1,0 +1,40 @@
+.test-toolbar {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 15px;
+}
+
+.test-toolbar input {
+	width: 7em;
+	margin-left: 5px;
+}
+
+.counters strong {
+	font-variant-numeric: tabular-nums;
+}
+
+.log {
+	max-height: 300px;
+	overflow-y: auto;
+	padding: 10px 10px 10px 30px;
+	border: 1px solid #ddd;
+	font-family: monospace;
+	font-size: 12px;
+	list-style: none;
+}
+
+.log__entry time {
+	color: #888;
+	margin-right: 5px;
+}
+
+.log__entry--connection {
+	color: #1a5fb4;
+}
+
+.log__entry--error {
+	color: #c01c28;
+}
