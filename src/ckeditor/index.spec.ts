@@ -11,7 +11,11 @@ import { AngularEditor } from 'src/editor/editor';
 
 import {
 	CKEditorComponent,
-	CKEditorModule
+	CKEditorModule,
+	CKEditorMultiRootComponent,
+	CKEditorMultiRootEditableComponent,
+	CKEditorMultiRootMenuBarComponent,
+	CKEditorMultiRootToolbarComponent
 } from './index';
 import { EditorElementComponent } from './editor-element.component';
 
@@ -43,6 +47,13 @@ describe( 'index.ts - the entry file', () => {
 
 	it( 'should expose the CKEditorModule', () => {
 		expect( CKEditorModule ).toBeTruthy();
+	} );
+
+	it( 'should expose the multi-root components', () => {
+		expect( CKEditorMultiRootComponent ).toBeTruthy();
+		expect( CKEditorMultiRootEditableComponent ).toBeTruthy();
+		expect( CKEditorMultiRootMenuBarComponent ).toBeTruthy();
+		expect( CKEditorMultiRootToolbarComponent ).toBeTruthy();
 	} );
 } );
 

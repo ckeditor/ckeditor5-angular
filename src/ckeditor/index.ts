@@ -6,6 +6,21 @@
 export * from './ckeditor.component';
 export * from './ckeditor.module';
 
+export { CKEditorMultiRootComponent } from './multi-root/ckeditor-multi-root.component';
+export { CKEditorMultiRootEditableComponent } from './multi-root/ckeditor-multi-root-editable.component';
+export {
+	CKEditorMultiRootMenuBarComponent,
+	CKEditorMultiRootToolbarComponent
+} from './multi-root/ckeditor-multi-root-ui-element';
+export type {
+	AddRootOptions,
+	MultiRootEditableOptions,
+	MultiRootEditorData,
+	MultiRootEditorRelaxedConstructor,
+	MultiRootEditorRootAttributes,
+	MultiRootEditorRootsAttributes
+} from './multi-root/types';
+
 export {
 	loadCKEditorCloud,
 	type CKEditorCloudResult,

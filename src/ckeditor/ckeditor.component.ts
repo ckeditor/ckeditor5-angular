@@ -34,7 +34,6 @@ import type {
 import {
 	assignElementToEditorConfig,
 	assignInitialDataToEditorConfig,
-	compareInstalledCKBaseVersion,
 	getInstalledCKBaseFeatures,
 	uid,
 	type EditorRelaxedConfig,
@@ -42,6 +41,8 @@ import {
 } from '@ckeditor/ckeditor5-integrations-common';
 
 import { getLicenseKey } from './utils/get-license-key';
+import { hasObservers } from './utils/has-observers';
+import { assertMinimumSupportedVersion } from './utils/assert-minimum-supported-version';
 import { appendAllIntegrationPluginsToConfig } from './plugins/append-all-integration-plugins-to-config';
 
 import type { EditorElementComponent } from './editor-element.component';
@@ -500,27 +501,6 @@ export class CKEditorComponent<TEditor extends Editor = Editor> implements After
 				this.blur.emit( { event: evt, editor } );
 			} );
 		} );
-	}
-}
-
-function hasObservers<T>( emitter: EventEmitter<T> ): boolean {
-	// Cast to `any` because `observed` property is available in RxJS >= 7.2.0.
-	// Fallback to checking `observers` list if this property is not defined.
-	return ( emitter as any ).observed || emitter.observers.length > 0;
-}
-
-/**
- * Checks if currently installed version of the editor is supported by the integration.
- */
-function assertMinimumSupportedVersion(): void {
-	switch ( compareInstalledCKBaseVersion( '49.0.0' ) ) {
-		case null:
-			console.warn( 'Cannot find the "CKEDITOR_VERSION" in the "window" scope.' );
-			break;
-
-		case -1:
-			console.warn( 'The <CKEditor> component requires using CKEditor 5 in version 49+ or nightly build.' );
-			break;
 	}
 }
 
