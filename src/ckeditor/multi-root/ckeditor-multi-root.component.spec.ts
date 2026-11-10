@@ -383,6 +383,25 @@ describe( 'CKEditorMultiRootComponent', () => {
 				expect( editor.getRootAttributes( 'outro' ) ).toMatchObject( { order: 30 } );
 			} );
 
+			it( 'should set the attributes of the kept roots only, when the data and the attributes change together', async () => {
+				const editor = await render();
+				const setAttribute = vi.fn();
+
+				editor.model.on( 'applyOperation', ( evt, [ operation ] ) => {
+					if ( operation.type == 'changeRootAttribute' || operation.type == 'addRootAttribute' ) {
+						setAttribute( ( operation as any ).root.rootName, ( operation as any ).key );
+					}
+				} );
+
+				host.data = { content: '<p>Content</p>' };
+				host.rootsAttributes = { intro: { order: 10 }, content: { order: 20 } };
+				await settle();
+
+				expect( editor.model.document.getRootNames() ).toEqual( [ 'content' ] );
+				expect( editor.getRootAttributes( 'content' ) ).toMatchObject( { order: 20 } );
+				expect( setAttribute ).toHaveBeenCalledExactlyOnceWith( 'content', 'order' );
+			} );
+
 			it( 'should set the changed attributes, and remove the missing ones, but not the ones of the editor', async () => {
 				host.rootsAttributes = { intro: { order: 10, row: 1 }, content: { order: 20 } };
 
