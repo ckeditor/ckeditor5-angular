@@ -317,7 +317,10 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		const isRootsAttributesEcho = !rootsAttributesChange || rootsAttributesChange.currentValue === this.lastEmittedRootsAttributes;
 
 		if ( !isDataEcho || !isRootsAttributesEcho ) {
-			this.syncEditorWithState( editor );
+			this.syncEditorWithState( editor, {
+				isDataChanged: !isDataEcho,
+				isRootsAttributesChanged: !isRootsAttributesEcho
+			} );
 		}
 	}
 
@@ -442,8 +445,11 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 			this.setUpEditorEvents( editor );
 
 			this.ngZone.run( () => {
-				if ( this.data !== creationData || this.rootsAttributes !== creationRootsAttributes ) {
-					this.syncEditorWithState( editor );
+				const isDataChanged = this.data !== creationData;
+				const isRootsAttributesChanged = this.rootsAttributes !== creationRootsAttributes;
+
+				if ( isDataChanged || isRootsAttributesChanged ) {
+					this.syncEditorWithState( editor, { isDataChanged, isRootsAttributesChanged } );
 				}
 
 				this.data = editor.getFullData();
@@ -539,23 +545,32 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	}
 
 	/**
-	 * Makes the editor match `data` and `rootsAttributes`.
+	 * Makes the editor match the inputs that changed: `data`, `rootsAttributes`, or both.
+	 *
+	 * The input that did not change is not pushed, because it may be out of date: with `disableTwoWayDataBinding`,
+	 * the component does not follow the editor, so pushing it would revert the editor to it.
 	 */
-	private syncEditorWithState( editor: TEditor ): void {
+	private syncEditorWithState(
+		editor: TEditor,
+		{ isDataChanged, isRootsAttributesChanged }: { isDataChanged: boolean; isRootsAttributesChanged: boolean }
+	): void {
 		const data = this.data ?? {};
 		const rootsAttributes = this.rootsAttributes ?? {};
 
 		const editorData = editor.getFullData();
 		const editorRootsAttributes = editor.getRootsAttributes();
 
-		const addedRoots = Object.keys( data ).filter( rootName => !( rootName in editorData ) );
-		const removedRoots = Object.keys( editorData ).filter( rootName => !( rootName in data ) );
-		const modifiedRoots = Object.keys( data ).filter( rootName =>
+		const addedRoots = !isDataChanged ? [] : Object.keys( data ).filter( rootName => !( rootName in editorData ) );
+		const removedRoots = !isDataChanged ? [] : Object.keys( editorData ).filter( rootName => !( rootName in data ) );
+		const modifiedRoots = !isDataChanged ? [] : Object.keys( data ).filter( rootName =>
 			rootName in editorData && editorData[ rootName ] !== data[ rootName ]
 		);
-		const rootsWithChangedAttributes = Object.keys( rootsAttributes ).filter( rootName =>
-			rootName in editorData &&
-			rootName in data &&
+
+		// The roots the editor is left with. The added ones get their attributes when they are added.
+		const isRootKept = ( rootName: string ) => rootName in editorData && ( !isDataChanged || rootName in data );
+
+		const rootsWithChangedAttributes = !isRootsAttributesChanged ? [] : Object.keys( rootsAttributes ).filter( rootName =>
+			isRootKept( rootName ) &&
 			!!rootsAttributes[ rootName ] &&
 			!isDeepEqual( pickUserAttributes( editorRootsAttributes[ rootName ] ), pickUserAttributes( rootsAttributes[ rootName ] ) )
 		);

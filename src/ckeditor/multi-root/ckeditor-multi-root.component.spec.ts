@@ -420,6 +420,47 @@ describe( 'CKEditorMultiRootComponent', () => {
 				expect( editor.getRootAttributes( 'intro' ) ).toMatchObject( { order: 10 } );
 			} );
 
+			it( 'should not push the data when only the attributes changed, so that the edits survive ' +
+				'with the two-way data binding disabled', async () => {
+				host.disableTwoWayDataBinding = true;
+
+				const editor = await render();
+
+				editor.data.set( { intro: '<p>Typed</p>' } );
+				await host.multiRoot.addRoot( { name: 'outro', data: '<p>Outro</p>' } );
+				await settle();
+
+				host.rootsAttributes = { intro: { order: 10 } };
+				await settle();
+
+				expect( editor.getFullData() ).toEqual( {
+					intro: '<p>Typed</p>',
+					content: '<p>Content</p>',
+					outro: '<p>Outro</p>'
+				} );
+				expect( editor.getRootAttributes( 'intro' ) ).toMatchObject( { order: 10 } );
+				expect( editor.getRootAttributes( 'outro' ) ).toMatchObject( { order: null } );
+			} );
+
+			it( 'should not push the attributes when only the data changed, so that the edits survive ' +
+				'with the two-way data binding disabled', async () => {
+				host.disableTwoWayDataBinding = true;
+				host.rootsAttributes = { intro: { order: 10 } };
+
+				const editor = await render();
+
+				editor.model.change( writer => {
+					writer.setAttribute( 'order', 15, editor.model.document.getRoot( 'intro' )! );
+				} );
+				await settle();
+
+				host.data = { intro: '<p>New intro</p>', content: '<p>Content</p>' };
+				await settle();
+
+				expect( editor.getData( { rootName: 'intro' } ) ).toBe( '<p>New intro</p>' );
+				expect( editor.getRootAttributes( 'intro' ) ).toMatchObject( { order: 15 } );
+			} );
+
 			it( 'should ignore the attributes of roots that are not in the data', async () => {
 				const editor = await render();
 
