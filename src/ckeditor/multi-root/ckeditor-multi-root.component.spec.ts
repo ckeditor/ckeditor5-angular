@@ -373,6 +373,80 @@ describe( 'CKEditorMultiRootComponent', () => {
 				expect( host.dataChanges ).toEqual( [] );
 			} );
 
+			it( 'should emit the attributes of the roots that the data added or detached, but not the data', async () => {
+				host.rootsAttributes = { intro: { order: 10 }, content: { order: 20 } };
+
+				const editor = await render();
+
+				const consoleError = vi.spyOn( console, 'error' );
+
+				host.data = { content: '<p>Content</p>', outro: '<p>Outro</p>' };
+				await settle();
+
+				expect( consoleError ).not.toHaveBeenCalled();
+				expect( editor.model.document.getRootNames() ).toEqual( [ 'content', 'outro' ] );
+				expect( host.dataChanges ).toEqual( [] );
+				expect( host.rootsAttributesChanges.length ).toBe( 1 );
+				expect( Object.keys( host.rootsAttributes ) ).toEqual( [ 'content', 'outro' ] );
+				expect( host.rootsAttributes.content ).toMatchObject( { order: 20 } );
+				expect( host.rootsAttributes.outro ).toEqual( editor.getRootAttributes( 'outro' ) );
+
+				// The emitted object comes back through `[(rootsAttributes)]`, and must not be pushed into the editor.
+				const change = vi.spyOn( editor.model, 'change' );
+
+				await settle();
+
+				expect( change ).not.toHaveBeenCalled();
+			} );
+
+			it( 'should emit the data of a root added after the data was set to null', async () => {
+				await render();
+
+				host.data = null as any;
+				await settle();
+
+				await host.multiRoot.addRoot( { name: 'outro', data: '<p>Outro</p>' } );
+				await settle();
+
+				expect( host.data ).toEqual( { outro: '<p>Outro</p>' } );
+			} );
+
+			it( 'should emit the attributes of all roots after the attributes were set to null', async () => {
+				host.rootsAttributes = { intro: { order: 10 } };
+
+				const editor = await render();
+
+				host.rootsAttributes = null as any;
+				await settle();
+
+				editor.data.set( { intro: '<p>Changed</p>' } );
+				await settle();
+
+				expect( Object.keys( host.rootsAttributes ) ).toEqual( [ 'intro', 'content' ] );
+				expect( host.rootsAttributes.intro ).toMatchObject( { order: 10 } );
+			} );
+
+			it( 'should not emit the attributes when the data changed without adding or detaching roots', async () => {
+				await render();
+
+				host.data = { intro: '<p>New intro</p>', content: '<p>Content</p>' };
+				await settle();
+
+				expect( host.rootsAttributesChanges ).toEqual( [] );
+			} );
+
+			it( 'should not emit the attributes of the roots that the data added when the two-way data binding is disabled', async () => {
+				host.disableTwoWayDataBinding = true;
+
+				const editor = await render();
+
+				host.data = { ...INITIAL_DATA, outro: '<p>Outro</p>' };
+				await settle();
+
+				expect( editor.model.document.getRootNames() ).toEqual( [ 'intro', 'content', 'outro' ] );
+				expect( host.rootsAttributesChanges ).toEqual( [] );
+			} );
+
 			it( 'should add a root with its attributes', async () => {
 				const editor = await render();
 

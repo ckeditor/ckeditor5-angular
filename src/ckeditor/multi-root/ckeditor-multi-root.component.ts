@@ -317,10 +317,16 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		const isRootsAttributesEcho = !rootsAttributesChange || rootsAttributesChange.currentValue === this.lastEmittedRootsAttributes;
 
 		if ( !isDataEcho || !isRootsAttributesEcho ) {
-			this.syncEditorWithState( editor, {
+			const haveRootsChanged = this.syncEditorWithState( editor, {
 				isDataChanged: !isDataEcho,
 				isRootsAttributesChanged: !isRootsAttributesEcho
 			} );
+
+			// The data the application set is not emitted back, but `[(rootsAttributes)]` has to list the roots
+			// the editor has now: the added ones with their attributes, and without the detached ones.
+			if ( haveRootsChanged && !this.disableTwoWayDataBinding ) {
+				this.emitRootsAttributes( editor, new Set() );
+			}
 		}
 	}
 
@@ -518,23 +524,36 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		) );
 		const rootsWithChangedAttributes = new Set( differ.getChangedRoots().map( change => change.name ) );
 
+		const currentData = this.data ?? {};
 		const data: MultiRootEditorData = {};
-		const rootsAttributes: MultiRootEditorRootsAttributes = {};
 
 		for ( const rootName of rootNames ) {
-			data[ rootName ] = rootsWithChangedData.has( rootName ) || !( rootName in this.data ) ?
+			data[ rootName ] = rootsWithChangedData.has( rootName ) || !( rootName in currentData ) ?
 				editor.getData( { rootName } ) :
-				this.data[ rootName ];
-
-			rootsAttributes[ rootName ] = rootsWithChangedAttributes.has( rootName ) || !( rootName in this.rootsAttributes ) ?
-				editor.getRootAttributes( rootName ) :
-				this.rootsAttributes[ rootName ];
+				currentData[ rootName ];
 		}
 
 		if ( !isDeepEqual( data, this.data ) ) {
 			this.data = data;
 			this.lastEmittedData = data;
 			this.dataChange.emit( data );
+		}
+
+		this.emitRootsAttributes( editor, rootsWithChangedAttributes );
+	}
+
+	/**
+	 * Emits the attributes of the roots the editor has, if they differ from `rootsAttributes`. Reads again the given roots,
+	 * and the ones `rootsAttributes` does not have yet.
+	 */
+	private emitRootsAttributes( editor: TEditor, rootsWithChangedAttributes: ReadonlySet<string> ): void {
+		const currentRootsAttributes = this.rootsAttributes ?? {};
+		const rootsAttributes: MultiRootEditorRootsAttributes = {};
+
+		for ( const rootName of editor.model.document.getRootNames() ) {
+			rootsAttributes[ rootName ] = rootsWithChangedAttributes.has( rootName ) || !( rootName in currentRootsAttributes ) ?
+				editor.getRootAttributes( rootName ) :
+				currentRootsAttributes[ rootName ];
 		}
 
 		if ( !isDeepEqual( rootsAttributes, this.rootsAttributes ) ) {
@@ -545,7 +564,8 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	}
 
 	/**
-	 * Makes the editor match the inputs that changed: `data`, `rootsAttributes`, or both.
+	 * Makes the editor match the inputs that changed: `data`, `rootsAttributes`, or both. Returns whether roots were
+	 * added or detached.
 	 *
 	 * The input that did not change is not pushed, because it may be out of date: with `disableTwoWayDataBinding`,
 	 * the component does not follow the editor, so pushing it would revert the editor to it.
@@ -553,7 +573,7 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	private syncEditorWithState(
 		editor: TEditor,
 		{ isDataChanged, isRootsAttributesChanged }: { isDataChanged: boolean; isRootsAttributesChanged: boolean }
-	): void {
+	): boolean {
 		const data = this.data ?? {};
 		const rootsAttributes = this.rootsAttributes ?? {};
 
@@ -604,6 +624,8 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		} finally {
 			this.isEditorSettingData = false;
 		}
+
+		return addedRoots.length > 0 || removedRoots.length > 0;
 	}
 }
 
