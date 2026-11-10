@@ -149,13 +149,13 @@ pnpm run test
 
 The unit test suite runs in a real browser (Chrome) using Vitest browser mode. `pnpm run test` and `pnpm run coverage` run the library specs (`src/ckeditor/**`) twice: with zone.js, like the demo application (the `zone` project), and without it, like a default Angular 21+ application (the `zoneless` project).
 
-To run only the integration subset used by the CI editor-version matrix, use:
+To run only the integration subset used by the `tests_integration` CI job, use:
 
 ```bash
 pnpm exec vitest run --project integration
 ```
 
-After a regular `pnpm install`, this command uses the default `ckeditor5` and `ckeditor5-premium-features` versions from `package.json`.
+After a regular `pnpm install`, this command uses the `ckeditor5` and `ckeditor5-premium-features` versions locked in `pnpm-lock.yaml`, which may be older than the `latest` versions that the CI job installs.
 
 To run unit tests in watch mode, use:
 
@@ -171,16 +171,15 @@ pnpm run test:e2e
 
 Playwright starts the demo app with `pnpm run start` on its own, or reuses one that already runs on port 4200. The tests use the system Chrome, so no browser download is needed.
 
-To reproduce the LTS integration matrix run locally, install the matching editor packages first and then run the integration checks:
+To reproduce the `tests_integration` CI job locally, install the `latest` packages first:
 
 ```bash
-export CKEDITOR_LICENSE_KEY=<your-key>
-pnpm add -Dw ckeditor5@lts-v47 ckeditor5-premium-features@lts-v47
+pnpm add -Dw ckeditor5@latest ckeditor5-premium-features@latest
 pnpm exec vitest run --project integration
 pnpm run test:e2e
 ```
 
-If you prefer, you can put `CKEDITOR_LICENSE_KEY` in `.env` or `.env.local` instead. The Vitest setup reads it through Vite, and `pnpm run start` forwards it to `ng serve` for local e2e runs.
+The tests use the `GPL` license key by default. To run them with a commercial license key, set `CKEDITOR_LICENSE_KEY` in the environment, or copy `.env.example` to `.env` (or `.env.local`) and fill it in there. The Vitest setup reads it through Vite, and `pnpm run start` forwards it to `ng serve` for local e2e runs.
 
 To run coverage tests, run:
 

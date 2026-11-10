@@ -53,7 +53,8 @@ export default defineConfig( {
 			project( 'zone', ALL_TESTS, ZONE_SETUP ),
 			// The library specs without zone.js, the way a default Angular 21+ application is set up.
 			project( 'zoneless', LIBRARY_TESTS, ZONELESS_SETUP ),
-			// A version-sensitive subset used by the CI editor-version matrix. The overlap with `zone` is intentional.
+			// A version-sensitive subset that the `tests_integration` CI job runs against the `latest` editor packages.
+			// The overlap with `zone` is intentional.
 			project( 'integration', INTEGRATION_TESTS, ZONE_SETUP )
 		],
 		browser: {
