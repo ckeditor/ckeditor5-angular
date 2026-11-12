@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="/ckeditor5.css">
+
+<h2>Multi-root editor usage</h2>
+
+<p><strong>Note:</strong> The multi-root editor integration is in early access. Its API may change without a major release.</p>
+
+<p>
+	<button (click)="toggleDisabled()">{{ isDisabled() ? 'Enable editor' : 'Disable editor' }}</button>
+	<button id="add-root" (click)="addRoot( multiRoot )">Add root</button>
+	<label>
+		<input type="checkbox" [checked]="isInlineRoot()" (change)="toggleInlineRoot()">
+		Inline root (<code>$inlineRoot</code>)
+	</label>
+	<button id="reset-data" (click)="resetData()">Replace data</button>
+</p>
+
+<ckeditor-multi-root
+	#multiRoot
+	id="multi-root-editor"
+	[editor]="Editor"
+	[disabled]="isDisabled()"
+	[(data)]="data"
+	[(rootsAttributes)]="rootsAttributes"
+
+	(ready)="onReady( $event )"
+	(editorChange)="onEditorChange()"
+	(focus)="onFocus()"
+	(blur)="onBlur()"
+	(error)="onError( $event )"
+>
+	<ckeditor-multi-root-toolbar />
+
+	@for ( rootName of getOrderedRoots( multiRoot.roots() ); track rootName ) {
+		<div class="root" [attr.data-root]="rootName">
+			<div class="root-header">
+				<code>{{ rootName }}</code>
+				<button class="remove-root" (click)="removeRoot( multiRoot, rootName )">Remove</button>
+			</div>
+
+			<ckeditor-multi-root-editable [rootName]="rootName" />
+		</div>
+	}
+</ckeditor-multi-root>
+
+<h4>Data:</h4>
+<pre id="multi-root-data">{{ data | json }}</pre>
+
+<h4>Component events:</h4>
+<ul>
+	@for ( eventInfo of componentEvents; track $index ) {
+		<li><span>{{ eventInfo }}</span></li>
+	}
+</ul>

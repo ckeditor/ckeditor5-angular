@@ -32,6 +32,14 @@ const appRoutes: Routes = [
 		loadChildren: () => import( './simple-cdn-usage/simple-cdn-usage.module' ).then( m => m.SimpleCdnUsageModule )
 	},
 	{
+		path: 'multi-root-usage',
+		loadChildren: () => import( './multi-root-usage/multi-root-usage.module' ).then( m => m.MultiRootUsageModule )
+	},
+	{
+		path: 'multi-root-cdn-usage',
+		loadChildren: () => import( './multi-root-cdn-usage/multi-root-cdn-usage.module' ).then( m => m.MultiRootCdnUsageModule )
+	},
+	{
 		path: 'shadow-dom-usage',
 		loadChildren: () => import( './shadow-dom-usage/shadow-dom-usage.module' ).then( m => m.ShadowDomUsageModule )
 	},

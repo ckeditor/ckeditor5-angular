@@ -1,0 +1,25 @@
+<h2>Multi-root editor CDN usage</h2>
+
+<p><strong>Note:</strong> The multi-root editor integration is in early access. Its API may change without a major release.</p>
+
+@if ( Editor ) {
+	<ckeditor-multi-root
+		id="multi-root-cdn-editor"
+		[editor]="Editor"
+		[config]="config!"
+		[(data)]="data"
+
+		(ready)="onReady()"
+		(error)="onError( $event )"
+	/>
+}
+
+<h4>Data:</h4>
+<pre id="multi-root-cdn-data">{{ data | json }}</pre>
+
+<h4>Component events:</h4>
+<ul>
+	@for ( eventInfo of componentEvents; track $index ) {
+		<li><span>{{ eventInfo }}</span></li>
+	}
+</ul>
