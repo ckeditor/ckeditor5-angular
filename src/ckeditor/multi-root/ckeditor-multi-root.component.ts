@@ -605,12 +605,14 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 				pickUserAttributes( inputRootsAttributes[ rootName ] ?? {} )
 			) );
 
-		this.data = data;
-		this.rootsAttributes = rootsAttributes;
-
+		// While the binding is disabled, the inputs keep what the application has, so that enabling the binding again
+		// compares the editor with them, and emits the roots and the data the application does not know.
 		if ( this.disableTwoWayDataBinding ) {
 			return;
 		}
+
+		this.data = data;
+		this.rootsAttributes = rootsAttributes;
 
 		if ( isDataDifferent ) {
 			this.lastEmittedData = data;

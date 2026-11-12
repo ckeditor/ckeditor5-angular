@@ -315,6 +315,19 @@ describe( 'CKEditorMultiRootComponent', () => {
 			expect( host.rootsAttributesChanges ).toEqual( [] );
 		} );
 
+		it( 'should emit the state that the editor started with once the two-way data binding is enabled', async () => {
+			host.disableTwoWayDataBinding = true;
+			host.config = { licenseKey: 'GPL', roots: { extra: { initialData: '<p>Extra</p>' } } };
+
+			const editor = await render();
+
+			host.disableTwoWayDataBinding = false;
+			await settle();
+
+			expect( host.data ).toEqual( editor.getFullData() );
+			expect( Object.keys( host.rootsAttributes ) ).toEqual( [ 'intro', 'content', 'extra' ] );
+		} );
+
 		it( 'should not create the roots that only the roots attributes list', async () => {
 			host.rootsAttributes = { intro: { order: 10 }, extra: { order: 20 } };
 
