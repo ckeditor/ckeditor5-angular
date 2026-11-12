@@ -332,6 +332,10 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		}
 
 		this.runAfterChangeDetection( () => {
+			if ( this.disableTwoWayDataBinding ) {
+				return;
+			}
+
 			// The data the application set is not emitted back, but `[(rootsAttributes)]` has to list the roots
 			// the editor has now: the added ones with their attributes, and without the detached ones.
 			if ( haveRootsChanged ) {
@@ -512,7 +516,14 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		( editor.model.document as any ).on( 'change:data', ( evt: GetEventInfo<ModelDocumentChangeEvent> ) => {
 			this.ngZone.run( () => {
 				this.updateStateFromEditor( editor );
-				this.editorChange.emit( { event: evt, editor } );
+
+				// A change that the component makes is a change from `ngOnChanges()`, so the emit has to wait (see
+				// `runAfterChangeDetection()`). Unlike the other emits, it does not depend on the two-way data binding.
+				if ( this.isEditorSettingData ) {
+					this.runAfterChangeDetection( () => this.editorChange.emit( { event: evt, editor } ) );
+				} else {
+					this.editorChange.emit( { event: evt, editor } );
+				}
 			} );
 		} );
 
@@ -626,8 +637,7 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	}
 
 	/**
-	 * Runs the callback once the current change detection run ends, unless the component is destroyed or stops
-	 * emitting by then.
+	 * Runs the callback once the current change detection run ends, unless the component is destroyed by then.
 	 *
 	 * `ngOnChanges()` runs while Angular checks the parent component. An emit then lets the handler change the state
 	 * of the parent that Angular has checked already: development mode reports NG0100, and without zone.js the parent
@@ -635,7 +645,7 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	 */
 	private runAfterChangeDetection( callback: () => void ): void {
 		queueMicrotask( () => {
-			if ( !this.isDestroyed && !this.disableTwoWayDataBinding ) {
+			if ( !this.isDestroyed ) {
 				this.ngZone.run( callback );
 			}
 		} );

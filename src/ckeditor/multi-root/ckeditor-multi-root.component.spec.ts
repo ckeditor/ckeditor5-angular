@@ -151,6 +151,7 @@ class OutsideLayoutComponent {
 	imports: [ CKEditorMultiRootComponent ],
 	template: `
 		<p class="root-count">{{ rootCount }}</p>
+		<p class="change-count">{{ changeCount }}</p>
 
 		<ckeditor-multi-root
 			[editor]="Editor"
@@ -158,6 +159,7 @@ class OutsideLayoutComponent {
 			[(data)]="data"
 			[disableTwoWayDataBinding]="disableTwoWayDataBinding"
 			(rootsAttributesChange)="rootCount = countKeys( $event )"
+			(editorChange)="changeCount = changeCount + 1"
 			(ready)="onReady( $event )"
 		/>
 	`
@@ -168,6 +170,7 @@ class ParentStateComponent {
 	public data: MultiRootEditorData = { ...INITIAL_DATA };
 	public disableTwoWayDataBinding = false;
 	public rootCount = 2;
+	public changeCount = 0;
 
 	public readonly ready: Promise<MultiRootEditor>;
 
@@ -1234,6 +1237,51 @@ describe( 'CKEditorMultiRootComponent', () => {
 			detectChanges( fixture );
 
 			expect( fixture.nativeElement.querySelector( '.root-count' ).textContent ).toBe( '3' );
+		} );
+
+		it( 'should emit the editor change that the data from the application causes after the change detection run', async () => {
+			host.data = { intro: '<p>New intro</p>', content: '<p>Content</p>' };
+
+			// An emit while Angular checks the parent changes a value that Angular checked already (NG0100).
+			expect( () => detectChanges( fixture ) ).not.toThrow();
+
+			await fixture.whenStable();
+			detectChanges( fixture );
+
+			expect( fixture.nativeElement.querySelector( '.change-count' ).textContent ).toBe( '1' );
+		} );
+
+		it( 'should emit the editor change that the data from the application causes when the two-way data binding is disabled',
+			async () => {
+				host.disableTwoWayDataBinding = true;
+				detectChanges( fixture );
+
+				host.data = { intro: '<p>New intro</p>', content: '<p>Content</p>' };
+
+				expect( () => detectChanges( fixture ) ).not.toThrow();
+
+				await fixture.whenStable();
+				detectChanges( fixture );
+
+				expect( fixture.nativeElement.querySelector( '.change-count' ).textContent ).toBe( '1' );
+			} );
+
+		it( 'should emit the editor change that the editor causes at once', async () => {
+			const editor = await host.ready;
+
+			editor.data.set( { intro: '<p>Typed</p>' } );
+
+			expect( host.changeCount ).toBe( 1 );
+		} );
+
+		it( 'should not emit the editor change that the data from the application causes once the component is destroyed', async () => {
+			host.data = { intro: '<p>New intro</p>', content: '<p>Content</p>' };
+			detectChanges( fixture );
+
+			fixture.destroy();
+			await Promise.resolve();
+
+			expect( host.changeCount ).toBe( 0 );
 		} );
 
 		it( 'should not emit the attributes of the roots that the data added once the component is destroyed', async () => {
