@@ -87,7 +87,7 @@ export class MultiRootUsageComponent {
 		this.componentEvents.push( 'The editor is ready.' );
 	}
 
-	public onChange(): void {
+	public onEditorChange(): void {
 		this.componentEvents.push( 'Editor model changed.' );
 	}
 

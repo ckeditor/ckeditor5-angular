@@ -154,7 +154,8 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	 * Allows disabling the two-way data binding mechanism. Disabling it can boost performance for large documents.
 	 *
 	 * When set to `true`, `dataChange` and `rootsAttributesChange` are not emitted. Read the data from the editor with
-	 * `editor.getFullData()` once the application needs it.
+	 * `editor.getFullData()` once the application needs it. When set back to `false`, the data and the attributes that
+	 * changed in the meantime are emitted.
 	 */
 	@Input() public disableTwoWayDataBinding = false;
 
@@ -193,8 +194,11 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	 * the `editor.model.document#change:data`
 	 * https://ckeditor.com/docs/ckeditor5/latest/api/module_engine_model_document-Document.html#event-change
 	 * event.
+	 *
+	 * It is not called `change`, because Angular also listens to the native DOM events of the same name, and the DOM
+	 * `change` event of an input inside the component (e.g. in a custom layout or in the toolbar) would bubble to it.
 	 */
-	@Output() public change = new EventEmitter<ChangeEvent<TEditor>>();
+	@Output() public editorChange = new EventEmitter<ChangeEvent<TEditor>>();
 
 	/**
 	 * Fires when the editing view of the editor is blurred. It corresponds with the `editor.editing.view.document#blur`
@@ -316,18 +320,30 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		const isDataEcho = !dataChange || dataChange.currentValue === this.lastEmittedData;
 		const isRootsAttributesEcho = !rootsAttributesChange || rootsAttributesChange.currentValue === this.lastEmittedRootsAttributes;
 
-		if ( !isDataEcho || !isRootsAttributesEcho ) {
-			const haveRootsChanged = this.syncEditorWithState( editor, {
-				isDataChanged: !isDataEcho,
-				isRootsAttributesChanged: !isRootsAttributesEcho
-			} );
+		const haveRootsChanged = ( !isDataEcho || !isRootsAttributesEcho ) && this.syncEditorWithState( editor, {
+			isDataChanged: !isDataEcho,
+			isRootsAttributesChanged: !isRootsAttributesEcho
+		} );
 
+		const isTwoWayDataBindingEnabledAgain = changes.disableTwoWayDataBinding?.previousValue === true;
+
+		if ( this.disableTwoWayDataBinding || ( !haveRootsChanged && !isTwoWayDataBindingEnabledAgain ) ) {
+			return;
+		}
+
+		this.runAfterChangeDetection( () => {
 			// The data the application set is not emitted back, but `[(rootsAttributes)]` has to list the roots
 			// the editor has now: the added ones with their attributes, and without the detached ones.
-			if ( haveRootsChanged && !this.disableTwoWayDataBinding ) {
+			if ( haveRootsChanged ) {
 				this.emitRootsAttributes( editor, new Set() );
 			}
-		}
+
+			// While the binding was disabled, the component did not follow the editor, so the application has old data.
+			// It is read after the inputs were pushed, so that the data the application set at the same time is kept.
+			if ( isTwoWayDataBindingEnabledAgain ) {
+				this.emitEditorState( editor );
+			}
+		} );
 	}
 
 	// Implementing the AfterViewInit interface.
@@ -458,8 +474,7 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 					this.syncEditorWithState( editor, { isDataChanged, isRootsAttributesChanged } );
 				}
 
-				this.data = editor.getFullData();
-				this.rootsAttributes = editor.getRootsAttributes();
+				this.emitEditorState( editor );
 				this.rootsSignal.set( editor.model.document.getRootNames() );
 				this.editorSignal.set( editor );
 
@@ -470,7 +485,19 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 	}
 
 	private getConfig(): EditorConfig {
-		let config = assignAttributesPropToMultiRootEditorConfig( this.rootsAttributes, this.config );
+		// The roots come from `data` and the configuration. The attributes of another root would create that root too,
+		// which the component ignores once the editor is ready (see `syncEditorWithState()`).
+		const knownRootNames = new Set( [
+			...Object.keys( { ...this.data } ),
+			...Object.keys( { ...this.config.roots } ),
+			...typeof this.config.initialData === 'string' ? [] : Object.keys( { ...this.config.initialData } )
+		] );
+
+		const rootsAttributes = Object.fromEntries(
+			Object.entries( { ...this.rootsAttributes } ).filter( ( [ rootName ] ) => knownRootNames.has( rootName ) )
+		);
+
+		let config = assignAttributesPropToMultiRootEditorConfig( rootsAttributes, this.config );
 
 		config = appendAllIntegrationPluginsToConfig( config );
 
@@ -485,7 +512,7 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		( editor.model.document as any ).on( 'change:data', ( evt: GetEventInfo<ModelDocumentChangeEvent> ) => {
 			this.ngZone.run( () => {
 				this.updateStateFromEditor( editor );
-				this.change.emit( { event: evt, editor } );
+				this.editorChange.emit( { event: evt, editor } );
 			} );
 		} );
 
@@ -524,6 +551,16 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		) );
 		const rootsWithChangedAttributes = new Set( differ.getChangedRoots().map( change => change.name ) );
 
+		// Some markers are a part of the data, e.g. the markers of comments. A change of such a marker does not change
+		// the content of the root, so `getChanges()` does not list the root.
+		for ( const { data: { oldRange, newRange } } of differ.getChangedMarkers() ) {
+			for ( const range of [ oldRange, newRange ] ) {
+				if ( range ) {
+					rootsWithChangedData.add( ( range.root as ModelRootElement ).rootName );
+				}
+			}
+		}
+
 		const currentData = this.data ?? {};
 		const data: MultiRootEditorData = {};
 
@@ -540,6 +577,66 @@ implements MultiRootEditorHost, AfterViewInit, OnChanges, OnDestroy {
 		}
 
 		this.emitRootsAttributes( editor, rootsWithChangedAttributes );
+	}
+
+	/**
+	 * Reads the whole editor, and emits the data and the attributes that differ from the inputs.
+	 *
+	 * The editor can start with other roots or other content than the inputs, e.g. real-time collaboration loads them
+	 * from the server, or `config.roots` adds roots. While the two-way data binding is disabled, the inputs do not
+	 * follow the editor at all. The application must get the current state: otherwise, a later `data` change detaches
+	 * the roots it does not know, and sets the old content again.
+	 */
+	private emitEditorState( editor: TEditor ): void {
+		const inputData = { ...this.data };
+		const inputRootsAttributes = { ...this.rootsAttributes };
+
+		const data = editor.getFullData();
+		const rootsAttributes = editor.getRootsAttributes();
+
+		const isDataDifferent = !isDeepEqual( data, inputData );
+
+		// The roots are compared with the keys of `data`, because the application does not have to list every root
+		// in `rootsAttributes`. A root it does not list has no attributes of the integrator.
+		const areRootsAttributesDifferent =
+			!areArraysEqual( Object.keys( data ).sort(), Object.keys( inputData ).sort() ) ||
+			Object.keys( rootsAttributes ).some( rootName => !isDeepEqual(
+				pickUserAttributes( rootsAttributes[ rootName ] ),
+				pickUserAttributes( inputRootsAttributes[ rootName ] ?? {} )
+			) );
+
+		this.data = data;
+		this.rootsAttributes = rootsAttributes;
+
+		if ( this.disableTwoWayDataBinding ) {
+			return;
+		}
+
+		if ( isDataDifferent ) {
+			this.lastEmittedData = data;
+			this.dataChange.emit( data );
+		}
+
+		if ( areRootsAttributesDifferent ) {
+			this.lastEmittedRootsAttributes = rootsAttributes;
+			this.rootsAttributesChange.emit( rootsAttributes );
+		}
+	}
+
+	/**
+	 * Runs the callback once the current change detection run ends, unless the component is destroyed or stops
+	 * emitting by then.
+	 *
+	 * `ngOnChanges()` runs while Angular checks the parent component. An emit then lets the handler change the state
+	 * of the parent that Angular has checked already: development mode reports NG0100, and without zone.js the parent
+	 * does not show the new state.
+	 */
+	private runAfterChangeDetection( callback: () => void ): void {
+		queueMicrotask( () => {
+			if ( !this.isDestroyed && !this.disableTwoWayDataBinding ) {
+				this.ngZone.run( callback );
+			}
+		} );
 	}
 
 	/**

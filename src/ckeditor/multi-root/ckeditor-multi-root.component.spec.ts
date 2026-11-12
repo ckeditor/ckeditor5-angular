@@ -37,7 +37,7 @@ const INITIAL_DATA: MultiRootEditorData = {
 			[disabled]="disabled"
 			[disableTwoWayDataBinding]="disableTwoWayDataBinding"
 			(ready)="onReady( $event )"
-			(change)="changes.push( $event )"
+			(editorChange)="changes.push( $event )"
 			(focus)="focusEvents.push( $event )"
 			(blur)="blurEvents.push( $event )"
 			(error)="errors.push( $event )"
@@ -147,6 +147,47 @@ class OutsideLayoutComponent {
 	public rootNames: Array<string> = [ 'intro', 'content' ];
 }
 
+@Component( {
+	imports: [ CKEditorMultiRootComponent ],
+	template: `
+		<p class="root-count">{{ rootCount }}</p>
+
+		<ckeditor-multi-root
+			[editor]="Editor"
+			[config]="config"
+			[(data)]="data"
+			[disableTwoWayDataBinding]="disableTwoWayDataBinding"
+			(rootsAttributesChange)="rootCount = countKeys( $event )"
+			(ready)="onReady( $event )"
+		/>
+	`
+} )
+class ParentStateComponent {
+	public Editor: any = AngularMultiRootEditor;
+	public config: EditorConfig = { licenseKey: 'GPL' };
+	public data: MultiRootEditorData = { ...INITIAL_DATA };
+	public disableTwoWayDataBinding = false;
+	public rootCount = 2;
+
+	public readonly ready: Promise<MultiRootEditor>;
+
+	private resolveReady!: ( editor: MultiRootEditor ) => void;
+
+	constructor() {
+		this.ready = new Promise( resolve => {
+			this.resolveReady = resolve;
+		} );
+	}
+
+	public onReady( editor: MultiRootEditor ): void {
+		this.resolveReady( editor );
+	}
+
+	public countKeys( value: object ): number {
+		return Object.keys( value ).length;
+	}
+}
+
 describe( 'CKEditorMultiRootComponent', () => {
 	afterEach( () => {
 		vi.unstubAllGlobals();
@@ -242,6 +283,77 @@ describe( 'CKEditorMultiRootComponent', () => {
 			expect( host.rootsAttributesChanges ).toEqual( [] );
 		} );
 
+		it( 'should emit the roots and the data that the editor starts with', async () => {
+			// Real-time collaboration loads the roots of a document from the server in the same way.
+			host.config = { licenseKey: 'GPL', roots: { extra: { initialData: '<p>Extra</p>' } } };
+
+			const editor = await render();
+
+			expect( host.dataChanges.length ).toBe( 1 );
+			expect( host.data ).toEqual( editor.getFullData() );
+			expect( host.rootsAttributesChanges.length ).toBe( 1 );
+			expect( Object.keys( host.rootsAttributes ) ).toEqual( [ 'intro', 'content', 'extra' ] );
+		} );
+
+		it( 'should emit the attributes that the editor starts with', async () => {
+			host.config = { licenseKey: 'GPL', roots: { intro: { modelAttributes: { order: 10 } } } };
+
+			await render();
+
+			expect( host.dataChanges ).toEqual( [] );
+			expect( host.rootsAttributesChanges.length ).toBe( 1 );
+			expect( host.rootsAttributes.intro ).toMatchObject( { order: 10 } );
+		} );
+
+		it( 'should not emit the state that the editor starts with when the two-way data binding is disabled', async () => {
+			host.disableTwoWayDataBinding = true;
+			host.config = { licenseKey: 'GPL', roots: { extra: { initialData: '<p>Extra</p>' } } };
+
+			await render();
+
+			expect( host.dataChanges ).toEqual( [] );
+			expect( host.rootsAttributesChanges ).toEqual( [] );
+		} );
+
+		it( 'should not create the roots that only the roots attributes list', async () => {
+			host.rootsAttributes = { intro: { order: 10 }, extra: { order: 20 } };
+
+			const editor = await render();
+
+			expect( editor.model.document.getRootNames() ).toEqual( [ 'intro', 'content' ] );
+			expect( editor.getRootAttributes( 'intro' ) ).toMatchObject( { order: 10 } );
+		} );
+
+		it( 'should keep the attributes of the roots that the configuration lists', async () => {
+			host.data = { intro: '<p>Intro</p>' };
+			host.config = { licenseKey: 'GPL', roots: { extra: { initialData: '<p>Extra</p>' } } };
+			host.rootsAttributes = { extra: { order: 20 } };
+
+			const editor = await render();
+
+			expect( editor.getRootAttributes( 'extra' ) ).toMatchObject( { order: 20 } );
+		} );
+
+		it( 'should keep the attributes of the roots that the initial data in the configuration lists', async () => {
+			host.data = { intro: '<p>Intro</p>' };
+			host.config = { licenseKey: 'GPL', initialData: { extra: '<p>Extra</p>' } };
+			host.rootsAttributes = { extra: { order: 20 } };
+
+			const editor = await render();
+
+			expect( editor.getRootAttributes( 'extra' ) ).toMatchObject( { order: 20 } );
+		} );
+
+		it( 'should not take the roots from the initial data in the configuration that is a string', async () => {
+			host.config = { licenseKey: 'GPL', initialData: '<p>Single root</p>' };
+			host.rootsAttributes = { intro: { order: 10 }, 0: { order: 20 } };
+
+			const editor = await render();
+
+			expect( editor.model.document.getRootNames() ).toEqual( [ 'intro', 'content' ] );
+			expect( editor.getRootAttributes( 'intro' ) ).toMatchObject( { order: 10 } );
+		} );
+
 		describe( 'editor to application', () => {
 			it( 'should emit the data of the changed root', async () => {
 				const editor = await render();
@@ -308,6 +420,38 @@ describe( 'CKEditorMultiRootComponent', () => {
 				expect( host.rootsAttributesChanges ).toEqual( [] );
 			} );
 
+			it( 'should emit the data when a marker that the data contains changes', async () => {
+				const editor = await render();
+
+				editor.conversion.for( 'dataDowncast' ).markerToData( { model: 'comment' } );
+
+				editor.model.change( writer => {
+					writer.addMarker( 'comment:1', {
+						range: writer.createRangeIn( editor.model.document.getRoot( 'intro' )!.getChild( 0 ) as any ),
+						usingOperation: true,
+						affectsData: true
+					} );
+				} );
+
+				expect( host.data.intro ).toContain( '<comment-start name="1">' );
+				expect( host.data.intro ).toBe( editor.getData( { rootName: 'intro' } ) );
+				expect( host.data.content ).toBe( '<p>Content</p>' );
+
+				editor.model.change( writer => {
+					writer.removeMarker( 'comment:1' );
+				} );
+
+				expect( host.data.intro ).toBe( '<p>Intro</p>' );
+			} );
+
+			it( 'should not get the native DOM change events from the content of the component', async () => {
+				await render();
+
+				fixture.nativeElement.querySelector( '.toolbar-container' ).dispatchEvent( new Event( 'change', { bubbles: true } ) );
+
+				expect( host.changes ).toEqual( [] );
+			} );
+
 			it( 'should not push the emitted data back into the editor', async () => {
 				const editor = await render();
 
@@ -332,6 +476,68 @@ describe( 'CKEditorMultiRootComponent', () => {
 				expect( host.rootsAttributesChanges ).toEqual( [] );
 				expect( host.changes.length ).toBe( 2 );
 				expect( host.multiRoot.roots() ).toEqual( [ 'intro', 'content', 'outro' ] );
+			} );
+
+			it( 'should emit the current data of all roots after the two-way data binding is enabled again', async () => {
+				const editor = await render();
+
+				host.disableTwoWayDataBinding = true;
+				await settle();
+
+				editor.data.set( { intro: '<p>Typed while disabled</p>' } );
+
+				host.disableTwoWayDataBinding = false;
+				await settle();
+
+				expect( host.data ).toEqual( { intro: '<p>Typed while disabled</p>', content: '<p>Content</p>' } );
+
+				editor.data.set( { content: '<p>Typed after</p>' } );
+
+				expect( host.data ).toEqual( { intro: '<p>Typed while disabled</p>', content: '<p>Typed after</p>' } );
+			} );
+
+			it( 'should emit the roots and the attributes changed while the two-way data binding was disabled', async () => {
+				const editor = await render();
+
+				host.disableTwoWayDataBinding = true;
+				await settle();
+
+				editor.addRoot( 'outro', { initialData: '<p>Outro</p>', modelAttributes: { order: 30 } } );
+
+				host.disableTwoWayDataBinding = false;
+				await settle();
+
+				expect( Object.keys( host.data ) ).toEqual( [ 'intro', 'content', 'outro' ] );
+				expect( host.rootsAttributes.outro ).toMatchObject( { order: 30 } );
+			} );
+
+			it( 'should keep the data that the application sets while it enables the two-way data binding again', async () => {
+				const editor = await render();
+
+				host.disableTwoWayDataBinding = true;
+				await settle();
+
+				editor.data.set( { intro: '<p>Typed while disabled</p>' } );
+
+				host.data = { intro: '<p>From the application</p>', content: '<p>Content</p>' };
+				host.disableTwoWayDataBinding = false;
+				await settle();
+
+				expect( editor.getData( { rootName: 'intro' } ) ).toBe( '<p>From the application</p>' );
+				expect( host.data ).toEqual( { intro: '<p>From the application</p>', content: '<p>Content</p>' } );
+			} );
+
+			it( 'should emit nothing after the two-way data binding is enabled again if the editor did not change', async () => {
+				await render();
+
+				host.disableTwoWayDataBinding = true;
+				await settle();
+
+				host.disableTwoWayDataBinding = false;
+				await settle();
+
+				expect( host.dataChanges ).toEqual( [] );
+				expect( host.rootsAttributesChanges ).toEqual( [] );
 			} );
 
 			it( 'should emit the focus and blur events', async () => {
@@ -966,6 +1172,77 @@ describe( 'CKEditorMultiRootComponent', () => {
 			await settle();
 
 			expect( fixture.nativeElement.querySelector( '.outside .ck-editor__editable' ) ).toBeNull();
+		} );
+	} );
+
+	describe( 'state of the parent component', () => {
+		let fixture: ComponentFixture<ParentStateComponent>;
+		let host: ParentStateComponent;
+
+		beforeEach( async () => {
+			fixture = TestBed.createComponent( ParentStateComponent );
+			host = fixture.componentInstance;
+
+			detectChanges( fixture );
+			await host.ready;
+			await fixture.whenStable();
+			detectChanges( fixture );
+		} );
+
+		afterEach( () => {
+			fixture.destroy();
+		} );
+
+		it( 'should emit the attributes of the roots that the data added after the change detection run', async () => {
+			host.data = { ...INITIAL_DATA, outro: '<p>Outro</p>' };
+
+			// An emit while Angular checks the parent changes a value that Angular checked already (NG0100).
+			expect( () => detectChanges( fixture ) ).not.toThrow();
+
+			await fixture.whenStable();
+			detectChanges( fixture );
+
+			expect( fixture.nativeElement.querySelector( '.root-count' ).textContent ).toBe( '3' );
+		} );
+
+		it( 'should emit the state after the change detection run when the two-way data binding is enabled again', async () => {
+			host.disableTwoWayDataBinding = true;
+			detectChanges( fixture );
+
+			const editor = await host.ready;
+
+			editor.addRoot( 'outro', { initialData: '<p>Outro</p>' } );
+
+			host.disableTwoWayDataBinding = false;
+
+			expect( () => detectChanges( fixture ) ).not.toThrow();
+
+			await fixture.whenStable();
+			detectChanges( fixture );
+
+			expect( fixture.nativeElement.querySelector( '.root-count' ).textContent ).toBe( '3' );
+		} );
+
+		it( 'should not emit the attributes of the roots that the data added once the component is destroyed', async () => {
+			host.data = { ...INITIAL_DATA, outro: '<p>Outro</p>' };
+			detectChanges( fixture );
+
+			fixture.destroy();
+			await Promise.resolve();
+
+			expect( host.rootCount ).toBe( 2 );
+		} );
+
+		it( 'should not emit the attributes of the roots that the data added once the two-way data binding is disabled', async () => {
+			host.data = { ...INITIAL_DATA, outro: '<p>Outro</p>' };
+			detectChanges( fixture );
+
+			host.disableTwoWayDataBinding = true;
+			detectChanges( fixture );
+
+			await fixture.whenStable();
+
+			expect( host.rootCount ).toBe( 2 );
 		} );
 	} );
 

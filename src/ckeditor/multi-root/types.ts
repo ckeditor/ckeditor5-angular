@@ -3,7 +3,7 @@
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-licensing-options
  */
 
-import type { EditorErrorCallback, MultiRootEditor, ViewRootElementDefinition } from 'ckeditor5';
+import type { AddRootRootConfig, EditorErrorCallback, MultiRootEditor, ViewRootElementDefinition } from 'ckeditor5';
 import type { EditorRelaxedConstructor } from '@ckeditor/ckeditor5-integrations-common';
 
 /**
@@ -114,9 +114,4 @@ export type AddRootOptions = {
 	 * reaches other clients in real-time collaboration.
 	 */
 	editableOptions?: MultiRootEditableOptions;
-
-	/**
-	 * Any other option accepted by `MultiRootEditor#addRoot()`.
-	 */
-	[ key: string ]: unknown;
-};
+} & Pick<AddRootRootConfig, 'description' | 'title'>;
