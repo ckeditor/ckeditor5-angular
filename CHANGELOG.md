@@ -1,6 +1,15 @@
 Changelog
 =========
 
+## [13.1.0](https://github.com/ckeditor/ckeditor5-angular/compare/v13.0.0...v13.1.0) (November 13, 2026)
+
+### Features
+
+* Added support for the multi-root editor with the `<ckeditor-multi-root>` component (`CKEditorMultiRootComponent`). It binds the data and the attributes of all roots with `[(data)]` and `[(rootsAttributes)]`, and adds or removes roots with `addRoot()` and `removeRoot()`. Without content, it renders the toolbar and the editables of all roots. For a custom layout, place `<ckeditor-multi-root-toolbar>`, `<ckeditor-multi-root-menu-bar>`, and `<ckeditor-multi-root-editable>` inside it yourself. Closes [#600](https://github.com/ckeditor/ckeditor5-angular/issues/600), [#135](https://github.com/ckeditor/ckeditor5-angular/issues/135).
+
+  **This feature is in early access.** Its API may change without a major release.
+
+
 ## [13.0.0](https://github.com/ckeditor/ckeditor5-angular/compare/v12.0.0...v13.0.0) (October 26, 2026)
 
 ### BREAKING CHANGES
@@ -81,55 +90,6 @@ Changelog
 ### Features
 
 * The stylesheets loaded by `loadCKEditorCloud()` can now be injected into a shadow root instead of `document.head`, so the editor styles stay scoped to a component rather than leaking into the page. Pass the root as `targetNode` of the `injectedStylesheetsLocation` option.
-
-
-## [11.2.0](https://github.com/ckeditor/ckeditor5-angular/compare/v11.1.2...v11.2.0) (June 8, 2026)
-
-### Features
-
-* It is now possible to customize the editable element tag name, classes, styles, and attributes via `config.root.element` or `config.roots.main.element`. The value can be a plain string (tag name) or an object:
-
-  ```ts
-  import { BalloonEditor } from 'ckeditor5';
-
-  // In your component:
-  public BalloonEditor = BalloonEditor;
-  public config = {
-  	root: {
-  		element: {
-  			name: 'article',
-  			classes: [ 'my-editor', 'custom-class' ],
-  			styles: { color: 'red' },
-  			attributes: { role: 'textbox' }
-  		}
-  	}
-  };
-  ```
-
-  ```html
-  <ckeditor [editor]="BalloonEditor" [config]="config"></ckeditor>
-  ```
-
-  To configure the root as a paragraph-like (inline-content only) editor, also pass `modelElement: '$inlineRoot'`:
-
-  ```ts
-  public config = {
-  	root: {
-  		element: 'h1',
-  		modelElement: '$inlineRoot',
-  		initialData: 'Document title',
-  		placeholder: 'Enter title...'
-  	}
-  };
-  ```
-
-  For editors that use the Angular-rendered element as their editable (such as `InlineEditor` or `BalloonEditor`), the editable falls back to the `tagName` input (`div` by default) when no element definition is provided in the config. For `ClassicEditor`, which creates its own editable internally, `config.root.element` (or `config.roots.main.element`) should always be provided explicitly.
-
-  The `tagName` input has been deprecated in favor of this new configuration.
-
-### Other changes
-
-* Readme simplification.
 
 ---
 
