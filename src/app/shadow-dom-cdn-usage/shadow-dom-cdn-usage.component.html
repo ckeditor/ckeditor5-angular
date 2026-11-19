@@ -14,11 +14,11 @@
 	[mode]="mode()"
 	(attached)="onShadowRootAttached( $event )">
 	<ng-template>
-		@if ( Editor ) {
+		@if ( Editor(); as editor ) {
 			<ckeditor
 				[data]="editorData"
-				[editor]="Editor"
-				[config]="config"
+				[editor]="editor"
+				[config]="config()"
 				[disabled]="isDisabled()"
 				id="classic-editor"
 				name="classic-editor"

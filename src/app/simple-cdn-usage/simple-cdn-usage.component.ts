@@ -1,4 +1,4 @@
-import { Component, type OnInit } from '@angular/core';
+import { Component, signal, type OnInit } from '@angular/core';
 import type { ClassicEditor, EditorConfig } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
 
 import {
@@ -13,9 +13,11 @@ import {
 	standalone: false
 } )
 export class SimpleCdnUsageComponent implements OnInit {
-	public Editor: typeof ClassicEditor | null = null;
+	// Signals, because the editor is loaded asynchronously. Without zone.js, setting a plain property
+	// in a promise callback does not trigger change detection, and the editor would never render.
+	public readonly Editor = signal<typeof ClassicEditor | null>( null );
 
-	public config: EditorConfig | null = null;
+	public readonly config = signal<EditorConfig | null>( null );
 
 	public isDisabled = false;
 	public editorData =
@@ -67,8 +69,8 @@ You learn to appreciate each and every single one of the differences while you b
 			TextTransformation
 		} = cloud.CKEditor;
 
-		this.Editor = ClassicEditor;
-		this.config = {
+		this.Editor.set( ClassicEditor );
+		this.config.set( {
 			plugins: [
 				Essentials,
 				CKFinderUploadAdapter,
@@ -133,7 +135,7 @@ You learn to appreciate each and every single one of the differences while you b
 				contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
 			},
 			language: 'en'
-		};
+		} );
 	}
 
 	public onReady(): void {
