@@ -8,12 +8,12 @@
 
 <h3>Classic build</h3>
 <ckeditor
-	*ngIf="Editor"
+	*ngIf="Editor() as editor"
 
 	[data]="editorData"
-	[editor]="Editor"
+	[editor]="editor"
 	[disabled]="isDisabled"
-	[config]="config"
+	[config]="config()"
 	id="classic-editor"
 	name="classic-editor"
 

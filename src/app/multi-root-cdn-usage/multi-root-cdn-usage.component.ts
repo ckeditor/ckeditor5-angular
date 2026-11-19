@@ -1,4 +1,4 @@
-import { Component, type OnInit } from '@angular/core';
+import { Component, signal, type OnInit } from '@angular/core';
 import type { EditorConfig, MultiRootEditor } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
 
 import {
@@ -18,9 +18,11 @@ const EDITOR_VERSION = 'nightly';
 	standalone: false
 } )
 export class MultiRootCdnUsageComponent implements OnInit {
-	public Editor: typeof MultiRootEditor | null = null;
+	// Signals, because the editor is loaded asynchronously. Without zone.js, setting a plain property
+	// in a promise callback does not trigger change detection, and the editor would never render.
+	public readonly Editor = signal<typeof MultiRootEditor | null>( null );
 
-	public config: EditorConfig | null = null;
+	public readonly config = signal<EditorConfig | null>( null );
 
 	public data: MultiRootEditorData = {
 		header: '<h2>Multi-root editor from CDN</h2>',
@@ -52,7 +54,7 @@ export class MultiRootCdnUsageComponent implements OnInit {
 			Indent, Link, List, Paragraph, PasteFromOffice, Table, TableToolbar, TextTransformation
 		} = cloud.CKEditor;
 
-		this.config = {
+		this.config.set( {
 			licenseKey: window.CKEDITOR_GLOBAL_LICENSE_KEY || 'GPL',
 			plugins: [
 				Essentials, Autoformat, Bold, Italic, BlockQuote, Heading, Indent,
@@ -72,8 +74,8 @@ export class MultiRootCdnUsageComponent implements OnInit {
 				contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
 			},
 			language: 'en'
-		};
+		} );
 
-		this.Editor = MultiRootEditor;
+		this.Editor.set( MultiRootEditor );
 	}
 }

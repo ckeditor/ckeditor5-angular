@@ -14,9 +14,11 @@ const EDITOR_VERSION = 'nightly';
 	standalone: false
 } )
 export class ShadowDomCdnUsageComponent {
-	public Editor: typeof ClassicEditor | null = null;
+	// Signals, because the editor is loaded asynchronously. Without zone.js, setting a plain property
+	// in a promise callback does not trigger change detection, and the editor would never render.
+	public readonly Editor = signal<typeof ClassicEditor | null>( null );
 
-	public config: EditorConfig | null = null;
+	public readonly config = signal<EditorConfig | null>( null );
 
 	public readonly mode = signal<ShadowRootMode>( 'open' );
 
@@ -33,7 +35,7 @@ Nothing is added to the document head.</p>`;
 	}
 
 	public onShadowRootAttached( shadowRoot: ShadowRoot ): void {
-		this.Editor = null;
+		this.Editor.set( null );
 
 		loadCKEditorCloud( {
 			version: EDITOR_VERSION,
@@ -50,7 +52,7 @@ Nothing is added to the document head.</p>`;
 			Indent, Link, List, Paragraph, PasteFromOffice, Table, TableToolbar, TextTransformation
 		} = cloud.CKEditor;
 
-		this.config = {
+		this.config.set( {
 			licenseKey: window.CKEDITOR_GLOBAL_LICENSE_KEY || 'GPL',
 			plugins: [
 				Essentials, Autoformat, Bold, Italic, BlockQuote, Heading, Indent,
@@ -67,9 +69,9 @@ Nothing is added to the document head.</p>`;
 				contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
 			},
 			language: 'en'
-		};
+		} );
 
-		this.Editor = ClassicEditor;
+		this.Editor.set( ClassicEditor );
 	}
 
 	public onReady(): void {
