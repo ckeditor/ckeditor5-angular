@@ -1,10 +1,13 @@
-import { Component, type OnInit } from '@angular/core';
+import { Component, signal, type OnInit } from '@angular/core';
 import type { ClassicEditor, EditorConfig } from 'https://cdn.ckeditor.com/typings/ckeditor5.d.ts';
 
 import {
 	loadCKEditorCloud,
 	type CKEditorCloudResult
 } from '@ckeditor/ckeditor5-integrations-common';
+
+// The integration needs CKEditor 5 v49+.
+const EDITOR_VERSION = 'nightly';
 
 @Component( {
 	selector: 'app-simple-cdn-usage',
@@ -13,9 +16,11 @@ import {
 	standalone: false
 } )
 export class SimpleCdnUsageComponent implements OnInit {
-	public Editor: typeof ClassicEditor | null = null;
+	// Signals, because the editor is loaded asynchronously. Without zone.js, setting a plain property
+	// in a promise callback does not trigger change detection, and the editor would never render.
+	public readonly Editor = signal<typeof ClassicEditor | null>( null );
 
-	public config: EditorConfig | null = null;
+	public readonly config = signal<EditorConfig | null>( null );
 
 	public isDisabled = false;
 	public editorData =
@@ -31,12 +36,12 @@ You learn to appreciate each and every single one of the differences while you b
 
 	public ngOnInit(): void {
 		loadCKEditorCloud( {
-			version: '43.0.0'
+			version: EDITOR_VERSION
 		} )
 			.then( this._setupEditor.bind( this ) );
 	}
 
-	private _setupEditor( cloud: CKEditorCloudResult<{ version: '43.0.0' }> ) {
+	private _setupEditor( cloud: CKEditorCloudResult<{ version: typeof EDITOR_VERSION }> ) {
 		const {
 			ClassicEditor,
 			Essentials,
@@ -67,8 +72,9 @@ You learn to appreciate each and every single one of the differences while you b
 			TextTransformation
 		} = cloud.CKEditor;
 
-		this.Editor = ClassicEditor;
-		this.config = {
+		this.Editor.set( ClassicEditor );
+		this.config.set( {
+			licenseKey: window.CKEDITOR_GLOBAL_LICENSE_KEY || 'GPL',
 			plugins: [
 				Essentials,
 				CKFinderUploadAdapter,
@@ -133,7 +139,7 @@ You learn to appreciate each and every single one of the differences while you b
 				contentToolbar: [ 'tableColumn', 'tableRow', 'mergeTableCells' ]
 			},
 			language: 'en'
-		};
+		} );
 	}
 
 	public onReady(): void {
