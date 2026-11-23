@@ -6,6 +6,9 @@ import {
 	type CKEditorCloudResult
 } from '@ckeditor/ckeditor5-integrations-common';
 
+// The integration needs CKEditor 5 v49+.
+const EDITOR_VERSION = 'nightly';
+
 @Component( {
 	selector: 'app-simple-cdn-usage',
 	templateUrl: './simple-cdn-usage.component.html',
@@ -33,12 +36,12 @@ You learn to appreciate each and every single one of the differences while you b
 
 	public ngOnInit(): void {
 		loadCKEditorCloud( {
-			version: '43.0.0'
+			version: EDITOR_VERSION
 		} )
 			.then( this._setupEditor.bind( this ) );
 	}
 
-	private _setupEditor( cloud: CKEditorCloudResult<{ version: '43.0.0' }> ) {
+	private _setupEditor( cloud: CKEditorCloudResult<{ version: typeof EDITOR_VERSION }> ) {
 		const {
 			ClassicEditor,
 			Essentials,
@@ -71,6 +74,7 @@ You learn to appreciate each and every single one of the differences while you b
 
 		this.Editor.set( ClassicEditor );
 		this.config.set( {
+			licenseKey: window.CKEDITOR_GLOBAL_LICENSE_KEY || 'GPL',
 			plugins: [
 				Essentials,
 				CKFinderUploadAdapter,
